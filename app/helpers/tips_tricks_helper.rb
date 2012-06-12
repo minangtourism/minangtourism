@@ -1,0 +1,2 @@
+module TipsTricksHelper
+end

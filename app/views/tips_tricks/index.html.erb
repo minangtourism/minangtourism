@@ -1,0 +1,40 @@
+<%- model_class = TipsTrick.new.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:title) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%= model_class.human_attribute_name(:image) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tips_tricks.each do |tips_trick| %>
+      <tr>
+        <td><%= link_to tips_trick.id, tips_trick_path(tips_trick) %></td>
+        <td><%= tips_trick.title %></td>
+        <td><%= truncate(tips_trick.description, :length => 20) %></td>
+        <td><%= image_tag(tips_trick.image(:thumb)) %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_tips_trick_path(tips_trick), :class => 'btn btn-mini' %>
+          <%= link_to t('.show', :default => t("helpers.links.show")),
+                        tips_trick_path(tips_trick), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      tips_trick_path(tips_trick),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_tips_trick_path,
+            :class => 'btn btn-primary' %>

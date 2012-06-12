@@ -1,0 +1,12 @@
+<%= simple_form_for @tourism_article, html: { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :title %>
+  <%= f.input :content, as: :text %>
+  <%= f.input :video %>
+  <%= f.input :image %>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+      tourism_articles_path, :class => 'btn' %>
+  </div>
+<% end %>

@@ -1,0 +1,43 @@
+<%- model_class = TourismArticle.new.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:title) %></th>
+      <th><%= model_class.human_attribute_name(:content) %></th>
+      <th><%= model_class.human_attribute_name(:video) %></th>
+      <th><%= model_class.human_attribute_name(:image) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tourism_articles.each do |tourism_article| %>
+      <tr>
+        <td><%= link_to tourism_article.id, tourism_article_path(tourism_article) %></td>
+        <td><%= tourism_article.title %></td>
+        <td><%= truncate(tourism_article.content, :length => 50) %></td>
+        <td><%= tourism_article.video %></td>
+        <td><%= image_tag(tourism_article.image.url(:thumb))   %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_tourism_article_path(tourism_article), :class => 'btn btn-mini' %>
+          <%= link_to t('.show', :default => t("helpers.links.show")),
+                      tourism_article_path(tourism_article), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      tourism_article_path(tourism_article),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+          
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_tourism_article_path,
+            :class => 'btn btn-primary' %>

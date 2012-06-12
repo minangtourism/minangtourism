@@ -1,0 +1,25 @@
+<%= simple_form_for @location_tourism, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :name %>
+  <%= f.input :address, as: :text %>
+  <%= f.input :city %>
+  <%= f.input :zip %>
+  <%= f.input :phone %>
+  <%= f.input :web, as: :url %>
+  <%= f.input :facebook, as: :url %>
+  <%= f.input :twitter, as: :url %>
+  <%= f.input :hours_description, as: :text %>
+  <%= f.input :facility, as: :text %>
+  <%= f.input :description, as: :text %>
+  <%#= f.input :category_loc_tourism do %>
+    <%#= f.collection_select :category_loc_tourism_id, @category_loc_tourism_choices, :id, :name, {:prompt => true} %>
+    <%= f.association :category_loc_tourism, :collection => nested_set_options(CategoryLocTourism) {|i, level| "#{'-' * level} #{i.name}" } %>
+    <%#= f.association :category_loc_tourism, :collection => CategoryLocTourism.all %>
+  <%# end %>
+
+  <%= f.input :image %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+      location_tourisms_path, :class => 'btn' %>
+  </div>
+<% end %>

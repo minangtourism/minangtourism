@@ -1,0 +1,45 @@
+settings: &settings
+  facebook:
+    alt: Facebook
+    value: 'http://facebook.com/'
+    editable: true
+    deletable: false
+    validations:
+      presence: true
+  twitter:
+    alt: Twitter
+    value: 'http://twitter.com/'
+    editable: true
+    deletable: false
+    validations:
+      presence: true
+  phone:
+    alt: Phone
+    value: '08136312345679'
+    editable: true
+    deletable: false
+    validations:
+      presence: true
+  email:
+    alt: Phone
+    value: 'info@sumbar_tourism.com'
+    editable: true
+    deletable: false
+    validations:
+      presence: true
+  address:
+    alt: Address
+    value: 'belum ada'
+    editable: true
+    deletable: false
+    validations:
+      presence: true
+  
+development:
+  <<: *settings  
+  
+test:
+  <<: *settings
+
+production:
+  <<: *settings
