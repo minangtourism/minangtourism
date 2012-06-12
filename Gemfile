@@ -15,6 +15,11 @@ gem 'nested_set'
 gem 'acts_as_commentable'
 gem 'settler'
 
+#admin
+gem 'rails_admin'
+gem "cancan"
+gem "role_model"
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
