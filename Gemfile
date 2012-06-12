@@ -15,12 +15,6 @@ gem 'nested_set'
 gem 'acts_as_commentable'
 gem 'settler'
 
-# ActiveAdmin
-gem "activeadmin"
-gem "sass-rails", "~> 3.2.3"
-gem "meta_search"
-
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
