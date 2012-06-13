@@ -50,3 +50,7 @@ $(document).on("focus", "[data-behaviour~='datepicker']", function(e){
 //    });
 //});
 
+
+$('.dropdown-menu form').on('click.dropdown.data-api', function(e){
+  e.stopPropagation();
+});

@@ -17,7 +17,6 @@
     <link href="images/apple-touch-icon.png" rel="apple-touch-icon">
     <link href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
     <link href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
-
   </head>
   <body>
 
@@ -31,26 +30,59 @@
           </a>
           <a class="brand" href="#">SumbarTourism</a>
 
-          <div class="btn-group pull-right">
+          <div class="nav pull-right">
+            <li class="divider-vertical"></li>
             <%= render "shared/user_nav" %>
           </div>
 
           <div class="nav-collapse">
             <ul class="nav">
-              <li><%= link_to "Home", root_path %></li>
-              <li><%= link_to "Mengapa Sumbar", why_sumbars_path  %></li>
-              <li><%= link_to "Berita Wisata", tourism_articles_path  %></li>
-              <li><%= link_to "Cerita Wisatawan", tourism_articles_path  %></li>
-              <li><%= link_to "Acara", events_path  %></li>
-              <li><%= link_to "Cerita Rakyat", folktales_path  %></li>
-              <li><%= link_to "Tips & Trik", tips_tricks_path  %></li>
-              <li><%= link_to "Tempat Wisata", location_tourisms_path  %></li>
-              <li><%= link_to "Kontak", contacts_path  %></li>
+              <li>
+                <%= link_to root_path do %>
+                  <i class="icon-home"></i> Home
+                <% end %>
+              </li>
+              <li>
+                <%= link_to why_sumbars_path do %>
+                  <i class="icon-road"></i> Mengapa Sumbar
+                <% end %>
+              </li>
+              <li>
+                <%= link_to tourism_articles_path do %>
+                  <i class="icon-globe"></i> Berita Wisata
+                <% end %>
+              </li>
+              <li>
+                <%= link_to tourism_articles_path do %>
+                  <i class="icon-pencil"></i> Cerita Wisatawan
+                <% end %>
+              </li>
+              <li>
+                <%= link_to events_path do %>
+                  <i class="icon-bullhorn"></i> Acara
+                <% end %>
+              </li>
+              <li>
+                <%= link_to folktales_path do %>
+                  <i class="icon-book"></i> Cerita Rakyat
+                <% end %>
+              </li>
+              <li>
+                <%= link_to tips_tricks_path do %>
+                  <i class="icon-plane"></i> Tips & Triks
+                <% end %>
+              </li>
+              <%#*<li>%>
+                <%#= link_to location_tourisms_path do %>
+                  <%#*<i class="icon-picture"></i> Tempat Wisata%>
+                <%# end %>
+              <%#*</li> %>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
+        <%= render "shared/flash_messages" %>
 
     <div class="container">
       <div class="content">
