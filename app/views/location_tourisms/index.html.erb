@@ -1,62 +1,45 @@
-<%- model_class = LocationTourism.new.class -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
-</div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:address) %></th>
-      <th><%= model_class.human_attribute_name(:city) %></th>
-      <%#*<th><%= model_class.human_attribute_name(:zip) %></th>%>
-      <%#*<th><%= model_class.human_attribute_name(:phone) %></th>%>
-      <%#*<th><%= model_class.human_attribute_name(:web) %></th>%>
-      <%#*<th><%= model_class.human_attribute_name(:facebook) %></th>%>
-      <%#*<th><%= model_class.human_attribute_name(:twitter) %></th>%>
-      <th><%= model_class.human_attribute_name(:hours_description) %></th>
-      <th><%= model_class.human_attribute_name(:facility) %></th>
-      <%#*<th><%= model_class.human_attribute_name(:description) %></th>%>
-      <th><%= model_class.human_attribute_name(:category_loc_tourism_id) %></th>
-      <th><%= model_class.human_attribute_name(:user_id) %></th>
-      <th><%= model_class.human_attribute_name(:image) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @location_tourisms.each do |location_tourism| %>
-      <tr>
-        <td><%= link_to location_tourism.id, location_tourism_path(location_tourism) %></td>
-        <td><%= location_tourism.name %></td>
-        <td><%= location_tourism.address %></td>
-        <td><%= location_tourism.city %></td>
-        <%#*<td><%= location_tourism.zip %></td>%>
-        <%#*<td><%= location_tourism.phone %></td>%>
-        <%#*<td><%= location_tourism.web %></td>%>
-        <%#*<td><%= location_tourism.facebook %></td>%>
-        <%#*<td><%= location_tourism.twitter %></td>%>
-        <td><%= location_tourism.hours_description %></td>
-        <td><%= location_tourism.facility %></td>
-        <%#*<td><%= location_tourism.description %></td>%>
-        <td><%= location_tourism.category_loc_tourism_id %></td>
-        <td><%= location_tourism.user_id %></td>
-        <td><%= image_tag(location_tourism.image.url(:thumb)) %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_location_tourism_path(location_tourism), :class => 'btn btn-mini' %>
-          <%= link_to t('.show', :default => t("helpers.links.show")),
-                      location_tourism_path(location_tourism), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      location_tourism_path(location_tourism),
-                      :method => :delete,
-                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container">
+  <div class="page-header"> <!-- Mengapa Sumbar -->
+    <form action="" class="navbar-search pull-right" style="margin-top: 4px" >
+      <input style="border-radius: 0 3px 3px 0;" class="span2 pull-right" size="16" type="text" placeholder="Cari tempat wisata" value="">
+    </form>
+    <div class="input-append date pull-right" id="dp3" data-date-format="dd-mm-yyyy">
+      <span style="margin-top: 4px; border-radius: 3px 0 0 3px;" class="add-on "><i class="icon-th"></i></span>
+    </div>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_location_tourism_path,
-            :class => 'btn btn-primary' %>
+    <div class="control-group pull-right">
+      <label class="control-label">Into this</label>
+      <div class="controls">
+        <div class="combobox-container">
+          <input type="text">
+          <span data-dropdown="dropdown" class="add-on btn dropdown-toggle">
+            <span class="caret"></span>
+            <span class="combobox-clear">
+              <i class="icon-remove"></i>
+            </span>
+          </span>
+          <select class="combobox">
+            <option></option>
+            <option value="PA">Pennsylvania</option>
+            <option value="CT">Connecticut</option>
+            <option value="NY">New York</option>
+            <option value="MD">Maryland</option>
+            <option value="VA">Virginia</option>
+          </select></div>
+      </div>
+    </div>
+    <h2>Tempat Wisata</h2>
+  </div>
+  <div class="row">
+    <div class="span12">
+
+      <ul class="thumbnails">
+        <li class="span8">
+          <%= render "shared/location_tourism" %>
+        </li>
+
+      </ul> <!-- Berita Utama -->
+      <%= paginate @location_tourisms %>
+    </div>
+  </div>
+</div>

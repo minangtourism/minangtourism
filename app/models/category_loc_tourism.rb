@@ -4,6 +4,6 @@ class CategoryLocTourism < ActiveRecord::Base
 
   has_many :location_tourisms
 
-  attr_accessible :name, :parent_id, :lft, :rgt
+  attr_accessible :name, :parent_id, :lft, :rgt, as: [:default] + User.valid_roles
 
 end

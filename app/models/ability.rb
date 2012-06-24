@@ -2,14 +2,31 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    can :read, :all
+    cannot :access, :rails_admin
+    cannot :dashboard
 
-    user ||= User.new # guest user (not logged in)
-    if user.admin?
-      can :manage, :all
-    else
-      can :read, :all
+    if user
+      if user.is? :admin
+        can :access, :rails_admin
+        can :dashboard
+        can :manage, :all
+      end
+
+      if user.is? :operator
+        can :access, :rails_admin
+        can :dashboard
+        can :manage,
+          [Comment, Event, Folktale, LocationTourism, TipsTrick, TourismArticle], :published => true
+      end
+
+      if user.is? :member
+        can [:create, :update],
+          [Comment, Event, Folktale, LocationTourism, TipsTrick, TourismArticle], :published => true
+      end
     end
-    can :update, Article, :published => true
+
+    cannot :destroy, user
   end
 
   #  def initialize(user)

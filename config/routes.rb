@@ -1,8 +1,13 @@
 SumbarTourism::Application.routes.draw do
 
-  get "homes/index"
+  resources :sumbar_contents
+
+  root :to => 'homes#index'
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
+  get '/users/sign_in' => 'homes#index', :defaults => { :prompt_sign_in => true }
+  devise_for :users
 
   resources :contacts
 
@@ -14,7 +19,7 @@ SumbarTourism::Application.routes.draw do
 
   resources :folktales
 
-  resources :why_sumbars
+  resources :tourism_articles
 
   resources :events do
     member do
@@ -22,9 +27,29 @@ SumbarTourism::Application.routes.draw do
     end
   end
 
-  devise_for :users
+  resources :tourism_articles do
+    member do
+      post :create_comment
+    end
+  end
+  
+  resources :folktales do
+    member do
+      post :create_comment
+    end
+  end
 
-  resources :tourism_articles
+  resources :tips_tricks do
+    member do
+      post :create_comment
+    end
+  end
+
+  resources :events do
+    member do
+      post :create_comment
+    end
+  end
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -75,7 +100,7 @@ SumbarTourism::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'homes#index'
+  
 
   # See how all your routes lay out with "rake routes"
 

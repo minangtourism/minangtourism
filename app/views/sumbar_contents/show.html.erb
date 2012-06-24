@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @sumbar_content.title %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @sumbar_content.content %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @sumbar_content.type %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @sumbar_content.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_sumbar_content_path(@sumbar_content) %> |
+<%= link_to 'Back', sumbar_contents_path %>

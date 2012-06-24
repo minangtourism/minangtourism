@@ -3,7 +3,8 @@ class TipsTricksController < ApplicationController
   # GET /tips_tricks
   # GET /tips_tricks.json
   def index
-    @tips_tricks = TipsTrick.all
+    #    @tips_tricks = TipsTrick.all
+    @tips_tricks = TipsTrick.order("created_at desc").page(params[:page]).per(10)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,10 +16,24 @@ class TipsTricksController < ApplicationController
   # GET /tips_tricks/1.json
   def show
     @tips_trick = TipsTrick.find(params[:id])
+    @tips_trick.increment! :read_count
+    @comment = Comment.new
 
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @tips_trick }
+    end
+  end
+
+  def create_comment
+    @tips_trick = TipsTrick.find(params[:id])
+    @comment = current_user.comments.new(params[:comment])
+    @comment.commentable = @tips_trick
+
+    if @comment.save
+      redirect_to @tips_trick
+    else
+      render action: "show"
     end
   end
 

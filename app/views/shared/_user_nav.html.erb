@@ -1,13 +1,25 @@
 <% if signed_in? %>
-  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+  <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
     <i class="icon-user"></i> <%= current_user.email.gsub(/@.+/, '') %>
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu">
-    <li><%= link_to "Profile", '#' %></li>
-    <li><%= link_to "Setting", '#' %></li>
+    <li>
+      <%= link_to root_path do %>
+        <i class="icon-user"></i> My Profile
+      <% end %>
+    </li>
+    <li>
+      <%= link_to root_path do %>
+        <i class="icon-cog"></i> Settings
+      <% end %>
+    </li>
     <li class="divider"></li>
-    <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+    <li>
+      <%= link_to destroy_user_session_path, :method => :delete do %>
+        <i class="icon-cog"></i> Sign Out
+      <% end %>
+    </li>
   </ul>
 <% else %>
   <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
@@ -18,14 +30,14 @@
     <li class="explogin_drop_li" style="padding: 10px">
       <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
         <div class ="inputs">
-          <%= f.input :email, :autofocus => true  %>
+          <%= f.input :login, :autofocus => true  %>
           <%= f.input :password %>
           <%= f.error :password, :id => 'user_name_error' %>
           <%= f.input :remember_me, :as => :boolean, :label => false, :inline_label => true if devise_mapping.rememberable? %>
         </div>
 
         <div class="action">
-          <%= f.button :submit, "Sign in" %>
+          <%= f.button :submit, "Sign in", :class => 'btn-primary' %>
         </div>
 
         <ul class="explogin_link" style="list-style: none; margin: 10px 0;">
@@ -42,14 +54,12 @@
             </a>
           </li>
           <li>
-            <a href="/expautospro/index.php/component/users/?view=registration">
-              <i class="icon-check"></i>
-              Create an account
-            </a>
+            <%= link_to new_user_registration_path do %>
+              <i class="icon-home"></i> Create an account
+            <% end %>
           </li>
         </ul>
       <% end %>
     </li>
   </ul>
 <% end %>
-

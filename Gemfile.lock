@@ -54,6 +54,7 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    ffaker (1.14.0)
     haml (3.1.6)
     hike (1.2.1)
     hpricot (0.8.6)
@@ -179,7 +180,9 @@ DEPENDENCIES
   cancan
   coffee-rails (~> 3.2.1)
   devise
+  ffaker
   jquery-rails
+  kaminari
   nested_set
   paperclip (~> 3.0)
   pg

@@ -1,10 +1,10 @@
-
 class TourismArticlesController < ApplicationController
   # GET /tourism_articles
   # GET /tourism_articles.json
 
   def index
-    @tourism_articles = TourismArticle.all
+    #    @tourism_articles = TourismArticle.all
+    @tourism_articles = TourismArticle.order("created_at desc").page(params[:page]).per(10)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,10 +16,24 @@ class TourismArticlesController < ApplicationController
   # GET /tourism_articles/1.json
   def show
     @tourism_article = TourismArticle.find(params[:id])
+    @tourism_article.increment! :read_count
+    @comment = Comment.new
 
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @tourism_article }
+    end
+  end
+
+  def create_comment
+    @tourism_article = TourismArticle.find(params[:id])
+    @comment = current_user.comments.new(params[:comment])
+    @comment.commentable = @tourism_article
+
+    if @comment.save
+      redirect_to @tourism_article
+    else
+      render action: "show"
     end
   end
 

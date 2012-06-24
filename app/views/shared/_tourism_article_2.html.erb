@@ -1,0 +1,21 @@
+<% articles.each do |article| %>
+  <div class="thumbnail">
+    <div class="caption">
+      <h2 class="two-title-tourism-article">
+        <%= link_to article.title, tourism_article_path(article) %>
+      </h2>
+      oleh <a href="#"><%= article.user.username %></a> | <%= l article.created_at, :format => :costum %>
+    </div>
+    <%= image_tag(article.image.url(:medium)) %>
+    <div class="caption">
+      <p class="two-content-article"><%= truncate(article.content, :length => 200, :separator => ' ') %></p>
+      <p class="clearfix">
+        <span class="pull-left" style="margin-right: 8px; margin-top: 9px">5 <i class="icon-comment"></i></span>
+        <span class="pull-left" style="margin-top: 9px;"><%= article.read_count %> <i class="icon-eye-open"></i></span>
+        <span>
+          <%= link_to "Selanjutnya", tourism_article_path(article), :class => 'btn btn-primary pull-right' %>
+        </span>
+      </p>
+    </div>
+  </div>
+<% end %>

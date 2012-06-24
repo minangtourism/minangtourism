@@ -1,44 +1,32 @@
-<%- model_class = Event.new.class -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
-</div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:title) %></th>
-      <th><%= model_class.human_attribute_name(:description) %></th>
-      <th><%= model_class.human_attribute_name(:startdate) %></th>
-      <th><%= model_class.human_attribute_name(:end_date) %></th>
-      <th><%= model_class.human_attribute_name(:image) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= link_to event.id, event_path(event) %></td>
-        <td><%= event.title %></td>
-        <td><%= truncate(event.description, :length => 20) %></td>
-        <td><%= event.start_date %></td>
-        <td><%= event.end_date %></td>
-        <td><%= image_tag(event.image.url(:thumb))   %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_event_path(event), :class => 'btn btn-mini' %>
-          <%= link_to t('.show', :default => t("helpers.links.show")),
-                      event_path(event), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      event_path(event),
-                      :method => :delete,
-                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container">
+  <div class="page-header">
+    <form action="" class="navbar-search pull-right" style="margin-top: 4px" >
+      <input style="border-radius: 0 3px 3px 0;" class="span2 pull-right" size="16" type="text" placeholder="Cari berita wisata" value=""/>
+    </form>
+    <div class="input-append date pull-right" id="dp3" data-date-format="dd-mm-yyyy">
+      <span style="margin-top: 4px; border-radius: 3px 0 0 3px;" class="add-on "><i class="icon-th"></i></span>
+    </div>
+    <h2>Acara Wisata</h2>
+  </div>
+  <div class="row">
+    <div class="span12">
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_event_path,
-            :class => 'btn btn-primary' %>
+      <ul class="thumbnails">
+        <li class="span8">
+          <%= render "shared/event_1", :events => @events[0..0] || [] %>
+        </li>
+
+        <li class="span4">
+          <%= render "shared/event_2", :events => @events[1..1] || [] %>
+        </li>
+      </ul> <!-- Berita Utama -->
+
+      <ul class="thumbnails">
+        <%= render "shared/event_3", :events => @events.to_a.from(2) || [] %>
+
+      </ul>
+
+      <%= paginate @events %>
+    </div>
+  </div>
+</div>

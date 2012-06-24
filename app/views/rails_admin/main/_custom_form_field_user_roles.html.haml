@@ -1,0 +1,4 @@
+- form.object.roles_enum.each do |text, value|
+  %label.checkbox
+    = check_box_tag :"#{form.object.class.name.underscore}[#{field.method_name}][]", value, form.object.is?(value)
+    = text

@@ -20,6 +20,11 @@ gem 'rails_admin'
 gem "cancan"
 gem "role_model"
 
+#pagination
+gem 'kaminari'
+
+gem 'ffaker'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

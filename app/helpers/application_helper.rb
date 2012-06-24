@@ -1,11 +1,11 @@
-module ActionView
-  module Helpers
-    def localize(*args) 
-      I18n.localize(*args) unless args.first.nil?
-    end
-    alias l localize
-  end
-end
+#module ActionView
+#  module Helpers
+#    def localize(*args)
+#      I18n.localize(*args) unless args.first.nil?
+#    end
+#    alias l localize
+#  end
+#end
 
 module ApplicationHelper
 
@@ -21,4 +21,7 @@ module ApplicationHelper
     @devise_mapping ||= Devise.mappings[:user]
   end
 
+  def prompt_sign_in?
+    !!params[:prompt_sign_in]
+  end
 end

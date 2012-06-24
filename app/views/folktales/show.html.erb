@@ -1,30 +1,20 @@
-<%- model_class = @folktale.class -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
-</div>
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      <ul class="thumbnails">
+        <li class="span8">
+          <%= render "shared/folktale_content" %>
+        </li>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
-  <dd><%= @folktale.title %></dd><br />
-
-  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-  <dd><%= @folktale.description %></dd><br />
-
-  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
-  <dd><%= @folktale.user.email %></dd><br />
-  
-  <dt><strong><%= model_class.human_attribute_name(:image) %>:</strong></dt>
-  <dd><%= image_tag(@folktale.image.url(:medium)) %></dd>
-</dl>
-
-<div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-              folktales_path, :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_folktale_path(@folktale), :class => 'btn' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              folktale_path(@folktale),
-              :method => 'delete',
-              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-              :class => 'btn btn-danger' %>
+        <li class="span4">
+          <%= render "shared/folktale_sub_content",
+            :folktales => Folktale.order('created_at DESC').limit(5),
+            :tips_tricks => TipsTrick.order('created_at DESC').limit(5),
+            :article => TourismArticle.last,
+            :event => Event.last
+        %>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>

@@ -1,33 +1,21 @@
-<%- model_class = @tourism_article.class -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
-</div>
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      <ul class="thumbnails">
+        <li class="span8">
+          <%= render "shared/tourism_article_content" %>
+        </li>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
-  <dd><%= @tourism_article.title %></dd><br />
+        <li class="span4">
+          <%= render "shared/tourism_article_sub_content",
+            :article => TourismArticle.last,
+            :event => Event.last,
+            :folktales => Folktale.order('created_at DESC').limit(5),
+            :tips_tricks => TipsTrick.order('created_at DESC').limit(5)
+          %>
+        </li
+      </ul>
 
-  <dt><strong><%= model_class.human_attribute_name(:content) %>:</strong></dt>
-  <dd><%= @tourism_article.content %></dd><br />
-  
-  <dt><strong><%= model_class.human_attribute_name(:video) %>:</strong></dt>
-  <dd><%= @tourism_article.video %></dd><br />
-  
-  <dt><strong><%= model_class.human_attribute_name(:image) %>:</strong></dt>
-  <dd><%= image_tag(@tourism_article.image.url(:medium)) %></dd><br />
-
-  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
-  <dd><%= @tourism_article.user.email %></dd>
-</dl>
-
-<div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-              tourism_articles_path, :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_tourism_article_path(@tourism_article), :class => 'btn' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              tourism_article_path(@tourism_article),
-              :method => 'delete',
-              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-              :class => 'btn btn-danger' %>
+    </div>
+  </div>
 </div>

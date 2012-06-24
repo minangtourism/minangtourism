@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120612182122) do
+ActiveRecord::Schema.define(:version => 20120622161432) do
 
   create_table "category_loc_tourisms", :force => true do |t|
     t.string   "name"
@@ -63,12 +63,13 @@ ActiveRecord::Schema.define(:version => 20120612182122) do
     t.string   "title"
     t.text     "description"
     t.integer  "user_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "read_count",         :default => 0
   end
 
   create_table "location_tourisms", :force => true do |t|
@@ -119,29 +120,40 @@ ActiveRecord::Schema.define(:version => 20120612182122) do
 
   add_index "settings", ["key"], :name => "index_settings_on_key"
 
+  create_table "sumbar_contents", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.string   "type"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "tips_tricks", :force => true do |t|
     t.string   "title"
     t.text     "description"
     t.integer  "user_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "read_count",         :default => 0
   end
 
   create_table "tourism_articles", :force => true do |t|
     t.string   "title"
     t.text     "content"
     t.string   "video"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "user_id"
+    t.integer  "read_count",         :default => 0
   end
 
   create_table "users", :force => true do |t|
@@ -157,21 +169,15 @@ ActiveRecord::Schema.define(:version => 20120612182122) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
-  end
-
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-
-  create_table "why_sumbars", :force => true do |t|
-    t.string   "title"
-    t.text     "description"
-    t.integer  "user_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.string   "username"
+    t.integer  "roles_mask",             :default => 0
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
   end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end

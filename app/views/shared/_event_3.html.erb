@@ -1,0 +1,40 @@
+<%
+# event dikelompokkan menjadi 4 member setiap grupnya
+events = events.in_groups_of(4,false)
+# grup di kelompokkan ulang berdasarkan index member, ex: [[1,2,3,4][5,6,7,8]] => [[1,5],[2,6],[3,7],[4,8]]
+grouped_events = 4.times.map do |i|
+  events.map do |j|
+    j[i]
+  end.compact
+end
+%>
+<% grouped_events.each do |events| %>
+
+  <li class="span3">
+    <% events.each do |event| %>
+      <div class="thumbnail" style="margin-bottom: 30px;">
+        <div class="caption">
+          <h2 class="three-title-tourism-article">
+            <a>
+              <%= link_to event.title, event_path(event) %>
+            </a>
+          </h2>
+          <a href="#"><%= event.user.username %></a> | <%= l event.created_at, :format => :costum %>
+          <div class="eventdescription clearfix pull-right">
+            <a href="#"><i class="icon-thumbs-up"></i> 9 </a>
+          </div>
+        </div>
+        <%= image_tag(event.image.url(:tiny)) %>
+        <div class="caption">
+          <p class="three-content-article"><%= truncate(event.description, :length => 100, :separator => ' ') %></p>
+          <p class="clearfix">
+            <span class="pull-left" style="margin-top: 9px;">100 <i class="icon-eye-open"></i></span>
+            <span>
+              <%= link_to "Selanjutnya", event_path(event), :class => 'btn btn-primary pull-right' %>
+            </span>
+          </p>
+        </div>
+      </div>
+    <% end %>
+  </li>
+<% end %>

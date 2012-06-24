@@ -1,9 +1,9 @@
-
 class FolktalesController < ApplicationController
   # GET /folktales
   # GET /folktales.json
   def index
-    @folktales = Folktale.all
+    #    @folktales = Folktale.all
+    @folktales = Folktale.order("created_at desc").page(params[:page]).per(10)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,10 +15,24 @@ class FolktalesController < ApplicationController
   # GET /folktales/1.json
   def show
     @folktale = Folktale.find(params[:id])
+    @folktale.increment! :read_count
+    @comment = Comment.new
 
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @folktale }
+    end
+  end
+
+  def create_comment
+    @folktale = Folktale.find(params[:id])
+    @comment = current_user.comments.new(params[:comment])
+    @comment.commentable = @folktale
+
+    if @comment.save
+      redirect_to @folktale
+    else
+      render action: "show"
     end
   end
 

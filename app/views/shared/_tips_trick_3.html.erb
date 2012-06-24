@@ -1,0 +1,39 @@
+<%
+# tips_trick dikelompokkan menjadi 4 member setiap grupnya
+tips_tricks = tips_tricks.in_groups_of(4,false)
+# grup di kelompokkan ulang berdasarkan index member, ex: [[1,2,3,4][5,6,7,8]] => [[1,5],[2,6],[3,7],[4,8]]
+grouped_tips_tricks = 4.times.map do |i|
+  tips_tricks.map do |j|
+    j[i]
+  end.compact
+end
+%>
+<% grouped_tips_tricks.each do |tips_tricks| %>
+
+  <li class="span3"> <!-- Berita Utama Kolom 1 -->
+    <% tips_tricks.each do |tips_trick| %>
+      <div class="thumbnail" style="margin-bottom: 30px;">
+        <div class="caption">
+          <h2 class="three-title-tourism-article">
+            <%= link_to tips_trick.title, tips_trick_path(tips_trick) %>
+          </h2>
+          <a href="#"><%= tips_trick.user.username %></a> | <%= l tips_trick.created_at, :format => :costum %>
+        </div>
+        <%= image_tag(tips_trick.image.url(:tiny)) %>
+        <div class="caption">
+          <p class="three-content-article"><%= truncate(tips_trick.description, :length => 100, :separator => ' ') %></p>
+          <p class="clearfix">
+            <span class="pull-left" style="margin-right: 8px; margin-top: 9px">
+              <%= tips_trick.read_count %>
+              <i class="icon-comment"></i>
+            </span>
+            <span class="pull-left" style="margin-top: 9px;">100 <i class="icon-eye-open"></i></span>
+            <span>
+              <%= link_to "Selanjutnya", tips_trick_path(tips_trick), :class => 'btn btn-primary pull-right' %>
+            </span>
+          </p>
+        </div>
+      </div>
+    <% end %>
+  </li>
+<% end %>

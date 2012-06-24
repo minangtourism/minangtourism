@@ -16,11 +16,54 @@
 //= require_tree
 //= require bootstrap-datepicker
 
+//search
 //$('.datepicker').datepicker();
 
-$(document).on("focus", "[data-behaviour~='datepicker']", function(e){
-    $(this).datepicker({"format": "yyyy-mm-dd", "weekStart": 1, "autoclose": true});
+$('#dp3').datepicker({
+    format: 'mm-dd-yyyy'
 });
+
+$(document).on("focus", "[data-behaviour~='datepicker']", function(e){
+    $(this).datepicker({
+        "format": "yyyy-mm-dd",
+        "weekStart": 1,
+        "autoclose": true
+    });
+});
+
+//slide-show
+$('.carousel').carousel({
+    interval: 5000
+})
+
+//tab
+$('#myTab a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+})
+
+//subnavbar
+$(document).scroll(function(){
+    // If has not activated (has no attribute "data-top"
+    if (!$('.subnav').attr('data-top')) {
+        // If already fixed, then do nothing
+        if ($('.subnav').hasClass('subnav-fixed')) return;
+        // Remember top position
+        var offset = $('.subnav').offset()
+        $('.subnav').attr('data-top', offset.top);
+    }
+
+    if ($('.subnav').attr('data-top') - $('.subnav').outerHeight() <= $(this).scrollTop())
+        $('.subnav').addClass('subnav-fixed');
+    else
+        $('.subnav').removeClass('subnav-fixed');
+});
+
+//combobox
+$(document).ready(function(){
+    $('.combobox').combobox();
+});
+
 
 //var startDate = new Date(2012,1,20);
 //var endDate = new Date(2012,1,25);
@@ -52,5 +95,5 @@ $(document).on("focus", "[data-behaviour~='datepicker']", function(e){
 
 
 $('.dropdown-menu form').on('click.dropdown.data-api', function(e){
-  e.stopPropagation();
+    e.stopPropagation();
 });

@@ -1,13 +1,50 @@
 id:
+  support:
+    array:
+      words_connector: ", "
+      two_words_connector: " dan "
+      last_word_connector: ", dan "
   activerecord:
     attributes:
-      why_sumbar:
-        title:        Judul
-        description:  Deskripsi
-        image:        Foto
+#      why_sumbar:
+#        title:        Judul
+#        description:  Deskripsi
+#        image:        Foto
+#      actions:
+#        action: Operasi
 
-  actions:
-    action: Operasi
+      user:
+        login: "Username or email"
+
+    errors:
+      template:
+         body: There were problems with the following fields
+         header:
+          one: 1 error prohibited this {{model}} from being saved
+          other: "{{count}} errors prohibited this {{model}} from being saved"
+      messages:
+        inclusion: "is not included in the list"
+        exclusion: "is reserved"
+        invalid: "is invalid"
+        confirmation: "doesn't match confirmation"
+        accepted: "must be accepted"
+        empty: "can't be empty"
+        blank: "can't be blank"
+        too_long: "is too long (maximum is {{count}} characters)"
+        too_short: "is too short (minimum is {{count}} characters)"
+        wrong_length: "is the wrong length (should be {{count}} characters)"
+        taken: "has already been taken"
+        not_a_number: "is not a number"
+        greater_than: "must be greater than {{count}}"
+        greater_than_or_equal_to: "must be greater than or equal to {{count}}"
+        equal_to: "must be equal to {{count}}"
+        less_than: "must be less than {{count}}"
+        less_than_or_equal_to: "must be less than or equal to {{count}}"
+        odd: "must be odd"
+        even: "must be even"
+        not_found: "tidak ditemukan"
+        already_confirmed: "sudah di konfirmasi"
+        not_locked: "tidak dikunci"
 
   date:
     formats:
@@ -30,47 +67,25 @@ id:
       - :day
       - :month
       - :year
-
+  
+  views:
+    pagination:
+      previous: "Previous"
+      next: "Next"
+      truncate: "..."
+      
   time:
     formats:
       default: "%d %b %Y %H:%M:%S"
       short: "%d-%m-%y %H:%M"
       long: "%A, %d %B %Y %H:%M:%S %z"
+      costum: "%A, %d %B %Y"
+      only_day: "%A"
+      only_date: "%d"
+      only_month: "%B"
+      only_year: "%Y"
     am: "am"
     pm: "pm"
-
-  errors:
-        template:
-            body: There were problems with the following fields
-            header:
-                one: 1 error prohibited this {{model}} from being saved
-                other: "{{count}} errors prohibited this {{model}} from being saved"
-        messages:
-            inclusion: "is not included in the list"
-            exclusion: "is reserved"
-            invalid: "is invalid"
-            confirmation: "doesn't match confirmation"
-            accepted: "must be accepted"
-            empty: "can't be empty"
-            blank: "can't be blank"
-            too_long: "is too long (maximum is {{count}} characters)"
-            too_short: "is too short (minimum is {{count}} characters)"
-            wrong_length: "is the wrong length (should be {{count}} characters)"
-            taken: "has already been taken"
-            not_a_number: "is not a number"
-            greater_than: "must be greater than {{count}}"
-            greater_than_or_equal_to: "must be greater than or equal to {{count}}"
-            equal_to: "must be equal to {{count}}"
-            less_than: "must be less than {{count}}"
-            less_than_or_equal_to: "must be less than or equal to {{count}}"
-            odd: "must be odd"
-            even: "must be even"
-
-  errors:
-    messages:
-      not_found: "tidak ditemukan"
-      already_confirmed: "sudah di konfirmasi"
-      not_locked: "tidak dikunci"
 
   devise:
     failure:

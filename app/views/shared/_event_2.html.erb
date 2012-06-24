@@ -1,0 +1,23 @@
+<% events.each do |event| %>
+  <div class="thumbnail">
+    <div class="caption">
+      <h2 class="two-title-tourism-article">
+        <%= link_to event.title, event_path(event) %>
+      </h2>
+      oleh <a href="#"><%= event.user.username %></a> | <%= l event.created_at, :format => :costum %>
+      <div class="eventdescription clearfix pull-right">
+        <a href="#"><i class="icon-thumbs-up"></i> 9 tertarik!</a>
+      </div>
+    </div>
+    <%= image_tag(event.image.url(:medium)) %>
+    <div class="caption">
+      <p class="two-content-article"><%= truncate(event.description, :length => 200, :separator => ' ') %></p>
+      <p class="clearfix">
+        <span class="pull-left" style="margin-right: 8px; margin-top: 9px">5 <i class="icon-comment"></i></span>
+        <span>
+          <%= link_to "Selanjutnya", event_path(event), :class => 'btn btn-primary pull-right' %>
+        </span>
+      </p>
+    </div>
+  </div>
+<% end %>

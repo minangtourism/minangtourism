@@ -2,7 +2,8 @@ class LocationTourismsController < ApplicationController
   # GET /location_tourisms
   # GET /location_tourisms.json
   def index
-    @location_tourisms = LocationTourism.all
+    #    @location_tourisms = LocationTourism.all
+    @location_tourisms = LocationTourism.order("created_at desc").page(params[:page]).per(5)
 
     respond_to do |format|
       format.html # index.html.erb

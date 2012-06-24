@@ -1,0 +1,61 @@
+<%- model_class = @folktale.class -%>
+
+<div class="thumbnail" style="margin-bottom: 30px;">
+  <div class="caption">
+    <h2 class="title-show-tourism-article">
+      <%= @folktale.title %>
+    </h2>
+
+    <div class="author-content-article-show">
+      <p class="clearfix">
+        oleh <a href="#"><%= @folktale.user.username %></a> | <%= l @folktale.created_at %>
+        <span class="pull-right" style="margin-left: 20px;">
+          100 <i class="icon-comment"></i>
+        </span>
+        <span class="pull-right" >
+          <%=  @folktale.read_count %>
+          <i class="icon-eye-open"></i>
+        </span>
+      </p>
+    </div>
+
+    <%= image_tag(@folktale.image.url) %>
+    <div class="content-article-show">
+      <p class="clearfix">
+        <%= @folktale.description %>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="comments-tourism-article">
+  <legend>Mari Berkomentar!</legend>
+
+  <%= form_for @comment, :url => create_comment_folktale_path(@folktale), :html => { :class => 'form-horizontal' } do |f| %>
+    <div class="span1" style="margin-left: 0">
+      <%= image_tag((current_user || User.new).image.url(:small), :class => 'thumbnail')%>
+    </div>
+    <%= f.text_area :comment, :"aria-required" => true, :role => "textbox", :rows => "5", :class => "span7 required", :style => "margin-left: 30px; margin-bottom: 20px;"%>
+    <div class="actions">
+      <%= f.button :submit, :class => 'btn btn-primary pull-right' %>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="span8">
+      <% @folktale.comments.each do |comment| %>
+        <%= image_tag(comment.user.image.url(:thumb), :class => 'thumbnail') %>
+        <div>
+          <h5 style="text-transform: uppercase; margin-bottom: 10px;">
+            <a href="#" style="text-decoration: none;">
+              <%= comment.user.username %>
+            </a>
+            <%= l comment.created_at, :format => :costum %>
+          </h5>
+          <p class="clearfix"><%= comment.comment %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>

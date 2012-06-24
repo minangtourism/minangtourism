@@ -1,56 +1,21 @@
-<%- model_class = @event.class -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
-</div>
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      <ul class="thumbnails">
+        <li class="span8">
+          <%= render "shared/event_content" %>
+        </li>
 
-<dl class="dl-horizontal">
+        <li class="span4">
+          <%= render "shared/event_sub_content",
+            :article => TourismArticle.last,
+            :event => Event.last,
+            :folktales => Folktale.order('created_at DESC').limit(5),
+            :tips_tricks => TipsTrick.order('created_at DESC').limit(5)
+          %>
+        </li
+      </ul>
 
-  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
-  <dd><%= @event.title %></dd><br />
-
-  <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
-  <dd><%= @event.user.email %></dd><br />
-
-  <dt><strong><%= model_class.human_attribute_name(:created_at) %>:</strong></dt>
-  <dd><%= @event.created_at %></dd><br />
-
-  <dt><strong><%= model_class.human_attribute_name(:image) %>:</strong></dt>
-  <dd><%= image_tag(@event.image.url(:medium)) %></dd><br />
-
-  <dt><strong><%= model_class.human_attribute_name(:start_date) %>:</strong></dt>
-  <dd><%= @event.start_date %></dd><br />
-
-  <dt><strong><%= model_class.human_attribute_name(:end_date) %>:</strong></dt>
-  <dd><%= @event.end_date %></dd><br />
-
-  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-  <dd><%= @event.description %></dd><br />
-
-</dl>
-
-<div class="page-header">
-  <h1>Comment</h1>
-</div>
-
-<dl class="dl-horizontal">
-  <% @event.comments.each do |comment| %>
-    <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
-    <dd><%= comment.user.email %></dd>
-
-    <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
-    <dd><%= comment.title %></dd>
-
-    <dt><strong><%= model_class.human_attribute_name(:comment) %>:</strong></dt>
-    <dd><%= comment.comment %></dd><br />
-  <% end %>
-</dl>
-
-<%= simple_form_for @comment, :url => create_comment_event_path(@event), :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :title %>
-  <%= f.input :comment, as: :text%>
-  <div class="form-actions">
-    <%= f.button :submit, :class => 'btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-      events_path, :class => 'btn' %>
-  <% end %>
+    </div>
+  </div>
 </div>
