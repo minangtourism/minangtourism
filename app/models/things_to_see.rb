@@ -1,0 +1,3 @@
+class ThingsToSee < SumbarContent
+
+end

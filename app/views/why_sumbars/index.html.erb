@@ -1,40 +1,62 @@
-<%- model_class = WhySumbar.new.class -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+<div class="why_sumbar">
+  <div class="page-header">
+    <h2>Mengapa Sumbar ?</h2>
+  </div>
+  <ul class="thumbnails">
+    <%= render "why_sumbar" %>
+  </ul>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:title) %></th>
-      <th><%= model_class.human_attribute_name(:description) %></th>
-      <th><%= model_class.human_attribute_name(:image) %></th>
-      <th><%= t 'actions.action', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @why_sumbars.each do |why_sumbar| %>
-      <tr>
-        <td><%= link_to why_sumbar.id, why_sumbar_path(why_sumbar) %></td>
-        <td><%= why_sumbar.title %></td>
-        <td><%= truncate(why_sumbar.description, :length => 50) %></td>
-        <td><%= image_tag(why_sumbar.image.url(:thumb)) %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_why_sumbar_path(why_sumbar), :class => 'btn btn-mini' %>
-          <%= link_to t('.show', :default => t("helpers.links.show")),
-                      why_sumbar_path(why_sumbar), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      why_sumbar_path(why_sumbar),
-                      :method => :delete,
-                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_why_sumbar_path,
-            :class => 'btn btn-primary' %>
+<div class="getting_there">
+  <div class="page-header">
+    <h2>Cara Ke Sini ?</h2>
+  </div>
+  <ul class="thumbnails">
+    <%= render "getting_there" %>
+  </ul>
+</div>
+
+<div class="where_to_stay">
+  <div class="page-header">
+    <h2>Dimana Saya Tinggal ?</h2>
+  </div>
+  <ul class="thumbnails">
+    <%= render "where_to_stay" %>
+  </ul>
+</div>
+
+<div class="things_to_do">
+  <div class="page-header">
+    <h2>Hal Yang Bisa Dilakukan ?</h2>
+  </div>
+  <ul class="thumbnails">
+    <%= render "things_to_do" %>
+  </ul>
+</div>
+
+<div class="things_to_see">
+  <div class="page-header">
+    <h2>Hal Yang Bisa Dilihat ?</h2>
+  </div>
+  <ul class="thumbnails">
+    <%= render "things_to_see" %>
+  </ul>
+</div>
+
+<div class="food">
+  <div class="page-header">
+    <h2>Makanan ?</h2>
+  </div>
+  <ul class="thumbnails">
+    <%= render "food" %>
+  </ul>
+</div>
+
+<div class="transportation">
+  <div class="page-header">
+    <h2>Transportasi Sumbar ?</h2>
+  </div>
+  <ul class="thumbnails">
+    <%= render "transportation" %>
+  </ul>
+</div>

@@ -19,6 +19,11 @@ SumbarTourism::Application.routes.draw do
 
   resources :folktales
 
+  resources :why_sumbars
+#  resources :getting_theres
+#  resources :where_to_stays
+#  resources :things_to_dos
+
   resources :tourism_articles
 
   resources :events do
@@ -46,6 +51,12 @@ SumbarTourism::Application.routes.draw do
   end
 
   resources :events do
+    member do
+      post :create_comment
+    end
+  end
+
+  resources :location_tourisms do
     member do
       post :create_comment
     end

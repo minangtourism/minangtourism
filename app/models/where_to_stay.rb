@@ -1,0 +1,3 @@
+class WhereToStay < SumbarContent
+
+end

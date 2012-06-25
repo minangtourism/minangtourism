@@ -1,0 +1,10 @@
+<% @things_to_sees.each do |to_see| %>
+  <li class="span3">
+    <div class="thumbnail"style="line-height: 18px;">
+      <%= image_tag(to_see.image.url(:tiny)) %>
+      <h3 style="margin-top: 10px; margin-bottom: 10px;"><%= to_see.title %></h3>
+      <p>
+        <%= to_see.content %></p>
+    </div>
+  </li>
+<% end %>

@@ -46,6 +46,11 @@
                   <i class="icon-home"></i>Home
                 <% end %>
               </li>
+              <li class="<%= current_page?(why_sumbars_path) ? "active" : nil%>">
+                <%= link_to why_sumbars_path do %>
+                  <i class="icon-road"></i>Why Sumbar
+                <% end %>
+              </li>
               <li class="<%= current_page?(tourism_articles_path) ? "active" : nil%>">
                 <%= link_to tourism_articles_path do %>
                   <i class="icon-globe"></i>Berita Wisata

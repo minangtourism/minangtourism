@@ -1,0 +1,21 @@
+<h1>Listing where_to_stays</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @where_to_stays.each do |where_to_stay| %>
+  <tr>
+    <td><%= link_to 'Show', where_to_stay %></td>
+    <td><%= link_to 'Edit', edit_where_to_stay_path(where_to_stay) %></td>
+    <td><%= link_to 'Destroy', where_to_stay, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Where to stay', new_where_to_stay_path %>

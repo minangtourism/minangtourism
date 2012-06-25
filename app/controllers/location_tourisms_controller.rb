@@ -1,9 +1,14 @@
 class LocationTourismsController < ApplicationController
+  load_and_authorize_resource
   # GET /location_tourisms
   # GET /location_tourisms.json
   def index
-    #    @location_tourisms = LocationTourism.all
-    @location_tourisms = LocationTourism.order("created_at desc").page(params[:page]).per(5)
+    if params[:category_loc_tourism_id].present?
+      @category_loc_tourism = CategoryLocTourism.find(params[:category_loc_tourism_id])
+      category_loc_tourism_ids = [@category_loc_tourism.id] + @category_loc_tourism.descendants.map(&:id)
+      @location_tourisms = @location_tourisms.where(category_loc_tourism_id: category_loc_tourism_ids)
+    end
+    @location_tourisms = @location_tourisms.order("created_at desc").page(params[:page]).per(5)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +19,7 @@ class LocationTourismsController < ApplicationController
   # GET /location_tourisms/1
   # GET /location_tourisms/1.json
   def show
-    @location_tourism = LocationTourism.find(params[:id])
+    @comment = Comment.new
 
     respond_to do |format|
       format.html # show.html.erb
@@ -22,11 +27,20 @@ class LocationTourismsController < ApplicationController
     end
   end
 
+  def create_comment
+    @comment = current_user.comments.new(params[:comment])
+    @comment.commentable = @location_tourism
+
+    if @comment.save
+      redirect_to @location_tourism
+    else
+      render action: "show"
+    end
+  end
+
   # GET /location_tourisms/new
   # GET /location_tourisms/new.json
   def new
-    @location_tourism = LocationTourism.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @location_tourism }
@@ -35,7 +49,6 @@ class LocationTourismsController < ApplicationController
 
   # GET /location_tourisms/1/edit
   def edit
-    @location_tourism = LocationTourism.find(params[:id])
   end
 
   # POST /location_tourisms
@@ -57,8 +70,6 @@ class LocationTourismsController < ApplicationController
   # PUT /location_tourisms/1
   # PUT /location_tourisms/1.json
   def update
-    @location_tourism = LocationTourism.find(params[:id])
-
     respond_to do |format|
       if @location_tourism.update_attributes(params[:location_tourism])
         format.html { redirect_to @location_tourism, notice: 'Location tourism was successfully updated.' }
@@ -73,7 +84,6 @@ class LocationTourismsController < ApplicationController
   # DELETE /location_tourisms/1
   # DELETE /location_tourisms/1.json
   def destroy
-    @location_tourism = LocationTourism.find(params[:id])
     @location_tourism.destroy
 
     respond_to do |format|

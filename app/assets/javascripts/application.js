@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require bootstrap-combobox
+//= require bootstrap-scrollspy
 //= require_tree
 //= require bootstrap-datepicker
 
@@ -43,56 +45,26 @@ $('#myTab a').click(function (e) {
 })
 
 //subnavbar
-$(document).scroll(function(){
-    // If has not activated (has no attribute "data-top"
-    if (!$('.subnav').attr('data-top')) {
-        // If already fixed, then do nothing
-        if ($('.subnav').hasClass('subnav-fixed')) return;
-        // Remember top position
-        var offset = $('.subnav').offset()
-        $('.subnav').attr('data-top', offset.top);
-    }
-
-    if ($('.subnav').attr('data-top') - $('.subnav').outerHeight() <= $(this).scrollTop())
-        $('.subnav').addClass('subnav-fixed');
-    else
-        $('.subnav').removeClass('subnav-fixed');
-});
+//$(document).scroll(function(){
+//    // If has not activated (has no attribute "data-top"
+//    if (!$('.subnav').attr('data-top')) {
+//        // If already fixed, then do nothing
+//        if ($('.subnav').hasClass('subnav-fixed')) return;
+//        // Remember top position
+//        var offset = $('.subnav').offset()
+//        if(offset) $('.subnav').attr('data-top', offset.top);
+//    }
+//
+//    if ($('.subnav').attr('data-top') - $('.subnav').outerHeight() <= $(this).scrollTop())
+//        $('.subnav').addClass('subnav-fixed');
+//    else
+//        $('.subnav').removeClass('subnav-fixed');
+//});
 
 //combobox
 $(document).ready(function(){
     $('.combobox').combobox();
 });
-
-
-//var startDate = new Date(2012,1,20);
-//var endDate = new Date(2012,1,25);
-//$('#date-start')
-//    .datepicker()
-//    .on('changeDate', function(ev){
-//        if (ev.date.valueOf() > endDate.valueOf()){
-//            $('#alert').show().find('strong').text('The start date must be before the end date.');
-//        } else {
-//            $('#alert').hide();
-//            startDate = new Date(ev.date);
-//            $('#date-start-display').text($('#date-start').data('date'));
-//        }
-//        $('#date-start').datepicker('hide');
-//    });
-//$('#date-end')
-//    .datepicker()
-//    .on('changeDate', function(ev){
-//        if (ev.date.valueOf() < startDate.valueOf()){
-//            $('#alert').show().find('strong').text('The end date must be after the start date.');
-//        } else {
-//            $('#alert').hide();
-//            endDate = new Date(ev.date);
-//            $('#date-end-display').text($('#date-end').data('date'));
-//        }
-//        $('#date-end').datepicker('hide');
-//    });
-//});
-
 
 $('.dropdown-menu form').on('click.dropdown.data-api', function(e){
     e.stopPropagation();

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120622161432) do
+ActiveRecord::Schema.define(:version => 20120624143230) do
 
   create_table "category_loc_tourisms", :force => true do |t|
     t.string   "name"
@@ -125,8 +125,12 @@ ActiveRecord::Schema.define(:version => 20120622161432) do
     t.text     "content"
     t.string   "type"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "tips_tricks", :force => true do |t|

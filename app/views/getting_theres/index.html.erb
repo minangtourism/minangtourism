@@ -1,0 +1,21 @@
+<h1>Listing getting_theres</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @getting_theres.each do |getting_there| %>
+  <tr>
+    <td><%= link_to 'Show', getting_there %></td>
+    <td><%= link_to 'Edit', edit_getting_there_path(getting_there) %></td>
+    <td><%= link_to 'Destroy', getting_there, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Getting there', new_getting_there_path %>

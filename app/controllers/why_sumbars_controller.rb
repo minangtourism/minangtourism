@@ -1,11 +1,15 @@
-
 class WhySumbarsController < ApplicationController
   # GET /why_sumbars
   # GET /why_sumbars.json
   def index
-    
 
-    @why_sumbars = WhySumbar.all
+    @why_sumbars      = WhySumbar.all
+    @getting_theres   = GettingThere.all
+    @where_to_stays   = WhereToStay.all
+    @things_to_dos    = ThingsToDo.all
+    @things_to_sees   = ThingsToSee.all
+    @foods            = Food.all
+    @transportations  = Transportation.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -43,7 +47,9 @@ class WhySumbarsController < ApplicationController
   # POST /why_sumbars
   # POST /why_sumbars.json
   def create
-    @why_sumbar = current_user.why_sumbars.new(params[:why_sumbar])
+#    @why_sumbar = current_user.why_sumbars.new(params[:why_sumbar])
+    @why_sumbar = WhySumbar.new(params[:why_sumbar])
+    @why_sumbar.user_id =  current_user.id
 
     respond_to do |format|
       if @why_sumbar.save

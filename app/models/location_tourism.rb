@@ -2,15 +2,16 @@ class LocationTourism < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :category_loc_tourism
+  has_many :comments, as: :commentable
 
   attr_accessible :address, :category_loc_tourism_id, :category_tourism_id,
     :city, :description, :facebook, :facility, :hours_description,
     :name, :phone, :twitter, :user_id, :web, :zip, :image, as: [:default] + User.valid_roles
 
   has_attached_file :image, :styles => { 
-    :medium => "300x300#",
-    :small => "100x100#",
-    :thumb => "50x50#"
+    :medium => "560x280#",
+    :small => "240x180#",
+    :thumb => "160x120#"
   }
 
   validates :name, :presence => true

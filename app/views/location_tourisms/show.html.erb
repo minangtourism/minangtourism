@@ -1,60 +1,114 @@
 <%- model_class = @location_tourism.class -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
-</div>
+<div class="container">
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @location_tourism.name %></dd><br />
+  <div class="row">
+    <div class="span12">
+      <div class="show-location-tourism">
+        <div class="pull-right" style="font-size: 14px; margin-top: 10px">
+          <i class="icon-user"></i> <%= link_to @location_tourism.user.username%> /
+          <i class="icon-time"></i> <%= l @location_tourism.created_at, :format => :costum%>
+        </div>
+        <h2>
+          <%= @location_tourism.name %>
+        </h2>
+        <hr/>
+      </div>
+    </div>
 
-  <dt><strong><%= model_class.human_attribute_name(:address) %>:</strong></dt>
-  <dd><%= @location_tourism.address %></dd><br />
+    <div class="description-location-tourism">
+      <div class="span6">
+        <p style="font-size: 18px">
+          <i class="icon-star"></i>
+          <i class="icon-star"></i>
+          <i class="icon-star"></i>
+          <i class="icon-star"></i>
+          <i class="icon-star-empty"></i>
+        </p>
+        <p style="margin-right: 10px;">
+          <i class="icon-pencil"></i> 100 cerita wisatawan
+        </p>
+        <p>
+          <i class="icon-th-list"></i> Kategori:
+          <%= @location_tourism.category_loc_tourism.parent.name %>,
+          <%= @location_tourism.category_loc_tourism.name %>
+        </p>
+        <p>
+          <i class="icon-user"></i> Cerita Wisatawan Pertama oleh: <a href="#">Muhammad Amin</a>
+        </p><br/>
+        <p><i class="icon-map-marker"></i> Alamat: <%= @location_tourism.address %></p>
+        <p><i class="icon-road"></i> Kota: <%= @location_tourism.city %></p>
+        <p><i class="icon-road"></i> Kode Pos: <%= @location_tourism.zip %></p>
+        <p><i class="icon-road"></i> Phone: <%= @location_tourism.phone %></p>
+        <p><i class="icon-road"></i> Web: <%= @location_tourism.web %></p>
+        <p><i class="icon-road"></i> Facebook: <%= @location_tourism.facebook %></p>
+        <p><i class="icon-road"></i> Twitter: <%= @location_tourism.twitter %></p>
+        <p><i class="icon-road"></i> Jam Buka: <%= @location_tourism.hours_description %></p>
+        <p><i class="icon-road"></i> Fasilitas: <%= @location_tourism.facility %></p>
+        <p><i class="icon-road"></i> Deskripsi: <%= @location_tourism.description %></p><br/>
 
-  <dt><strong><%= model_class.human_attribute_name(:city) %>:</strong></dt>
-  <dd><%= @location_tourism.city %></dd><br />
+        <%= link_to t('.edit', :default => t("helpers.links.edit")),
+          edit_location_tourism_path(@location_tourism), :class => 'btn btn-mini' %>
+      </div>
+    </div>
 
-  <dt><strong><%= model_class.human_attribute_name(:zip) %>:</strong></dt>
-  <dd><%= @location_tourism.zip %></dd><br />
+    <ul class="thumbnails">
+      <li class="span6">
+        <a href="#" class="thumbnail">
+          <%= image_tag(@location_tourism.image.url(:medium)) %>
+        </a>
+      </li>
+      <li class="span2">
+        <a href="#" class="thumbnail">
+          <%= image_tag(@location_tourism.image.url(:thumb)) %>
+        </a>
+      </li>
+      <li class="span2">
+        <a href="#" class="thumbnail">
+          <%= image_tag(@location_tourism.image.url(:thumb)) %>
+        </a>
+      </li>
+      <li class="span2">
+        <a href="#" class="thumbnail">
+          <%= image_tag(@location_tourism.image.url(:thumb)) %>
+        </a>
+      </li>
+    </ul>
 
-  <dt><strong><%= model_class.human_attribute_name(:phone) %>:</strong></dt>
-  <dd><%= @location_tourism.phone %></dd><br />
+  </div>
 
-  <dt><strong><%= model_class.human_attribute_name(:web) %>:</strong></dt>
-  <dd><%= @location_tourism.web %></dd><br />
+  <div class="comments-tourism-article">
+    <legend>Tulis Ceritamu Disini!</legend>
 
-  <dt><strong><%= model_class.human_attribute_name(:facebook) %>:</strong></dt>
-  <dd><%= @location_tourism.facebook %></dd><br />
+    <div class="row">
+      <div class="span8">
+        <%= form_for @comment, :url => create_comment_location_tourism_path(@location_tourism), :html => { :class => 'form-horizontal' } do |f| %>
+          <div class="span1" style="margin-left: 0">
+            <%= image_tag((current_user || User.new).image.url(:small), :class => 'thumbnail')%>
+          </div>
+          <%= f.text_area :comment, :"aria-required" => true, :role => "textbox", :rows => "5", :class => "span7 required", :style => "margin-left: 30px; margin-bottom: 20px;"%>
+          <div class="actions">
+            <%= f.button :submit, :class => 'btn btn-primary pull-right' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
 
-  <dt><strong><%= model_class.human_attribute_name(:twitter) %>:</strong></dt>
-  <dd><%= @location_tourism.twitter %></dd><br />
+    <div class="row">
+      <div class="span8">
+        <% @location_tourism.comments.each do |comment| %>
+          <%= image_tag(comment.user.image.url(:thumb), :class => 'thumbnail') %>
+          <div>
+            <h5 style="text-transform: uppercase; margin-bottom: 10px;">
+              <a href="#" style="text-decoration: none;">
+                <%= comment.user.username %>
+              </a>
+              <%= l comment.created_at, :format => :costum %>
+            </h5>
+            <p class="clearfix"><%= comment.comment %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
-  <dt><strong><%= model_class.human_attribute_name(:hours_description) %>:</strong></dt>
-  <dd><%= @location_tourism.hours_description %></dd><br />
-
-  <dt><strong><%= model_class.human_attribute_name(:facility) %>:</strong></dt>
-  <dd><%= @location_tourism.facility %></dd><br />
-
-  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-  <dd><%= @location_tourism.description %></dd><br />
-
-  <dt><strong><%= model_class.human_attribute_name(:category_loc_tourism_id) %>:</strong></dt>
-  <dd><%= @location_tourism.category_loc_tourism_id %></dd><br />
-
-  <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
-  <dd><%= @location_tourism.user.email %></dd><br />
-
-  <dt><strong><%= model_class.human_attribute_name(:image) %>:</strong></dt>
-  <dd><%= image_tag(@location_tourism.image.url(:medium)) %></dd>
-</dl>
-
-<div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-              location_tourisms_path, :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_location_tourism_path(@location_tourism), :class => 'btn' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              location_tourism_path(@location_tourism),
-              :method => 'delete',
-              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-              :class => 'btn btn-danger' %>
 </div>

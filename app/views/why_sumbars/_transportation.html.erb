@@ -1,0 +1,10 @@
+<% @transportations.each do |transportation| %>
+  <li class="span3">
+    <div class="thumbnail"style="line-height: 18px;">
+      <%= image_tag(transportation.image.url(:tiny)) %>
+      <h3 style="margin-top: 10px; margin-bottom: 10px;"><%= transportation.title %></h3>
+      <p>
+        <%= transportation.content %></p>
+    </div>
+  </li>
+<% end %>

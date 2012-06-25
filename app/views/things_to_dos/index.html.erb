@@ -1,0 +1,21 @@
+<h1>Listing things_to_dos</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @things_to_dos.each do |things_to_do| %>
+  <tr>
+    <td><%= link_to 'Show', things_to_do %></td>
+    <td><%= link_to 'Edit', edit_things_to_do_path(things_to_do) %></td>
+    <td><%= link_to 'Destroy', things_to_do, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Things to do', new_things_to_do_path %>

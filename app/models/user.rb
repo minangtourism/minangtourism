@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :tips_tricks
   has_many :location_tourisms
   has_many :comments
+  has_many :sumbar_contents
 
   before_save :set_default_roles
 

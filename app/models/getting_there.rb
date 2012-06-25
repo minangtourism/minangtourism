@@ -1,0 +1,3 @@
+class GettingThere < SumbarContent
+
+end

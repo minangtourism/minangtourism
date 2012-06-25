@@ -1,45 +1,11 @@
 <div class="container">
-  <div class="page-header"> <!-- Mengapa Sumbar -->
-    <form action="" class="navbar-search pull-right" style="margin-top: 4px" >
-      <input style="border-radius: 0 3px 3px 0;" class="span2 pull-right" size="16" type="text" placeholder="Cari tempat wisata" value="">
-    </form>
-    <div class="input-append date pull-right" id="dp3" data-date-format="dd-mm-yyyy">
-      <span style="margin-top: 4px; border-radius: 3px 0 0 3px;" class="add-on "><i class="icon-th"></i></span>
-    </div>
-
-    <div class="control-group pull-right">
-      <label class="control-label">Into this</label>
-      <div class="controls">
-        <div class="combobox-container">
-          <input type="text">
-          <span data-dropdown="dropdown" class="add-on btn dropdown-toggle">
-            <span class="caret"></span>
-            <span class="combobox-clear">
-              <i class="icon-remove"></i>
-            </span>
-          </span>
-          <select class="combobox">
-            <option></option>
-            <option value="PA">Pennsylvania</option>
-            <option value="CT">Connecticut</option>
-            <option value="NY">New York</option>
-            <option value="MD">Maryland</option>
-            <option value="VA">Virginia</option>
-          </select></div>
-      </div>
-    </div>
-    <h2>Tempat Wisata</h2>
-  </div>
-  <div class="row">
-    <div class="span12">
-
-      <ul class="thumbnails">
-        <li class="span8">
-          <%= render "shared/location_tourism" %>
-        </li>
-
-      </ul> <!-- Berita Utama -->
-      <%= paginate @location_tourisms %>
-    </div>
-  </div>
+<%#*<div class="page-header clearfix">%>
+<%#*<h2 class="pull-left">Tempat Wisata</h2>%>
+<%#*<div class="pull-right">%>
+<%#= select_tag "category_loc_tourism_id", options_from_collection_for_select(CategoryLocTourism.all, "id", "name"), :class => 'combobox' %>
+<%#*</div>%>
+<%#*</div>%>
+  
+  <%= render "shared/location_tourism" %>
+  <%= paginate @location_tourisms %>
 </div>

@@ -240,6 +240,7 @@ RailsAdmin.config do |config|
     create do; end
     update do; end
   end
+
   config.model Contact do
     # Found associations:
     # Found columns:
@@ -276,6 +277,7 @@ RailsAdmin.config do |config|
     end
     update do; end
   end
+
   config.model Event do
     # Found associations:
     configure :user, :belongs_to_association
@@ -335,6 +337,7 @@ RailsAdmin.config do |config|
       field :image
     end
   end
+
   config.model Folktale do
     # Found associations:
     configure :user, :belongs_to_association   #   # Found columns:
@@ -375,6 +378,7 @@ RailsAdmin.config do |config|
     create do; end
     update do; end
   end
+
   config.model LocationTourism do
     # Found associations:
     configure :category_loc_tourism, :belongs_to_association
@@ -536,33 +540,312 @@ RailsAdmin.config do |config|
     create do; end
     update do; end
   end
-  # config.model User do
-  #   # Found associations:
-  #     configure :tourism_articles, :has_many_association
-  #     configure :events, :has_many_association
-  #     configure :folktales, :has_many_association
-  #     configure :tips_tricks, :has_many_association
-  #     configure :location_tourisms, :has_many_association
-  #     configure :comments, :has_many_association   #   # Found columns:
-  #     configure :id, :integer
-  #     configure :email, :string
-  #     configure :password, :password         # Hidden
-  #     configure :password_confirmation, :password         # Hidden
-  #     configure :reset_password_token, :string         # Hidden
-  #     configure :reset_password_sent_at, :datetime
-  #     configure :remember_created_at, :datetime
-  #     configure :sign_in_count, :integer
-  #     configure :current_sign_in_at, :datetime
-  #     configure :last_sign_in_at, :datetime
-  #     configure :current_sign_in_ip, :string
-  #     configure :last_sign_in_ip, :string
-  #     configure :created_at, :datetime
-  #     configure :updated_at, :datetime   #   # Sections:
-  #   list do; end
-  #   export do; end
-  #   show do; end
-  #   edit do; end
-  #   create do; end
-  #   update do; end
-  # end
+
+  config.model WhySumbar do
+    # Found associations:
+    configure :id, :integer
+    configure :title, :string
+    configure :content, :text         # Hidden
+    configure :type, :string         # Hidden
+    configure :created_at, :datetime
+    configure :updated_at, :datetime   #   # Sections:
+    configure :image_file_name, :string         # Hidden
+    configure :image_content_type, :string         # Hidden
+    configure :image_file_size, :integer         # Hidden
+    configure :image_updated_at, :datetime         # Hidden
+    configure :image, :paperclip
+    configure :user_id, :string
+    list do
+      field :id
+      field :title
+      field :content
+      field :user
+      field :type
+      field :image
+      field :created_at
+      field :updated_at
+    end
+    export do; end
+    show do
+      field :id
+      field :title
+      field :content
+      field :user
+      field :type
+      field :image
+    end
+    edit do
+      field :title
+      field :content
+      field :user
+      field :type
+      field :image
+    end
+    create do; end
+    update do; end
+  end
+
+  config.model GettingThere do
+    # Found associations:
+    configure :id, :integer
+    configure :title, :string
+    configure :content, :text         # Hidden
+    configure :type, :string         # Hidden
+    configure :created_at, :datetime
+    configure :updated_at, :datetime   #   # Sections:
+    configure :image_file_name, :string         # Hidden
+    configure :image_content_type, :string         # Hidden
+    configure :image_file_size, :integer         # Hidden
+    configure :image_updated_at, :datetime         # Hidden
+    configure :image, :paperclip
+    configure :user_id, :string
+    list do
+      field :id
+      field :title
+      field :content
+      field :user
+      field :type
+      field :image
+      field :created_at
+      field :updated_at
+    end
+    export do; end
+    show do
+      field :id
+      field :title
+      field :content
+      field :user
+      field :type
+      field :image
+    end
+    edit do
+      field :title
+      field :content
+      field :user
+      field :type
+      field :image
+    end
+    create do; end
+    update do; end
+  end
+
+  config.model WhereToStay do
+    # Found associations:
+    configure :id, :integer
+    configure :title, :string
+    configure :content, :text         # Hidden
+    configure :type, :string         # Hidden
+    configure :created_at, :datetime
+    configure :updated_at, :datetime   #   # Sections:
+    configure :image_file_name, :string         # Hidden
+    configure :image_content_type, :string         # Hidden
+    configure :image_file_size, :integer         # Hidden
+    configure :image_updated_at, :datetime         # Hidden
+    configure :image, :paperclip
+    configure :user_id, :string
+    list do
+      field :id
+      field :title
+      field :content
+      field :user
+      field :type
+      field :image
+      field :created_at
+      field :updated_at
+    end
+    export do; end
+    show do
+      field :id
+      field :title
+      field :content
+      field :user
+      field :type
+      field :image
+    end
+    edit do
+      field :title
+      field :content
+      field :user
+      field :type
+      field :image
+    end
+    create do; end
+    update do; end
+  end
+
+  config.model ThingsToDo do
+    # Found associations:
+    configure :id, :integer
+    configure :title, :string
+    configure :content, :text         # Hidden
+    configure :type, :string         # Hidden
+    configure :created_at, :datetime
+    configure :updated_at, :datetime   #   # Sections:
+    configure :image_file_name, :string         # Hidden
+    configure :image_content_type, :string         # Hidden
+    configure :image_file_size, :integer         # Hidden
+    configure :image_updated_at, :datetime         # Hidden
+    configure :image, :paperclip
+    configure :user_id, :string
+    list do
+      field :id
+      field :title
+      field :content
+      field :user
+      field :type
+      field :image
+      field :created_at
+      field :updated_at
+    end
+    export do; end
+    show do
+      field :id
+      field :title
+      field :content
+      field :user
+      field :type
+      field :image
+    end
+    edit do
+      field :title
+      field :content
+      field :user
+      field :type
+      field :image
+    end
+    create do; end
+    update do; end
+  end
+
+  config.model ThingsToSee do
+    # Found associations:
+    configure :id, :integer
+    configure :title, :string
+    configure :content, :text         # Hidden
+    configure :type, :string         # Hidden
+    configure :created_at, :datetime
+    configure :updated_at, :datetime   #   # Sections:
+    configure :image_file_name, :string         # Hidden
+    configure :image_content_type, :string         # Hidden
+    configure :image_file_size, :integer         # Hidden
+    configure :image_updated_at, :datetime         # Hidden
+    configure :image, :paperclip
+    configure :user_id, :string
+    list do
+      field :id
+      field :title
+      field :content
+      field :user
+      field :type
+      field :image
+      field :created_at
+      field :updated_at
+    end
+    export do; end
+    show do
+      field :id
+      field :title
+      field :content
+      field :user
+      field :type
+      field :image
+    end
+    edit do
+      field :title
+      field :content
+      field :user
+      field :type
+      field :image
+    end
+    create do; end
+    update do; end
+  end
+
+  config.model Food do
+    # Found associations:
+    configure :id, :integer
+    configure :title, :string
+    configure :content, :text         # Hidden
+    configure :type, :string         # Hidden
+    configure :created_at, :datetime
+    configure :updated_at, :datetime   #   # Sections:
+    configure :image_file_name, :string         # Hidden
+    configure :image_content_type, :string         # Hidden
+    configure :image_file_size, :integer         # Hidden
+    configure :image_updated_at, :datetime         # Hidden
+    configure :image, :paperclip
+    configure :user_id, :string
+    list do
+      field :id
+      field :title
+      field :content
+      field :user
+      field :type
+      field :image
+      field :created_at
+      field :updated_at
+    end
+    export do; end
+    show do
+      field :id
+      field :title
+      field :content
+      field :user
+      field :type
+      field :image
+    end
+    edit do
+      field :title
+      field :content
+      field :user
+      field :type
+      field :image
+    end
+    create do; end
+    update do; end
+  end
+  
+  config.model Transportation do
+    # Found associations:
+    configure :id, :integer
+    configure :title, :string
+    configure :content, :text         # Hidden
+    configure :type, :string         # Hidden
+    configure :created_at, :datetime
+    configure :updated_at, :datetime   #   # Sections:
+    configure :image_file_name, :string         # Hidden
+    configure :image_content_type, :string         # Hidden
+    configure :image_file_size, :integer         # Hidden
+    configure :image_updated_at, :datetime         # Hidden
+    configure :image, :paperclip
+    configure :user_id, :string
+    list do
+      field :id
+      field :title
+      field :content
+      field :user
+      field :type
+      field :image
+      field :created_at
+      field :updated_at
+    end
+    export do; end
+    show do
+      field :id
+      field :title
+      field :content
+      field :user
+      field :type
+      field :image
+    end
+    edit do
+      field :title
+      field :content
+      field :user
+      field :type
+      field :image
+    end
+    create do; end
+    update do; end
+  end
 end
