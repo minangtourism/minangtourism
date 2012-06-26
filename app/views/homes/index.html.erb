@@ -1,277 +1,193 @@
-<div class="container">
-  <div id="myCarousel" class="carousel slide">
-    <!-- Carousel items -->
-    <div class="carousel-inner">
+<%#*<div class="slider-area">%>
+<%#*<div class="slider-content drop-shadow lifted"><!-- Start Slide Content -->%>
 
-      <div class="active item">
-        <%= image_tag "gallery1.jpg" %>
-        <div class="carousel-caption">
-          <h4>First Thumbnail label</h4>
-          <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-        </div>
-      </div>
+<%#*<div id="myCarousel" class="carousel slide">%>
+<%#*<!-- Carousel items -->%>
+<%#*<div class="carousel-inner">%>
 
-      <div class="item">
-        <%= image_tag "gallery2.jpg" %>
-        <div class="carousel-caption">
-          <h4>First Thumbnail label</h4>
-          <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-        </div>
-      </div>
-      <div class="item">
-        <%= image_tag "gallery3.jpg" %>
-        <div class="carousel-caption">
-          <h4>First Thumbnail label</h4>
-          <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-        </div>
-      </div>
-    </div>
-    <!-- Carousel nav -->
-    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-  </div>
+<%#*<div class="active item">%>
+<%#= image_tag "gallery1.jpg" %>
+<%#*<div class="carousel-caption">%>
+<%#*<h4>First Thumbnail label</h4>%>
+<%#*<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>%>
+<%#*</div>%>
+<%#*</div>%>
 
+<%#*<div class="item">%>
+<%#= image_tag "gallery2.jpg" %>
+<%#*<div class="carousel-caption">%>
+<%#*<h4>First Thumbnail label</h4>%>
+<%#*<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>%>
+<%#*</div>%>
+<%#*</div>%>
+<%#*<div class="item">%>
+<%#= image_tag "gallery3.jpg" %>
+<%#*<div class="carousel-caption">%>
+<%#*<h4>First Thumbnail label</h4>%>
+<%#*<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>%>
+<%#*</div>%>
+<%#*</div>%>
+<%#*</div>%>
+<%#*<!-- Carousel nav -->%>
+<%#*<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>%>
+<%#*<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>%>
+<%#*</div>%>
+
+<%#*</div>%>
+<%#*</div>%>
+
+<div class="container content-sumbar"> <!-- CONTENT SUMBAR -->
   <div class="row">
-    <div class="span4">
-      <div class="left">
-        <h2><span style="color: #c639a1;">Acara</span></h2>
+
+    <div class="span4"> <!-- EVENT / ACARA -->
+      <h2>Acara Wisata</h2>
+      <div class="dashed"></div>
+      <div class="info-title">Acara wisata terbaru yang diadakan di Sumatera Barat</div>
+      <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+
+      <% @events.each do |event| %>
+        <div class="eventsdate">
+          <div class="span1 cont">
+            <%= l event.created_at, :format => :only_day %>
+            <div class="event-date"><%= l event.created_at, :format => :only_date %></div>
+            <div class="event-month"><%= l event.created_at, :format => :only_month %></div>
+            <div class="event-year"><%= l event.created_at, :format => :only_year %></div>
+          </div>
+        </div>
+
+        <div class="eventscontent">
+          <div class="title-event">
+            <%= link_to truncate(event.title, :length => 80, :separator => ' '), event_path(event) %>
+          </div>
+          <p>
+            <%= truncate(event.description, :length => 80, :separator => ' ') %>
+          </p>
+          <div class="event-like clearfix">
+            <a href="#"><i class="icon-thumbs-up"></i> 9 tertarik! </a>
+          </div>
+        </div>
+        <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
+      <% end %>
+
+      <div class="all-events">
+        <%= link_to 'Selanjutnya', events_path, :class => 'btn btn-inverse btn-mini' %>
       </div>
-      <div class="sub_hr">
-        <span>Acara wisata terbaru yang diadakan di Sumatera Barat</span>
-      </div>
-      <!-- Acara 1 -->
-      <div class="moduletable_event">
-        <% @events.each do |event| %>
-          <div class="detail clerfix">
-            <div class="eventsdate">
-              <div class="cont">
-                <%= l event.created_at, :format => :only_day %>
-                <div class="diain"><%= l event.created_at, :format => :only_date %></div>
-                <div class="mesin"><%= l event.created_at, :format => :only_month %></div>
-                <div class="anoin"><%= l event.created_at, :format => :only_year %></div>
-              </div>
+    </div> <!-- END EVENT / ACARA -->
+
+    <% if @tourism_articles %> <!-- TOURISM ARTICLES / BERITA WISATA -->
+      <div class="span4">
+        <h2>Berita Wisata</h2>
+        <div class="dashed"></div>
+        <div class="info-title">Berita terbaru tentang wisata yang ada di  Sumatera Barat</div>
+        <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+
+        <% @tourism_articles.each do |article| %>
+          <div class="span4 clearfix" style="margin-left: 0; margin-bottom: 10px;">
+            <div class="image-news">
+              <%= image_tag(article.image.url(:thumb)) %>
+    <%#*<img src="http://placehold.it/145x75" alt=""/>%>
             </div>
-            <div class="det_jcal">
-              <%= link_to truncate(event.title, :length => 80, :separator => ' '), event_path(event) %>
-              <p>
-                <%= truncate(event.description, :length => 80, :separator => ' ') %>
-              </p>
-              <div class="eventdescription clearfix">
-                <a href="#"><i class="icon-thumbs-up"></i> 9 tertarik! </a>
-              </div>
+            <div class="title-news">
+              <%= link_to truncate(article.title, :length => 80, :separator => ' '), tourism_article_path(article) %>
             </div>
           </div>
+          <div class="news-info clearfix">
+            <a href=""><%= article.user.username %></a> | <%= l article.created_at, :format => :costum %>
+            <div class="pull-right" style="margin-left: 10px;"><%= article.read_count %> <i class="icon-comment"></i></div>
+            <div class="pull-right">100 <i class="icon-eye-open"></i></div>
+          </div>
+          <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
         <% end %>
-      </div>
-      <div class="all-news clearfix">
-        <%= link_to 'Selanjutnya', events_path %>
-      </div>
-    </div>
 
-    <% if @tourism_articles %>
-      <div class="span4"><!-- Berita -->
-        <div class="center">
-          <h2><span style="color: #ff9900;">Berita Wisata Terbaru</span></h2>
-        </div>
-        <div class="sub_hr">
-          <span>Berita terbaru tentang wisata yang ada di  Sumatera Barat</span>
-        </div>
-        <div class="moduletable_news">
-          <% @tourism_articles.each do |article| %>
-            <div class="detail">
-              <div class="clearfix">
-                <div class="image-news">
-                  <%= image_tag(article.image.url(:thumb)) %>
-                </div>
-                <div class="title-news">
-                  <%= link_to truncate(article.title, :length => 80, :separator => ' '), tourism_article_path(article) %>
-                </div>
-              </div>
-              <div class="news-author clearfix">
-                <a href=""><%= article.user.username %></a> | <%= l article.created_at, :format => :costum %>
-                <span class="pull-right" style="margin-left: 10px;"><%= article.read_count %> <i class="icon-comment"></i></span>
-                <span class="pull-right">100 <i class="icon-eye-open"></i></span>
-              </div>
-            </div>
-          <% end %>
-        </div>
-        <div class="all-news clearfix">
-          <%= link_to 'Selanjutnya', tourism_articles_path %>
+        <div class="all-events">
+          <%= link_to 'Selanjutnya', tourism_articles_path, :class => 'btn btn-inverse btn-mini' %>
         </div>
       </div>
-    <% end %>
+    <% end %> <!-- END TOURISM ARTICLES / BERITA WISATA -->
 
 
-    <div class="span4">
-      <div class="right">
-        <h2><span style="color: #718c8e">Jarak</span></h2>
-      </div>
-      <div class="sub_hr">
-        <span>Cari jarak antara negara atau kota ke lokasi wisata Sumatera Barat</span>
-      </div>
+    <div class="span4"> <!-- PETA JARAK -->
+      <h2>Jarak</h2>
+      <div class="dashed"></div>
+      <div class="info-title">Cari jarak antara negara atau kota ke lokasi wisata Sumatera Barat</div>
+      <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+
       <div class="maps">
         <form class="well">
-          <label>Ayo cari jarak lokasi wisatamu di sini!</label>
-          <input type="text" class="span3" placeholder="Lokasi Saya">
-          <input type="text" class="span3" placeholder="Lokasi Wisata">
+          <input type="text" class="span3" placeholder="Lokasi Saya"/>
+          <input type="text" class="span3" placeholder="Lokasi Wisata Sumbar"/>
           <button type="submit" class="btn">Submit</button>
         </form>
       </div>
-      <div class="all-maps clearfix">
-        <a href="#">Lihat peta lebih besar</a>
+      <div class="dashed" style="margin-bottom: 15px; margin-top: 0;"></div>
+      <div class="all-events">
+        <%= link_to 'Selanjutnya', tourism_articles_path, :class => 'btn btn-inverse btn-mini' %>
       </div>
-    </div>
+    </div> <!-- END PETA JARAK -->
+
   </div>
 
   <div class="row">
-    <div class="span8"><!-- Berita -->
-      <div class="tourism">
-        <h2><span style="color: #0088CC;">Cerita Baru Wisatawan</span></h2>
-      </div>
-      <div class="sub_hr">
-        <span>Cerita terbaru wisatawan tentang tempat wisata yang ada di Sumatera Barat</span>
-      </div>
-      <div class="content-tourism-story" style="margin-left: 20px;">
-        <div class="span4 photo-tourism">
-          <ul class="thumbnails">
-            <li class="span1" style="margin-right: 10px;">
-              <a href="#" class="thumbnail">
-                <img title="amin" src="http://placehold.it/100x100" alt="">
-              </a>
-            </li>
-            <div class="title-tourism">
-              <a href="#"> Lembah Harau </a>
-            </div>
-            <span style="margin-right: 25px">
-              <i class="icon-star icon-blue"></i>
-              <i class="icon-star icon-white"></i>
-              <i class="icon-star icon-white"></i>
-              <i class="icon-star-empty icon-white"></i>
-              <i class="icon-star-empty icon-white"></i>
-            </span>
-            <span><i class="icon-time icon-white"></i> <b><i>1 menit yang lalu</i></b></span>
-            <p>lorem ipsum dolor sit amet, consectetur adipisicing elit... </p>
-          </ul>
-        </div>
+    <div class="span6"><!-- Berita -->
+      <h2>Cerita Wisatawan</h2>
+      <div class="dashed"></div>
+      <div class="info-title">Cerita terbaru wisatawan tentang tempat wisata yang ada di Sumatera Barat</div>
+      <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
 
-        <div class="span4 photo-tourism">
-          <ul class="thumbnails">
-            <li class="span1" style="margin-right: 10px;">
-              <a href="#" class="thumbnail">
-                <img title="amin" src="http://placehold.it/100x100" alt="">
-              </a>
-            </li>
-            <div class="title-tourism">
-              <a href="#"> Lembah Harau </a>
+      <div class="row">
+        <div class="blogslider span6 clearfix" style="overflow: hidden">
+          <li style="width: 570px; float: left; display: block;">
+<%#*<ul class="slides" style="width: 1200%; margin-left: -570px;">%>
+            <div class="blog_item">
+              <div class="blog_head">
+                <h4>Anoter blog post</h4>
+                <span>
+                  <i class="icon-calendar icon-white"></i>
+                  Fantasy by Lewis Carroll on Aug 24, 2011
+                </span>
+              </div>
+              <div class="view view-first">
+                <a rel="prettyPhoto" href="assets/img/gal/6.jpg" class="">
+                  <img alt="" src="assets/img/gal/6.jpg" style="visibility: visible; opacity: 1;"/>
+                </a>
+                <div class="mask">
+                  <a class="info" rel="prettyPhoto" href="assets/img/gal/6.jpg">
+                    <img alt="Hanging Note Sign Psd" src="assets/img/plus.png" style="visibility: visible; opacity: 1;"/>
+                  </a>
+                  <a class="link" href="#">
+                    <img alt="Visit link" src="assets/img/link.png" style="visibility: visible; opacity: 1;"/>
+                  </a>
+                </div>
+              </div>
+              <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here'.<br/><br/>
+                <a href="#" class="btn btn-small">Read More</a>
+              </p>
             </div>
-            <span style="margin-right: 25px">
-              <i class="icon-star icon-blue"></i>
-              <i class="icon-star icon-white"></i>
-              <i class="icon-star icon-white"></i>
-              <i class="icon-star-empty icon-white"></i>
-              <i class="icon-star-empty icon-white"></i>
-            </span>
-            <span><i class="icon-time icon-white"></i> <b><i>3 menit yang lalu</i></b></span>
-            <p>lorem ipsum dolor sit amet, consectetur adipisicing elit... </p>
-          </ul>
-        </div>
-        <div class="span4 photo-tourism">
-          <ul class="thumbnails">
-            <li class="span1" style="margin-right: 10px;">
-              <a href="#" class="thumbnail">
-                <img title="amin" src="http://placehold.it/100x100" alt="">
-              </a>
-            </li>
-            <div class="title-tourism">
-              <a href="#"> Lembah Harau </a>
-            </div>
-            <span style="margin-right: 25px">
-              <i class="icon-star icon-blue"></i>
-              <i class="icon-star icon-white"></i>
-              <i class="icon-star icon-white"></i>
-              <i class="icon-star-empty icon-white"></i>
-              <i class="icon-star-empty icon-white"></i>
-            </span>
-            <span><i class="icon-time icon-white"></i> <b><i>1 jam yang lalu</i></b></span>
-            <p>lorem ipsum dolor sit amet, consectetur adipisicing elit... </p>
-          </ul>
-        </div>
+<%#*</ul>%>
 
-        <div class="span4 photo-tourism">
-          <ul class="thumbnails">
-            <li class="span1" style="margin-right: 10px;">
-              <a href="#" class="thumbnail">
-                <img title="amin" src="http://placehold.it/100x100" alt="">
-              </a>
-            </li>
-            <div class="title-tourism">
-              <a href="#"> Lembah Harau </a>
-            </div>
-            <span style="margin-right: 25px">
-              <i class="icon-star icon-blue"></i>
-              <i class="icon-star icon-white"></i>
-              <i class="icon-star icon-white"></i>
-              <i class="icon-star-empty icon-white"></i>
-              <i class="icon-star-empty icon-white"></i>
-            </span>
-            <span><i class="icon-time icon-white"></i> <b><i>30 menit yang lalu</i></b></span>
-            <p>lorem ipsum dolor sit amet, consectetur adipisicing elit... </p>
-          </ul>
-        </div>
-
-        <div class="span4 photo-tourism">
-          <ul class="thumbnails">
-            <li class="span1" style="margin-right: 10px;">
-              <a href="#" class="thumbnail">
-                <img title="amin" src="http://placehold.it/100x100" alt="">
-              </a>
-            </li>
-            <div class="title-tourism">
-              <a href="#"> Lembah Harau </a>
-            </div>
-            <span style="margin-right: 25px">
-              <i class="icon-star icon-blue"></i>
-              <i class="icon-star icon-white"></i>
-              <i class="icon-star icon-white"></i>
-              <i class="icon-star-empty icon-white"></i>
-              <i class="icon-star-empty icon-white"></i>
-            </span>
-            <span><i class="icon-time icon-white"></i> <b><i>2 hari yang lalu</i></b></span>
-            <p>lorem ipsum dolor sit amet, consectetur adipisicing elit... </p>
-          </ul>
-        </div>
-
-        <div class="span4 photo-tourism">
-          <ul class="thumbnails">
-            <li class="span1" style="margin-right: 10px;">
-              <a href="#" class="thumbnail">
-                <img title="amin" src="http://placehold.it/100x100" alt="">
-              </a>
-            </li>
-            <div class="title-tourism">
-              <a href="#"> Lembah Harau </a>
-            </div>
-            <span style="margin-right: 25px">
-              <i class="icon-star icon-blue"></i>
-              <i class="icon-star icon-white"></i>
-              <i class="icon-star icon-white"></i>
-              <i class="icon-star-empty icon-white"></i>
-              <i class="icon-star-empty icon-white"></i>
-            </span>
-            <span><i class="icon-time icon-white"></i> <b><i>3 hari yang lalu</i></b></span>
-            <p>lorem ipsum dolor sit amet, consectetur adipisicing elit... </p>
-          </ul>
+            <ul class="flex-direction-nav">
+              <li>
+                <a href="#" class="prev">
+                  <img alt="Prev" src="assets/prev.png"/>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="next">
+                  <img alt="Next" src="assets/next.png"/>
+                </a>
+              </li>
+            </ul>
+          </li>
         </div>
       </div>
 
-      <div class="sub_hr_bottom"></div>
-
-      <div class="all-story">
-        <a href="#">Selanjutnya</a>
+      <div class="dashed" style="margin-bottom: 15px; margin-top: 10px;"></div>
+      <div class="all-events">
+        <%= link_to 'Selanjutnya', tourism_articles_path, :class => 'btn btn-inverse btn-mini' %>
       </div>
     </div>
 
-    <div class="span4">
+    <div class="span6">
       <div class="tourism">
         <h2><span style="color: #0088CC;">Menu Wisatawan</span></h2>
       </div>
@@ -311,4 +227,4 @@
     </div>
 
   </div>
-</div>
+</div> <!-- END CONTENT SUMBAR -->

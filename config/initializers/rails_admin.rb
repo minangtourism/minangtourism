@@ -187,8 +187,12 @@ RailsAdmin.config do |config|
       field :name
       field :parent
       field :children
-      field :created_at
-      field :updated_at
+      field :created_at do
+        strftime_format "%Y-%m-%d"
+      end
+      field :updated_at do
+        strftime_format "%Y-%m-%d"
+      end
     end
     export do; end
     show do
@@ -222,8 +226,12 @@ RailsAdmin.config do |config|
       field :comment
       field :commentable_type
       field :user
-      field :created_at
-      field :updated_at
+      field :created_at do
+        strftime_format "%Y-%m-%d"
+      end
+      field :updated_at do
+        strftime_format "%Y-%m-%d"
+      end
     end
     export do; end
     show do
@@ -257,8 +265,12 @@ RailsAdmin.config do |config|
       field :email
       field :phone
       field :message
-      field :created_at
-      field :updated_at
+      field :created_at do
+        strftime_format "%Y-%m-%d"
+      end
+      field :updated_at do
+        strftime_format "%Y-%m-%d"
+      end
     end
     export do; end
     show do
@@ -302,8 +314,12 @@ RailsAdmin.config do |config|
       field :start_date
       field :end_date
       field :user
-      field :created_at
-      field :updated_at
+      field :created_at do
+        strftime_format "%Y-%m-%d"
+      end
+      field :updated_at do
+        strftime_format "%Y-%m-%d"
+      end
       field :image
       field :comments
     end
@@ -358,8 +374,12 @@ RailsAdmin.config do |config|
       field :description
       field :user
       field :image
-      field :created_at
-      field :updated_at
+      field :created_at do
+        strftime_format "%Y-%m-%d"
+      end
+      field :updated_at do
+        strftime_format "%Y-%m-%d"
+      end
     end
     export do; end
     show do
@@ -407,13 +427,20 @@ RailsAdmin.config do |config|
     list do
       field :id
       field :name
+      field :state
+      #      field :access_state
       field :address
       field :city
       field :category_loc_tourism
       field :user
       field :image
-      field :created_at
-      field :updated_at
+      field :created_at do
+        strftime_format "%Y-%m-%d"
+      end
+      field :updated_at do
+        strftime_format "%Y-%m-%d"
+      end
+      field :state, :enum
     end
     export do; end
     show do
@@ -432,6 +459,8 @@ RailsAdmin.config do |config|
       field :description
       field :user
       field :image
+      field :state, :enum
+      #      field :access_state
     end
     edit do
       field :name
@@ -448,10 +477,13 @@ RailsAdmin.config do |config|
       field :description
       field :user
       field :image
+      field :state, :enum
+      #      field :access_state
     end
     create do; end
     update do; end
   end
+  
   config.model TipsTrick do
     # Found associations:
     configure :user, :belongs_to_association   #   # Found columns:
@@ -472,8 +504,12 @@ RailsAdmin.config do |config|
       field :description
       field :user
       field :image
-      field :created_at
-      field :updated_at
+      field :created_at do
+        strftime_format "%Y-%m-%d"
+      end
+      field :updated_at do
+        strftime_format "%Y-%m-%d"
+      end
     end
     export do; end
     show do
@@ -516,8 +552,12 @@ RailsAdmin.config do |config|
       field :video
       field :user
       field :image
-      field :created_at
-      field :updated_at
+      field :created_at do
+        strftime_format "%Y-%m-%d"
+      end
+      field :updated_at do
+        strftime_format "%Y-%m-%d"
+      end
     end
     export do; end
     show do
@@ -562,8 +602,12 @@ RailsAdmin.config do |config|
       field :user
       field :type
       field :image
-      field :created_at
-      field :updated_at
+      field :created_at do
+        strftime_format "%Y-%m-%d"
+      end
+      field :updated_at do
+        strftime_format "%Y-%m-%d"
+      end
     end
     export do; end
     show do
@@ -606,8 +650,12 @@ RailsAdmin.config do |config|
       field :user
       field :type
       field :image
-      field :created_at
-      field :updated_at
+      field :created_at do
+        strftime_format "%Y-%m-%d"
+      end
+      field :updated_at do
+        strftime_format "%Y-%m-%d"
+      end
     end
     export do; end
     show do
@@ -650,8 +698,12 @@ RailsAdmin.config do |config|
       field :user
       field :type
       field :image
-      field :created_at
-      field :updated_at
+      field :created_at do
+        strftime_format "%Y-%m-%d"
+      end
+      field :updated_at do
+        strftime_format "%Y-%m-%d"
+      end
     end
     export do; end
     show do
@@ -694,8 +746,12 @@ RailsAdmin.config do |config|
       field :user
       field :type
       field :image
-      field :created_at
-      field :updated_at
+      field :created_at do
+        strftime_format "%Y-%m-%d"
+      end
+      field :updated_at do
+        strftime_format "%Y-%m-%d"
+      end
     end
     export do; end
     show do
@@ -738,8 +794,12 @@ RailsAdmin.config do |config|
       field :user
       field :type
       field :image
-      field :created_at
-      field :updated_at
+      field :created_at do
+        strftime_format "%Y-%m-%d"
+      end
+      field :updated_at do
+        strftime_format "%Y-%m-%d"
+      end
     end
     export do; end
     show do
@@ -782,8 +842,12 @@ RailsAdmin.config do |config|
       field :user
       field :type
       field :image
-      field :created_at
-      field :updated_at
+      field :created_at do
+        strftime_format "%Y-%m-%d"
+      end
+      field :updated_at do
+        strftime_format "%Y-%m-%d"
+      end
     end
     export do; end
     show do
@@ -804,7 +868,7 @@ RailsAdmin.config do |config|
     create do; end
     update do; end
   end
-  
+
   config.model Transportation do
     # Found associations:
     configure :id, :integer
@@ -826,8 +890,12 @@ RailsAdmin.config do |config|
       field :user
       field :type
       field :image
-      field :created_at
-      field :updated_at
+      field :created_at do
+        strftime_format "%Y-%m-%d"
+      end
+      field :updated_at do
+        strftime_format "%Y-%m-%d"
+      end
     end
     export do; end
     show do

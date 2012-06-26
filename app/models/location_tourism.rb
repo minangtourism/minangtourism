@@ -4,7 +4,7 @@ class LocationTourism < ActiveRecord::Base
   belongs_to :category_loc_tourism
   has_many :comments, as: :commentable
 
-  attr_accessible :address, :category_loc_tourism_id, :category_tourism_id,
+  attr_accessible :address, :state, :access_state, :category_loc_tourism_id, :category_tourism_id,
     :city, :description, :facebook, :facility, :hours_description,
     :name, :phone, :twitter, :user_id, :web, :zip, :image, as: [:default] + User.valid_roles
 
@@ -28,4 +28,49 @@ class LocationTourism < ActiveRecord::Base
   validates :hours_description, :presence => true
   validates :facility, :presence => true
   #  validates :Description, :presence => true
+
+  #  state_machine :initial => :unregistered do
+  #    event :register do
+  #      transition :unregistered => :registered
+  #    end
+  #
+  #    event :unregister do
+  #      transition :registered => :unregistered
+  #    end
+  #  end
+  #
+  #  state_machine :access_state, :initial => :enabled do
+  #    event :enable do
+  #      transition all => :enabled
+  #    end
+  #
+  #    event :disable do
+  #      transition all => :disabled
+  #    end
+  #  end
+
+  state_machine :initial => :unpublished do
+    before_transition all => all do |location_tourism, transition|
+      location_tourism.is_authorized_for?(transition)
+    end
+    event :publish do
+      transition :unpublished => :published
+    end
+    event :unpublish do
+      transition :published => :unpublished
+    end
+    state :unpublished
+    state :published
+  end
+
+  scope :published, where(:state => 'published')
+  scope :unpublished, where(:state => 'unpublished')
+
+  def state_enum
+    ['published','unpublished']
+  end
+
+  def is_authorized_for?(transition)
+    permitted_to?(transition.event.to_sym)
+  end
 end

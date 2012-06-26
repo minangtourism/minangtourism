@@ -8,7 +8,8 @@ class LocationTourismsController < ApplicationController
       category_loc_tourism_ids = [@category_loc_tourism.id] + @category_loc_tourism.descendants.map(&:id)
       @location_tourisms = @location_tourisms.where(category_loc_tourism_id: category_loc_tourism_ids)
     end
-    @location_tourisms = @location_tourisms.order("created_at desc").page(params[:page]).per(5)
+
+    @location_tourisms = @location_tourisms.published.order("created_at desc").page(params[:page]).per(5)
 
     respond_to do |format|
       format.html # index.html.erb

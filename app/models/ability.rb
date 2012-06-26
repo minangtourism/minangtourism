@@ -5,6 +5,7 @@ class Ability
     can :read, :all
     cannot :access, :rails_admin
     cannot :dashboard
+    cannot :read, LocationTourism, :state => 'unpublished'
 
     if user
       if user.is? :admin
@@ -17,7 +18,7 @@ class Ability
         can :access, :rails_admin
         can :dashboard
         can :manage,
-          [Comment, Event, Folktale, LocationTourism, TipsTrick, TourismArticle], :published => true
+          [Comment, Event, Folktale, LocationTourism, TipsTrick, TourismArticle]
       end
 
       if user.is? :member

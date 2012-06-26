@@ -1,7 +1,5 @@
 SumbarTourism::Application.routes.draw do
 
-  resources :sumbar_contents
-
   root :to => 'homes#index'
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
@@ -9,6 +7,8 @@ SumbarTourism::Application.routes.draw do
   get '/users/sign_in' => 'homes#index', :defaults => { :prompt_sign_in => true }
   devise_for :users
 
+  resources :sumbar_contents
+  
   resources :contacts
 
   resources :category_loc_tourisms
@@ -20,9 +20,6 @@ SumbarTourism::Application.routes.draw do
   resources :folktales
 
   resources :why_sumbars
-#  resources :getting_theres
-#  resources :where_to_stays
-#  resources :things_to_dos
 
   resources :tourism_articles
 
