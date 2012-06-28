@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
     end
   end
     
-  validates :username, :presence => true, :uniqueness => true, :length => { :maximum => 50 }
+  validates :username, :presence => true, :uniqueness => true, :length => { :maximum => 30 }
   validates :password_confirmation, :presence => true, :if => :password
 
   # Include default devise modules. Others available are:
@@ -39,7 +39,9 @@ class User < ActiveRecord::Base
   
   has_attached_file :image, :styles => {
     :medium => "300x300#",
+    :member => "160x160#",
     :small => "100x100#",
+    :member_thumb => "50x50#",
     :thumb => "50x50#"
   }, :default_url => '/assets/missing/:class/:style/missing.png'
   attr_accessor :login

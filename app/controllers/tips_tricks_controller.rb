@@ -1,5 +1,5 @@
-
 class TipsTricksController < ApplicationController
+  load_and_authorize_resource
   # GET /tips_tricks
   # GET /tips_tricks.json
   def index
@@ -15,7 +15,7 @@ class TipsTricksController < ApplicationController
   # GET /tips_tricks/1
   # GET /tips_tricks/1.json
   def show
-    @tips_trick = TipsTrick.find(params[:id])
+#    @tips_trick = TipsTrick.find(params[:id])
     @tips_trick.increment! :read_count
     @comment = Comment.new
 
@@ -26,7 +26,7 @@ class TipsTricksController < ApplicationController
   end
 
   def create_comment
-    @tips_trick = TipsTrick.find(params[:id])
+#    @tips_trick = TipsTrick.find(params[:id])
     @comment = current_user.comments.new(params[:comment])
     @comment.commentable = @tips_trick
 
@@ -40,7 +40,7 @@ class TipsTricksController < ApplicationController
   # GET /tips_tricks/new
   # GET /tips_tricks/new.json
   def new
-    @tips_trick = TipsTrick.new
+#    @tips_trick = TipsTrick.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -50,13 +50,13 @@ class TipsTricksController < ApplicationController
 
   # GET /tips_tricks/1/edit
   def edit
-    @tips_trick = TipsTrick.find(params[:id])
+#    @tips_trick = TipsTrick.find(params[:id])
   end
 
   # POST /tips_tricks
   # POST /tips_tricks.json
   def create
-    @tips_trick = current_user.tips_tricks.new(params[:tips_trick])
+#    @tips_trick = current_user.tips_tricks.new(params[:tips_trick])
 
     respond_to do |format|
       if @tips_trick.save
@@ -72,7 +72,7 @@ class TipsTricksController < ApplicationController
   # PUT /tips_tricks/1
   # PUT /tips_tricks/1.json
   def update
-    @tips_trick = TipsTrick.find(params[:id])
+#    @tips_trick = TipsTrick.find(params[:id])
 
     respond_to do |format|
       if @tips_trick.update_attributes(params[:tips_trick])
@@ -88,7 +88,7 @@ class TipsTricksController < ApplicationController
   # DELETE /tips_tricks/1
   # DELETE /tips_tricks/1.json
   def destroy
-    @tips_trick = TipsTrick.find(params[:id])
+#    @tips_trick = TipsTrick.find(params[:id])
     @tips_trick.destroy
 
     respond_to do |format|

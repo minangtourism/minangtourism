@@ -1,9 +1,9 @@
-
 class CategoryLocTourismsController < ApplicationController
+  load_and_authorize_resource
   # GET /category_loc_tourisms
   # GET /category_loc_tourisms.json
   def index
-    @category_loc_tourisms = CategoryLocTourism.all
+#    @category_loc_tourisms = CategoryLocTourism.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +14,7 @@ class CategoryLocTourismsController < ApplicationController
   # GET /category_loc_tourisms/1
   # GET /category_loc_tourisms/1.json
   def show
-    @category_loc_tourism = CategoryLocTourism.find(params[:id])
+#    @category_loc_tourism = CategoryLocTourism.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,7 +25,7 @@ class CategoryLocTourismsController < ApplicationController
   # GET /category_loc_tourisms/new
   # GET /category_loc_tourisms/new.json
   def new
-    @category_loc_tourism = CategoryLocTourism.new
+#    @category_loc_tourism = CategoryLocTourism.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,13 +35,13 @@ class CategoryLocTourismsController < ApplicationController
 
   # GET /category_loc_tourisms/1/edit
   def edit
-    @category_loc_tourism = CategoryLocTourism.find(params[:id])
+#    @category_loc_tourism = CategoryLocTourism.find(params[:id])
   end
 
   # POST /category_loc_tourisms
   # POST /category_loc_tourisms.json
   def create
-    @category_loc_tourism = CategoryLocTourism.new(params[:category_loc_tourism])
+#    @category_loc_tourism = CategoryLocTourism.new(params[:category_loc_tourism])
 
     respond_to do |format|
       if @category_loc_tourism.save
@@ -57,7 +57,7 @@ class CategoryLocTourismsController < ApplicationController
   # PUT /category_loc_tourisms/1
   # PUT /category_loc_tourisms/1.json
   def update
-    @category_loc_tourism = CategoryLocTourism.find(params[:id])
+#    @category_loc_tourism = CategoryLocTourism.find(params[:id])
 
     respond_to do |format|
       if @category_loc_tourism.update_attributes(params[:category_loc_tourism])
@@ -73,7 +73,7 @@ class CategoryLocTourismsController < ApplicationController
   # DELETE /category_loc_tourisms/1
   # DELETE /category_loc_tourisms/1.json
   def destroy
-    @category_loc_tourism = CategoryLocTourism.find(params[:id])
+#    @category_loc_tourism = CategoryLocTourism.find(params[:id])
     @category_loc_tourism.destroy
 
     respond_to do |format|

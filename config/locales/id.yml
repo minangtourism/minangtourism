@@ -80,6 +80,7 @@ id:
       short: "%d-%m-%y %H:%M"
       long: "%A, %d %B %Y %H:%M:%S %z"
       costum: "%A, %d %B %Y"
+      costum_time: "%H:%M"
       only_day: "%A"
       only_date: "%d"
       only_month: "%B"

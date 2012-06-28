@@ -22,6 +22,7 @@
     font: 13px/1.7em 'Open Sans';
 }*/
 
+/*------------------------------------HOME INDEX-------------------------------------------*/
 /*navbar*/
 .header{}
 
@@ -70,10 +71,7 @@
     font-style: italic;
     margin-right: 10px
 }
-
 /*end-content-sumbar*/
-
-/*garis di bawah judul, acara, berita, peta*/
 
 /* EVENT */
 .eventsdate {
@@ -117,7 +115,6 @@
 }
 
 .eventscontent {
-    /*    margin-left: 76px;*/
     padding-right: 10px;
 }
 
@@ -158,6 +155,7 @@
     float: left;
     margin-left: 10px;
     margin-right: 10px;
+    margin-bottom: 10px;
     padding-right: 10px;
 }
 
@@ -191,7 +189,6 @@
 .news-info a:hover{
     color: #FF0000;
 }
-
 /* END TOURISM ARTICLES / BERITA WISATA */
 
 /* MAPS / JARAK */
@@ -201,162 +198,136 @@
 
 
 /* CERITA WISATAWAN / COMMENT */
-.flexslider, .blogslider {
-    background: none repeat scroll 0 0 #FFFFFF;
-    position: relative;
+.content-tourism{
+    /*    margin-left: 0;*/
 }
 
-.blog_item {
-    background-color: #F5F5F5;
-    border-bottom: 1px solid #DFDFDF;
+.photo-tourism{
+    margin-left: 0;
 }
 
-.blog_head {
-    background-color: #3A3A3A;
-    padding: 10px 15px;
+.photo-tourism .thumbnail{
+    margin-right: 15px !important;
+    margin-bottom: 10px;
 }
 
-.blog_head h4 {
-    color: #FFFFFF;
+.story-tourism{}
+
+.name-location{
+    margin-bottom: 5px;
+}
+
+.name-location a{
+    font-size: 16px;
     font-weight: bold;
-    text-transform: uppercase;
+    color: #F53A26;
+    text-decoration: none;
 }
 
-.blog_head span {
-    color: #DFDFDF;
-    font-size: 10px;
-    padding-left: 3px;
+.name-location a:hover{
+    color: #000000;
 }
 
-.view {
-    background: url("../img/spinner.gif") no-repeat scroll center center #F5F5F5;
+.date-publish{
+    color: #F53A26;
 }
 
-.view {
-    cursor: default;
-    overflow: hidden;
-    position: relative;
-    text-align: center;
+.rate-location{
 }
 
-element.style {
-    opacity: 1;
-    visibility: visible;
+.small-view a{
+    color: #F53A26;
+    text-decoration: none;
 }
 
-.view-first img {
-    -moz-transition: all 0.2s linear 0s;
-}
-
-.view img {
-    display: block;
-    position: relative;
-}
-
-.view-first .mask {
-    -moz-transition: all 0.4s ease-in-out 0s;
-    background-color: rgba(0, 0, 0, 0.1);
-    display: none;
-    height: 100%;
-    opacity: 0;
-    width: 100%;
-}
-
-.view .mask, .view .content {
-    left: 0;
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-}
-
-.blog_item p {
-    margin-bottom: 0;
-    padding: 20px;
-    font-size: 12px;
-}
-
-.slides, .flex-control-nav, .flex-direction-nav {
-    list-style: none outside none;
-    margin: 0;
-    padding: 0;
-}
-
-.blogslider .flex-direction-nav li .prev {
-    right: 54px !important;
-}
-
-.blogslider .flex-direction-nav li a, .portfolio-slider .flex-direction-nav li a {
-    -moz-border-bottom-colors: none;
-    -moz-border-image: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    background-color: #F5F5F5;
-    background-image: -moz-linear-gradient(center top , #FFFFFF, #E6E6E6);
-    background-repeat: repeat-x;
-    border-color: #CCCCCC #CCCCCC #B3B3B3;
-    border-radius: 4px 4px 4px 4px;
-    border-style: solid;
-    border-width: 1px;
-    bottom: 20px !important;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
-    color: #333333;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 11px;
-    line-height: 14px;
-    margin-bottom: 0;
-    margin-top: 5px;
-    padding: 4px 10px;
-    position: absolute;
-    right: 20px !important;
-    text-align: center;
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-    vertical-align: middle;
+.small-view a:hover{
+    color: #000000;
 }
 
 /* END CERITA WISATAWAN / COMMENT */
 
-/*folktale*/
-.moduletable_story {
-    /*    float: left;*/
-    /*    padding-left: 10px;*/
-    /*    padding-right: 10px;*/
-    /*    width: 290px;*/
+/* CERITA WISATAWAN REVIEW*/
+.pp-tourism{
+    margin-bottom: 20px;
 }
 
-.moduletable_story .detail {
-    border-bottom: 1px dashed #CCCCCC;
-    float: left;
-    /*    margin-bottom: 8px;*/
-    margin-top: 10px;
-    padding-bottom: 5px;
-    width: 100%;
+.link-article{
+    margin-bottom: 10px; 
+    text-align: center
 }
 
-.moduletable_story .detail a {
-    color: #C639A1;
-    font-size: 16px;
+.info-story-tourism{
+    margin-bottom: 20px;
+    line-height: normal;
+}
+
+.info-story-tourism span {
+    display: block;
+    font-size: 14px;
+    line-height: 14px;
+    margin-bottom: 7px;
+}
+
+.title-location-tourism{
+    margin-bottom: 20px;
+}
+
+.title-location-tourism a{
+    font-size: 24px;
+    text-decoration: none;
+}
+/* END CERITA WISATAWAN REVIEW */
+
+/*MENU WISATAWAN*/
+
+.side-tourism a {
+    color: #444;
+    font-size: 14px;
     text-decoration: none;
 }
 
-.moduletable_story .detail a:hover {
-    color: #990066;
-}
-
-.all-tab-story a{
-    color: #0088CC;
-    text-decoration: none;
-    padding-right: 10px;
-    padding-top: 10px;
-    float: right;
-}
-
-.all-tab-story a:hover{
+.side-tourism a:hover {
     color: #005580;
 }
+/* END MENU WISATAWAN*/
+/*------------------------------------HOME INDEX-------------------------------------------*/
 
-/*news-index*/
+/*------------------------------------CERITA WISATAWAN-------------------------------------*/
+.ddate {
+    background: none repeat scroll 0 0 #EFEFEF;
+    border-radius: 5px 5px 5px 5px;
+    text-align: center;
+}
+
+.ddate h5 {
+    padding-bottom: 7px;
+    padding-top: 15px;
+}
+
+.ddate .firstA {
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #EFEFEF;
+    display: block;
+    font-size: 0;
+    height: 0;
+    left: 50%;
+    line-height: 0;
+    margin-bottom: 20px;
+    margin-left: -10px !important;
+    position: relative;
+    top: 10px;
+    width: 0;
+}
+
+.meta span {
+    display: block;
+    font-size: 11px;
+    line-height: 14px;
+    margin-bottom: 7px;
+}
+
+/*------------------------------------CERITA WISATAWAN-------------------------------------*/
 
 /*tourism article 1/utama*/
 .one-title-tourism-article{
@@ -453,7 +424,7 @@ element.style {
 }
 
 .comments-tourism-article img {
-    margin-bottom: 20px !important;
+/*    margin-bottom: 20px !important;*/
     margin-right: 20px !important;
     float: left;
 }
@@ -485,7 +456,7 @@ element.style {
 }
 /*end tempat wisata*/
 
-/*footer*/
+/*FOOTER*/
 .footer {
     background: none repeat scroll 0 0 #303030;
     border-bottom: 1px solid #444444;
@@ -597,7 +568,7 @@ element.style {
 .icon_flickr:hover {
     background: url("/assets/icons_flickr_hover.png") repeat scroll 0 0 transparent;
 }
-/*end footer*/
+/*END FOOTER*/
 
 /*bottom footer*/
 .bottom-block {

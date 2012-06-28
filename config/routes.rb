@@ -1,5 +1,4 @@
 SumbarTourism::Application.routes.draw do
-
   root :to => 'homes#index'
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
@@ -22,6 +21,8 @@ SumbarTourism::Application.routes.draw do
   resources :why_sumbars
 
   resources :tourism_articles
+
+  resources :reviews
 
   resources :events do
     member do

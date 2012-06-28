@@ -1,40 +1,40 @@
-<%#*<div class="slider-area">%>
-<%#*<div class="slider-content drop-shadow lifted"><!-- Start Slide Content -->%>
+<div class="slider-area">
+  <div class="slider-content drop-shadow lifted"><!-- Start Slide Content -->
 
-<%#*<div id="myCarousel" class="carousel slide">%>
-<%#*<!-- Carousel items -->%>
-<%#*<div class="carousel-inner">%>
+    <div id="myCarousel" class="carousel slide">
+      <!-- Carousel items -->
+      <div class="carousel-inner">
 
-<%#*<div class="active item">%>
-<%#= image_tag "gallery1.jpg" %>
-<%#*<div class="carousel-caption">%>
-<%#*<h4>First Thumbnail label</h4>%>
-<%#*<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>%>
-<%#*</div>%>
-<%#*</div>%>
+        <div class="active item">
+          <%= image_tag "gallery1.jpg" %>
+          <div class="carousel-caption">
+            <h4>First Thumbnail label</h4>
+            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+          </div>
+        </div>
 
-<%#*<div class="item">%>
-<%#= image_tag "gallery2.jpg" %>
-<%#*<div class="carousel-caption">%>
-<%#*<h4>First Thumbnail label</h4>%>
-<%#*<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>%>
-<%#*</div>%>
-<%#*</div>%>
-<%#*<div class="item">%>
-<%#= image_tag "gallery3.jpg" %>
-<%#*<div class="carousel-caption">%>
-<%#*<h4>First Thumbnail label</h4>%>
-<%#*<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>%>
-<%#*</div>%>
-<%#*</div>%>
-<%#*</div>%>
-<%#*<!-- Carousel nav -->%>
-<%#*<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>%>
-<%#*<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>%>
-<%#*</div>%>
+        <div class="item">
+          <%= image_tag "gallery2.jpg" %>
+          <div class="carousel-caption">
+            <h4>First Thumbnail label</h4>
+            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+          </div>
+        </div>
+        <div class="item">
+          <%= image_tag "gallery3.jpg" %>
+          <div class="carousel-caption">
+            <h4>First Thumbnail label</h4>
+            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Carousel nav -->
+      <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+      <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+    </div>
 
-<%#*</div>%>
-<%#*</div>%>
+  </div>
+</div>
 
 <div class="container content-sumbar"> <!-- CONTENT SUMBAR -->
   <div class="row">
@@ -82,10 +82,9 @@
         <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
 
         <% @tourism_articles.each do |article| %>
-          <div class="span4 clearfix" style="margin-left: 0; margin-bottom: 10px;">
+          <div class="span4 clearfix" style="margin-left: 0;">
             <div class="image-news">
               <%= image_tag(article.image.url(:thumb)) %>
-    <%#*<img src="http://placehold.it/145x75" alt=""/>%>
             </div>
             <div class="title-news">
               <%= link_to truncate(article.title, :length => 80, :separator => ' '), tourism_article_path(article) %>
@@ -127,76 +126,63 @@
 
   </div>
 
-  <div class="row">
-    <div class="span6"><!-- Berita -->
+  <div class="row"> <!-- CERITA WISATAWAN -->
+    <div class="span8">
       <h2>Cerita Wisatawan</h2>
       <div class="dashed"></div>
       <div class="info-title">Cerita terbaru wisatawan tentang tempat wisata yang ada di Sumatera Barat</div>
-      <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+      <div class="dashed" style="margin-bottom: 25px; margin-top: 0"></div>
 
       <div class="row">
-        <div class="blogslider span6 clearfix" style="overflow: hidden">
-          <li style="width: 570px; float: left; display: block;">
-<%#*<ul class="slides" style="width: 1200%; margin-left: -570px;">%>
-            <div class="blog_item">
-              <div class="blog_head">
-                <h4>Anoter blog post</h4>
-                <span>
-                  <i class="icon-calendar icon-white"></i>
-                  Fantasy by Lewis Carroll on Aug 24, 2011
-                </span>
+        <% @reviews.each do |review| %>
+          <div class="span4">
+            <div class="span1 photo-tourism">
+              <%= link_to image_tag(review.user.image.url(:member_thumb), :class => 'thumbnail') %>
+            </div>
+
+            <div class="story-tourism">
+              <div class="name-location">
+                <%= link_to review.commentable.name, location_tourism_path(review.commentable, anchor: "comment-#{review.id}") %>
               </div>
-              <div class="view view-first">
-                <a rel="prettyPhoto" href="assets/img/gal/6.jpg" class="">
-                  <img alt="" src="assets/img/gal/6.jpg" style="visibility: visible; opacity: 1;"/>
-                </a>
-                <div class="mask">
-                  <a class="info" rel="prettyPhoto" href="assets/img/gal/6.jpg">
-                    <img alt="Hanging Note Sign Psd" src="assets/img/plus.png" style="visibility: visible; opacity: 1;"/>
-                  </a>
-                  <a class="link" href="#">
-                    <img alt="Visit link" src="assets/img/link.png" style="visibility: visible; opacity: 1;"/>
-                  </a>
+              <div class="clearfix">
+                <div class="date-publish pull-right"><i class="icon-time"></i> Rabu, 27 Juni 2012</div>
+                <div class="rate-location pull-left">
+                  <i class="icon-star"></i>
+                  <i class="icon-star"></i>
+                  <i class="icon-star"></i>
+                  <i class="icon-star"></i>
+                  <i class="icon-star-empty"></i>
                 </div>
               </div>
-              <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here'.<br/><br/>
-                <a href="#" class="btn btn-small">Read More</a>
-              </p>
+
+              <div>
+                <%= truncate(review.comment, :length => 50, :separator => ' ') %>
+                <span class="small-view">
+                  <a href="#"> <i class="icon-external-link"></i> </a>
+                </span>
+              </div>
             </div>
-<%#*</ul>%>
+            <div class="dashed" style="margin-bottom: 15px; margin-top: 10px;"></div>
+          </div>
+        <% end %>
 
-            <ul class="flex-direction-nav">
-              <li>
-                <a href="#" class="prev">
-                  <img alt="Prev" src="assets/prev.png"/>
-                </a>
-              </li>
-              <li>
-                <a href="#" class="next">
-                  <img alt="Next" src="assets/next.png"/>
-                </a>
-              </li>
-            </ul>
-          </li>
+        <div class="span8">
+          <div class="dashed" style="margin-bottom: 15px; margin-top: 10px;"></div>
+          <div class="all-events">
+            <%= link_to 'Selanjutnya', reviews_path, :class => 'btn btn-inverse btn-mini' %>
+          </div>
         </div>
-      </div>
+      </div> <!-- end row -->
+    </div> 
 
-      <div class="dashed" style="margin-bottom: 15px; margin-top: 10px;"></div>
-      <div class="all-events">
-        <%= link_to 'Selanjutnya', tourism_articles_path, :class => 'btn btn-inverse btn-mini' %>
-      </div>
-    </div>
-
-    <div class="span6">
-      <div class="tourism">
-        <h2><span style="color: #0088CC;">Menu Wisatawan</span></h2>
-      </div>
-      <div class="sub_hr">
-        <span>Menu untuk tampilan cepat</span>
-      </div>
+    <div class="span4">
+      <h2>Menu Wisatawan</h2>
+      <div class="dashed"></div>
+      <div class="info-title">Menu untuk tampilan cepat</div>
+      <div class="dashed" style="margin-bottom: 25px; margin-top: 0"></div>
 
       <div class="tab-menu-wisata" style="margin-top: 10px;">
-        <ul class="nav nav-tabs" id="myTab">
+        <ul class="nav nav-tabs" id="myTab" style="font-size: 16px;">
           <li class="active"><a href="#home">Cerita Rakyat</a></li>
           <li><a href="#profile">Tips & Trik</a></li>
         </ul>
@@ -204,22 +190,26 @@
         <div class="tab-content">
           <div class="tab-pane active" id="home">
             <% @folktales.each do |folktale| %>
-              <div class="moduletable_story">
-                <div class="detail">
-                  <%= link_to truncate(folktale.title, :length => 80, :separator => ' '), folktale_path(folktale) %>
-                </div>
+              <div class="side-tourism">
+                <%= link_to truncate(folktale.title, :length => 80, :separator => ' '), folktale_path(folktale) %>
+                <div class="dashed" style="margin-bottom: 10px; margin-top: 5px;"></div>
               </div>
             <% end %>
+            <div class="all-events">
+              <%= link_to 'Selanjutnya', folktales_path, :class => 'btn btn-inverse btn-mini' %>
+            </div>
           </div>
 
           <div class="tab-pane" id="profile">
             <% @tips_tricks.each do |tips_trick| %>
-              <div class="moduletable_story">
-                <div class="detail">
-                  <%= link_to truncate(tips_trick.title, :length => 80, :separator => ' '), tips_trick_path(tips_trick) %>
-                </div>
+              <div class="side-tourism">
+                <%= link_to truncate(tips_trick.title, :length => 80, :separator => ' '), tips_trick_path(tips_trick) %>
               </div>
+              <div class="dashed" style="margin-bottom: 10px; margin-top: 5px;"></div>
             <% end %>
+            <div class="all-events">
+              <%= link_to 'Selanjutnya', tips_tricks_path, :class => 'btn btn-inverse btn-mini' %>
+            </div>
           </div>
 
         </div>

@@ -63,8 +63,8 @@
                   <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
-                  <li class="<%= current_page?(tourism_articles_path) ? "active" : nil%>">
-                    <%= link_to tourism_articles_path do %>
+                  <li class="<%= current_page?(reviews_path) ? "active" : nil%>">
+                    <%= link_to reviews_path do %>
                       <i class="icon-pencil"></i>Cerita Wisatawan
                     <% end %>
                   </li>
@@ -114,50 +114,50 @@
       <%= yield %>
     </div> <!-- /container -->
 
-    <div class="footer">
-      <div class="container">
-        <div class="row">
-          <div class="span3">
-            <h5><i class="icon-home colored"></i> Sumbar Tourism</h5>
-            <hr class=" hidden-phone" />
-            <p>Valera is designed to help people of all skill levels designer or developer, huge nerd or early beginner. Use it as a complete kit or use to start something more complex.</p>
-          </div>
-          <div class="span3">
-            <h5><i class="icon-search colored"></i> Help</h5>
-            <hr class=" hidden-phone" />
-            <a href="#"><strong class="colored">FAQ</strong></a>
-            <br class="visible-phone" />
-            <hr class=" hidden-phone" />
-            <a href="#"><strong class="colored">Advertise</strong></a>
-            <hr class=" hidden-phone" />
-            <a href="#"><strong class="colored">Content Guidelines</strong></a>
-            <hr class=" hidden-phone" />
-          </div>
-          <div class="span3">
-            <h5><i class="icon-user colored"></i> Contact info</h5>
-            <hr class=" hidden-phone" />
-            <span><strong class="colored"> Adress:</strong> 123456 Street Name, Sumatera Barat</span>
-            <br class="visible-phone" />
-            <hr class=" hidden-phone" />
-            <span><strong class="colored">Phone:</strong> (022) 765-4321</span>
-            <hr class=" hidden-phone" />
-            <span><strong class="colored">Email:</strong> info@sumbar-tourism.com</span>
-            <hr class=" hidden-phone" />
-          </div>
-          <div class="span3 soc_icons">
-            <h5><i class="icon-globe colored"></i> Stay in touch</h5>
-            <span>Find out what's happening:</span>
-            <hr />
-            <a href="#"><div class="icon_t"></div></a>
-            <a href="#"><div class="icon_facebook"></div></a>
-            <a href="#"><div class="icon_dribble"></div></a>
-            <a href="#"><div class="icon_google"></div></a>
-            <a href="#"><div class="icon_in"></div></a>
-            <a href="#"><div class="icon_flickr"></div></a>
-          </div>
-        </div>
-      </div>
-    </div>
+    <%#*<div class="footer">%>
+      <%#*<div class="container">%>
+        <%#*<div class="row">%>
+          <%#*<div class="span3">%>
+            <%#*<h5><i class="icon-home colored"></i> Sumbar Tourism</h5>%>
+            <%#*<hr class=" hidden-phone" />%>
+            <%#*<p>Valera is designed to help people of all skill levels designer or developer, huge nerd or early beginner. Use it as a complete kit or use to start something more complex.</p>%>
+          <%#*</div>%>
+          <%#*<div class="span3">%>
+            <%#*<h5><i class="icon-search colored"></i> Help</h5>%>
+            <%#*<hr class=" hidden-phone" />%>
+            <%#*<a href="#"><strong class="colored">FAQ</strong></a>%>
+            <%#*<br class="visible-phone" />%>
+            <%#*<hr class=" hidden-phone" />%>
+            <%#*<a href="#"><strong class="colored">Advertise</strong></a>%>
+            <%#*<hr class=" hidden-phone" />%>
+            <%#*<a href="#"><strong class="colored">Content Guidelines</strong></a>%>
+            <%#*<hr class=" hidden-phone" />%>
+          <%#*</div>%>
+          <%#*<div class="span3">%>
+            <%#*<h5><i class="icon-user colored"></i> Contact info</h5>%>
+            <%#*<hr class=" hidden-phone" />%>
+            <%#*<span><strong class="colored"> Adress:</strong> 123456 Street Name, Sumatera Barat</span>%>
+            <%#*<br class="visible-phone" />%>
+            <%#*<hr class=" hidden-phone" />%>
+            <%#*<span><strong class="colored">Phone:</strong> (022) 765-4321</span>%>
+            <%#*<hr class=" hidden-phone" />%>
+            <%#*<span><strong class="colored">Email:</strong> info@sumbar-tourism.com</span>%>
+            <%#*<hr class=" hidden-phone" />%>
+          <%#*</div>%>
+          <%#*<div class="span3 soc_icons">%>
+            <%#*<h5><i class="icon-globe colored"></i> Stay in touch</h5>%>
+            <%#*<span>Find out what's happening:</span>%>
+            <%#*<hr />%>
+            <%#*<a href="#"><div class="icon_t"></div></a>%>
+            <%#*<a href="#"><div class="icon_facebook"></div></a>%>
+            <%#*<a href="#"><div class="icon_dribble"></div></a>%>
+            <%#*<a href="#"><div class="icon_google"></div></a>%>
+            <%#*<a href="#"><div class="icon_in"></div></a>%>
+            <%#*<a href="#"><div class="icon_flickr"></div></a>%>
+          <%#*</div>%>
+        <%#*</div>%>
+      <%#*</div>%>
+    <%#*</div>%>
 
     <div class="bottom-block">
       <div class="container">
@@ -170,7 +170,7 @@
             </span>
           </div>
           <div class="span6">
-            <span class="pull-right visible-desktop">
+            <span class="visible-desktop pull-right">
               <span>Powered by
                 <span class="undercolored">
                   <a href="#">Bootstrap</a>

@@ -96,19 +96,23 @@
     <div class="row">
       <div class="span8">
         <% @location_tourism.comments.each do |comment| %>
-          <%= image_tag(comment.user.image.url(:thumb), :class => 'thumbnail') %>
-          <div>
-            <h5 style="text-transform: uppercase; margin-bottom: 10px;">
-              <a href="#" style="text-decoration: none;">
-                <%= comment.user.username %>
-              </a>
-              <%= l comment.created_at, :format => :costum %>
-            </h5>
-            <p class="clearfix"><%= comment.comment %></p>
+          <div id="comment-<%= comment.id %>">
+            <%= image_tag(comment.user.image.url(:thumb), :class => 'thumbnail') %>
+            <div>
+              <h5 style="text-transform: uppercase; margin-bottom: 10px;">
+                <a href="#" style="text-decoration: none;">
+                  <%= comment.user.username %>
+                </a>
+                <%= l comment.created_at, :format => :costum %>
+              </h5>
+              <p class="clearfix"><%= comment.comment %></p>
+            </div>
           </div>
+          <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
         <% end %>
       </div>
     </div>
   </div>
+</div>
 
 </div>

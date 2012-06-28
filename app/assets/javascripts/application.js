@@ -18,9 +18,6 @@
 //= require_tree
 //= require bootstrap-datepicker
 
-//search
-//$('.datepicker').datepicker();
-
 $('#dp3').datepicker({
     format: 'mm-dd-yyyy'
 });

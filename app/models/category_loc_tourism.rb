@@ -6,4 +6,6 @@ class CategoryLocTourism < ActiveRecord::Base
 
   attr_accessible :name, :parent_id, :lft, :rgt, as: [:default] + User.valid_roles
 
+  validates :name, :presence => true
+
 end

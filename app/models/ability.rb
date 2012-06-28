@@ -18,12 +18,14 @@ class Ability
         can :access, :rails_admin
         can :dashboard
         can :manage,
-          [Comment, Event, Folktale, LocationTourism, TipsTrick, TourismArticle]
+          [TourismArticle, Comment, Folktale, CategoryLocTourism, LocationTourism, Event, TipsTrick]
       end
 
       if user.is? :member
         can [:create, :update],
-          [Comment, Event, Folktale, LocationTourism, TipsTrick, TourismArticle], :published => true
+          [TourismArticle, Comment, Folktale, LocationTourism, Event, TipsTrick]
+        can :create_comment,
+          [TourismArticle, Folktale, LocationTourism, Event, TipsTrick]
       end
     end
 

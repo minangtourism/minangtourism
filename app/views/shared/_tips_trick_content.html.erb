@@ -52,8 +52,9 @@
             </a>
             <%= l comment.created_at, :format => :costum %>
           </h5>
-          <p class="clearfix"><%= comment.comment %></p>
+          <p class="clearfix" style="white-space: pre-wrap"><%= comment.comment %></p>
         </div>
+        <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
       <% end %>
     </div>
   </div>

@@ -12,10 +12,11 @@ dummy_images = {
   :member    => (open(Rails.root.join("app/assets/images/member.png")) rescue nil),
   :image_tourism_article => (open(Rails.root.join("app/assets/images/tourism_article1.jpg")) rescue nil),
   :image_folktale => (open(Rails.root.join("app/assets/images/acara.jpg")) rescue nil),
-  :image_tips_trick => (open(Rails.root.join("app/assets/images/tips_wisata.jpg")) rescue nil)
+  :image_tips_trick => (open(Rails.root.join("app/assets/images/tips_wisata.jpg")) rescue nil),
+  :image_sumbar_content => (open(Rails.root.join("app/assets/images/air.jpg")) rescue nil)
 }
 
-User.destroy_all #menghapus user, jika ditambah data user baru id:integer tetap, (rake db:reset)
+User.destroy_all #menghapus user, jika ditambah data user baru id:integer, id = 1, (rake db:reset)
 User.valid_roles.each do |role|
   User.new(
     :username => "#{role}",
