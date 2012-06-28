@@ -16,7 +16,7 @@ class TipsTricksController < ApplicationController
   # GET /tips_tricks/1.json
   def show
 #    @tips_trick = TipsTrick.find(params[:id])
-    @tips_trick.increment! :read_count
+#    @tips_trick.increment! :read_count
     @comment = Comment.new
 
     respond_to do |format|

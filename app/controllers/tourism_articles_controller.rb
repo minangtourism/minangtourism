@@ -17,7 +17,7 @@ class TourismArticlesController < ApplicationController
   # GET /tourism_articles/1.json
   def show
 #    @tourism_article = TourismArticle.find(params[:id])
-    @tourism_article.increment! :read_count
+#    @tourism_article.increment! :read_count
     @comment = Comment.new
 
     respond_to do |format|

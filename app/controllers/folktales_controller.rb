@@ -16,7 +16,7 @@ class FolktalesController < ApplicationController
   # GET /folktales/1.json
   def show
 #    @folktale = Folktale.find(params[:id])
-    @folktale.increment! :read_count
+#    @folktale.increment! :read_count
     @comment = Comment.new
 
     respond_to do |format|
