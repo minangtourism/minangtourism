@@ -1,5 +1,7 @@
 class TourismArticlesController < ApplicationController
   load_and_authorize_resource
+  impressionist
+  
   # GET /tourism_articles
   # GET /tourism_articles.json
 

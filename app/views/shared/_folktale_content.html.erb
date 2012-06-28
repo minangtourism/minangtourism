@@ -13,7 +13,7 @@
           100 <i class="icon-comment"></i>
         </span>
         <span class="pull-right" >
-          0
+          <%= @folktale.impressionist_count(:filter => :ip_address) %>
           <i class="icon-eye-open"></i>
         </span>
       </p>

@@ -1,5 +1,7 @@
 class TipsTricksController < ApplicationController
   load_and_authorize_resource
+  impressionist
+  
   # GET /tips_tricks
   # GET /tips_tricks.json
   def index

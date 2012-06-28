@@ -1,4 +1,3 @@
-
 class TransportationsController < ApplicationController
   # GET /transportations
   # GET /transportations.json

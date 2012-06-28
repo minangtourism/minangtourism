@@ -3,6 +3,9 @@ class TipsTrick < ActiveRecord::Base
   belongs_to :user
   has_many :comments, as: :commentable
 
+  # sebelum di rails s, di comment dulu. Setelah rails s selesai, aktifkan lagi yang di comment
+  is_impressionable
+
   attr_accessible :description, :title, :user_id, :image, as: [:default] + User.valid_roles
   has_attached_file :image, :styles => {
     :large => "740x380#",

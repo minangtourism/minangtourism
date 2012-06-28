@@ -27,8 +27,11 @@ gem 'ffaker'
 
 #activation
 gem 'state_machine'
-#gem 'ruby-graphviz', :require => 'graphviz' # Optional: only required for graphing
-#
+
+#+1 for see article
+gem 'impressionist'
+
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

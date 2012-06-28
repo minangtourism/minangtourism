@@ -1,5 +1,6 @@
 class LocationTourismsController < ApplicationController
   load_and_authorize_resource
+  
   # GET /location_tourisms
   # GET /location_tourisms.json
   def index
