@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+
+    <div class="span3">
+      <%= render 'user_navigation' %>
+    </div><!--/span-->
+
+    <div class="span9">
+      <div class="profiles-home"> <!-- Acara / Event -->
+        <h2>Cerita Rakyat</h2>
+        <div class="dashed"></div>
+        <div class="info-title">Cerita Rakyat Sumatera Barat</div>
+        <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+
+        <% @folktales.each do |folktale| %>
+          <div class="title-news">
+            <%= link_to truncate(folktale.title, :length => 80, :separator => ' '), folktale_path(folktale) %>
+          </div>
+          <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
+        <% end %>
+
+        <div class="all-events" style="margin-bottom: 0">
+          <%= paginate @folktales %>
+        </div>
+      </div>
+    </div> <!-- Acara / Event -->
+
+  </div><!--/span-->
+</div><!--/row-->
+

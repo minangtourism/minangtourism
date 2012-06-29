@@ -63,6 +63,8 @@ class LocationTourism < ActiveRecord::Base
     state :published
   end
 
+  scope :recent, order("created_at desc")
+
   scope :published, where(:state => 'published')
   scope :unpublished, where(:state => 'unpublished')
 

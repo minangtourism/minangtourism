@@ -97,6 +97,11 @@
                       <i class="icon-star"></i>Tips & Triks
                     <% end %>
                   </li>
+                  <li class="<%= current_page?(profiles_path) ? "active" : nil%>">
+                    <%= link_to profiles_path do %>
+                      <i class="icon-user"></i>Profil Wisatawan
+                    <% end %>
+                  </li>
                 </ul>
               </li>
 

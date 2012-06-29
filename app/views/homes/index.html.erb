@@ -91,9 +91,12 @@
             </div>
           </div>
           <div class="news-info clearfix">
-            <a href=""><%= article.user.username %></a> | <%= l article.created_at, :format => :costum %>
-            <div class="pull-right" style="margin-left: 10px;">0 <i class="icon-comment"></i></div>
-            <div class="pull-right">100 <i class="icon-eye-open"></i></div>
+            <%= link_to article.user.username, profile_path(article.user) %> |
+            <%= l article.created_at, :format => :costum %>
+            <div class="pull-right" style="margin-left: 10px;">
+              <%= article.comments.count %> <i class="icon-comment"></i></div>
+            <div class="pull-right">
+              <%= article.impressionist_count(:filter => :ip_address) %> <i class="icon-eye-open"></i></div>
           </div>
           <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
         <% end %>
@@ -137,7 +140,7 @@
         <% @reviews.each do |review| %>
           <div class="span4">
             <div class="span1 photo-tourism">
-              <%= link_to image_tag(review.user.image.url(:member_thumb), :class => 'thumbnail') %>
+              <%= link_to image_tag(review.user.image.url(:member_thumb), :class => 'thumbnail'), profile_path(review.user) %>
             </div>
 
             <div class="story-tourism">
@@ -158,7 +161,11 @@
               <div>
                 <%= truncate(review.comment, :length => 50, :separator => ' ') %>
                 <span class="small-view">
-                  <a href="#"> <i class="icon-external-link"></i> </a>
+                  <i class="" >
+                    <%= link_to location_tourism_path(review.commentable, anchor: "comment-#{review.id}") do %>
+                      <i class="icon-external-link"></i>
+                    <% end %>
+                  </i>
                 </span>
               </div>
             </div>

@@ -4,13 +4,16 @@
       <h2 class="one-title-tourism-article">
         <%= link_to article.title, tourism_article_path(article) %>
       </h2>
-      oleh <a href="#"><%= article.user.username %></a> | <%= l article.created_at, :format => :costum %>
+      oleh
+      <%= link_to article.user.username, profile_path(article.user) %> |
+      <%= l article.created_at, :format => :costum %>
     </div>
     <%= image_tag(article.image.url(:large)) %>
     <div class="caption">
       <p class="one-content-article"><%= truncate(article.content, :length => 400, :separator => ' ') %></p>
       <p class="clearfix">
-        <span class="pull-left" style="margin-right: 8px; margin-top: 9px">5 <i class="icon-comment"></i></span>
+        <span class="pull-left" style="margin-right: 8px; margin-top: 9px">
+          <%= article.comments.count %> <i class="icon-comment"></i></span>
         <span class="pull-left" style="margin-top: 9px;"><%= article.impressionist_count(:filter => :ip_address) %> <i class="icon-eye-open"></i></span>
         <span>
           <%= link_to "Selanjutnya", tourism_article_path(article), :class => 'btn btn-primary pull-right' %>

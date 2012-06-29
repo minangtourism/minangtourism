@@ -4,13 +4,16 @@
       <h2 class="one-title-tourism-article">
         <%= link_to folktale.title, folktale_path(folktale) %>
       </h2>
-      oleh <a href="#"><%= folktale.user.username %></a> | <%= l folktale.created_at, :format => :costum %>
+      oleh <%= link_to folktale.user.username, profile_path(folktale.user) %> |
+      <%= l folktale.created_at, :format => :costum %>
     </div>
     <%= image_tag(folktale.image.url(:large)) %>
     <div class="caption">
       <p class="one-content-article"><%= truncate(folktale.description, :length => 400, :separator => ' ') %></p>
       <p class="clearfix">
-        <span class="pull-left" style="margin-right: 8px; margin-top: 9px">5 <i class="icon-comment"></i></span>
+        <span class="pull-left" style="margin-right: 8px; margin-top: 9px">
+          <%= folktale.comments.count %>
+          <i class="icon-comment"></i></span>
         <span class="pull-left" style="margin-top: 9px;"><%= folktale.impressionist_count(:filter => :ip_address) %> <i class="icon-eye-open"></i></span>
         <span>
           <%= link_to "Selanjutnya", folktale_path(folktale), :class => 'btn btn-primary pull-right' %>

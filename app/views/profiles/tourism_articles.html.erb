@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+
+    <div class="span3">
+      <%= render 'user_navigation' %>
+    </div><!--/span-->
+
+    <div class="span9">
+      <div class="profiles-home"> <!-- Berita Wisatawan / TourismArticle -->
+        <h2>Berita Wisata</h2>
+        <div class="dashed"></div>
+        <div class="info-title">Berita terbaru tentang wisata yang ada di  Sumatera Barat</div>
+        <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+
+        <% @tourism_articles.each do |tourism_article| %>
+          <div class="title-news">
+            <%= link_to truncate(tourism_article.title, :length => 80, :separator => ' '), tourism_article_path(tourism_article) %>
+          </div>
+          <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
+        <% end %>
+
+        <div class="all-events" style="margin-bottom: 0">
+          <%= paginate @tourism_articles %>
+        </div>
+      </div>
+    </div> <!-- END Berita Wisatawan / TourismArticle -->
+
+  </div><!--/span-->
+</div><!--/row-->
+

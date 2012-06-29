@@ -1,11 +1,4 @@
 <div class="container">
-<%#*<div class="page-header clearfix">%>
-<%#*<h2 class="pull-left">Tempat Wisata</h2>%>
-<%#*<div class="pull-right">%>
-<%#= select_tag "category_loc_tourism_id", options_from_collection_for_select(CategoryLocTourism.all, "id", "name"), :class => 'combobox' %>
-<%#*</div>%>
-<%#*</div>%>
-  
   <%= render "shared/location_tourism" %>
   <%= paginate @location_tourisms %>
 </div>

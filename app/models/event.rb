@@ -16,4 +16,6 @@ class Event < ActiveRecord::Base
   validates :description, :presence => true
   validates :start_date, :presence => true
   validates :end_date, :presence => true
+
+  scope :recent, order("created_at desc")
 end

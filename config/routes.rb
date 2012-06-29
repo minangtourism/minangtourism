@@ -1,4 +1,5 @@
 SumbarTourism::Application.routes.draw do
+
   root :to => 'homes#index'
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
@@ -7,23 +8,54 @@ SumbarTourism::Application.routes.draw do
   devise_for :users
 
   resources :sumbar_contents
-  
   resources :contacts
-
   resources :category_loc_tourisms
-
   resources :location_tourisms
-
   resources :tips_tricks
-
   resources :folktales
-
   resources :why_sumbars
-
   resources :tourism_articles
-
   resources :reviews
 
+  # ------------------- PROFILE ------------------- #
+  resources :profiles do
+    member do
+      get :reviews
+    end
+  end
+
+  resources :profiles do
+    member do
+      get :folktales
+    end
+  end
+
+  resources :profiles do
+    member do
+      get :tourism_articles
+    end
+  end
+  
+  resources :profiles do
+    member do
+      get :location_tourisms
+    end
+  end
+
+  resources :profiles do
+    member do
+      get :events
+    end
+  end
+
+  resources :profiles do
+    member do
+      get :tips_tricks
+    end
+  end
+  # ------------------- PROFILE ------------------- #
+
+  # ------------------- COMMENT ------------------- #
   resources :events do
     member do
       post :create_comment
@@ -59,6 +91,7 @@ SumbarTourism::Application.routes.draw do
       post :create_comment
     end
   end
+  # ------------------- COMMENT ------------------- #
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

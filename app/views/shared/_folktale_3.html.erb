@@ -19,14 +19,15 @@ end
               <%= link_to folktale.title, folktale_path(folktale) %>
             </a>
           </h2>
-          <a href="#"><%= folktale.user.username %></a> | <%= l folktale.created_at, :format => :costum %>
+          <%= link_to folktale.user.username, profile_path(folktale.user) %> |
+          <%= l folktale.created_at, :format => :costum %>
         </div>
         <%= image_tag(folktale.image.url(:tiny)) %>
         <div class="caption">
           <p class="three-content-article"><%= truncate(folktale.description, :length => 100, :separator => ' ') %></p>
           <p class="clearfix">
             <span class="pull-left" style="margin-right: 8px; margin-top: 9px">
-              0
+              <%= folktale.comments.count %>
               <i class="icon-comment"></i>
             </span>
             <span class="pull-left" style="margin-top: 9px;"><%= folktale.impressionist_count(:filter => :ip_address) %> <i class="icon-eye-open"></i></span>

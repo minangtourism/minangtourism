@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <% @members.each do |member| %>
+      <div class="span3">
+        <div class="well sidebar-nav">
+          <ul class="nav nav-list">
+            <li>
+              <%= link_to image_tag(member.image.url(:medium)), profile_path(member) %>
+            </li>
+            <div class="nav-header" style="text-align: center">
+              <%= link_to 'Profil Saya', profile_path(member), :class => 'btn btn-primary' %>
+            </div>
+          </ul>
+        </div><!--/.well -->
+      </div><!--/span-->
+    <% end %>
+  </div>
+  <div class="dashed" style="margin-bottom: 15px; margin-top: 0;"></div>
+  <%= paginate @members %>
+</div>

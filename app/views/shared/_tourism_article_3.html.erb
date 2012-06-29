@@ -19,15 +19,15 @@ end
               <%= link_to article.title, tourism_article_path(article) %>
             </a>
           </h2>
-          <a href="#"><%= article.user.username %></a> | <%= l article.created_at, :format => :costum %>
+          <%= link_to article.user.username, profile_path(article.user) %> |
+          <%= l article.created_at, :format => :costum %>
         </div>
         <%= image_tag(article.image.url(:tiny)) %>
         <div class="caption">
           <p class="three-content-article"><%= truncate(article.content, :length => 100, :separator => ' ') %></p>
           <p class="clearfix">
-            <span class="pull-left" style="margin-right: 8px; margin-top: 9px"> 
-              0
-              <i class="icon-comment"></i>
+            <span class="pull-left" style="margin-right: 8px; margin-top: 9px">
+              <%= article.comments.count %>   <i class="icon-comment"></i>
             </span>
             <span class="pull-left" style="margin-top: 9px;"><%= article.impressionist_count(:filter => :ip_address) %> <i class="icon-eye-open"></i></span>
             <span>

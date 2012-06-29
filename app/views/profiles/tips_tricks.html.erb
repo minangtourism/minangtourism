@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+
+    <div class="span3">
+      <%= render 'user_navigation' %>
+    </div><!--/span-->
+
+    <div class="span9">
+      <div class="profiles-home"> <!-- Berita Wisatawan / TourismArticle -->
+        <h2>Tips & Trik Wisata</h2>
+        <div class="dashed"></div>
+        <div class="info-title">Tips & Trik Wisata Sumatera Barat</div>
+        <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+
+        <% @tips_tricks.each do |tips_trick| %>
+          <div class="title-news">
+            <%= link_to truncate(tips_trick.title, :length => 80, :separator => ' '), tips_trick_path(tips_trick) %>
+          </div>
+          <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
+        <% end %>
+
+        <div class="all-events" style="margin-bottom: 0">
+          <%= paginate @tips_tricks %>
+        </div>
+      </div>
+    </div> <!-- END Berita Wisatawan / TourismArticle -->
+
+  </div><!--/span-->
+</div><!--/row-->
+

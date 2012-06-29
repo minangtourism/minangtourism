@@ -10,7 +10,7 @@ class LocationTourismsController < ApplicationController
       @location_tourisms = @location_tourisms.where(category_loc_tourism_id: category_loc_tourism_ids)
     end
 
-    @location_tourisms = @location_tourisms.published.order("created_at desc").page(params[:page]).per(12)
+    @location_tourisms = @location_tourisms.published.recent.page(params[:page]).per(12)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -21,6 +21,10 @@ class LocationTourismsController < ApplicationController
   # GET /location_tourisms/1
   # GET /location_tourisms/1.json
   def show
+    @comments = @location_tourism.comments.recent.page(params[:page]).per(10)
+    first_comment = @location_tourism.comments.recent.last
+    @first_commentator = first_comment.user if first_comment
+    
     @comment = Comment.new
 
     respond_to do |format|

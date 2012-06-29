@@ -5,7 +5,7 @@
     <div class="span12">
       <div class="show-location-tourism">
         <div class="pull-right" style="font-size: 14px; margin-top: 10px">
-          <i class="icon-user"></i> <%= link_to @location_tourism.user.username%> /
+          <i class="icon-user"></i> <%= link_to @location_tourism.user.username, profile_path(@location_tourism.user) %> /
           <i class="icon-time"></i> <%= l @location_tourism.created_at, :format => :costum%>
         </div>
         <h2>
@@ -25,7 +25,8 @@
           <i class="icon-star-empty"></i>
         </p>
         <p style="margin-right: 10px;">
-          <i class="icon-pencil"></i> 100 cerita wisatawan
+          <i class="icon-pencil"></i>
+          <%= @location_tourism.comments.count %> cerita wisatawan
         </p>
         <p>
           <i class="icon-th-list"></i> Kategori:
@@ -33,7 +34,9 @@
           <%= @location_tourism.category_loc_tourism.name %>
         </p>
         <p>
-          <i class="icon-user"></i> Cerita Wisatawan Pertama oleh: <a href="#">Muhammad Amin</a>
+          <i class="icon-user"></i> 
+          Cerita Wisatawan Pertama oleh:
+          <%= link_to @first_commentator.username, profile_path(@first_commentator) if @first_commentator %>
         </p><br/>
         <p><i class="icon-map-marker"></i> Alamat: <%= @location_tourism.address %></p>
         <p><i class="icon-road"></i> Kota: <%= @location_tourism.city %></p>
@@ -95,24 +98,23 @@
 
     <div class="row">
       <div class="span8">
-        <% @location_tourism.comments.each do |comment| %>
+        <% @comments.each do |comment| %>
           <div id="comment-<%= comment.id %>">
             <%= image_tag(comment.user.image.url(:thumb), :class => 'thumbnail') %>
             <div>
               <h5 style="text-transform: uppercase; margin-bottom: 10px;">
                 <a href="#" style="text-decoration: none;">
-                  <%= comment.user.username %>
+                  <%= link_to comment.user.username, profile_path(comment.user) %>
                 </a>
                 <%= l comment.created_at, :format => :costum %>
               </h5>
-              <p class="clearfix"><%= comment.comment %></p>
+              <p class="clearfix" style="white-space: pre-wrap"><%= comment.comment %></p>
             </div>
           </div>
           <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
         <% end %>
+        <%= paginate @comments  %>
       </div>
     </div>
   </div>
-</div>
-
 </div>

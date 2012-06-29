@@ -1,0 +1,166 @@
+<div class="container">
+  <div class="row">
+
+    <div class="span3">
+      <%= render 'user_navigation' %>
+    </div><!--/span-->
+    <div class="span9">
+      <div class="row">
+
+        <div class="span6"> <!-- Cerita Wisatawan / Comment -->
+          <div class="profiles-home">
+            <h2>Cerita Wisatawan</h2>
+            <div class="dashed"></div>
+            <div class="info-title">Cerita terbaru wisatawan tentang tempat wisata yang ada di Sumatera Barat</div>
+            <div class="dashed" style="margin-bottom: 25px; margin-top: 0"></div>
+
+            <% @reviews.each do |review| %>
+              <div class="span1 photo-tourism">
+                <%= link_to image_tag(review.user.image.url(:member_thumb), :class => 'thumbnail'), profile_path(review.user) %>
+              </div>
+
+              <div class="story-tourism">
+                <div class="name-location">
+                  <%= link_to review.commentable.name, location_tourism_path(review.commentable, anchor: "comment-#{review.id}") %>
+                </div>
+                <div class="clearfix">
+                  <div class="date-publish pull-right"><i class="icon-time"></i> Rabu, 27 Juni 2012</div>
+                  <div class="rate-location pull-left">
+                    <i class="icon-star"></i>
+                    <i class="icon-star"></i>
+                    <i class="icon-star"></i>
+                    <i class="icon-star"></i>
+                    <i class="icon-star-empty"></i>
+                  </div>
+                </div>
+
+                <div>
+                  <%= truncate(review.comment, :length => 150, :separator => ' ') %>
+                  <span class="small-view">
+                    <%= link_to location_tourism_path(review.commentable, anchor: "comment-#{review.id}") do %>
+                      <i class="icon-external-link"></i>
+                    <% end %>
+                  </span>
+                </div>
+              </div>
+              <div class="dashed" style="margin-bottom: 15px; margin-top: 10px;"></div>
+            <% end %>
+
+            <div class="all-events" style="margin-bottom: 0">
+              <%= link_to 'Arsip', reviews_profile_path(@profile), :class => 'btn btn-primary btn-mini' %>
+            </div>
+          </div>
+        </div> <!-- End Cerita Wisatawan / Comment -->
+
+        <div class="span3"> 
+          <div class="row">
+
+            <div class="span3">
+              <div class="profiles-home"> <!-- Cerita Rakyat / Folktale -->
+                <h2>Cerita Rakyat</h2>
+                <div class="dashed"></div>
+                <div class="info-title">Cerita rakyat yang ada Sumatera Barat</div>
+                <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+
+                <% @folktales.each do |folktale| %>
+                  <div class="title-news">
+                    <%= link_to truncate(folktale.title, :length => 80, :separator => ' '), folktale_path(folktale) %>
+                  </div>
+                  <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
+                <% end %>
+
+                <div class="all-events" style="margin-bottom: 0">
+                  <%= link_to 'Arsip', folktales_profile_path(@profile), :class => 'btn btn-primary btn-mini' %>
+                </div>
+              </div> <!-- End Cerita Rakyat / Folktale -->
+            </div>
+
+            <div class="span3">
+              <div class="profiles-home"> <!-- Berita Wisatawan / TourismArticle -->
+                <h2>Berita Wisata</h2>
+                <div class="dashed"></div>
+                <div class="info-title">Berita terbaru tentang wisata yang ada di  Sumatera Barat</div>
+                <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+
+                <% @tourism_articles.each do |tourism_article| %>
+                  <div class="title-news">
+                    <%= link_to truncate(tourism_article.title, :length => 80, :separator => ' '), tourism_article_path(tourism_article) %>
+                  </div>
+                  <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
+                <% end %>
+
+                <div class="all-events" style="margin-bottom: 0">
+                  <%= link_to 'Arsip', tourism_articles_profile_path(@profile), :class => 'btn btn-primary btn-mini' %>
+                </div>
+              </div>
+            </div> <!-- END Berita Wisatawan / TourismArticle -->
+
+            <div class="span3">
+              <div class="profiles-home"> <!-- Location Tourism / Tempat Wisata -->
+                <h2>Tempat Wisata</h2>
+                <div class="dashed"></div>
+                <div class="info-title">Tempat wisata yang ada Sumatera Barat</div>
+                <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+
+                <% @location_tourisms.each do |location_tourism| %>
+                  <div class="title-news">
+                    <%= link_to truncate(location_tourism.name, :length => 80, :separator => ' '), location_tourism_path(location_tourism) %>
+                  </div>
+                  <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
+                <% end %>
+
+                <div class="all-events" style="margin-bottom: 0">
+                  <%= link_to 'Arsip', location_tourisms_profile_path(@profile), :class => 'btn btn-primary btn-mini' %>
+                </div>
+              </div> <!-- End Location Tourism / Tempat Wisata -->
+            </div>
+
+            <div class="span3">
+              <div class="profiles-home"> <!-- Acara / Event -->
+                <h2>Acara Wisata</h2>
+                <div class="dashed"></div>
+                <div class="info-title">Tempat wisata yang ada Sumatera Barat</div>
+                <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+
+                <% @events.each do |event| %>
+                  <div class="title-news">
+                    <%= link_to truncate(event.title, :length => 80, :separator => ' '), event_path(event) %>
+                  </div>
+                  <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
+                <% end %>
+
+                <div class="all-events" style="margin-bottom: 0">
+                  <%= link_to 'Arsip', events_profile_path(@profile), :class => 'btn btn-primary btn-mini' %>
+                </div>
+              </div> <!-- End Acara / Event -->
+            </div>
+
+            <div class="span3">
+              <div class="profiles-home"> <!-- Tips & Trik -->
+                <h2>Tips & Trik Wisata</h2>
+                <div class="dashed"></div>
+                <div class="info-title">Tempat wisata yang ada Sumatera Barat</div>
+                <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+
+                <% @tips_tricks.each do |tips_trick| %>
+                  <div class="title-news">
+                    <%= link_to truncate(tips_trick.title, :length => 80, :separator => ' '), tips_trick_path(tips_trick) %>
+                  </div>
+                  <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
+                <% end %>
+
+                <div class="all-events" style="margin-bottom: 0">
+                  <%= link_to 'Arsip', tips_tricks_profile_path(@profile), :class => 'btn btn-primary btn-mini' %>
+                </div>
+              </div> <!-- Tips & Trik -->
+            </div>
+
+          </div>
+        </div> 
+
+      </div>
+    </div>
+
+  </div><!--/span-->
+</div><!--/row-->
+

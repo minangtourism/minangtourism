@@ -162,17 +162,17 @@
 .title-news {
     padding-right: 10px;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 14px;
 }
 
 .title-news a{
-    color: #ff9900;
-    font-size: 18px;
+    color: #0088CC;
+    font-size: 14px;
     text-decoration: none
 }
 
 .title-news a:hover{
-    color: #ff0000;
+    color: #005580;
 }
 
 .news-info{
@@ -329,6 +329,19 @@
 
 /*------------------------------------CERITA WISATAWAN-------------------------------------*/
 
+/*------------------------------------PROFILE WISATAWAN-------------------------------------*/
+.profiles-home{
+    background-color: #EEEEEE;
+/*    background-color: #F5F5F5;*/
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
+    margin-bottom: 20px;
+    min-height: 20px;
+    padding: 19px;
+}
+/*------------------------------------END WISATAWAN-------------------------------------*/
+
 /*tourism article 1/utama*/
 .one-title-tourism-article{
     font-size: 35px;
@@ -424,7 +437,7 @@
 }
 
 .comments-tourism-article img {
-/*    margin-bottom: 20px !important;*/
+    /*    margin-bottom: 20px !important;*/
     margin-right: 20px !important;
     float: left;
 }

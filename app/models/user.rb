@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   include RoleModel
 
-#  has_many :why_sumbars
+  #  has_many :why_sumbars
   has_many :tourism_articles
   has_many :events
   has_many :folktales
@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :location_tourisms
   has_many :comments
   has_many :sumbar_contents
+  has_many :reviews, class_name: 'Comment', conditions: "commentable_type = 'LocationTourism'"
 
   before_save :set_default_roles
 
@@ -38,7 +39,7 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   
   has_attached_file :image, :styles => {
-    :medium => "300x300#",
+    :medium => "230x230#",
     :member => "160x160#",
     :small => "100x100#",
     :member_thumb => "50x50#",
@@ -54,7 +55,7 @@ class User < ActiveRecord::Base
       where(conditions).first
     end
   end
-  
+
   # Role Model
   # optionally set the integer attribute to store the roles in,
   # :roles_mask is the default
@@ -63,5 +64,9 @@ class User < ActiveRecord::Base
   # declare the valid roles -- do not change the order if you add more
   # roles later, always append them at the end!
   roles :admin, :operator, :member
+
+  valid_roles.map do |role|
+    scope role, where("roles_mask & :role = :role", role: mask_for(role))
+  end
 
 end

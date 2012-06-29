@@ -5,11 +5,12 @@
   </a>
   <ul class="dropdown-menu">
     <li>
-      <%  if user = :admin || user = :operator %>
-        <%= link_to '/admin' do %>
+        <%= link_to rails_admin_path do %>
           <i class="icon-user"></i> My Profile
-        <% end %>
-      <% end %>
+        <% end if can? :access, :rails_admin %>
+        <%= link_to profile_path(current_user) do %>
+          <i class="icon-user"></i> My Profile
+        <% end if user_signed_in? && can?(:read, current_user) %>
     </li>
     <li class="divider"></li>
     <li>
@@ -39,16 +40,9 @@
 
         <ul class="explogin_link" style="list-style: none; margin: 10px 0;">
           <li>
-            <a href="/expautospro/index.php/component/users/?view=reset">
-              <i class="icon-lock"></i>
-              Forgot your password?
-            </a>
-          </li>
-          <li>
-            <a href="/expautospro/index.php/component/users/?view=remind">
-              <i class="icon-user"></i>
-              Forgot your username?
-            </a>
+            <%= link_to new_user_password_path do %>
+              <i class="icon-user"></i> Forgot your password
+            <% end %>
           </li>
           <li>
             <%= link_to new_user_registration_path do %>

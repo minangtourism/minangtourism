@@ -4,19 +4,21 @@
       <h2>Cerita Wisatawan</h2>
       <div class="dashed"></div>
       <div class="info-title">Cerita terbaru wisatawan tentang tempat wisata yang ada di Sumatera Barat</div>
-      <div class="dashed" style="margin-bottom: 25px; margin-top: 0"></div>
-
+      <div class="dashed" style="margin-bottom: 0px; margin-top: 0"></div>
+      <div style="text-align: center">
+        <%= paginate @reviews %>
+      </div>
       <% @reviews.each do |review| %>
         <div class="row">
           <div class="span12">
             <div class="span2" style="margin-left: 0">
               <div class="pp-tourism">
-                <%= image_tag(review.user.image.url(:member), :class => 'thumbnail') %>
+                <%= link_to image_tag(review.user.image.url(:medium)), profile_path(review.user) %>
               </div>
 
               <div class="info-story-tourism">
                 <span><i class="icon-user"></i>
-                  <a href="#"><%= review.user.username %></a>
+                  <%= link_to review.user.username, profile_path(review.user) %>
                 </span>
                 <span><i class="icon-home"></i> Alamat</span>
               </div>
@@ -61,8 +63,11 @@
             </div>
           </div>
         </div>
-        <div class="dashed" style="margin-bottom: 30px; margin-top: 0;"></div>
+        <div class="dashed" style="margin-bottom: 18px; margin-top: 0;"></div>
       <% end %>
+      <div style="text-align: center">
+        <%= paginate @reviews %>
+      </div>
     </div>
   </div>
 </div>

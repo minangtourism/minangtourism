@@ -1,0 +1,41 @@
+<div class="well sidebar-nav">
+  <ul class="nav nav-list">
+    <li>
+      <%= link_to image_tag(@profile.image.url(:medium)), profile_path(@profile) %>
+    </li>
+
+    <li class="nav-header">Profil Saya</li>
+    <%= profile_left_nav profile_path(@profile) do %>
+      <i class="icon-home"></i> Profil
+    <% end %>
+    <li><a href="#"><i class="icon-user"></i> Tentang</a></li>
+
+    <li class="nav-header">Cerita Saya</li>
+
+    <%= profile_left_nav reviews_profile_path(@profile) do %>
+      <i class="icon-pencil"></i> Cerita Wisatawan
+    <% end %>
+    <%= profile_left_nav folktales_profile_path(@profile) do %>
+      <i class="icon-book"></i> Cerita Rakyat
+    <% end %>
+
+    <li class="nav-header">Wisata Saya</li>
+
+    <%= profile_left_nav tourism_articles_profile_path(@profile) do %>
+      <i class="icon-globe"></i> Berita Wisata
+    <% end %>
+
+    <%= profile_left_nav location_tourisms_profile_path(@profile) do %>
+      <i class="icon-map-marker"></i> Tempat Wisata
+    <% end %>
+
+    <%= profile_left_nav events_profile_path(@profile) do %>
+      <i class="icon-bullhorn"></i> Acara Wisata
+    <% end %>
+
+    <%= profile_left_nav tips_tricks_profile_path(@profile) do %>
+      <i class="icon-star"></i> Tips & Trik Wisata
+    <% end %>
+
+  </ul>
+</div><!--/.well -->

@@ -6,6 +6,7 @@ class Ability
     cannot :access, :rails_admin
     cannot :dashboard
     cannot :read, LocationTourism, :state => 'unpublished'
+    can [:reviews, :folktales, :tourism_articles, :location_tourisms, :events, :tips_tricks], User
 
     if user
       if user.is? :admin

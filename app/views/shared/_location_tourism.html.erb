@@ -23,11 +23,15 @@
   </div>
 
   <ul class="thumbnails">
-    <% @location_tourisms.each do |tourism| %>
+    <% @location_tourisms.each do |location_tourism| %>
       <li class="span3">
         <div class="thumbnail">
           <div class="title-location clearfix">
-            <h3><%= tourism.name %></h3>
+            <h3>
+              <%= location_tourism.name %>
+              <%#= link_to location_tourism.name, location_tourism_path(location_tourism) %>
+            </h3>
+
             <p class="pull-left">
               <i class="icon-star"></i>
               <i class="icon-star"></i>
@@ -36,19 +40,23 @@
               <i class="icon-star-empty"></i>
             </p>
             <p class="pull-right" style="margin-right: 10px;">
-              <i class="icon-pencil"></i> 100
+              <i class="icon-pencil"></i>
+              <%= location_tourism.comments.count %> Cerita Wisatawan
             </p>
           </div>
-          <%= image_tag(tourism.image.url(:small)) %>
+          <%= image_tag(location_tourism.image.url(:small)) %>
           <div class="caption">
             <div class="clearfix">
               <p><i class="icon-th-list"></i>
-                <%= tourism.category_loc_tourism.parent.name %>,
-                <%= tourism.category_loc_tourism.name %>
+                <%= location_tourism.category_loc_tourism.parent.name %>,
+                <%= location_tourism.category_loc_tourism.name %>
               </p>
-              <p><i class="icon-map-marker"></i> <%= tourism.city %></p>
+              <p><i class="icon-map-marker"></i> <%= location_tourism.city %></p>
+              <p><i class="icon-user"></i>
+                <%= link_to location_tourism.user.username, profile_path(location_tourism.user) %>
+              </p>
               <span>
-                <%= link_to "Selanjutnya »", location_tourism_path(tourism),
+                <%= link_to "Selanjutnya »", location_tourism_path(location_tourism),
                   :class => 'btn btn-primary pull-right' %>
               </span>
             </div>
