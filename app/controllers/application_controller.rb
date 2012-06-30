@@ -18,5 +18,5 @@ class ApplicationController < ActionController::Base
   def dynamic_layout
     devise_controller? ? 'devise' : 'application'
   end
-  
+
 end

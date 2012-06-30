@@ -70,6 +70,7 @@ RailsAdmin.config do |config|
       field :id
       field :username
       field :email
+      field :state, :enum
       field :image
       field :roles do
         pretty_value do
@@ -83,6 +84,7 @@ RailsAdmin.config do |config|
     show do
       field :username
       field :email
+      field :state, :enum
       field :image
       field :roles do
         pretty_value do
@@ -95,6 +97,7 @@ RailsAdmin.config do |config|
     edit do
       field :username
       field :email
+      field :state, :enum
       field :password
       field :password_confirmation
       field :image
@@ -188,10 +191,10 @@ RailsAdmin.config do |config|
       field :parent
       field :children
       field :created_at do
-        strftime_format "%Y-%m-%d"
+        strftime_format "%A, %d %B %Y"
       end
       field :updated_at do
-        strftime_format "%Y-%m-%d"
+        strftime_format "%A, %d %B %Y"
       end
     end
     export do; end
@@ -208,12 +211,12 @@ RailsAdmin.config do |config|
     create do; end
     update do; end
   end
+  
   config.model Comment do
     # Found associations:
     configure :comments, :has_many_association
     configure :user, :belongs_to_association   #   # Found columns:
     configure :id, :integer
-    configure :title, :string
     configure :comment, :text
     configure :commentable_id, :integer         # Hidden
     configure :commentable_type, :string
@@ -222,27 +225,27 @@ RailsAdmin.config do |config|
     configure :updated_at, :datetime   #   # Sections:
     list do
       field :id
-      field :title
+      field :state, :enum
       field :comment
       field :commentable_type
       field :user
       field :created_at do
-        strftime_format "%Y-%m-%d"
+        strftime_format "%A, %d %B %Y"
       end
       field :updated_at do
-        strftime_format "%Y-%m-%d"
+        strftime_format "%A, %d %B %Y"
       end
     end
     export do; end
     show do
       field :id
-      field :title
+      field :state, :enum
       field :comment
       field :commentable_type
       field :user
     end
     edit do
-      field :title
+      field :state, :enum
       field :comment
     end
     create do; end
@@ -266,10 +269,10 @@ RailsAdmin.config do |config|
       field :phone
       field :message
       field :created_at do
-        strftime_format "%Y-%m-%d"
+        strftime_format "%A, %d %B %Y"
       end
       field :updated_at do
-        strftime_format "%Y-%m-%d"
+        strftime_format "%A, %d %B %Y"
       end
     end
     export do; end
@@ -310,15 +313,16 @@ RailsAdmin.config do |config|
     list do
       field :id
       field :title
+      field :state, :enum
       field :description
       field :start_date
       field :end_date
       field :user
       field :created_at do
-        strftime_format "%Y-%m-%d"
+        strftime_format "%A, %d %B %Y"
       end
       field :updated_at do
-        strftime_format "%Y-%m-%d"
+        strftime_format "%A, %d %B %Y"
       end
       field :image
       field :comments
@@ -327,30 +331,32 @@ RailsAdmin.config do |config|
     show do
       field :id
       field :title
+      field :state, :enum
       field :description
       field :start_date
       field :end_date
       field :user
-      field :created_at
-      field :updated_at
+      field :created_at do
+        strftime_format "%A, %d %B %Y"
+      end
+      field :updated_at do
+        strftime_format "%A, %d %B %Y"
+      end
       field :image
       field :comments
     end
-    edit do; end
-    create do
+    edit do;
       field :title
+      field :state, :enum
       field :description
       field :user
       field :start_date
       field :end_date
       field :image
     end
+    create do
+    end
     update do
-      field :title
-      field :description
-      field :start_date
-      field :end_date
-      field :image
     end
   end
 
@@ -371,29 +377,38 @@ RailsAdmin.config do |config|
     list do
       field :id
       field :title
+      field :state, :enum
       field :description
       field :user
-      field :image
       field :created_at do
-        strftime_format "%Y-%m-%d"
+        strftime_format "%A, %d %B %Y"
       end
       field :updated_at do
-        strftime_format "%Y-%m-%d"
+        strftime_format "%A, %d %B %Y"
       end
+      field :image
     end
     export do; end
     show do
       field :id
       field :title
+      field :state, :enum
       field :description
       field :user
       field :image
     end
     edit do
       field :title
+      field :state, :enum
       field :description
       field :user
       field :image
+      field :created_at do
+        strftime_format "%A, %d %B %Y"
+      end
+      field :updated_at do
+        strftime_format "%A, %d %B %Y"
+      end
     end
     create do; end
     update do; end
@@ -435,10 +450,10 @@ RailsAdmin.config do |config|
       field :user
       field :image
       field :created_at do
-        strftime_format "%Y-%m-%d"
+        strftime_format "%A, %d %B %Y"
       end
       field :updated_at do
-        strftime_format "%Y-%m-%d"
+        strftime_format "%A, %d %B %Y"
       end
       field :state, :enum
     end
@@ -479,6 +494,12 @@ RailsAdmin.config do |config|
       field :image
       field :state, :enum
       #      field :access_state
+      field :created_at do
+        strftime_format "%A, %d %B %Y"
+      end
+      field :updated_at do
+        strftime_format "%A, %d %B %Y"
+      end
     end
     create do; end
     update do; end
@@ -501,28 +522,35 @@ RailsAdmin.config do |config|
     list do
       field :id
       field :title
+      field :state, :enum
       field :description
       field :user
-      field :image
       field :created_at do
-        strftime_format "%Y-%m-%d"
+        strftime_format "%A, %d %B %Y"
       end
       field :updated_at do
-        strftime_format "%Y-%m-%d"
+        strftime_format "%A, %d %B %Y"
       end
+      field :image
     end
     export do; end
     show do
       field :id
       field :title
+      field :state, :enum
       field :description
       field :user
+      field :created_at do
+        strftime_format "%A, %d %B %Y"
+      end
+      field :updated_at do
+        strftime_format "%A, %d %B %Y"
+      end
       field :image
-      field :created_at
-      field :updated_at
     end
     edit do
       field :title
+      field :state, :enum
       field :description
       field :user
       field :image
@@ -548,30 +576,37 @@ RailsAdmin.config do |config|
     list do
       field :id
       field :title
+      field :state, :enum
       field :content
       field :video
       field :user
       field :image
       field :created_at do
-        strftime_format "%Y-%m-%d"
+        strftime_format "%A, %d %B %Y"
       end
       field :updated_at do
-        strftime_format "%Y-%m-%d"
+        strftime_format "%A, %d %B %Y"
       end
     end
     export do; end
     show do
       field :id
       field :title
+      field :state, :enum
       field :content
       field :video
       field :user
       field :image
-      field :created_at
-      field :updated_at
+      field :created_at do
+        strftime_format "%A, %d %B %Y"
+      end
+      field :updated_at do
+        strftime_format "%A, %d %B %Y"
+      end
     end
     edit do
       field :title
+      field :state, :enum
       field :content
       field :video
       field :user
@@ -603,10 +638,10 @@ RailsAdmin.config do |config|
       field :type
       field :image
       field :created_at do
-        strftime_format "%Y-%m-%d"
+        strftime_format "%A, %d %B %Y"
       end
       field :updated_at do
-        strftime_format "%Y-%m-%d"
+        strftime_format "%A, %d %B %Y"
       end
     end
     export do; end
@@ -651,10 +686,10 @@ RailsAdmin.config do |config|
       field :type
       field :image
       field :created_at do
-        strftime_format "%Y-%m-%d"
+        strftime_format "%A, %d %B %Y"
       end
       field :updated_at do
-        strftime_format "%Y-%m-%d"
+        strftime_format "%A, %d %B %Y"
       end
     end
     export do; end
@@ -699,10 +734,10 @@ RailsAdmin.config do |config|
       field :type
       field :image
       field :created_at do
-        strftime_format "%Y-%m-%d"
+        strftime_format "%A, %d %B %Y"
       end
       field :updated_at do
-        strftime_format "%Y-%m-%d"
+        strftime_format "%A, %d %B %Y"
       end
     end
     export do; end
@@ -747,10 +782,10 @@ RailsAdmin.config do |config|
       field :type
       field :image
       field :created_at do
-        strftime_format "%Y-%m-%d"
+        strftime_format "%A, %d %B %Y"
       end
       field :updated_at do
-        strftime_format "%Y-%m-%d"
+        strftime_format "%A, %d %B %Y"
       end
     end
     export do; end
@@ -795,10 +830,10 @@ RailsAdmin.config do |config|
       field :type
       field :image
       field :created_at do
-        strftime_format "%Y-%m-%d"
+        strftime_format "%A, %d %B %Y"
       end
       field :updated_at do
-        strftime_format "%Y-%m-%d"
+        strftime_format "%A, %d %B %Y"
       end
     end
     export do; end
@@ -843,10 +878,10 @@ RailsAdmin.config do |config|
       field :type
       field :image
       field :created_at do
-        strftime_format "%Y-%m-%d"
+        strftime_format "%A, %d %B %Y"
       end
       field :updated_at do
-        strftime_format "%Y-%m-%d"
+        strftime_format "%A, %d %B %Y"
       end
     end
     export do; end
@@ -891,10 +926,10 @@ RailsAdmin.config do |config|
       field :type
       field :image
       field :created_at do
-        strftime_format "%Y-%m-%d"
+        strftime_format "%A, %d %B %Y"
       end
       field :updated_at do
-        strftime_format "%Y-%m-%d"
+        strftime_format "%A, %d %B %Y"
       end
     end
     export do; end

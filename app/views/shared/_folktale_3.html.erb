@@ -27,7 +27,7 @@ end
           <p class="three-content-article"><%= truncate(folktale.description, :length => 100, :separator => ' ') %></p>
           <p class="clearfix">
             <span class="pull-left" style="margin-right: 8px; margin-top: 9px">
-              <%= folktale.comments.count %>
+              <%= folktale.comments.published.count %>
               <i class="icon-comment"></i>
             </span>
             <span class="pull-left" style="margin-top: 9px;"><%= folktale.impressionist_count(:filter => :ip_address) %> <i class="icon-eye-open"></i></span>

@@ -49,6 +49,8 @@ class LocationTourism < ActiveRecord::Base
   #    end
   #  end
 
+  scope :recent, order("created_at desc")
+
   state_machine :initial => :unpublished do
     before_transition all => all do |location_tourism, transition|
       location_tourism.is_authorized_for?(transition)
@@ -62,8 +64,6 @@ class LocationTourism < ActiveRecord::Base
     state :unpublished
     state :published
   end
-
-  scope :recent, order("created_at desc")
 
   scope :published, where(:state => 'published')
   scope :unpublished, where(:state => 'unpublished')

@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
     :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  default_fields = [:username, :email, :password, :password_confirmation, :remember_me, :login, :image]
+  default_fields = [:state, :username, :email, :password, :password_confirmation, :remember_me, :login, :image]
   attr_accessible *default_fields
   attr_accessible *(default_fields + [:roles, as: :admin])
   # attr_accessible :title, :body
@@ -67,6 +67,30 @@ class User < ActiveRecord::Base
 
   valid_roles.map do |role|
     scope role, where("roles_mask & :role = :role", role: mask_for(role))
+  end
+
+  state_machine :initial => :enabled do
+    before_transition all => all do |user, transition|
+      user.is_authorized_for?(transition)
+    end
+    event :enable do
+      transition all - [:enabled] => :enabled
+    end
+
+    event :disable do
+      transition all - [:disabled] => :disabled
+    end
+    state :disabled
+    state :enabled
+  end
+
+  scope :enabled, where(state: :enabled)
+  scope :disabled, where(state: :disabled)
+
+  def state_enum
+    #Enabled / Disabled is Display
+    #enabled / disabled save to database
+    [['Enabled', 'enabled'], ['Disabled', 'disabled']]
   end
 
 end

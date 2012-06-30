@@ -4,9 +4,8 @@ class TourismArticlesController < ApplicationController
   
   # GET /tourism_articles
   # GET /tourism_articles.json
-
   def index
-    @tourism_articles = TourismArticle.recent.page(params[:page]).per(10)
+    @tourism_articles = @tourism_articles.published.recent.page(params[:page]).per(10)
 
     respond_to do |format|
       format.html # index.html.erb

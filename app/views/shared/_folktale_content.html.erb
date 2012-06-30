@@ -11,7 +11,7 @@
         oleh <%= link_to @folktale.user.username, profile_path(@folktale.user) %>
         <%= l @folktale.created_at %>
         <span class="pull-right" style="margin-left: 20px;">
-          <%= @folktale.comments.count %> <i class="icon-comment"></i>
+          <%= comments.count %> <i class="icon-comment"></i>
         </span>
         <span class="pull-right" >
           <%= @folktale.impressionist_count(:filter => :ip_address) %>
@@ -44,7 +44,7 @@
 
   <div class="row">
     <div class="span8">
-      <% @folktale.comments.each do |comment| %>
+      <% comments.each do |comment| %>
         <%= image_tag(comment.user.image.url(:thumb), :class => 'thumbnail') %>
         <div>
           <h5 style="text-transform: uppercase; margin-bottom: 10px;">
@@ -57,6 +57,7 @@
         </div>
         <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
       <% end %>
+      <%= paginate comments %>
     </div>
   </div>
 

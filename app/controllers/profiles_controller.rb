@@ -10,36 +10,36 @@ class ProfilesController < ApplicationController
   end
 
   def reviews
-    @reviews = @profile.reviews.recent.page(params[:page]).per(10)
+    @reviews = @profile.reviews.published.recent.page(params[:page]).per(10)
   end
 
   def folktales
-    @folktales = @profile.folktales.recent.page(params[:page]).per(10)
+    @folktales = @profile.folktales.published.recent.page(params[:page]).per(10)
   end
 
   def tourism_articles
-    @tourism_articles = @profile.tourism_articles.recent.page(params[:page]).per(10)
+    @tourism_articles = @profile.tourism_articles.published.recent.page(params[:page]).per(10)
   end
 
   def location_tourisms
-    @location_tourisms = @profile.location_tourisms.recent.page(params[:page]).per(10)
+    @location_tourisms = @profile.location_tourisms.published.recent.page(params[:page]).per(10)
   end
 
   def events
-    @events = @profile.events.recent.page(params[:page]).per(10)
+    @events = @profile.events.published.recent.page(params[:page]).per(10)
   end
 
   def tips_tricks
-    @tips_tricks = @profile.tips_tricks.recent.page(params[:page]).per(10)
+    @tips_tricks = @profile.tips_tricks.published.recent.page(params[:page]).per(10)
   end
 
   def show
-    @tourism_articles = @profile.tourism_articles.recent.limit(3)
-    @folktales = @profile.folktales.recent.limit(3)
-    @location_tourisms = @profile.location_tourisms.recent.limit(3)
-    @events = @profile.events.recent.limit(3)
-    @tips_tricks = @profile.tips_tricks.recent.limit(3)
-    @reviews = @profile.reviews.recent.limit(5)
+    @tourism_articles   = @profile.tourism_articles.published.recent.limit(3)
+    @folktales          = @profile.folktales.published.recent.limit(3)
+    @location_tourisms  = @profile.location_tourisms.published.recent.limit(3)
+    @events             = @profile.events.published.recent.limit(3)
+    @tips_tricks        = @profile.tips_tricks.published.recent.limit(3)
+    @reviews            = @profile.reviews.published.recent.limit(5)
   end
 
   def new

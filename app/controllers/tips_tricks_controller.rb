@@ -6,7 +6,8 @@ class TipsTricksController < ApplicationController
   # GET /tips_tricks.json
   def index
     #    @tips_tricks = TipsTrick.all
-    @tips_tricks = TipsTrick.order("created_at desc").page(params[:page]).per(10)
+#    @tips_tricks = TipsTrick.order("created_at desc").page(params[:page]).per(10)
+    @tips_tricks = @tips_tricks.published.recent.page(params[:page]).per(10)
 
     respond_to do |format|
       format.html # index.html.erb

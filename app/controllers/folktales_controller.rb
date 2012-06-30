@@ -5,7 +5,7 @@ class FolktalesController < ApplicationController
   # GET /folktales
   # GET /folktales.json
   def index
-    @folktales = Folktale.order("created_at desc").page(params[:page]).per(10)
+    @folktales = @folktales.published.recent.page(params[:page]).per(10)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,6 +16,7 @@ class FolktalesController < ApplicationController
   # GET /folktales/1
   # GET /folktales/1.json
   def show
+    @comments = @folktale.comments.published.recent.page(params[:page]).per(10)
     @comment = Comment.new
 
     respond_to do |format|

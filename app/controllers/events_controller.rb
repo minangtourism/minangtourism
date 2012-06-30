@@ -4,7 +4,8 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     #    @events = Event.all
-    @events = Event.order("created_at DESC").page(params[:page]).per(10)
+#    @events = Event.order("created_at DESC").page(params[:page]).per(10)
+    @events = @events.published.recent.page(params[:page]).per(10)
 
     respond_to do |format|
       format.html # index.html.erb

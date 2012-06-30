@@ -6,16 +6,16 @@
       <%= @event.title %>
     </h2>
 
-    <div class="author-content-article-show">
-      <p class="clearfix">
+    <div class="author-content-article-show clearfix">
+      <p class="pull-left">
         oleh <a href="#"><%= @event.user.username %></a> | <%= l @event.created_at %>
-        <span class="eventdescription clearfix pull-right">
-          <a href="#"><i class="icon-thumbs-up"></i> 9 tertarik!</a>
-        </span>
-        <span class="pull-right" style="margin-left: 20px;">
-          100 <i class="icon-comment"></i>
-        </span>
       </p>
+
+      <span class="eventdescription pull-right">
+        <a href="#" class="btn btn-primary btn-mini">
+          <i class="icon-thumbs-up"></i> 9 tertarik!
+        </a>
+      </span>
     </div>
 
     <%= image_tag(@event.image.url) %>
