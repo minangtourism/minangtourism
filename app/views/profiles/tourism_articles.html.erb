@@ -17,11 +17,14 @@
 
           <% @tourism_articles.each do |tourism_article| %>
             <div class="title-news">
-              <%= link_to truncate(tourism_article.title, :length => 80, :separator => ' '), tourism_article_path(tourism_article) %>
+              <%= link_to_if can?(:read, tourism_article), truncate(tourism_article.title, :length => 80, :separator => ' '), tourism_article_path(tourism_article) %>
               <div class="pull-right" >
-                <%= link_to edit_tourism_article_profile_path(@profile) do %>
+                <%= link_to edit_tourism_article_profile_path(@profile, tourism_article) do %>
                   <i class="icon-pencil"></i>
-                <% end %>
+                <% end if can? :update_tourism_article, @profile %>
+                <%= link_to destroy_tourism_article_profile_path(@profile, tourism_article), method: :delete, data: {confirm: "Are you sure?"} do %>
+                  <i class="icon-remove"></i>
+                <% end if can? :destroy_tourism_article, @profile %>
               </div>
             </div>
             <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
