@@ -2,7 +2,10 @@ class Event < ActiveRecord::Base
 
   belongs_to :user
   has_many :comments, as: :commentable
+  has_many :likes, :as => :likeable
 
+  is_impressionable
+  
   attr_accessible  :state, :description, :title, :user_id, :image, :start_date, :end_date, as: [:default] + User.valid_roles
   has_attached_file :image, :styles => {
     :large => "740x380#",

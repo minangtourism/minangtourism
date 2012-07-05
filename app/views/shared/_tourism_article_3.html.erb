@@ -27,7 +27,7 @@ end
           <p class="three-content-article"><%= truncate(article.content, :length => 100, :separator => ' ') %></p>
           <p class="clearfix">
             <span class="pull-left" style="margin-right: 8px; margin-top: 9px">
-              <%= article.comments.count %>   <i class="icon-comment"></i>
+              <%= article.comments.published.count %>   <i class="icon-comment"></i>
             </span>
             <span class="pull-left" style="margin-top: 9px;"><%= article.impressionist_count(:filter => :ip_address) %> <i class="icon-eye-open"></i></span>
             <span>

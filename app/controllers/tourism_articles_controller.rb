@@ -16,8 +16,9 @@ class TourismArticlesController < ApplicationController
   # GET /tourism_articles/1
   # GET /tourism_articles/1.json
   def show
-    @comments = @tourism_article.comments.recent.page(params[:page]).per(10)
+    @comments = @tourism_article.comments.published.recent.page(params[:page]).per(10)
     @comment = Comment.new
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @tourism_article }

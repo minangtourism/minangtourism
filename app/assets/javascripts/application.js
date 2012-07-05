@@ -17,6 +17,7 @@
 //= require bootstrap-scrollspy
 //= require_tree
 //= require bootstrap-datepicker
+//= require mybootstrap.js.coffee
 
 $('#dp3').datepicker({
     format: 'mm-dd-yyyy'

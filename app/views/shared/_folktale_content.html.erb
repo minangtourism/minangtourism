@@ -9,11 +9,11 @@
     <div class="author-content-article-show">
       <p class="clearfix">
         oleh <%= link_to @folktale.user.username, profile_path(@folktale.user) %>
-        <%= l @folktale.created_at %>
+        <%= l @folktale.created_at, :format => :costum %>
         <span class="pull-right" style="margin-left: 20px;">
           <%= comments.count %> <i class="icon-comment"></i>
         </span>
-        <span class="pull-right" >
+        <span class="pull-right">
           <%= @folktale.impressionist_count(:filter => :ip_address) %>
           <i class="icon-eye-open"></i>
         </span>
@@ -48,9 +48,7 @@
         <%= image_tag(comment.user.image.url(:thumb), :class => 'thumbnail') %>
         <div>
           <h5 style="text-transform: uppercase; margin-bottom: 10px;">
-            <a href="#" style="text-decoration: none;">
-              <%= comment.user.username %>
-            </a>
+            <%= link_to comment.user.username, profile_path(comment.user) %>
             <%= l comment.created_at, :format => :costum %>
           </h5>
           <p class="clearfix" style="white-space: pre-wrap"><%= comment.comment %></p>

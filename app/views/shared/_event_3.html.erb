@@ -28,7 +28,11 @@ end
         <div class="caption">
           <p class="three-content-article"><%= truncate(event.description, :length => 100, :separator => ' ') %></p>
           <p class="clearfix">
-            <span class="pull-left" style="margin-top: 9px;">100 <i class="icon-eye-open"></i></span>
+            <span class="pull-left" style="margin-right: 8px; margin-top: 9px">
+              <%= event.comments.published.count %>
+              <i class="icon-comment"></i>
+            </span> 
+            <span class="pull-left" style="margin-top: 9px;"><%= event.impressionist_count(:filter => :ip_address) %> <i class="icon-eye-open"></i></span>
             <span>
               <%= link_to "Selanjutnya", event_path(event), :class => 'btn btn-primary pull-right' %>
             </span>

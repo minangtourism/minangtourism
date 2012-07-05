@@ -6,7 +6,7 @@
   <ul class="dropdown-menu">
     <li>
         <%= link_to rails_admin_path do %>
-          <i class="icon-user"></i> My Profile
+          <i class="icon-user"></i> Admin
         <% end if can? :access, :rails_admin %>
         <%= link_to profile_path(current_user) do %>
           <i class="icon-user"></i> My Profile

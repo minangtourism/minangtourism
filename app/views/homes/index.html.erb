@@ -62,8 +62,16 @@
           <p>
             <%= truncate(event.description, :length => 80, :separator => ' ') %>
           </p>
-          <div class="event-like clearfix">
-            <a href="#"><i class="icon-thumbs-up"></i> 9 tertarik! </a>
+          <div class="clearfix">
+            <div class="event-like">
+              <a href="#"><i class="icon-thumbs-up"></i> 9 tertarik! </a>
+            </div>
+            <div class="pull-right" style="margin-left: 10px; margin-right: 10px;">
+              <%= event.comments.published.count %> <i class="icon-comment"></i>
+            </div>
+            <div class="pull-right">
+              <%= event.impressionist_count(:filter => :ip_address) %> <i class="icon-eye-open"></i>
+            </div>
           </div>
         </div>
         <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
@@ -94,9 +102,11 @@
             <%= link_to article.user.username, profile_path(article.user) %> |
             <%= l article.created_at, :format => :costum %>
             <div class="pull-right" style="margin-left: 10px;">
-              <%= article.comments.count %> <i class="icon-comment"></i></div>
+              <%= article.comments.published.count %> <i class="icon-comment"></i>
+            </div>
             <div class="pull-right">
-              <%= article.impressionist_count(:filter => :ip_address) %> <i class="icon-eye-open"></i></div>
+              <%= article.impressionist_count(:filter => :ip_address) %> <i class="icon-eye-open"></i>
+            </div>
           </div>
           <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
         <% end %>

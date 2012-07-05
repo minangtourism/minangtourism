@@ -8,9 +8,10 @@
 
     <div class="author-content-article-show">
       <p class="clearfix">
-        oleh <a href="#"><%= @tips_trick.user.username %></a> | <%= l @tips_trick.created_at %>
+        oleh <%= link_to @tips_trick.user.username, profile_path(@tips_trick.user) %>
+        <%= l @tips_trick.created_at, :format => :costum %>
         <span class="pull-right" style="margin-left: 20px;">
-          100 <i class="icon-comment"></i>
+          <%= comments.count %> <i class="icon-comment"></i>
         </span>
         <span class="pull-right" >
           <%= @tips_trick.impressionist_count(:filter => :ip_address) %>
@@ -43,19 +44,18 @@
 
   <div class="row">
     <div class="span8">
-      <% @tips_trick.comments.each do |comment| %>
+      <% comments.each do |comment| %>
         <%= image_tag(comment.user.image.url(:thumb), :class => 'thumbnail') %>
         <div>
           <h5 style="text-transform: uppercase; margin-bottom: 10px;">
-            <a href="#" style="text-decoration: none;">
-              <%= comment.user.username %>
-            </a>
+            <%= link_to comment.user.username, profile_path(comment.user) %>
             <%= l comment.created_at, :format => :costum %>
           </h5>
           <p class="clearfix" style="white-space: pre-wrap"><%= comment.comment %></p>
         </div>
         <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
       <% end %>
+      <%= paginate comments %>
     </div>
   </div>
 

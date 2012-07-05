@@ -21,7 +21,7 @@ class LocationTourismsController < ApplicationController
   # GET /location_tourisms/1
   # GET /location_tourisms/1.json
   def show
-    @comments = @location_tourism.comments.recent.page(params[:page]).per(10)
+    @comments = @location_tourism.comments.published.recent.page(params[:page]).per(10)
     first_comment = @location_tourism.comments.recent.last
     @first_commentator = first_comment.user if first_comment
     

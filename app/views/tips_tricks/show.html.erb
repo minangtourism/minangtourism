@@ -3,16 +3,19 @@
     <div class="span12">
       <ul class="thumbnails">
         <li class="span8">
-          <%= render "shared/tips_trick_content" %>
+          <%= render "shared/tips_trick_content",
+            :comments => @comments
+        %>
         </li>
 
         <li class="span4">
-          <%= render "shared/tips_trick_sub_content",
-            :folktales => Folktale.order('created_at DESC').limit(5),
-            :tips_tricks => TipsTrick.order('created_at DESC').limit(5),
-            :article => TourismArticle.last,
-            :event => Event.last
-          %>
+          <%= render "shared/folktale_sub_content",
+            :folktales => Folktale.published.recent.limit(5),
+            :tips_tricks => TipsTrick.published.recent.limit(5),
+            :article => TourismArticle.published.last,
+            :event => Event.published.last,
+            :review => Comment.published.reviews.last
+        %>
         </li
       </ul>
 

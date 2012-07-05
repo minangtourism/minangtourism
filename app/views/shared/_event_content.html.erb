@@ -7,15 +7,21 @@
     </h2>
 
     <div class="author-content-article-show clearfix">
-      <p class="pull-left">
-        oleh <a href="#"><%= @event.user.username %></a> | <%= l @event.created_at %>
-      </p>
+      <p class="clearfix">
+        oleh <%= link_to @event.user.username, profile_path(@event.user) %>
+        <%= l @event.created_at, :format => :costum %>
 
-      <span class="eventdescription pull-right">
-        <a href="#" class="btn btn-primary btn-mini">
-          <i class="icon-thumbs-up"></i> 9 tertarik!
-        </a>
-      </span>
+        <span class="eventdescription pull-right" style="margin-left: 20px">
+          <a href="#" class="btn btn-primary btn-mini">
+            <i class="icon-thumbs-up"></i> 9 tertarik!
+          </a>
+          <%= form_tag like_event_path(@event), :html => { :class => 'form-horizontal' } do %>
+            <div class="actions pull-right">
+              <i class="icon-thumbs-up"></i> <%= submit_tag 'like' %>
+            </div>
+          <% end if @event.likes.first.user_id != current_user.id %>
+        </span>
+      </p>
     </div>
 
     <%= image_tag(@event.image.url) %>
@@ -28,7 +34,17 @@
 </div>
 
 <div class="comments-tourism-article">
-  <legend>Mari Berkomentar!</legend>
+  <legend>
+    Mari Berkomentar!
+    <span class="pull-right" style="margin-left: 20px;">
+      <%= comments.count %> <i class="icon-comment"></i>
+    </span>
+
+    <span class="pull-right" >
+      <%= @event.impressionist_count(:filter => :ip_address) %>
+      <i class="icon-eye-open"></i>
+    </span>
+  </legend>
 
   <%= form_for @comment, :url => create_comment_event_path(@event), :html => { :class => 'form-horizontal' } do |f| %>
     <div class="span1" style="margin-left: 0">
@@ -42,19 +58,18 @@
 
   <div class="row">
     <div class="span8">
-      <% @event.comments.each do |comment| %>
+      <% comments.each do |comment| %>
         <%= image_tag(comment.user.image.url(:thumb), :class => 'thumbnail') %>
         <div>
           <h5 style="text-transform: uppercase; margin-bottom: 10px;">
-            <a href="#" style="text-decoration: none;">
-              <%= comment.user.username %>
-            </a>
+            <%= link_to comment.user.username, profile_path(comment.user) %>
             <%= l comment.created_at, :format => :costum %>
           </h5>
           <p class="clearfix" style="white-space: pre-wrap"><%= comment.comment %></p>
         </div>
         <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
       <% end %>
+      <%= paginate comments %>
     </div>
   </div>
 

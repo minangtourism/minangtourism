@@ -17,42 +17,26 @@ SumbarTourism::Application.routes.draw do
   resources :tourism_articles
   resources :reviews
 
+  resources :events do
+    member do
+      post :like
+    end
+  end
+
   # ------------------- PROFILE ------------------- #
   resources :profiles do
     member do
       get :reviews
-    end
-  end
-
-  resources :profiles do
-    member do
       get :folktales
-    end
-  end
-
-  resources :profiles do
-    member do
       get :tourism_articles
-    end
-  end
-  
-  resources :profiles do
-    member do
+      get :new_tourism_article
+      post :create_tourism_article
       get :location_tourisms
-    end
-  end
-
-  resources :profiles do
-    member do
       get :events
-    end
-  end
-
-  resources :profiles do
-    member do
       get :tips_tricks
     end
   end
+
   # ------------------- PROFILE ------------------- #
 
   # ------------------- COMMENT ------------------- #
