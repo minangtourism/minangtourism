@@ -28,8 +28,8 @@ class Ability
           [TourismArticle, Comment, Folktale, LocationTourism, Event, TipsTrick]
         can :create_comment,
           [TourismArticle, Folktale, LocationTourism, Event, TipsTrick]
-        can :new_tourism_article, User, :id => user.id
-        can :create_tourism_article, User, :id => user.id
+        can [:new_tourism_article, :create_tourism_article, :edit_tourism_article, :update_tourism_article],
+          User, :id => user.id
       end
     end
 

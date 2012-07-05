@@ -28,9 +28,13 @@ SumbarTourism::Application.routes.draw do
     member do
       get :reviews
       get :folktales
+
       get :tourism_articles
       get :new_tourism_article
       post :create_tourism_article
+      get :edit_tourism_article
+      put :update_tourism_article
+
       get :location_tourisms
       get :events
       get :tips_tricks

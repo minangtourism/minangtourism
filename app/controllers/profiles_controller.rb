@@ -3,7 +3,7 @@ class ProfilesController < ApplicationController
   skip_before_filter :authenticate_user!, 
     only: [:reviews, :folktales, :tourism_articles, :location_tourisms, :events, :tips_tricks,
     :new_tourism_article, :create_tourism_article
-    ]
+  ]
   load_and_authorize_resource :class => 'User'
 
   def index
@@ -45,38 +45,46 @@ class ProfilesController < ApplicationController
   end
 
   def new_tourism_article
-    @new_tourism_article = current_user.tourism_articles.new
+    @tourism_article = current_user.tourism_articles.new
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @new_tourism_article }
+      format.json { render json: @tourism_article }
     end
   end
 
   def create_tourism_article
-    @new_tourism_article = current_user.tourism_articles.new(params[:tourism_article])
+    @tourism_article = current_user.tourism_articles.new(params[:tourism_article])
 
     respond_to do |format|
-      if @new_tourism_article.save
+      if @tourism_article.save
         format.html { redirect_to tourism_articles_profile_path(@profile), notice: 'Berita Wisata was successfully created.' }
-        format.json { render json: @new_tourism_article, status: :created, location: @new_tourism_article }
+        format.json { render json: @tourism_article, status: :created, location: @tourism_article }
       else
         format.html { render action: "new_tourism_article" }
-        format.json { render json: @new_tourism_article.errors, status: :unprocessable_entity }
+        format.json { render json: @tourism_article.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  def new
+  def edit_tourism_article
+    @tourism_article = current_user.tourism_articles.find(params[:id])
   end
 
-  def edit
-  end
+  def update_tourism_article
+    @tourism_article = current_user.tourism_articles.find(params[:id])
 
-  def create
-  end
-
-  def update
+    respond_to do |format|
+      if @tourism_article.update_attributes(params[:tourism_article])
+        format.html { redirect_to tourism_articles_profile_path(@profile), notice: 'Berita Wisata was successfully updated.' }
+        format.json { head :no_content }
+      else
+        p @tourism_article.errors.to_a
+        p @tourism_article.state
+        format.html { render action: "edit_tourism_article" }
+        format.json { render json: @tourism_article.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
