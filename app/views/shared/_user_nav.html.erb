@@ -26,31 +26,7 @@
   </a>
   <ul class="dropdown-menu explogin_drop">
     <li class="explogin_drop_li" style="padding: 10px">
-      <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-        <div class ="inputs">
-          <%= f.input :login, :autofocus => true  %>
-          <%= f.input :password %>
-          <%= f.error :password, :id => 'user_name_error' %>
-          <%= f.input :remember_me, :as => :boolean, :label => false, :inline_label => true if devise_mapping.rememberable? %>
-        </div>
-
-        <div class="action">
-          <%= f.button :submit, "Sign in", :class => 'btn-primary' %>
-        </div>
-
-        <ul class="explogin_link" style="list-style: none; margin: 10px 0;">
-          <li>
-            <%= link_to new_user_password_path do %>
-              <i class="icon-user"></i> Forgot your password
-            <% end %>
-          </li>
-          <li>
-            <%= link_to new_user_registration_path do %>
-              <i class="icon-home"></i> Create an account
-            <% end %>
-          </li>
-        </ul>
-      <% end %>
+      <div id="form-sign-in-container"><%= render "shared/form_sign_in" %></div>
     </li>
   </ul>
 <% end %>

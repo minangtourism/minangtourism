@@ -1,6 +1,6 @@
 class Like < ActiveRecord::Base
   belongs_to :likeable, :polymorphic => true
-  has_and_belongs_to_many :users
+  belongs_to :users
   
   attr_accessible :likeable_id, :likeable_type, :user_id
 

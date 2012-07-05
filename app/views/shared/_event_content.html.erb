@@ -12,14 +12,18 @@
         <%= l @event.created_at, :format => :costum %>
 
         <span class="eventdescription pull-right" style="margin-left: 20px">
-          <a href="#" class="btn btn-primary btn-mini">
-            <i class="icon-thumbs-up"></i> 9 tertarik!
-          </a>
-          <%= form_tag like_event_path(@event), :html => { :class => 'form-horizontal' } do %>
-            <div class="actions pull-right">
-              <i class="icon-thumbs-up"></i> <%= submit_tag 'like' %>
-            </div>
-          <% end if @event.likes.first.user_id != current_user.id %>
+          <%= @event.likes.count %> tertarik.
+          <%= link_to like_event_path(@event), method: :post, :class => 'btn btn-primary btn-mini' do %>
+          <%#*<a href="#" class="btn btn-primary btn-mini">%>
+            <i class="icon-thumbs-up"></i> Saya tertarik!
+          <%#*</a>%>
+          <% end if can? :like, @event %>
+          <%#= form_tag like_event_path(@event), :html => { :class => 'form-horizontal' } do %>
+            <%#*<div class="actions pull-right">%>
+              <%#*<i class="icon-thumbs-up"></i>%>
+              <%#= submit_tag 'like' %>
+            <%#*</div>%>
+          <%# end if can? :like, @event %>
         </span>
       </p>
     </div>

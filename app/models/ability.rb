@@ -5,7 +5,8 @@ class Ability
     can :read, :all
     cannot :access, :rails_admin
     cannot :dashboard
-    cannot :read, 
+    cannot :read, User, state: :disabled
+    cannot :read,
       [LocationTourism, Folktale, TourismArticle, Event, TipsTrick], :state => 'unpublished'
     can [:reviews, :folktales, :tourism_articles, :location_tourisms, :events, :tips_tricks], User
 
@@ -31,6 +32,10 @@ class Ability
         can [:new_tourism_article, :create_tourism_article, :edit_tourism_article, :update_tourism_article, :destroy_tourism_article],
           User, :id => user.id
       end
+
+      can :like, Event
+      cannot :like, Event, :likes => {user_id: user.id}
+
     end
 
     cannot :destroy, user

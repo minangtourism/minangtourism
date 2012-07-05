@@ -1,14 +1,14 @@
 <div class="container">
   <div class="row">
-    <% @members.each do |member| %>
+    <% @profiles.each do |profile| %>
       <div class="span3">
         <div class="well sidebar-nav">
           <ul class="nav nav-list">
             <li>
-              <%= link_to image_tag(member.image.url(:medium)), profile_path(member) %>
+              <%= link_to image_tag(profile.image.url(:medium)), profile_path(profile) %>
             </li>
             <div class="nav-header" style="text-align: center">
-              <%= link_to 'Profil Saya', profile_path(member), :class => 'btn btn-primary' %>
+              <%= link_to 'Profil Saya', profile_path(profile), :class => 'btn btn-primary' %>
             </div>
           </ul>
         </div><!--/.well -->
@@ -16,5 +16,5 @@
     <% end %>
   </div>
   <div class="dashed" style="margin-bottom: 15px; margin-top: 0;"></div>
-  <%= paginate @members %>
+  <%= paginate @profiles %>
 </div>

@@ -2,7 +2,7 @@ class Event < ActiveRecord::Base
 
   belongs_to :user
   has_many :comments, as: :commentable
-  has_many :likes, :as => :likeable
+  has_many :likes, as: :likeable
 
   is_impressionable
   

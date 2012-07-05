@@ -67,3 +67,11 @@ $(document).ready(function(){
 $('.dropdown-menu form').on('click.dropdown.data-api', function(e){
     e.stopPropagation();
 });
+
+$(document).on('shown', '.modal', function(){
+  $(':input:visible:enabled:not(:button):first', this).focus();
+}).on('ajax:before', '#form-sign-in, #form-sign-up', function(){
+  $(':submit.btn-primary', this).attr('disabled', true);
+}).on('ajax:complete', '#form-sign-in, #form-sign-up', function(){
+  $(':submit.btn-primary', this).attr('disabled', false);
+});

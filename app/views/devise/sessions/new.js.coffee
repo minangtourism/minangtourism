@@ -1,0 +1,2 @@
+$('#form-sign-in-container').html('<%= escape_javascript render("shared/form_sign_in") %>').on('click.dropdown.data-api', (e) -> e.stopPropagation())
+$('#flash-messages-container').find('.alert-error').remove().end().append('<%= escape_javascript flash_messages %>')

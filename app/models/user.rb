@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :sumbar_contents
   has_many :reviews, class_name: 'Comment', conditions: "commentable_type = 'LocationTourism'"
-  has_and_belongs_to_many :likes
+  has_many :likes
 
   before_save :set_default_roles
 
@@ -92,6 +92,18 @@ class User < ActiveRecord::Base
     #Enabled / Disabled is Display
     #enabled / disabled save to database
     [['Enabled', 'enabled'], ['Disabled', 'disabled']]
+  end
+
+  def active_for_authentication?
+    super && enabled?
+  end
+
+  def inactive_message
+    if !enabled?
+      :disabled
+    else
+      super # Use whatever other message
+    end
   end
 
 end
