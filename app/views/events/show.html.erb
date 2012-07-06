@@ -9,7 +9,7 @@
         </li>
 
         <li class="span4">
-          <%= render "shared/folktale_sub_content",
+          <%= render "shared/event_sub_content",
             :folktales => Folktale.published.recent.limit(5),
             :tips_tricks => TipsTrick.published.recent.limit(5),
             :article => TourismArticle.published.last,

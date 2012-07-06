@@ -14,7 +14,9 @@
           <%= tips_trick.comments.published.count %>
           <i class="icon-comment"></i>
         </span>
-        <span class="pull-left" style="margin-top: 9px;"><%= tips_trick.impressionist_count(:filter => :ip_address) %> <i class="icon-eye-open"></i></span>
+        <span class="pull-left" style="margin-top: 9px;">
+          <%= tips_trick.impressionist_count(:filter => :session_hash) %>
+          <i class="icon-eye-open"></i></span>
         <span>
           <%= link_to "Selanjutnya", tips_trick_path(tips_trick), :class => 'btn btn-primary pull-right' %>
         </span>

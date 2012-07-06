@@ -12,18 +12,11 @@
         <%= l @event.created_at, :format => :costum %>
 
         <span class="eventdescription pull-right" style="margin-left: 20px">
-          <%= @event.likes.count %> tertarik.
+          <i class="icon-thumbs-up"></i> <%= @event.likes.count %> tertarik.
+          
           <%= link_to like_event_path(@event), method: :post, :class => 'btn btn-primary btn-mini' do %>
-          <%#*<a href="#" class="btn btn-primary btn-mini">%>
             <i class="icon-thumbs-up"></i> Saya tertarik!
-          <%#*</a>%>
           <% end if can? :like, @event %>
-          <%#= form_tag like_event_path(@event), :html => { :class => 'form-horizontal' } do %>
-            <%#*<div class="actions pull-right">%>
-              <%#*<i class="icon-thumbs-up"></i>%>
-              <%#= submit_tag 'like' %>
-            <%#*</div>%>
-          <%# end if can? :like, @event %>
         </span>
       </p>
     </div>
@@ -45,7 +38,8 @@
     </span>
 
     <span class="pull-right" >
-      <%= @event.impressionist_count(:filter => :ip_address) %>
+<%#= @event.impressionist_count(:filter => :ip_address) %>
+      <%= @event.impressionist_count(:filter => :session_hash) %>
       <i class="icon-eye-open"></i>
     </span>
   </legend>

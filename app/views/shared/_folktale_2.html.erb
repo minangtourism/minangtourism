@@ -14,7 +14,9 @@
         <span class="pull-left" style="margin-right: 8px; margin-top: 9px">
           <%= folktale.comments.published.count %>
           <i class="icon-comment"></i></span>
-        <span class="pull-left" style="margin-top: 9px;"><%= folktale.impressionist_count(:filter => :ip_address) %> <i class="icon-eye-open"></i></span>
+        <span class="pull-left" style="margin-top: 9px;">
+          <%= folktale.impressionist_count(:filter => :session_hash) %>
+          <i class="icon-eye-open"></i></span>
         <span>
           <%= link_to "Selanjutnya", folktale_path(folktale), :class => 'btn btn-primary pull-right' %>
         </span>

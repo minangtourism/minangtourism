@@ -77,7 +77,7 @@
         <div class="pull-right" style="margin-left: 10px;">
           <%= article.comments.published.count %> <i class="icon-comment"></i></div>
         <div class="pull-right">
-          <%= article.impressionist_count(:filter => :ip_address) %> <i class="icon-eye-open"></i></div>
+          <%= article.impressionist_count(:filter => :session_hash) %> <i class="icon-eye-open"></i></div>
       </div>
       <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
 
@@ -114,8 +114,10 @@
         <p>
           <%= truncate(event.description, :length => 80, :separator => ' ') %>
         </p>
-        <div class="event-like clearfix">
-          <a href="#"><i class="icon-thumbs-up"></i> 9 tertarik! </a>
+        <div class="clearfix">
+          <div class="event-like pull-right ">
+            <i class="icon-thumbs-up"></i> <%= event.likes.count %> tertarik!
+          </div>
         </div>
       </div>
       <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
@@ -129,7 +131,6 @@
       </div>
     <% end %>
   </div>
-
   <div class="span4">
     <h2>Cerita Wisatawan</h2>
     <div class="dashed"></div>

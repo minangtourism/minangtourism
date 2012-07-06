@@ -14,7 +14,7 @@
           <%= comments.count %> <i class="icon-comment"></i>
         </span>
         <span class="pull-right">
-          <%= @folktale.impressionist_count(:filter => :ip_address) %>
+          <%= @folktale.impressionist_count(:filter => :session_hash) %>
           <i class="icon-eye-open"></i>
         </span>
       </p>

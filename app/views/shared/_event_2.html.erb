@@ -4,9 +4,10 @@
       <h2 class="two-title-tourism-article">
         <%= link_to event.title, event_path(event) %>
       </h2>
-      oleh <a href="#"><%= event.user.username %></a> | <%= l event.created_at, :format => :costum %>
+      <%= link_to event.user.username, profile_path(event.user) %> |
+      <%= l event.created_at, :format => :costum %>
       <div class="eventdescription clearfix pull-right">
-        <a href="#"><i class="icon-thumbs-up"></i> 9 tertarik!</a>
+        <i class="icon-thumbs-up"></i> <%= event.likes.count %> tertarik.
       </div>
     </div>
     <%= image_tag(event.image.url(:medium)) %>

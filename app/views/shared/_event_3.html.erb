@@ -19,9 +19,10 @@ end
               <%= link_to event.title, event_path(event) %>
             </a>
           </h2>
-          <a href="#"><%= event.user.username %></a> | <%= l event.created_at, :format => :costum %>
+          <%= link_to event.user.username, profile_path(event.user) %> |
+          <%= l event.created_at, :format => :costum %>
           <div class="eventdescription clearfix pull-right">
-            <a href="#"><i class="icon-thumbs-up"></i> 9 </a>
+            <i class="icon-thumbs-up"></i> <%= event.likes.count %>
           </div>
         </div>
         <%= image_tag(event.image.url(:tiny)) %>
@@ -31,7 +32,7 @@ end
             <span class="pull-left" style="margin-right: 8px; margin-top: 9px">
               <%= event.comments.published.count %>
               <i class="icon-comment"></i>
-            </span> 
+            </span>
             <span class="pull-left" style="margin-top: 9px;"><%= event.impressionist_count(:filter => :ip_address) %> <i class="icon-eye-open"></i></span>
             <span>
               <%= link_to "Selanjutnya", event_path(event), :class => 'btn btn-primary pull-right' %>
