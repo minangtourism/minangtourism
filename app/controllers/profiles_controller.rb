@@ -58,7 +58,7 @@ class ProfilesController < ApplicationController
 
     respond_to do |format|
       if @tourism_article.save
-        format.html { redirect_to tourism_articles_profile_url(@profile), notice: 'Berita Wisata was successfully created.' }
+        format.html { redirect_to tourism_articles_profile_url(@profile), notice: 'Berita Wisata was successfully created. Menunggu verifikasi admin' }
         format.json { render json: @tourism_article, status: :created, location: @tourism_article }
       else
         format.html { render action: "new_tourism_article" }
@@ -73,7 +73,7 @@ class ProfilesController < ApplicationController
   def update_tourism_article
     respond_to do |format|
       if @tourism_article.update_attributes(params[:tourism_article])
-        format.html { redirect_to tourism_articles_profile_url(@profile), notice: 'Berita Wisata was successfully updated.' }
+        format.html { redirect_to tourism_articles_profile_url(@profile), notice: 'Berita Wisata was successfully updated. Menunggu verifikasi admin' }
         format.json { head :no_content }
       else
         format.html { render action: "edit_tourism_article" }

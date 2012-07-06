@@ -9,22 +9,27 @@
       <div class="profiles-home"> <!-- Berita Wisatawan / TourismArticle -->
         <h2>Berita Wisata</h2>
         <div class="dashed"></div>
-        <div class="info-title">Berita terbaru tentang wisata yang ada di  Sumatera Barat</div>
+        <div class="info-title">Arsip Berita Wisata Saya</div>
         <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
         <% if can? :create_tourism_article, @profile %>
-          <%= link_to 'Tambah Data', new_tourism_article_profile_path(@profile), :class => 'btn btn-primary btn-mini' %>
+          <%= link_to new_tourism_article_profile_path(@profile) do %>
+            <i class="btn btn-primary icon-plus"> Tambah Data</i>
+          <% end %>
           <div class="dashed" style="margin-bottom: 30px; margin-top: 15px"></div>
 
           <% @tourism_articles.each do |tourism_article| %>
             <div class="title-news">
-              <%= link_to_if can?(:read, tourism_article), truncate(tourism_article.title, :length => 80, :separator => ' '), tourism_article_path(tourism_article) %>
-              <div class="pull-right" >
-                <%= link_to edit_tourism_article_profile_path(@profile, tourism_article) do %>
-                  <i class="icon-pencil"></i>
-                <% end if can? :update_tourism_article, @profile %>
-                <%= link_to destroy_tourism_article_profile_path(@profile, tourism_article), method: :delete, data: {confirm: "Are you sure?"} do %>
-                  <i class="icon-remove"></i>
-                <% end if can? :destroy_tourism_article, @profile %>
+              <div class="clearfix">
+                <%= link_to_if can?(:read, tourism_article), truncate(tourism_article.title, :length => 80, :separator => ' '), tourism_article_path(tourism_article) %>
+                <div class="pull-right">
+                  <%= link_to edit_tourism_article_profile_path(@profile, tourism_article), :rel => 'tooltip',data: {original_title: "Edit Data"} do %>
+                    <i class="btn btn-primary btn-mini icon-pencil"></i>
+                  <% end if can? :update_tourism_article, @profile %>
+                  <%= link_to destroy_tourism_article_profile_path(@profile, tourism_article), method: :delete,
+                    :rel => 'tooltip',data: {original_title: "Delete Data", confirm: "Are you sure?"} do %>
+                    <i class="btn btn-danger btn-mini icon-trash"></i>
+                  <% end if can? :destroy_tourism_article, @profile %>
+                </div>
               </div>
             </div>
             <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
