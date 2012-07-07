@@ -1,24 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: postgres
+  password:
 
 development:
-  adapter: postgresql
-  encoding: unicode
+  <<: *default
   database: sumbar-tourism_development
-  pool: 5
-  username: postgres
-  password: password
 
 test:
-  adapter: postgresql
-  encoding: unicode
+  <<: *default
   database: sumbar-tourism_test
-  pool: 5
-  username: postgres
-  password: password
 
 production:
-  adapter: postgresql
-  encoding: unicode
+  <<: *default
   database: sumbar-tourism_production
-  pool: 5
-  username: postgres
-  password: password
