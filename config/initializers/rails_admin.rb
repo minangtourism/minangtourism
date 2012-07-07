@@ -50,14 +50,28 @@ RailsAdmin.config do |config|
   #  ==> Included models
   # Add all excluded models here:
   # config.excluded_models = [CategoryLocTourism, Comment, Contact, Event, Folktale, LocationTourism, TipsTrick, TourismArticle, User]
-  #  config.excluded_models << Version
 
   # Add models here if you want to go 'whitelist mode':
   # config.included_models = [CategoryLocTourism, Comment, Contact, Event, Folktale, LocationTourism, TipsTrick, TourismArticle, User]
-  config.included_models = [CategoryLocTourism, Comment, Contact, Event, Folktale, LocationTourism, TipsTrick, TourismArticle,
+  config.included_models = [
+    CategoryLocTourism,
+    Comment,
+    Contact,
+    Event,
+    Folktale,
+    Food,
+    GettingThere,
+    LocationTourism,
+    SumbarContent,
+    ThingsToDo,
+    ThingsToSee,
+    TipsTrick,
+    TourismArticle,
+    Transportation,
     User,
-    SumbarContent, WhySumbar, GettingThere, WhereToStay, ThingsToDo, ThingsToSee, Food, Transportation,
-    Version, TourismArticleVersion]
+    WhereToStay,
+    WhySumbar,
+  ]
 
   # Application wide tried label methods for models' instances
   # config.label_methods << :description # Default is [:name, :title]
@@ -667,10 +681,6 @@ RailsAdmin.config do |config|
     end
     create do; end
     update do; end
-  end
-
-  config.model Version do
-
   end
 
   config.model GettingThere do
