@@ -1,6 +1,4 @@
 class TourismArticle < ActiveRecord::Base
-  has_paper_trail only: [:title, :content]
-
   belongs_to :user
   has_many :comments, as: :commentable
 
