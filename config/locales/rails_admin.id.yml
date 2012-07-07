@@ -1,6 +1,69 @@
 id:
   home:
     name: "Home"
+
+  date:
+    formats:
+      default: "%d-%m-%Y"
+      short: "%d %b"
+      long: "%d %B %Y"
+
+    day_names: [Minggu, Senin, Selasa, Rabu, Kamis, Jumat, Sabtu]
+    abbr_day_names: [Ming, Sen, Sel, Rab, Kam, Jum, Sab]
+
+    month_names: [~, Januari, Februari, Maret, April, Mei, Juni, Juli, Agustus, September, Oktober, November, Desember]
+    abbr_month_names: [~, Jan, Feb, Mar, Apr, Mei, Jun, Jul, Agu, Sep, Okt, Nov, Des]
+    order:
+      - :day
+      - :month
+      - :year
+
+  time:
+    formats:
+      default: "%a %d %b %Y, %H:%M:%S"
+      time: "%H:%M"
+      short: "%d %b %H:%M"
+      long: "%d %B %Y %H:%M"
+    am: "am"
+    pm: "pm"
+
+  datetime:
+    distance_in_words:
+      half_a_minute: "setengah menit"
+      less_than_x_seconds:
+        one:   "kurang dari sedetik"
+        other: "kurang dari %{count} detik"
+      x_seconds:
+        one:   "sedetik"
+        other: "%{count} detik"
+      less_than_x_minutes:
+        one:   "kurang dari semenit"
+        other: "kurang dari %{count} menit"
+      x_minutes:
+        one:   "semenit"
+        other: "%{count} menit"
+      about_x_hours:
+        one:   "sekitar sejam"
+        other: "sekitar %{count} jam"
+      x_days:
+        one:   "sehari"
+        other: "%{count} hari"
+      about_x_months:
+        one:   "sekitar sebulan"
+        other: "sekitar %{count} bulan"
+      x_months:
+        one:   "sebulan"
+        other: "%{count} bulan"
+      about_x_years:
+        one:   "sekitar setahun"
+        other: "sekitar %{count} tahun"
+      over_x_years:
+        one:   "lebih dari setahun"
+        other: "lebih dari %{count} tahun"
+      almost_x_years:
+        one:   "almost 1 year"
+        other: "almost %{count} years"
+
   admin:
     pagination:
       previous: "&laquo; Prev"
