@@ -1,4 +1,5 @@
 class TourismArticle < ActiveRecord::Base
+  has_paper_trail only: [:title, :content]
 
   belongs_to :user
   has_many :comments, as: :commentable
@@ -20,9 +21,9 @@ class TourismArticle < ActiveRecord::Base
   scope :recent, order("created_at desc")
 
   state_machine :initial => :unpublished do
-    before_transition all => all do |tourism_article, transition|
-      tourism_article.is_authorized_for?(transition)
-    end
+    # before_transition all => all do |tourism_article, transition|
+    #   tourism_article.is_authorized_for?(transition)
+    # end
     event :publish do
       transition :unpublished => :published
     end
@@ -40,7 +41,7 @@ class TourismArticle < ActiveRecord::Base
     ['published','unpublished']
   end
 
-  def is_authorized_for?(transition)
-    permitted_to?(transition.event.to_sym)
-  end
+  #  def is_authorized_for?(transition)
+  #    permitted_to?(transition.event.to_sym)
+  #  end
 end
