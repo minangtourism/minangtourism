@@ -1,0 +1,14 @@
+# Rails
+config/database.yml
+log/*.log
+tmp/**/*
+
+# RVMRC
+.rvmrc
+
+# Netbeans
+nbproject
+
+# Public uploads
+public/system
+public/uploads
