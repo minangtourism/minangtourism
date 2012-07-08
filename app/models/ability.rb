@@ -11,10 +11,16 @@ class Ability
     can [:reviews, :folktales, :tourism_articles, :location_tourisms, :events, :tips_tricks], User
 
     if user
-      if user.is? :admin
-        can :access, :rails_admin
-        can :dashboard
-        can :manage, :all
+      can :like, Event
+
+      if user.is? :member
+        can [:read, :update, :destroy], TourismArticle, user_id: user.id
+        can [:create, :update],
+          [TourismArticle, Comment, Folktale, LocationTourism, Event, TipsTrick]
+        can :create_comment,
+          [TourismArticle, Folktale, LocationTourism, Event, TipsTrick]
+        can [:new_tourism_article, :create_tourism_article, :edit_tourism_article, :update_tourism_article, :destroy_tourism_article],
+          User, :id => user.id
       end
 
       if user.is? :operator
@@ -24,16 +30,12 @@ class Ability
           [TourismArticle, Comment, Folktale, CategoryLocTourism, LocationTourism, Event, TipsTrick]
       end
 
-      if user.is? :member
-        can [:create, :update],
-          [TourismArticle, Comment, Folktale, LocationTourism, Event, TipsTrick]
-        can :create_comment,
-          [TourismArticle, Folktale, LocationTourism, Event, TipsTrick]
-        can [:new_tourism_article, :create_tourism_article, :edit_tourism_article, :update_tourism_article, :destroy_tourism_article],
-          User, :id => user.id
+      if user.is? :admin
+        can :access, :rails_admin
+        can :dashboard
+        can :manage, :all
       end
 
-      can :like, Event
       cannot :like, Event, :likes => {user_id: user.id}
 
     end

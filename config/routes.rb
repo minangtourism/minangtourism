@@ -14,9 +14,9 @@ SumbarTourism::Application.routes.draw do
   resources :tips_tricks
   resources :folktales
   resources :why_sumbars
-  resources :tourism_articles
+  resources :tourism_articles, only: [:index, :show]
   resources :reviews
-
+  resources :deletion_requests, only: [:new, :create]
   resources :events do
     member do
       post :like
@@ -24,22 +24,16 @@ SumbarTourism::Application.routes.draw do
   end
 
   # ------------------- PROFILE ------------------- #
+  resources :profile_tourism_articles, path: 'profiles/:profile_id/tourism_articles', except: :show
   resources :profiles do
     member do
       get :reviews
       get :folktales
-
-      get :tourism_articles
-      get :new_tourism_article
-      post :create_tourism_article
-      get "edit_tourism_article/:tourism_article_id", action: :edit_tourism_article, as: :edit_tourism_article
-      put "update_tourism_article/:tourism_article_id", action: :update_tourism_article, as: :update_tourism_article
-      delete "destroy_tourism_article/:tourism_article_id", action: :destroy_tourism_article, as: :destroy_tourism_article
-      
       get :location_tourisms
       get :events
       get :tips_tricks
     end
+
   end
 
 
