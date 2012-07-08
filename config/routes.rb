@@ -16,7 +16,6 @@ SumbarTourism::Application.routes.draw do
   resources :why_sumbars
   resources :tourism_articles, only: [:index, :show]
   resources :reviews
-  resources :deletion_requests, only: [:new, :create]
   resources :events do
     member do
       post :like
