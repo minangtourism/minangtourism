@@ -1,3 +1,9 @@
+PATH
+  remote: vendor/gems/rails_admin_approve
+  specs:
+    rails_admin_approve (0.0.1)
+      rails (~> 3.2.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -195,6 +201,7 @@ DEPENDENCIES
   pg
   rails (= 3.2.5)
   rails_admin
+  rails_admin_approve!
   role_model
   sass-rails (~> 3.2.3)
   settler

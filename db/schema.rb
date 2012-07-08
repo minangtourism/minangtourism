@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120630101009) do
+ActiveRecord::Schema.define(:version => 20120707181122) do
 
   create_table "category_loc_tourisms", :force => true do |t|
     t.string   "name"
@@ -44,6 +44,20 @@ ActiveRecord::Schema.define(:version => 20120630101009) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "deletion_requests", :force => true do |t|
+    t.integer  "item_id"
+    t.string   "item_type"
+    t.text     "reason"
+    t.string   "state"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "deletion_requests", ["item_id"], :name => "index_deletion_requests_on_item_id"
+  add_index "deletion_requests", ["item_type"], :name => "index_deletion_requests_on_item_type"
+  add_index "deletion_requests", ["user_id"], :name => "index_deletion_requests_on_user_id"
 
   create_table "events", :force => true do |t|
     t.string   "title"

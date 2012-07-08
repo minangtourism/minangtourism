@@ -17,11 +17,16 @@ class ProfileTourismArticlesController < ApplicationController
   end
 
   def destroy
-    @tourism_article.destroy
+    deletion_request = current_user.deletion_requests.create(item: @tourism_article)
 
     respond_to do |format|
-      format.html { redirect_to profile_tourism_articles_url(@profile) }
-      format.json { head :no_content }
+      if deletion_request.errors.blank?
+        format.html { redirect_to profile_tourism_articles_url(@profile), notice: 'Permohonan penghapusan Berita Wisata berhasil dibuat. Menunggu verifikasi admin' }
+        format.json { render json: @tourism_article, status: :created, location: @tourism_article }
+      else
+        format.html { redirect_to request.referer || profile_tourism_articles_url(@profile), alert: 'Permohonan penghapusan sebelumnya pada Berita Wisata yang sama masih menunggu verifikasi admin' }
+        format.json { render json: @tourism_article.errors, status: :unprocessable_entity }
+      end
     end
   end
 

@@ -16,9 +16,10 @@ gem 'acts_as_commentable'
 gem 'settler'
 
 #admin
-gem 'rails_admin'
 gem "cancan"
 gem "role_model"
+gem 'rails_admin'
+gem 'rails_admin_approve', path: 'vendor/gems/rails_admin_approve'
 
 #pagination
 gem 'kaminari'

@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :sumbar_contents
   has_many :reviews, class_name: 'Comment', conditions: "commentable_type = 'LocationTourism'"
   has_many :likes
+  has_many :deletion_requests
 
   before_save :set_default_roles
 

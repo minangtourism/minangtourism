@@ -26,6 +26,29 @@ RailsAdmin.config do |config|
   # or for a dynamic name:
   # config.main_app_name = Proc.new { |controller| [Rails.application.engine_name.titleize, controller.params['action'].titleize] }
 
+  config.actions do
+    # root actions
+    dashboard                     # mandatory
+    # collection actions
+    index                         # mandatory
+    new
+    export
+    history_index
+    bulk_delete
+    # member actions
+    show
+    approve do # custom action
+      # Make it visible only for specific models. You can remove this if you don't need.
+      visible do
+        visible? && bindings[:abstract_model].model.to_s.in?(%w[DeletionRequest])
+      end
+    end
+    edit
+    delete
+    history_show
+    show_in_app
+  end
+
   #  config.models do
   #    # Configuration here will affect all included models in all scopes, handle with care!
   #
@@ -57,6 +80,7 @@ RailsAdmin.config do |config|
     CategoryLocTourism,
     Comment,
     Contact,
+    DeletionRequest,
     Event,
     Folktale,
     Food,
@@ -115,6 +139,35 @@ RailsAdmin.config do |config|
   # Your model's configuration, to help you get started:
 
   # All fields marked as 'hidden' won't be shown anywhere in the rails_admin unless you mark them as visible. (visible(true))
+
+  config.model DeletionRequest do
+
+    # Found associations:
+    configure :item
+    configure :user
+
+    # Found columns:
+    configure :id
+    configure :reason do
+      hide
+    end
+    configure :state, :enum do
+
+    end
+    configure :created_at, :datetime
+    configure :updated_at, :datetime
+
+    # Sections:
+    list do
+      include_fields :id, :item, :user, :reason, :state
+    end
+    show do
+      include_fields :id, :item, :user, :reason, :state
+    end
+    edit do
+      include_fields :id, :item, :user, :reason, :state
+    end
+  end
 
   config.model User do
 

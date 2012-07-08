@@ -155,6 +155,13 @@ id:
         title: "History for %{model_label} '%{object_label}'"
         menu: "History"
         breadcrumb: "History"
+      approve:
+        title: "Approve"
+        menu: "Approve"
+        breadcrumb: "Approve"
+        link: "Approve '%{object_label}'"
+        bulk_link: "Approve selected %{model_label_plural}"
+        done: "approved"
     form:
       cancel: "Cancel"
       basic_info: "Basic info"

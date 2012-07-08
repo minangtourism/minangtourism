@@ -34,10 +34,12 @@ class Ability
         can :access, :rails_admin
         can :dashboard
         can :manage, :all
+        cannot [:approve, :destroy, :create, :reject, :update], DeletionRequest
+        can [:approve, :reject], DeletionRequest, state: "pending"
+        can :destroy, DeletionRequest, state: %w[approved rejected]
       end
 
-      cannot :like, Event, :likes => {user_id: user.id}
-
+      cannot :like, Event, likes: {user_id: user.id}
     end
 
     cannot :destroy, user
