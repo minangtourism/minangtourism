@@ -1,0 +1,11 @@
+
+en:
+  admin:
+    actions:
+      reject:
+        title: "Reject"
+        menu: "Reject"
+        breadcrumb: "Reject"
+        link: "Reject '%{object_label}'"
+        bulk_link: "Reject selected %{model_label_plural}"
+        done: "rejected"

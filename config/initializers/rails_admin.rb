@@ -43,6 +43,12 @@ RailsAdmin.config do |config|
         visible? && bindings[:abstract_model].model.to_s.in?(%w[DeletionRequest])
       end
     end
+    reject do # custom action
+      # Make it visible only for specific models. You can remove this if you don't need.
+      visible do
+        visible? && bindings[:abstract_model].model.to_s.in?(%w[DeletionRequest])
+      end
+    end
     edit
     delete
     history_show
