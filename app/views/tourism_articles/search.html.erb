@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      <div class="page-header">
+        <h1>Hasil Pencarian Berita Wisata<small></small></h1>
+      </div>
+      <% @search.each do |article| %>
+        <p><%= link_to article.title, tourism_article_path(article) %></p>
+      <% end %>
+      <p> <%= @search.size%> judul berita wisata ditemukan </p>
+
+    </div>
+  </div>
+</div>

@@ -20,7 +20,7 @@
       </p>
     </div>
 
-    <%= image_tag(@tourism_article.image.url) %>
+    <%= image_tag(@tourism_article.image.url(:large)) %>
     <div class="content-article-show">
       <p class="clearfix">
         <%= @tourism_article.content %>

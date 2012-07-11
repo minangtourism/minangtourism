@@ -17,7 +17,7 @@
 //= require bootstrap-scrollspy
 //= require_tree
 //= require bootstrap-datepicker
-//= require mybootstrap.js.coffee
+//= require mybootstrap
 
 $('#dp3').datepicker({
     format: 'mm-dd-yyyy'
@@ -69,9 +69,12 @@ $('.dropdown-menu form').on('click.dropdown.data-api', function(e){
 });
 
 $(document).on('shown', '.modal', function(){
-  $(':input:visible:enabled:not(:button):first', this).focus();
+    $(':input:visible:enabled:not(:button):first', this).focus();
 }).on('ajax:before', '#form-sign-in, #form-sign-up', function(){
-  $(':submit.btn-primary', this).attr('disabled', true);
+    $(':submit.btn-primary', this).attr('disabled', true);
 }).on('ajax:complete', '#form-sign-in, #form-sign-up', function(){
-  $(':submit.btn-primary', this).attr('disabled', false);
+    $(':submit.btn-primary', this).attr('disabled', false);
 });
+
+//why sumbar ?
+//$(".collapse").collapse()   

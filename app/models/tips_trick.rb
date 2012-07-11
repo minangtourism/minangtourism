@@ -7,6 +7,13 @@ class TipsTrick < ActiveRecord::Base
   is_impressionable
 
   attr_accessible :state, :description, :title, :user_id, :image, as: [:default] + User.valid_roles
+
+  define_index do
+    indexes title, :as => :title, :sortable => true
+
+    has created_at, updated_at
+  end
+  
   has_attached_file :image, :styles => {
     :large => "740x380#",
     :medium => "340x180#",

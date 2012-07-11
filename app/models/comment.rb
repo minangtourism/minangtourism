@@ -9,6 +9,12 @@ class Comment < ActiveRecord::Base
   belongs_to :commentable, :polymorphic => true
   attr_accessible :state, :comment, as: [:default] + User.valid_roles
 
+  define_index do
+    indexes comment, :as => :comment, :sortable => true
+
+    has created_at, updated_at
+  end
+  
   validates :comment, :presence => true
 
   scope :reviews, where(commentable_type: 'LocationTourism')

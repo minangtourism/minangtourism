@@ -19,7 +19,7 @@ RailsAdmin.config do |config|
   # config.audit_with :history, User
 
   # Or with a PaperTrail: (you need to install it first)
-  config.audit_with :paper_trail, User
+#  config.audit_with :paper_trail, User
 
   # Set the admin name here (optional second array element will appear in a beautiful RailsAdmin red ©)
   config.main_app_name = ['Sumbar Tourism', 'Admin']
@@ -56,8 +56,7 @@ RailsAdmin.config do |config|
   # config.included_models = [CategoryLocTourism, Comment, Contact, Event, Folktale, LocationTourism, TipsTrick, TourismArticle, User]
   config.included_models = [CategoryLocTourism, Comment, Contact, Event, Folktale, LocationTourism, TipsTrick, TourismArticle,
     User,
-    SumbarContent, WhySumbar, GettingThere, WhereToStay, ThingsToDo, ThingsToSee, Food, Transportation,
-    Version, TourismArticleVersion]
+    SumbarContent, WhySumbar, GettingThere, WhereToStay, ThingsToDo, ThingsToSee, Food, Transportation]
 
   # Application wide tried label methods for models' instances
   # config.label_methods << :description # Default is [:name, :title]
@@ -667,10 +666,6 @@ RailsAdmin.config do |config|
     end
     create do; end
     update do; end
-  end
-
-  config.model Version do
-
   end
 
   config.model GettingThere do

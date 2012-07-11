@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+#searching
+gem 'thinking-sphinx'
+
 gem 'rails', '3.2.5'
 
 # Bundle edge Rails instead:
@@ -14,6 +17,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'nested_set'
 gem 'acts_as_commentable'
 gem 'settler'
+gem "awesome_print", "~> 1.0.2"
 
 #admin
 gem 'rails_admin'
@@ -31,6 +35,8 @@ gem 'state_machine'
 #+1 for see article
 gem 'impressionist'
 
+#undo & redo create, edit, destroy
+#gem 'paper_trail'
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title><%= content_for?(:title) ? yield(:title) : "SumbarTourism" %></title>
     <%= csrf_meta_tags %>
 
@@ -13,10 +13,10 @@
 
     <%= stylesheet_link_tag "application", :media => "all" %>
 
-    <link href="images/favicon.ico" rel="shortcut icon">
-    <link href="images/apple-touch-icon.png" rel="apple-touch-icon">
-    <link href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
-    <link href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
+    <link href="images/favicon.ico" rel="shortcut icon"/>
+    <link href="images/apple-touch-icon.png" rel="apple-touch-icon"/>
+    <link href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72"/>
+    <link href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114"/>
   </head>
 
   <body>
@@ -32,9 +32,10 @@
           <a class="brand" href="#">SumbarTourism</a>
 
           <div class="nav pull-right <%= "open" if prompt_sign_in? %>">
-            <form action="" class="navbar-search" >
-              <input type="text" placeholder="Search" class="search-query span2" style="margin-bottom: 0"/>
-            </form>
+            <%= form_tag search_path, :method => 'get', :class => 'navbar-search' do %>
+              <%= text_field_tag :search, params[:search], :placeholder => "Cari...", :class => "search-query span2", :style => "margin-bottom: 0" %>
+            <% end %>
+            
             <li class="divider-vertical"></li>
             <%= render "shared/user_nav" %>
           </div>
@@ -94,7 +95,7 @@
                   </li>
                   <li class="<%= current_page?(tips_tricks_path) ? "active" : nil%>">
                     <%= link_to tips_tricks_path do %>
-                      <i class="icon-star"></i>Tips & Triks
+                      <i class="icon-star"></i>Tips & Trikcs
                     <% end %>
                   </li>
                   <li class="<%= current_page?(profiles_path) ? "active" : nil%>">
@@ -119,50 +120,50 @@
       <%= yield %>
     </div> <!-- /container -->
 
-    <%#*<div class="footer">%>
-      <%#*<div class="container">%>
-        <%#*<div class="row">%>
-          <%#*<div class="span3">%>
-            <%#*<h5><i class="icon-home colored"></i> Sumbar Tourism</h5>%>
-            <%#*<hr class=" hidden-phone" />%>
-            <%#*<p>Valera is designed to help people of all skill levels designer or developer, huge nerd or early beginner. Use it as a complete kit or use to start something more complex.</p>%>
-          <%#*</div>%>
-          <%#*<div class="span3">%>
-            <%#*<h5><i class="icon-search colored"></i> Help</h5>%>
-            <%#*<hr class=" hidden-phone" />%>
-            <%#*<a href="#"><strong class="colored">FAQ</strong></a>%>
-            <%#*<br class="visible-phone" />%>
-            <%#*<hr class=" hidden-phone" />%>
-            <%#*<a href="#"><strong class="colored">Advertise</strong></a>%>
-            <%#*<hr class=" hidden-phone" />%>
-            <%#*<a href="#"><strong class="colored">Content Guidelines</strong></a>%>
-            <%#*<hr class=" hidden-phone" />%>
-          <%#*</div>%>
-          <%#*<div class="span3">%>
-            <%#*<h5><i class="icon-user colored"></i> Contact info</h5>%>
-            <%#*<hr class=" hidden-phone" />%>
-            <%#*<span><strong class="colored"> Adress:</strong> 123456 Street Name, Sumatera Barat</span>%>
-            <%#*<br class="visible-phone" />%>
-            <%#*<hr class=" hidden-phone" />%>
-            <%#*<span><strong class="colored">Phone:</strong> (022) 765-4321</span>%>
-            <%#*<hr class=" hidden-phone" />%>
-            <%#*<span><strong class="colored">Email:</strong> info@sumbar-tourism.com</span>%>
-            <%#*<hr class=" hidden-phone" />%>
-          <%#*</div>%>
-          <%#*<div class="span3 soc_icons">%>
-            <%#*<h5><i class="icon-globe colored"></i> Stay in touch</h5>%>
-            <%#*<span>Find out what's happening:</span>%>
-            <%#*<hr />%>
-            <%#*<a href="#"><div class="icon_t"></div></a>%>
-            <%#*<a href="#"><div class="icon_facebook"></div></a>%>
-            <%#*<a href="#"><div class="icon_dribble"></div></a>%>
-            <%#*<a href="#"><div class="icon_google"></div></a>%>
-            <%#*<a href="#"><div class="icon_in"></div></a>%>
-            <%#*<a href="#"><div class="icon_flickr"></div></a>%>
-          <%#*</div>%>
-        <%#*</div>%>
-      <%#*</div>%>
-    <%#*</div>%>
+<%#*<div class="footer">%>
+<%#*<div class="container">%>
+<%#*<div class="row">%>
+<%#*<div class="span3">%>
+<%#*<h5><i class="icon-home colored"></i> Sumbar Tourism</h5>%>
+<%#*<hr class=" hidden-phone" />%>
+<%#*<p>Valera is designed to help people of all skill levels designer or developer, huge nerd or early beginner. Use it as a complete kit or use to start something more complex.</p>%>
+<%#*</div>%>
+<%#*<div class="span3">%>
+<%#*<h5><i class="icon-search colored"></i> Help</h5>%>
+<%#*<hr class=" hidden-phone" />%>
+<%#*<a href="#"><strong class="colored">FAQ</strong></a>%>
+<%#*<br class="visible-phone" />%>
+<%#*<hr class=" hidden-phone" />%>
+<%#*<a href="#"><strong class="colored">Advertise</strong></a>%>
+<%#*<hr class=" hidden-phone" />%>
+<%#*<a href="#"><strong class="colored">Content Guidelines</strong></a>%>
+<%#*<hr class=" hidden-phone" />%>
+<%#*</div>%>
+<%#*<div class="span3">%>
+<%#*<h5><i class="icon-user colored"></i> Contact info</h5>%>
+<%#*<hr class=" hidden-phone" />%>
+<%#*<span><strong class="colored"> Adress:</strong> 123456 Street Name, Sumatera Barat</span>%>
+<%#*<br class="visible-phone" />%>
+<%#*<hr class=" hidden-phone" />%>
+<%#*<span><strong class="colored">Phone:</strong> (022) 765-4321</span>%>
+<%#*<hr class=" hidden-phone" />%>
+<%#*<span><strong class="colored">Email:</strong> info@sumbar-tourism.com</span>%>
+<%#*<hr class=" hidden-phone" />%>
+<%#*</div>%>
+<%#*<div class="span3 soc_icons">%>
+<%#*<h5><i class="icon-globe colored"></i> Stay in touch</h5>%>
+<%#*<span>Find out what's happening:</span>%>
+<%#*<hr />%>
+<%#*<a href="#"><div class="icon_t"></div></a>%>
+<%#*<a href="#"><div class="icon_facebook"></div></a>%>
+<%#*<a href="#"><div class="icon_dribble"></div></a>%>
+<%#*<a href="#"><div class="icon_google"></div></a>%>
+<%#*<a href="#"><div class="icon_in"></div></a>%>
+<%#*<a href="#"><div class="icon_flickr"></div></a>%>
+<%#*</div>%>
+<%#*</div>%>
+<%#*</div>%>
+<%#*</div>%>
 
     <div class="bottom-block">
       <div class="container">

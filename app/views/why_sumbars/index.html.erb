@@ -1,62 +1,107 @@
 <div class="why_sumbar">
   <div class="page-header">
-    <h2>Mengapa Sumbar ?</h2>
+    <h2>Why Sumatera Barat ?</h2>
   </div>
-  <ul class="thumbnails">
-    <%= render "why_sumbar" %>
-  </ul>
-</div>
 
-<div class="getting_there">
-  <div class="page-header">
-    <h2>Cara Ke Sini ?</h2>
+  <div id="accordion2" class="accordion">
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a href="#collapseOne" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle">
+          Mengapa Sumbar ?
+        </a>
+      </div>
+      <div class="accordion-body collapse" id="collapseOne" style="height: 0px;">
+        <div class="accordion-inner">
+          <div class="thumbnails">
+            <%= render "why_sumbar" %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a href="#collapseTwo" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle">
+          Cara Ke Sini ?
+        </a>
+      </div>
+      <div class="accordion-body collapse" id="collapseTwo" style="height: 0px;">
+        <div class="accordion-inner">
+          <div class="thumbnails">
+            <%= render "getting_there" %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a href="#collapseThree" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle">
+          Dimana Saya Tinggal ?
+        </a>
+      </div>
+      <div class="accordion-body collapse" id="collapseThree" style="height: 0px;">
+        <div class="accordion-inner">
+          <div class="thumbnails">
+            <%= render "where_to_stay" %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a href="#collapseFour" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle">
+          Hal Yang Bisa Dilakukan ?
+        </a>
+      </div>
+      <div class="accordion-body collapse" id="collapseFour" style="height: 0px;">
+        <div class="accordion-inner">
+          <div class="thumbnails">
+            <%= render "things_to_do" %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a href="#collapseFive" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle">
+          Hal Yang Bisa Dilihat ?
+        </a>
+      </div>
+      <div class="accordion-body collapse" id="collapseFive" style="height: 0px;">
+        <div class="accordion-inner">
+          <div class="thumbnails">
+            <%= render "things_to_see" %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a href="#collapseSix" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle">
+          Makanan ?
+        </a>
+      </div>
+      <div class="accordion-body collapse" id="collapseSix" style="height: 0px;">
+        <div class="accordion-inner">
+          <div class="thumbnails">
+            <%= render "food" %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a href="#collapseSeven" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle">
+          Transportasi ?
+        </a>
+      </div>
+      <div class="accordion-body collapse" id="collapseSeven" style="height: 0px;">
+        <div class="accordion-inner">
+          <div class="thumbnails">
+            <%= render "transportation" %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <ul class="thumbnails">
-    <%= render "getting_there" %>
-  </ul>
-</div>
 
-<div class="where_to_stay">
-  <div class="page-header">
-    <h2>Dimana Saya Tinggal ?</h2>
-  </div>
-  <ul class="thumbnails">
-    <%= render "where_to_stay" %>
-  </ul>
-</div>
-
-<div class="things_to_do">
-  <div class="page-header">
-    <h2>Hal Yang Bisa Dilakukan ?</h2>
-  </div>
-  <ul class="thumbnails">
-    <%= render "things_to_do" %>
-  </ul>
-</div>
-
-<div class="things_to_see">
-  <div class="page-header">
-    <h2>Hal Yang Bisa Dilihat ?</h2>
-  </div>
-  <ul class="thumbnails">
-    <%= render "things_to_see" %>
-  </ul>
-</div>
-
-<div class="food">
-  <div class="page-header">
-    <h2>Makanan ?</h2>
-  </div>
-  <ul class="thumbnails">
-    <%= render "food" %>
-  </ul>
-</div>
-
-<div class="transportation">
-  <div class="page-header">
-    <h2>Transportasi Sumbar ?</h2>
-  </div>
-  <ul class="thumbnails">
-    <%= render "transportation" %>
-  </ul>
 </div>

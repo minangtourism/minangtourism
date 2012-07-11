@@ -4,12 +4,22 @@ class TourismArticlesController < ApplicationController
   
   # GET /tourism_articles
   # GET /tourism_articles.json
+
   def index
     @tourism_articles = @tourism_articles.published.recent.page(params[:page]).per(10)
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @tourism_articles }
+    end
+  end
+
+  def search
+    @search = TourismArticle.published.search(params[:search], :order => :created_at, :sort_mode => :desc)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @tourism_articles }
     end
   end
 
@@ -68,8 +78,7 @@ class TourismArticlesController < ApplicationController
   def update
     respond_to do |format|
       if @tourism_article.update_attributes(params[:tourism_article])
-        format.html { redirect_to @tourism_article, notice: 'Tourism article was successfully updated.' }
-        format.json { head :no_content }
+        redirect_to @tourism_article, notice: "Tourism article was successfully updated. #{undo_link}"
       else
         format.html { render action: "edit" }
         format.json { render json: @tourism_article.errors, status: :unprocessable_entity }
@@ -88,4 +97,7 @@ class TourismArticlesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
 end

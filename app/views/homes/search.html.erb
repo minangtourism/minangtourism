@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      <div class="page-header">
+        <h1>Hasil Pencarian <small></small></h1>
+      </div>
+      <% @search_article.each do |article| %>
+        <p><%= link_to article.title, tourism_article_path(article) %></p>
+      <% end %>
+      <% @search_folktale.each do |folktale| %>
+        <p><%= link_to folktale.title, folktale_path(folktale) %></p>
+      <% end %>
+      <% @search_event.each do |event| %>
+        <p><%= link_to event.title, event_path(event) %></p>
+      <% end %>
+      <% @search_trick.each do |trick| %>
+        <p><%= link_to trick.title, tips_trick_path(trick) %></p>
+      <% end %>
+    </div>
+  </div>
+</div>

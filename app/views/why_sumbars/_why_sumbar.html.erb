@@ -1,10 +1,10 @@
 <% @why_sumbars.each do |why_sumbar| %>
-  <li class="span3">
+  <div class="span3">
     <div class="thumbnail"style="line-height: 18px;">
       <%= image_tag(why_sumbar.image.url(:tiny)) %>
       <h3 style="margin-top: 10px; margin-bottom: 10px;"><%= why_sumbar.title %></h3>
       <p>
         <%= why_sumbar.content %></p>
     </div>
-  </li>
+  </div>
 <% end %>

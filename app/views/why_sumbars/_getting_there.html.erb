@@ -1,10 +1,10 @@
 <% @getting_theres.each do |getting| %>
-  <li class="span3">
+  <div class="span3">
     <div class="thumbnail"style="line-height: 18px;">
       <%= image_tag(getting.image.url(:tiny)) %>
       <h3 style="margin-top: 10px; margin-bottom: 10px;"><%= getting.title %></h3>
       <p>
         <%= getting.content %></p>
     </div>
-  </li>
+  </div>
 <% end %>

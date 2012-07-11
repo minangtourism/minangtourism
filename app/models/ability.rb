@@ -35,6 +35,7 @@ class Ability
 
       can :like, Event
       cannot :like, Event, :likes => {user_id: user.id}
+      can :search, [TourismArticle]
 
     end
 

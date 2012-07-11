@@ -1,11 +1,14 @@
 SumbarTourism::Application.routes.draw do
 
   root :to => 'homes#index'
+  get '/search' => 'homes#search'
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   get '/users/sign_in' => 'homes#index', :defaults => { :prompt_sign_in => true }
   devise_for :users
+
+#  post "versions/:id/revert" => "versions#revert", :as => "revert_version"
 
   resources :sumbar_contents
   resources :contacts
@@ -14,15 +17,30 @@ SumbarTourism::Application.routes.draw do
   resources :tips_tricks
   resources :folktales
   resources :why_sumbars
-  resources :tourism_articles
   resources :reviews
 
+  # --------------------- SEARCH-------------------- #
+  resources :tourism_articles do
+    collection do
+      get :search
+    end
+  end
+
+#  resources :homes do
+#    collection do
+#      get :search
+#    end
+#  end
+  # --------------------- SEARCH-------------------- #
+
+  # --------------------- LIKE -------------------- #
   resources :events do
     member do
       post :like
     end
   end
-
+  # --------------------- LIKE -------------------- #
+  
   # ------------------- PROFILE ------------------- #
   resources :profiles do
     member do
