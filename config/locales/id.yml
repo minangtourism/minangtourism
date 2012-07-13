@@ -1,21 +1,15 @@
 id:
+        
   support:
     array:
       words_connector: ", "
       two_words_connector: " dan "
       last_word_connector: ", dan "
+
   activerecord:
     attributes:
-#      why_sumbar:
-#        title:        Judul
-#        description:  Deskripsi
-#        image:        Foto
-#      actions:
-#        action: Operasi
-
       user:
         login: "Username or email"
-
     errors:
       template:
          body: There were problems with the following fields
@@ -73,12 +67,6 @@ id:
       - :month
       - :year
   
-  views:
-    pagination:
-      previous: "Previous"
-      next: "Next"
-      truncate: "..."
-      
   time:
     formats:
       default: "%d %b %Y %H:%M:%S"
@@ -86,6 +74,7 @@ id:
       long: "%A, %d %B %Y %H:%M:%S %z"
       costum: "%A, %d %B %Y"
       costum_time: "%H:%M"
+      costum_birthday: "%d %B %Y"
       only_day: "%A"
       only_date: "%d"
       only_month: "%B"
@@ -93,6 +82,12 @@ id:
     am: "am"
     pm: "pm"
 
+  views:
+    pagination:
+      previous: "Previous"
+      next: "Next"
+      truncate: "..."
+      
   actionview_instancetag_blank_option: Silakan pilih
 
   general_text_No: 'Tidak'

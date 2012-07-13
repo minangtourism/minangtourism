@@ -8,7 +8,7 @@ class Ability
     cannot :read, User, state: :disabled
     cannot :read,
       [LocationTourism, Folktale, TourismArticle, Event, TipsTrick], :state => 'unpublished'
-    can [:reviews, :folktales, :tourism_articles, :location_tourisms, :events, :tips_tricks], User
+    can [:abouts, :reviews, :folktales, :tourism_articles, :location_tourisms, :events, :tips_tricks], User
 
     if user
       if user.is? :admin
@@ -29,7 +29,9 @@ class Ability
           [TourismArticle, Comment, Folktale, LocationTourism, Event, TipsTrick]
         can :create_comment,
           [TourismArticle, Folktale, LocationTourism, Event, TipsTrick]
-        can [:new_tourism_article, :create_tourism_article, :edit_tourism_article, :update_tourism_article, :destroy_tourism_article],
+        can [:new_tourism_article, :create_tourism_article, 
+          :edit_tourism_article, :update_tourism_article, :destroy_tourism_article,
+          :edit_about, :update_about],
           User, :id => user.id
       end
 

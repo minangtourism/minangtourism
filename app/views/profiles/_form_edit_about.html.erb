@@ -1,0 +1,36 @@
+<div class="profiles-home">
+  <h2>Tentang Anda</h2>
+  <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+  <%= f.input :about, :as => :text, :label => 'Tentang Saya:', :input_html => { :rows => 4, :class => 'span7' } %>
+  <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+
+  <h2>Info Umum</h2>
+  <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+  <%= f.input :name, :label => 'Nama Lengkap:'%>
+  <%= f.input :sex, :label => 'Saya Seorang:', :collection => [:male, :female]%>
+  <%= f.input :birthday, as: :string, :label => 'Tanggal Lahir:',
+    :input_html => {:data => {:behaviour => 'datepicker'}} %>
+  <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+
+  <h2>Info Kontak</h2>
+  <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+  <%= f.input :address, :as => :text, :label => 'Alamat:', :input_html => { :rows => 4, :class => 'span7' } %>
+  <%= f.input :city, :label => 'Kota Asal:'%>
+  <%= f.input :phone, :label => 'Mobile Phone:'%>
+  <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+
+  <h2>Instant Messaging</h2>
+  <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+  <%= f.input :website, :label => 'Website:'%>
+  <%= f.input :facebook, :label => 'Facebook:'%>
+  <%= f.input :twitter, :label => 'Twitter:'%>
+  <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+      abouts_profile_path(@profile), :class => 'btn btn-danger delete' %>
+  </div>
+</div>
+
+

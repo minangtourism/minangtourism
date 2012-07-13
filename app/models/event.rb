@@ -8,17 +8,13 @@ class Event < ActiveRecord::Base
   
   attr_accessible  :state, :description, :title, :user_id, :image, :start_date, :end_date, as: [:default] + User.valid_roles
 
+  #search
   define_index do
     indexes title, :as => :title, :sortable => true
 
     has created_at, updated_at
   end
   
-  define_index do
-    indexes location
-    indexes [title, description], :as => :title, :sortable => true
-  end
-
   has_attached_file :image, :styles => {
     :large => "740x380#",
     :medium => "340x180#",

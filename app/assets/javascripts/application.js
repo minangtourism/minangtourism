@@ -19,12 +19,14 @@
 //= require bootstrap-datepicker
 //= require mybootstrap
 
-$('#dp3').datepicker({
-    format: 'mm-dd-yyyy'
-});
+//$('#dp3').datepicker({
+//    format: 'mm-dd-yyyy'
+//});
 
+//date
 $(document).on("focus", "[data-behaviour~='datepicker']", function(e){
     $(this).datepicker({
+//        "format": "dd-mm-yyyy",
         "format": "yyyy-mm-dd",
         "weekStart": 1,
         "autoclose": true

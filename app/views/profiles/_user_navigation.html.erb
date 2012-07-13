@@ -8,7 +8,9 @@
     <%= profile_left_nav profile_path(@profile) do %>
       <i class="icon-home"></i> Profil
     <% end %>
-    <li><a href="#"><i class="icon-user"></i> Tentang</a></li>
+    <%= profile_left_nav abouts_profile_path(@profile) do %>
+      <i class="icon-user"></i> Tentang
+    <% end %>
 
     <li class="nav-header">Cerita Saya</li>
 

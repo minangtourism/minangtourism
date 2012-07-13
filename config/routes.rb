@@ -57,6 +57,10 @@ SumbarTourism::Application.routes.draw do
       get :location_tourisms
       get :events
       get :tips_tricks
+      
+      get :abouts
+      get :edit_about
+      put :update_about
     end
   end
 

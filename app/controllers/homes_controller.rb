@@ -14,10 +14,11 @@ class HomesController < ApplicationController
 
     #    @reviews = Comment.reviews.order("created_at desc").page(params[:page]).per(4)
     @reviews = Comment.reviews.recent.published.page(params[:page]).per(4)
+
+    @slideshows = Slideshow.recent.published.page(params[:page])
   end
 
   def search
-    ap params
     @search_article   = TourismArticle.published.search(params[:search], :order => :created_at, :sort_mode => :desc)
     @search_folktale  = Folktale.published.search(params[:search], :order => :created_at, :sort_mode => :desc)
     @search_event     = Event.published.search(params[:search], :order => :created_at, :sort_mode => :desc)

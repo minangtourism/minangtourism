@@ -12,7 +12,21 @@ class User < ActiveRecord::Base
   has_many :reviews, class_name: 'Comment', conditions: "commentable_type = 'LocationTourism'"
   has_many :likes
 
+  default_scope :include => :profile
+  has_one :profile, :autosave => true
+
   before_save :set_default_roles
+
+  delegate :about, to: :profile, allow_nil: true
+  delegate :address, to: :profile, allow_nil: true
+  delegate :birthday, to: :profile, allow_nil: true
+  delegate :city, to: :profile, allow_nil: true
+  delegate :facebook, to: :profile, allow_nil: true
+  delegate :name, to: :profile, allow_nil: true
+  delegate :phone, to: :profile, allow_nil: true
+  delegate :sex, to: :profile, allow_nil: true
+  delegate :twitter, to: :profile, allow_nil: true
+  delegate :website, to: :profile, allow_nil: true
 
   def set_default_roles
     self.roles = :member if roles.blank?
@@ -23,22 +37,21 @@ class User < ActiveRecord::Base
       [role.to_s.humanize, role]
     end
   end
-    
+
+  after_initialize do
+    self.profile ||= self.build_profile
+  end
+  
   validates :username, :presence => true, :uniqueness => true, :length => { :maximum => 30 }
   validates :password_confirmation, :presence => true, :if => :password
 
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable
 
-  # Setup accessible (or protected) attributes for your model
   default_fields = [:state, :username, :email, :password, :password_confirmation, :remember_me, :login, :image]
   attr_accessible *default_fields
   attr_accessible *(default_fields + [:roles, as: :admin])
-  # attr_accessible :title, :body
-  
+
   has_attached_file :image, :styles => {
     :medium => "230x230#",
     :member => "160x160#",
@@ -57,13 +70,8 @@ class User < ActiveRecord::Base
     end
   end
 
-  # Role Model
-  # optionally set the integer attribute to store the roles in,
-  # :roles_mask is the default
   roles_attribute :roles_mask
 
-  # declare the valid roles -- do not change the order if you add more
-  # roles later, always append them at the end!
   roles :admin, :operator, :member
 
   valid_roles.map do |role|

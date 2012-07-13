@@ -27,27 +27,6 @@ class LocationTourism < ActiveRecord::Base
   #  validates :twitter, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create }
   validates :hours_description, :presence => true
   validates :facility, :presence => true
-  #  validates :Description, :presence => true
-
-  #  state_machine :initial => :unregistered do
-  #    event :register do
-  #      transition :unregistered => :registered
-  #    end
-  #
-  #    event :unregister do
-  #      transition :registered => :unregistered
-  #    end
-  #  end
-  #
-  #  state_machine :access_state, :initial => :enabled do
-  #    event :enable do
-  #      transition all => :enabled
-  #    end
-  #
-  #    event :disable do
-  #      transition all => :disabled
-  #    end
-  #  end
 
   scope :recent, order("created_at desc")
 

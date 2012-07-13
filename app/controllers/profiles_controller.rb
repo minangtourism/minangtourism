@@ -1,14 +1,18 @@
 class ProfilesController < ApplicationController
 
   skip_before_filter :authenticate_user!, 
-    only: [:reviews, :folktales, :tourism_articles, :location_tourisms, :events, :tips_tricks,
+    only: [:abouts, :reviews, :folktales, :tourism_articles, :location_tourisms, :events, :tips_tricks,
     :new_tourism_article, :create_tourism_article
   ]
   load_and_authorize_resource :class => 'User'
-  before_filter :load_tourism_article, only: [:edit_tourism_article, :update_tourism_article, :destroy_tourism_article]
+  before_filter :load_tourism_article, only: [
+    :edit_tourism_article, :update_tourism_article, :destroy_tourism_article ]
 
   def index
     @profiles = @profiles.member.page(params[:page]).per(20)
+  end
+
+  def abouts
   end
 
   def reviews
@@ -91,9 +95,25 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def edit_about
+  end
+
+  def update_about
+    respond_to do |format|
+      if @profile.profile.update_attributes(params[:profile])
+        format.html { redirect_to abouts_profile_url(@profile), notice: 'Profile was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit_about" }
+        format.json { render json: @profile.profile.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   protected
 
   def load_tourism_article
     @tourism_article = @profile.tourism_articles.find(params[:tourism_article_id])
   end
+
 end

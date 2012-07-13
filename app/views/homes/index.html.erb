@@ -4,29 +4,16 @@
     <div id="myCarousel" class="carousel slide">
       <!-- Carousel items -->
       <div class="carousel-inner">
+        <% @slideshows.each_with_index do |slideshow, i| %>
+          <div class="<%= :active if i.zero?%> item">
+            <%= image_tag(slideshow.image.url(:normal)) %>
+            <div class="carousel-caption">
+              <h4><%= slideshow.title %></h4>
+              <p><%= slideshow.description %></p>
+            </div>
+          </div>
+        <% end%>
 
-        <div class="active item">
-          <%= image_tag "gallery1.jpg" %>
-          <div class="carousel-caption">
-            <h4>First Thumbnail label</h4>
-            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-          </div>
-        </div>
-
-        <div class="item">
-          <%= image_tag "gallery2.jpg" %>
-          <div class="carousel-caption">
-            <h4>First Thumbnail label</h4>
-            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-          </div>
-        </div>
-        <div class="item">
-          <%= image_tag "gallery3.jpg" %>
-          <div class="carousel-caption">
-            <h4>First Thumbnail label</h4>
-            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-          </div>
-        </div>
       </div>
       <!-- Carousel nav -->
       <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>

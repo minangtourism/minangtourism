@@ -19,7 +19,7 @@ RailsAdmin.config do |config|
   # config.audit_with :history, User
 
   # Or with a PaperTrail: (you need to install it first)
-#  config.audit_with :paper_trail, User
+  #  config.audit_with :paper_trail, User
 
   # Set the admin name here (optional second array element will appear in a beautiful RailsAdmin red ©)
   config.main_app_name = ['Sumbar Tourism', 'Admin']
@@ -54,9 +54,13 @@ RailsAdmin.config do |config|
 
   # Add models here if you want to go 'whitelist mode':
   # config.included_models = [CategoryLocTourism, Comment, Contact, Event, Folktale, LocationTourism, TipsTrick, TourismArticle, User]
-  config.included_models = [CategoryLocTourism, Comment, Contact, Event, Folktale, LocationTourism, TipsTrick, TourismArticle,
+  config.included_models = [
     User,
-    SumbarContent, WhySumbar, GettingThere, WhereToStay, ThingsToDo, ThingsToSee, Food, Transportation]
+    Profile,
+    Slideshow,
+    CategoryLocTourism, Comment, Contact, Event, Folktale, LocationTourism, TipsTrick, TourismArticle,
+    SumbarContent, WhySumbar, GettingThere, WhereToStay, ThingsToDo, ThingsToSee, Food, Transportation
+  ]
 
   # Application wide tried label methods for models' instances
   # config.label_methods << :description # Default is [:name, :title]
@@ -172,6 +176,105 @@ RailsAdmin.config do |config|
           #          bindings[:form].select("roles", bindings[:object].roles_enum, {}, { :multiple => true })
         end
       end
+    end
+    create do; end
+    update do; end
+  end
+
+  config.model Profile do
+    #    Found associations:
+    configure :user, :belongs_to_association   #   # Found columns:
+    configure :id, :integer
+    configure :name, :string
+    configure :sex, :string
+    configure :birthday, :date
+    configure :about, :text
+    configure :phone, :string
+    configure :address, :text
+    configure :city, :string
+    configure :website, :string
+    configure :facebook, :string
+    configure :twitter, :string
+    configure :user_id, :integer         # Hidden
+    configure :created_at, :datetime
+    configure :updated_at, :datetime
+    #    configure :image_file_name, :string         # Hidden
+    #    configure :image_content_type, :string         # Hidden
+    #    configure :image_file_size, :integer         # Hidden
+    #    configure :image_updated_at, :datetime         # Hidden
+    #    configure :image, :paperclip   #   # Sections:
+    list do
+      field :id
+      field :name
+      field :sex
+      field :phone
+      field :user
+    end
+    export do; end
+    show do
+      field :id
+      field :name
+      field :sex
+      field :birthday do
+        strftime_format "%A, %d %B %Y"
+      end
+      field :about
+      field :phone
+      field :address
+      field :city
+      field :website
+      field :facebook
+      field :twitter
+      field :user
+    end
+    edit do
+      field :name
+      field :sex, :enum
+      field :birthday
+      field :about
+      field :phone
+      field :address
+      field :city
+      field :website
+      field :facebook
+      field :twitter
+      field :user
+    end
+    create do; end
+    update do; end
+  end
+
+  config.model Slideshow do
+    configure :id,                  :integer
+    configure :title,               :string
+    configure :description,         :text
+    configure :state,               :string
+    configure :created_at,          :datetime
+    configure :updated_at,          :datetime
+    configure :image_file_name,     :string
+    configure :image_content_type,  :string
+    configure :image_file_size,     :integer
+    configure :image_updated_at,    :datetime
+    configure :image,               :paperclip
+    list do
+      field :id
+      field :title
+      field :state
+      field :image
+    end
+    export do; end
+    show do
+      field :id
+      field :title
+      field :description
+      field :state
+      field :image
+    end
+    edit do
+      field :title
+      field :state, :enum
+      field :description
+      field :image
     end
     create do; end
     update do; end

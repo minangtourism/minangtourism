@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120706165245) do
+ActiveRecord::Schema.define(:version => 20120713102109) do
 
   create_table "category_loc_tourisms", :force => true do |t|
     t.string   "name"
@@ -129,6 +129,22 @@ ActiveRecord::Schema.define(:version => 20120706165245) do
     t.string   "state"
   end
 
+  create_table "profiles", :force => true do |t|
+    t.string   "name"
+    t.string   "sex"
+    t.date     "birthday"
+    t.text     "about"
+    t.string   "phone"
+    t.text     "address"
+    t.string   "city"
+    t.string   "website"
+    t.string   "facebook"
+    t.string   "twitter"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+  end
+
   create_table "rails_admin_histories", :force => true do |t|
     t.text     "message"
     t.string   "username"
@@ -154,6 +170,18 @@ ActiveRecord::Schema.define(:version => 20120706165245) do
   end
 
   add_index "settings", ["key"], :name => "index_settings_on_key"
+
+  create_table "slideshows", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "state"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
 
   create_table "sumbar_contents", :force => true do |t|
     t.string   "title"
@@ -219,16 +247,5 @@ ActiveRecord::Schema.define(:version => 20120706165245) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-
-  create_table "versions", :force => true do |t|
-    t.string   "item_type",  :null => false
-    t.integer  "item_id",    :null => false
-    t.string   "event",      :null => false
-    t.string   "whodunnit"
-    t.text     "object"
-    t.datetime "created_at"
-  end
-
-  add_index "versions", ["item_type", "item_id"], :name => "index_versions_on_item_type_and_item_id"
 
 end
