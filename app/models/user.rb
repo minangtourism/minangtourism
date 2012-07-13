@@ -48,9 +48,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable
 
-  default_fields = [:state, :username, :email, :password, :password_confirmation, :remember_me, :login, :image]
-  attr_accessible *default_fields
-  attr_accessible *(default_fields + [:roles, as: :admin])
+#  default_fields = [:state, :username, :email, :password, :password_confirmation, :remember_me, :login, :image]
+  attr_accessible :state, :username, :email, :password, :password_confirmation, :remember_me, :login, :image, :roles
+#  attr_accessible *(default_fields + [:roles, as: :admin])
 
   has_attached_file :image, :styles => {
     :medium => "230x230#",

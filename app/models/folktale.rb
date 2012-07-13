@@ -6,7 +6,7 @@ class Folktale < ActiveRecord::Base
   # sebelum di rails s, di comment dulu. Setelah rails s selesai, aktifkan lagi yang di comment
   is_impressionable
   
-  attr_accessible :state, :description, :title, :user_id, :image, as: [:default] + User.valid_roles
+  attr_accessible :state, :description, :title, :user_id, :image
 
   define_index do
     indexes title, :as => :title, :sortable => true

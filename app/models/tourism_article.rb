@@ -6,7 +6,7 @@ class TourismArticle < ActiveRecord::Base
   # sebelum di rails s, di comment dulu. Setelah rails s selesai, aktifkan lagi yang di comment
   is_impressionable
 
-  attr_accessible :state, :content, :title, :video, :image, :user_id, as: [:default] + User.valid_roles
+  attr_accessible :state, :content, :title, :video, :image, :user_id
 
   define_index do
     indexes title, :as => :title, :sortable => true

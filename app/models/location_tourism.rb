@@ -6,7 +6,7 @@ class LocationTourism < ActiveRecord::Base
 
   attr_accessible :address, :state, :access_state, :category_loc_tourism_id, :category_tourism_id,
     :city, :description, :facebook, :facility, :hours_description,
-    :name, :phone, :twitter, :user_id, :web, :zip, :image, as: [:default] + User.valid_roles
+    :name, :phone, :twitter, :user_id, :web, :zip, :image
 
   has_attached_file :image, :styles => { 
     :medium => "560x280#",

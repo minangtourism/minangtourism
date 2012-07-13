@@ -21,6 +21,9 @@ gem 'acts_as_commentable'
 gem 'settler'
 gem "awesome_print", "~> 1.0.2"
 
+#rating
+gem "acts_as_rateable", :git => "git://github.com/anton-zaytsev/acts_as_rateable.git"
+
 #admin
 gem 'rails_admin'
 gem "cancan"

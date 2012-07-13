@@ -1,5 +1,5 @@
 class Slideshow < ActiveRecord::Base
-  attr_accessible :description, :state, :title, :image, as: [:default] + User.valid_roles
+  attr_accessible :description, :state, :title, :image
 
   has_attached_file :image, :styles => {
     :normal => "1200x500#",

@@ -6,7 +6,7 @@ class Event < ActiveRecord::Base
 
   is_impressionable
   
-  attr_accessible  :state, :description, :title, :user_id, :image, :start_date, :end_date, as: [:default] + User.valid_roles
+  attr_accessible  :state, :description, :title, :user_id, :image, :start_date, :end_date
 
   #search
   define_index do

@@ -5,9 +5,9 @@ RailsAdmin.config do |config|
 
   config.authorize_with :cancan
 
-  config.attr_accessible_role do
-    _current_user.roles.first || :default
-  end
+  #  config.attr_accessible_role do
+  #    _current_user.roles.first || :default
+  #  end
 
   # If your default_local is different from :en, uncomment the following 2 lines and set your default locale here:
   # require 'i18n'
@@ -58,6 +58,7 @@ RailsAdmin.config do |config|
     User,
     Profile,
     Slideshow,
+    Rate,
     CategoryLocTourism, Comment, Contact, Event, Folktale, LocationTourism, TipsTrick, TourismArticle,
     SumbarContent, WhySumbar, GettingThere, WhereToStay, ThingsToDo, ThingsToSee, Food, Transportation
   ]
@@ -318,7 +319,27 @@ RailsAdmin.config do |config|
     create do; end
     update do; end
   end
-  
+
+  config.model Rate do
+    configure :id, :integer
+    configure :score, :integer
+
+    list do
+      field :id
+    end
+    edit do
+#      field :score do
+#        read_only true
+#      end
+      field :score do
+        read_only true
+        pretty_value do
+          bindings[:object].published? ? "Yes, it's live!" : "No, in the loop..."
+        end
+      end
+    end
+  end
+
   config.model Comment do
     # Found associations:
     configure :comments, :has_many_association

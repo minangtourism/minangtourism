@@ -1,13 +1,13 @@
 class Comment < ActiveRecord::Base
 
   belongs_to :user
-
+  acts_as_rateable
   acts_as_commentable
 
   include ActsAsCommentable::Comment
 
   belongs_to :commentable, :polymorphic => true
-  attr_accessible :state, :comment, as: [:default] + User.valid_roles
+  attr_accessible :state, :comment
 
   define_index do
     indexes comment, :as => :comment, :sortable => true
