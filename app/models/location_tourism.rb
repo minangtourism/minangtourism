@@ -9,7 +9,8 @@ class LocationTourism < ActiveRecord::Base
     :name, :phone, :twitter, :user_id, :web, :zip, :image
 
   has_attached_file :image, :styles => { 
-    :medium => "560x280#",
+    :normal => "560x280#",
+    :medium => "230x230#",
     :small => "240x180#",
     :thumb => "160x120#"
   }

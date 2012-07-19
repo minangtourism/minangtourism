@@ -1,10 +1,10 @@
 <% @where_to_stays.each do |stay| %>
-  <div class="span3">
-    <div class="thumbnail"style="line-height: 18px;">
+  <ul class="span3">
+    <div class="thumbnail" style="line-height: 18px; margin-bottom: 30px;">
       <%= image_tag(stay.image.url(:tiny)) %>
       <h3 style="margin-top: 10px; margin-bottom: 10px;"><%= stay.title %></h3>
       <p>
         <%= stay.content %></p>
     </div>
-  </div>
+  </ul>
 <% end %>

@@ -1,107 +1,130 @@
-<div class="why_sumbar">
-  <div class="page-header">
-    <h2>Why Sumatera Barat ?</h2>
-  </div>
+<ul class="nav nav-tabs" id="myTab">
+  <li class="active"><a href="#why_sumbar">Why Sumbar ?</a></li>
+  <li><a href="#getting_there">Cara Ke Sini?</a></li>
+  <li><a href="#where_to_stay">Dimana Tinggal ?</a></li>
+  <li><a href="#things_to_do">Hal yang Bisa Dilakukan ?</a></li>
+  <li><a href="#things_to_see">Hal yang Bisa Dilihat ?</a></li>
+  <li><a href="#food">Makanan ?</a></li>
+  <li><a href="#transportation">Transportasi ?</a></li>
+</ul>
 
-  <div id="accordion2" class="accordion">
-    <div class="accordion-group">
-      <div class="accordion-heading">
-        <a href="#collapseOne" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle">
-          Mengapa Sumbar ?
-        </a>
-      </div>
-      <div class="accordion-body collapse" id="collapseOne" style="height: 0px;">
-        <div class="accordion-inner">
-          <div class="thumbnails">
-            <%= render "why_sumbar" %>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="accordion-group">
-      <div class="accordion-heading">
-        <a href="#collapseTwo" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle">
-          Cara Ke Sini ?
-        </a>
-      </div>
-      <div class="accordion-body collapse" id="collapseTwo" style="height: 0px;">
-        <div class="accordion-inner">
-          <div class="thumbnails">
-            <%= render "getting_there" %>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="accordion-group">
-      <div class="accordion-heading">
-        <a href="#collapseThree" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle">
-          Dimana Saya Tinggal ?
-        </a>
-      </div>
-      <div class="accordion-body collapse" id="collapseThree" style="height: 0px;">
-        <div class="accordion-inner">
-          <div class="thumbnails">
-            <%= render "where_to_stay" %>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="accordion-group">
-      <div class="accordion-heading">
-        <a href="#collapseFour" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle">
-          Hal Yang Bisa Dilakukan ?
-        </a>
-      </div>
-      <div class="accordion-body collapse" id="collapseFour" style="height: 0px;">
-        <div class="accordion-inner">
-          <div class="thumbnails">
-            <%= render "things_to_do" %>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="accordion-group">
-      <div class="accordion-heading">
-        <a href="#collapseFive" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle">
-          Hal Yang Bisa Dilihat ?
-        </a>
-      </div>
-      <div class="accordion-body collapse" id="collapseFive" style="height: 0px;">
-        <div class="accordion-inner">
-          <div class="thumbnails">
-            <%= render "things_to_see" %>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="accordion-group">
-      <div class="accordion-heading">
-        <a href="#collapseSix" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle">
-          Makanan ?
-        </a>
-      </div>
-      <div class="accordion-body collapse" id="collapseSix" style="height: 0px;">
-        <div class="accordion-inner">
-          <div class="thumbnails">
-            <%= render "food" %>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="accordion-group">
-      <div class="accordion-heading">
-        <a href="#collapseSeven" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle">
-          Transportasi ?
-        </a>
-      </div>
-      <div class="accordion-body collapse" id="collapseSeven" style="height: 0px;">
-        <div class="accordion-inner">
-          <div class="thumbnails">
-            <%= render "transportation" %>
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="tab-content">
+  <div class="tab-pane active" id="why_sumbar">
+    <ul class="thumbnails"><%= render "why_sumbar" %></ul>
   </div>
-
+  <div class="tab-pane" id="getting_there">
+    <ul class="thumbnails"><%= render "getting_there" %></ul>
+  </div>
+  <div class="tab-pane" id="where_to_stay">
+    <ul class="thumbnails"><%= render "where_to_stay" %></ul>
+  </div>
+  <div class="tab-pane" id="things_to_do">
+    <ul class="thumbnails"><%= render "things_to_do" %></ul>
+  </div>
+  <div class="tab-pane" id="things_to_see">
+    <ul class="thumbnails"><%= render "things_to_see" %></ul>
+  </div>
+  <div class="tab-pane" id="food">
+    <ul class="thumbnails"><%= render "food" %></ul>
+  </div>
+  <div class="tab-pane" id="transportation">
+    <ul class="thumbnails"><%= render "transportation" %></ul>
+  </div>
 </div>
+
+<%#*<div id="demo1" class="collapse in">%>
+<%#*Why Sumbar ?%>
+<%#*<div class="dashed" style="margin-bottom: 15px;"></div>%>
+<%#*<ul class="thumbnails">%>
+<%#= render "why_sumbar" %>
+<%#*</ul>%>
+<%#*</div>%>
+
+<%#*<div id="demo2" class="collapse in">%>
+<%#*Cara Ke Sini ?%>
+<%#*<div class="dashed" style="margin-bottom: 15px;"></div>%>
+<%#*<ul class="thumbnails">%>
+<%#= render "getting_there" %>
+<%#*</ul>%>
+<%#*</div>%>
+
+<%#*<div id="demo3" class="collapse in">%>
+<%#*Dimana Saya Tinggal ?%>
+<%#*<div class="dashed" style="margin-bottom: 15px;"></div>%>
+<%#*<ul class="thumbnails">%>
+<%#= render "where_to_stay" %>
+<%#*</ul>%>
+<%#*</div>%>
+
+<%#*<div id="demo4" class="collapse in">%>
+<%#*Hal Yang Bisa Dilakukan ?%>
+<%#*<div class="dashed" style="margin-bottom: 15px;"></div>%>
+<%#*<ul class="thumbnails">%>
+<%#= render "things_to_do" %>
+<%#*</ul>%>
+<%#*</div>%>
+
+<%#*<div id="demo5" class="collapse in">%>
+<%#*Hal Yang Bisa Dilihat ?%>
+<%#*<div class="dashed" style="margin-bottom: 15px;"></div>%>
+<%#*<ul class="thumbnails">%>
+<%#= render "things_to_see" %>
+<%#*</ul>%>
+<%#*</div>%>
+
+<%#*<div id="demo6" class="collapse in">%>
+<%#*Makanan ?%>
+<%#*<div class="dashed" style="margin-bottom: 15px;"></div>%>
+<%#*<ul class="thumbnails">%>
+<%#= render "food" %>
+<%#*</ul>%>
+<%#*</div>%>
+
+<%#*<div id="demo7" class="collapse in">%>
+<%#*Transportasi ?%>
+<%#*<div class="dashed" style="margin-bottom: 15px;"></div>%>
+<%#*<ul class="thumbnails">%>
+<%#= render "transportation" %>
+<%#*</ul>%>
+<%#*</div>%>
+
+<%#*</div>%>
+
+<%#*<div id="accordion2" class="accordion">%>
+<%#*<div class="accordion-group">%>
+<%#*<div class="accordion-heading">%>
+<%#*<a href="#collapseOne" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle">%>
+<%#*Collapsible Group Item #1%>
+<%#*</a>%>
+<%#*</div>%>
+<%#*<div class="accordion-body collapse in" id="collapseOne">%>
+<%#*<div class="accordion-inner">%>
+<%#*Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.%>
+<%#*</div>%>
+<%#*</div>%>
+<%#*</div>%>
+<%#*<div class="accordion-group">%>
+<%#*<div class="accordion-heading">%>
+<%#*<a href="#collapseTwo" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle">%>
+<%#*Collapsible Group Item #2%>
+<%#*</a>%>
+<%#*</div>%>
+<%#*<div class="accordion-body collapse" id="collapseTwo">%>
+<%#*<div class="accordion-inner">%>
+<%#*Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.%>
+<%#*</div>%>
+<%#*</div>%>
+<%#*</div>%>
+<%#*<div class="accordion-group">%>
+<%#*<div class="accordion-heading">%>
+<%#*<a href="#collapseThree" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle">%>
+<%#*Collapsible Group Item #3%>
+<%#*</a>%>
+<%#*</div>%>
+<%#*<div class="accordion-body collapse" id="collapseThree">%>
+<%#*<div class="accordion-inner">%>
+<%#*Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.%>
+<%#*</div>%>
+<%#*</div>%>
+<%#*</div>%>
+<%#*</div>%>

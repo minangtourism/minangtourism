@@ -17,16 +17,19 @@ class User < ActiveRecord::Base
 
   before_save :set_default_roles
 
+  #handle data profile
   delegate :about, to: :profile, allow_nil: true
   delegate :address, to: :profile, allow_nil: true
   delegate :birthday, to: :profile, allow_nil: true
   delegate :city, to: :profile, allow_nil: true
   delegate :facebook, to: :profile, allow_nil: true
   delegate :name, to: :profile, allow_nil: true
+  delegate :work, to: :profile, allow_nil: true
   delegate :phone, to: :profile, allow_nil: true
   delegate :sex, to: :profile, allow_nil: true
   delegate :twitter, to: :profile, allow_nil: true
   delegate :website, to: :profile, allow_nil: true
+  delegate :image, to: :profile, allow_nil: true
 
   def set_default_roles
     self.roles = :member if roles.blank?
@@ -49,16 +52,9 @@ class User < ActiveRecord::Base
     :recoverable, :rememberable, :trackable, :validatable
 
 #  default_fields = [:state, :username, :email, :password, :password_confirmation, :remember_me, :login, :image]
-  attr_accessible :state, :username, :email, :password, :password_confirmation, :remember_me, :login, :image, :roles
+  attr_accessible :state, :username, :email, :password, :password_confirmation, :remember_me, :login, :roles
 #  attr_accessible *(default_fields + [:roles, as: :admin])
 
-  has_attached_file :image, :styles => {
-    :medium => "230x230#",
-    :member => "160x160#",
-    :small => "100x100#",
-    :member_thumb => "50x50#",
-    :thumb => "50x50#"
-  }, :default_url => '/assets/missing/:class/:style/missing.png'
   attr_accessor :login
 
   def self.find_first_by_auth_conditions(warden_conditions)
@@ -110,7 +106,7 @@ class User < ActiveRecord::Base
     if !enabled?
       :disabled
     else
-      super # Use whatever other message
+      super
     end
   end
 

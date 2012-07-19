@@ -78,5 +78,3 @@ $(document).on('shown', '.modal', function(){
     $(':submit.btn-primary', this).attr('disabled', false);
 });
 
-//why sumbar ?
-//$(".collapse").collapse()   

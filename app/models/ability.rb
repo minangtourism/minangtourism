@@ -3,13 +3,14 @@ class Ability
 
   def initialize(user)
     can :read, :all
+    can [:abouts, :reviews, :folktales, :tourism_articles, :location_tourisms, :events, :tips_tricks], User
     cannot :access, :rails_admin
     cannot :dashboard
     cannot :read, User, state: :disabled
     cannot :read,
       [LocationTourism, Folktale, TourismArticle, Event, TipsTrick], :state => 'unpublished'
-    can [:abouts, :reviews, :folktales, :tourism_articles, :location_tourisms, :events, :tips_tricks], User
-
+    can :create, Contact
+    
     if user
       if user.is? :admin
         can :access, :rails_admin
@@ -21,7 +22,7 @@ class Ability
         can :access, :rails_admin
         can :dashboard
         can :manage,
-          [TourismArticle, Comment, Folktale, CategoryLocTourism, LocationTourism, Event, TipsTrick]
+          [Contact, TourismArticle, Comment, Folktale, CategoryLocTourism, LocationTourism, Event, TipsTrick]
       end
 
       if user.is? :member

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120713125820) do
+ActiveRecord::Schema.define(:version => 20120718154511) do
 
   create_table "category_loc_tourisms", :force => true do |t|
     t.string   "name"
@@ -140,9 +140,14 @@ ActiveRecord::Schema.define(:version => 20120713125820) do
     t.string   "website"
     t.string   "facebook"
     t.string   "twitter"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.integer  "user_id"
+    t.text     "work"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "rails_admin_histories", :force => true do |t|
@@ -256,10 +261,6 @@ ActiveRecord::Schema.define(:version => 20120713125820) do
     t.datetime "updated_at",                             :null => false
     t.string   "username"
     t.integer  "roles_mask",             :default => 0
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
     t.string   "state"
   end
 

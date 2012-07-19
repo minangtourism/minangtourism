@@ -1,6 +1,6 @@
 <div class="profiles-home">
-  <%= f.input :title, :label => 'Judul Berita Wisata' %>
-  <%= f.input :content, :as => :text, :label => 'Isi Berita Wisata', :input_html => { :rows => 20 } %>
+  <%= f.input :title, :label => 'Judul Berita Wisata', :input_html => {:class => 'span6'} %>
+  <%= f.input :content, :as => :text, :label => 'Isi Berita Wisata', :input_html => { :rows => 20, :class => 'span6' } %>
   <%= f.input :image %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>

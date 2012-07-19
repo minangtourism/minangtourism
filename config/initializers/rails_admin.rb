@@ -59,6 +59,7 @@ RailsAdmin.config do |config|
     Profile,
     Slideshow,
     Rate,
+    Setting,
     CategoryLocTourism, Comment, Contact, Event, Folktale, LocationTourism, TipsTrick, TourismArticle,
     SumbarContent, WhySumbar, GettingThere, WhereToStay, ThingsToDo, ThingsToSee, Food, Transportation
   ]
@@ -112,18 +113,17 @@ RailsAdmin.config do |config|
       :email
     end
 
-    # Found associations:
     configure :tourism_articles, :has_many_association
     configure :events, :has_many_association
     configure :folktales, :has_many_association
     configure :tips_tricks, :has_many_association
     configure :location_tourisms, :has_many_association
-    configure :comments, :has_many_association   #   # Found columns:
+    configure :comments, :has_many_association   
     configure :id, :integer
     configure :email, :string
-    configure :password, :password         # Hidden
-    configure :password_confirmation, :password         # Hidden
-    configure :reset_password_token, :string         # Hidden
+    configure :password, :password         
+    configure :password_confirmation, :password        
+    configure :reset_password_token, :string     
     configure :reset_password_sent_at, :datetime
     configure :remember_created_at, :datetime
     configure :sign_in_count, :integer
@@ -132,13 +132,12 @@ RailsAdmin.config do |config|
     configure :current_sign_in_ip, :string
     configure :last_sign_in_ip, :string
     configure :created_at, :datetime
-    configure :updated_at, :datetime   #   # Sections:
+    configure :updated_at, :datetime  
     list do
       field :id
       field :username
       field :email
       field :state, :enum
-      field :image
       field :roles do
         pretty_value do
           value.map do |role|
@@ -152,7 +151,6 @@ RailsAdmin.config do |config|
       field :username
       field :email
       field :state, :enum
-      field :image
       field :roles do
         pretty_value do
           value.map do |role|
@@ -167,7 +165,6 @@ RailsAdmin.config do |config|
       field :state, :enum
       field :password
       field :password_confirmation
-      field :image
       field :roles do
         visible do
           visible && !read_only
@@ -183,33 +180,33 @@ RailsAdmin.config do |config|
   end
 
   config.model Profile do
-    #    Found associations:
-    configure :user, :belongs_to_association   #   # Found columns:
+    configure :user, :belongs_to_association   
     configure :id, :integer
     configure :name, :string
     configure :sex, :string
     configure :birthday, :date
     configure :about, :text
+    configure :work, :text
     configure :phone, :string
     configure :address, :text
     configure :city, :string
     configure :website, :string
     configure :facebook, :string
     configure :twitter, :string
-    configure :user_id, :integer         # Hidden
+    configure :user_id, :integer        
     configure :created_at, :datetime
     configure :updated_at, :datetime
-    #    configure :image_file_name, :string         # Hidden
-    #    configure :image_content_type, :string         # Hidden
-    #    configure :image_file_size, :integer         # Hidden
-    #    configure :image_updated_at, :datetime         # Hidden
-    #    configure :image, :paperclip   #   # Sections:
+    configure :image_file_name, :string         
+    configure :image_content_type, :string         
+    configure :image_file_size, :integer         
+    configure :image_updated_at, :datetime         
+    configure :image, :paperclip   
     list do
       field :id
       field :name
-      field :sex
       field :phone
       field :user
+      field :image
     end
     export do; end
     show do
@@ -220,6 +217,7 @@ RailsAdmin.config do |config|
         strftime_format "%A, %d %B %Y"
       end
       field :about
+      field :work
       field :phone
       field :address
       field :city
@@ -227,12 +225,14 @@ RailsAdmin.config do |config|
       field :facebook
       field :twitter
       field :user
+      field :image
     end
     edit do
       field :name
       field :sex, :enum
       field :birthday
       field :about
+      field :work
       field :phone
       field :address
       field :city
@@ -240,6 +240,7 @@ RailsAdmin.config do |config|
       field :facebook
       field :twitter
       field :user
+      field :image
     end
     create do; end
     update do; end
@@ -282,17 +283,16 @@ RailsAdmin.config do |config|
   end
   
   config.model CategoryLocTourism do
-    # Found associations:
     configure :parent, :belongs_to_association
     configure :children, :has_many_association
-    configure :location_tourisms, :has_many_association   #   # Found columns:
+    configure :location_tourisms, :has_many_association   
     configure :id, :integer
     configure :name, :string
     configure :created_at, :datetime
     configure :updated_at, :datetime
-    configure :parent_id, :integer         # Hidden
+    configure :parent_id, :integer         
     configure :lft, :integer
-    configure :rgt, :integer   #   # Sections:
+    configure :rgt, :integer   
     list do
       field :id
       field :name
@@ -328,9 +328,6 @@ RailsAdmin.config do |config|
       field :id
     end
     edit do
-#      field :score do
-#        read_only true
-#      end
       field :score do
         read_only true
         pretty_value do
@@ -341,7 +338,6 @@ RailsAdmin.config do |config|
   end
 
   config.model Comment do
-    # Found associations:
     configure :comments, :has_many_association
     configure :user, :belongs_to_association   #   # Found columns:
     configure :id, :integer
@@ -381,8 +377,6 @@ RailsAdmin.config do |config|
   end
 
   config.model Contact do
-    # Found associations:
-    # Found columns:
     configure :id, :integer
     configure :name, :string
     configure :email, :string
@@ -422,7 +416,6 @@ RailsAdmin.config do |config|
   end
 
   config.model Event do
-    # Found associations:
     configure :user, :belongs_to_association
     configure :comments, :has_many_association   #   # Found columns:
     configure :id, :integer
@@ -489,7 +482,6 @@ RailsAdmin.config do |config|
   end
 
   config.model Folktale do
-    # Found associations:
     configure :user, :belongs_to_association   #   # Found columns:
     configure :id, :integer
     configure :title, :string
@@ -603,7 +595,6 @@ RailsAdmin.config do |config|
       field :user
       field :image
       field :state, :enum
-      #      field :access_state
     end
     edit do
       field :name
@@ -621,7 +612,6 @@ RailsAdmin.config do |config|
       field :user
       field :image
       field :state, :enum
-      #      field :access_state
       field :created_at do
         strftime_format "%A, %d %B %Y"
       end
@@ -1079,4 +1069,31 @@ RailsAdmin.config do |config|
     create do; end
     update do; end
   end
+
+  config.model Setting do
+    configure :key, :string
+    configure :alt, :string
+    configure :value, :text
+    list do
+      field :id
+      field :key
+      field :alt
+      field :value
+    end
+    export do; end
+    show do
+      field :id
+      field :key
+      field :alt
+      field :value
+    end
+    edit do
+      field :key
+      field :alt
+      field :value
+    end
+    create do; end
+    update do; end
+  end
+
 end

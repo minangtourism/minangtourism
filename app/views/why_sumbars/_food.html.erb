@@ -1,10 +1,10 @@
 <% @foods.each do |food| %>
-  <div class="span3">
-    <div class="thumbnail"style="line-height: 18px;">
+  <ul class="span3">
+    <div class="thumbnail" style="line-height: 18px; margin-bottom: 30px;">
       <%= image_tag(food.image.url(:tiny)) %>
       <h3 style="margin-top: 10px; margin-bottom: 10px;"><%= food.title %></h3>
       <p>
         <%= food.content %></p>
     </div>
-  </div>
+  </ul>
 <% end %>

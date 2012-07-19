@@ -1,7 +1,13 @@
 <div class="profiles-home">
+  <h2>Foto Profil</h2>
+  <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+  <%= f.input :image, label: 'Ganti Foto Profil', :hint => 'temukan foto untuk profilmu'%>
+  <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+
   <h2>Tentang Anda</h2>
   <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
-  <%= f.input :about, :as => :text, :label => 'Tentang Saya:', :input_html => { :rows => 4, :class => 'span7' } %>
+  <%= f.input :about, :as => :text, :label => 'Tentang Saya:',
+    :input_html => { :rows => 3, :class => 'span7' } %>
   <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
 
   <h2>Info Umum</h2>
@@ -10,11 +16,12 @@
   <%= f.input :sex, :label => 'Saya Seorang:', :collection => [:male, :female]%>
   <%= f.input :birthday, as: :string, :label => 'Tanggal Lahir:',
     :input_html => {:data => {:behaviour => 'datepicker'}} %>
+  <%= f.input :work, :as => :text, :label => 'Pekerjaan Saya:', :input_html => { :rows => 2, :class => 'span7' } %>
   <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
 
   <h2>Info Kontak</h2>
   <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
-  <%= f.input :address, :as => :text, :label => 'Alamat:', :input_html => { :rows => 4, :class => 'span7' } %>
+  <%= f.input :address, :as => :text, :label => 'Alamat:', :input_html => { :rows => 2, :class => 'span7' } %>
   <%= f.input :city, :label => 'Kota Asal:'%>
   <%= f.input :phone, :label => 'Mobile Phone:'%>
   <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>

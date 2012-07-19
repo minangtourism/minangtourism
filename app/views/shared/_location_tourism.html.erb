@@ -8,7 +8,19 @@
           <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">Wisata Alam <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <% CategoryLocTourism.all.each do |category_loc_tourism| %>
+              <% CategoryLocTourism.find_by_name('Wisata Alam').children.each do |category_loc_tourism| %>
+                <li class="<%= current_page?(location_tourisms_path(category_loc_tourism_id: category_loc_tourism.to_param)) ? "active" : nil%>">
+                  <%= link_to location_tourisms_path(category_loc_tourism_id: category_loc_tourism.to_param) do %>
+                    <%= category_loc_tourism.name %>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Wisata Sejarah <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <% CategoryLocTourism.find_by_name('Wisata Sejarah').children.each do |category_loc_tourism| %>
                 <li class="<%= current_page?(location_tourisms_path(category_loc_tourism_id: category_loc_tourism.to_param)) ? "active" : nil%>">
                   <%= link_to location_tourisms_path(category_loc_tourism_id: category_loc_tourism.to_param) do %>
                     <%= category_loc_tourism.name %>
@@ -25,12 +37,12 @@
   <ul class="thumbnails">
     <% @location_tourisms.each do |location_tourism| %>
       <li class="span3">
-        <div class="thumbnail">
+        <div class="thumbnail" style="padding: 15px;">
           <div class="title-location clearfix">
-            <h3>
+            <h2>
               <%= location_tourism.name %>
-              <%#= link_to location_tourism.name, location_tourism_path(location_tourism) %>
-            </h3>
+  <%#= link_to location_tourism.name, location_tourism_path(location_tourism) %>
+            </h2>
 
             <p class="pull-left">
               <i class="icon-star"></i>
@@ -39,12 +51,14 @@
               <i class="icon-star"></i>
               <i class="icon-star-empty"></i>
             </p>
-            <p class="pull-right" style="margin-right: 10px;">
+            <p class="pull-right">
               <i class="icon-pencil"></i>
               <%= location_tourism.comments.count %> Cerita Wisatawan
             </p>
           </div>
-          <%= image_tag(location_tourism.image.url(:small)) %>
+
+          <%= image_tag(location_tourism.image.url) %>
+
           <div class="caption">
             <div class="clearfix">
               <p><i class="icon-th-list"></i>

@@ -8,7 +8,7 @@
               <%= link_to image_tag(profile.image.url(:medium)), profile_path(profile) %>
             </li>
             <div class="nav-header" style="text-align: center">
-              <%= link_to 'Profil Saya', profile_path(profile), :class => 'btn btn-primary' %>
+              <%= link_to profile.name, profile_path(profile), :class => 'btn btn-primary' %>
             </div>
           </ul>
         </div><!--/.well -->

@@ -11,7 +11,7 @@
             <div class="span5">
               <div class="profiles-home"> <!-- Berita Wisatawan / TourismArticle -->
                 <%= link_to edit_about_profile_path(@profile) do %>
-                  <div class="btn btn-primary icon-pencil"> Sunting Profile</div>
+                  <div class="btn btn-primary icon-pencil"> Perbarui Informasi</div>
                 <% end %>
               </div>
             </div>
@@ -38,16 +38,24 @@
               <table class="table table-striped">
                 <tbody>
                   <tr>
-                    <td><i class="icon-bookmark"></i> Nama</td>
+                    <td><i class="icon-bookmark"></i></td>
+                    <td>Nama</td>
                     <td><%= @profile.name %></td>
                   </tr>
                   <tr>
-                    <td><i class="icon-user"></i> Saya seorang</td>
+                    <td><i class="icon-user"></i></td>
+                    <td>Saya seorang</td>
                     <td><%= @profile.sex %></td>
                   </tr>
                   <tr>
-                    <td><i class="icon-gift"></i> Ulang Tahun</td>
+                    <td><i class="icon-gift"></i> </td>
+                    <td>Ulang Tahun</td>
                     <td><%= l @profile.birthday, :format => :long if @profile.birthday.present? %></td>
+                  </tr>
+                  <tr>
+                    <td><i class="icon-briefcase"></i> </td>
+                    <td>Pekerjaan</td>
+                    <td><%= @profile.work %></td>
                   </tr>
                 </tbody>
               </table>
@@ -70,19 +78,23 @@
               <table class="table table-striped">
                 <tbody>
                   <tr>
-                    <td><i class="icon-tags"></i> Email</td>
+                    <td><i class="icon-tags"></i></td>
+                    <td>Email</td>
                     <td><%= @profile.email %></td>
                   </tr>
                   <tr>
-                    <td><i class="icon-briefcase"></i> Telepon</td>
+                    <td><i class="icon-bullhorn"></i></td>
+                    <td>Telepon</td>
                     <td><%= @profile.phone %></td>
                   </tr>
                   <tr>
-                    <td><i class="icon-map-marker"></i> Alamat</td>
+                    <td><i class="icon-map-marker"></i></td>
+                    <td>Alamat</td>
                     <td><%= @profile.address %></td>
                   </tr>
                   <tr>
-                    <td><i class="icon-globe"></i> Kota Asal</td>
+                    <td><i class="icon-globe"></i></td>
+                    <td>Kota Asal</td>
                     <td><%= @profile.city %></td>
                   </tr>
                 </tbody>
@@ -101,15 +113,18 @@
               <table class="table table-striped">
                 <tbody>
                   <tr>
-                    <td><i class="icon-tag"></i> Website</td>
+                    <td><i class="icon-asterisk"></i></td>
+                    <td>Website</td>
                     <td><%= @profile.website %></td>
                   </tr>
                   <tr>
-                    <td><i class="icon-tag"></i> Facebook</td>
+                    <td><i class="icon-asterisk"></i></td>
+                    <td>Facebook</td>
                     <td><%= @profile.facebook %></td>
                   </tr>
                   <tr>
-                    <td><i class="icon-tag"></i> Twitter</td>
+                    <td><i class="icon-asterisk"></i></td>
+                    <td>Twitter</td>
                     <td><%= @profile.twitter %></td>
                   </tr>
                 </tbody>

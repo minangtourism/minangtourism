@@ -15,7 +15,7 @@ class TourismArticle < ActiveRecord::Base
   end
 
   has_attached_file :image, :styles => { 
-    :large => "740x380#",
+    :large => "740x500#",  # # dipaksa, > kl ukurannya lebih akan di sesuaikan
     :medium => "340x180#",
     :tiny => "240x180#",
     :small => "100x100#",

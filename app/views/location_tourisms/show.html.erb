@@ -2,80 +2,140 @@
 <div class="container">
 
   <div class="row">
-    <div class="span12">
-      <div class="show-location-tourism">
-        <div class="pull-right" style="font-size: 14px; margin-top: 10px">
-          <i class="icon-user"></i> <%= link_to @location_tourism.user.username, profile_path(@location_tourism.user) %> /
-          <i class="icon-time"></i> <%= l @location_tourism.created_at, :format => :costum%>
-        </div>
-        <h2>
-          <%= @location_tourism.name %>
-        </h2>
-        <hr/>
+    <div class="span3"> <!-- Side Bar -->
+
+      <div class="well sidebar-nav">
+        <h3><%= @location_tourism.name %></h3>
+        <div class="dashed" style="margin-bottom: 15px"></div>
+
+        <%= image_tag(@location_tourism.user.image.url(:medium), :style => 'margin-bottom: 15px') %>
+
+        <table class="table table-striped" style="margin-bottom: 0px">
+          <tbody>
+            <tr>
+              <td><i class="icon-user"></i></td>
+              <td>Oleh:</td>
+              <td><%= link_to @location_tourism.user.username, profile_path(@location_tourism.user) %></td>
+            </tr>
+            <tr>
+              <td><i class="icon-time"></i></td>
+              <td>Hari:</td>
+              <td><%= l @location_tourism.created_at, :format => :costum %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div><!--/.well -->
+
+      <div class="well sidebar-nav">
+        <table class="table table-striped" style="margin-bottom: 0px">
+          <tbody>
+            <tr>
+              <td><i class="icon-pencil"></i></td>
+              <td>Cerita Wisatawan:</td>
+              <td><%= @location_tourism.comments.published.count%></td>
+            </tr>
+            <tr>
+              <td><i class="icon-user"></i></td>
+              <td>Cerita Pertama:</td>
+              <td><%= link_to @first_commentator.username, profile_path(@first_commentator) if @first_commentator %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div><!--/.well -->
+
+    </div> <!-- Side Bar -->
+
+    <div class="span9"> <!-- Content -->
+      <h3>Foto <%= @location_tourism.name %></h3>
+      <div class="dashed" style="margin-bottom: 15px"></div>
+      <ul class="thumbnails">
+        <li class="span3">
+          <%= image_tag(@location_tourism.image.url, :class => 'thumbnail') %>
+        </li>
+      </ul>
+
+      <div class="well sidebar-nav">
+        <%= link_to edit_location_tourism_path(@location_tourism), :class => 'btn btn-primary btn-mini pull-right' do %>
+          <i class="icon-pencil"></i> Update Informasi
+        <% end %>
+        <h3>Informasi <%= @location_tourism.name %></h3>
+        <div class="dashed" style="margin-bottom: 15px"></div>
+        <table class="table table-striped" style="margin-bottom: 0px">
+          <tbody>
+            <tr>
+              <td><i class="icon-thumbs-up"></i></td>
+              <td>Rating:</td>
+              <td>
+                <i class="icon-star"></i>
+                <i class="icon-star"></i>
+                <i class="icon-star"></i>
+                <i class="icon-star"></i>
+                <i class="icon-star-empty"></i>
+              </td>
+            </tr>
+            <tr>
+              <td><i class="icon-th-list"></i></td>
+              <td>Kategori Wisata:</td>
+              <td>
+                <%= @location_tourism.category_loc_tourism.parent.name %>,
+                <%= @location_tourism.category_loc_tourism.name %>
+              </td>
+            </tr>
+            <tr>
+              <td><i class="icon-map-marker"></i></td>
+              <td>Alamat:</td>
+              <td><%= @location_tourism.address %></td>
+            </tr>
+            <tr>
+              <td><i class="icon-globe"></i></td>
+              <td>Kota/Kabupaten:</td>
+              <td><%= @location_tourism.city %></td>
+            </tr>
+            <tr>
+              <td><i class="icon-briefcase"></i></td>
+              <td>Kode Pos:</td>
+              <td><%= @location_tourism.zip %></td>
+            </tr>
+            <tr>
+              <td><i class="icon-bullhorn"></i></td>
+              <td>Nomor Telepon:</td>
+              <td><%= @location_tourism.phone %></td>
+            </tr>
+            <tr>
+              <td><i class="icon-asterisk"></i></td>
+              <td>Website:</td>
+              <td><%= @location_tourism.web %></td>
+            </tr>
+            <tr>
+              <td><i class="icon-asterisk"></i></td>
+              <td>Facebook:</td>
+              <td><%= @location_tourism.facebook %></td>
+            </tr>
+            <tr>
+              <td><i class="icon-asterisk"></i></td>
+              <td>Twitter:</td>
+              <td><%= @location_tourism.twitter %></td>
+            </tr>
+            <tr>
+              <td><i class="icon-time"></i></td>
+              <td>Jam Buka:</td>
+              <td><%= @location_tourism.hours_description %></td>
+            </tr>
+            <tr>
+              <td><i class="icon-list-alt"></i></td>
+              <td>Fasilitas:</td>
+              <td style="white-space: pre-line"><%= @location_tourism.facility %></td>
+            </tr>
+            <tr>
+              <td><i class="icon-book"></i></td>
+              <td>Deskripsi:</td>
+              <td><%= @location_tourism.description %></td>
+            </tr>
+          </tbody>
+        </table>
+
       </div>
-    </div>
-
-    <div class="description-location-tourism">
-      <div class="span6">
-        <p style="font-size: 18px">
-          <i class="icon-star"></i>
-          <i class="icon-star"></i>
-          <i class="icon-star"></i>
-          <i class="icon-star"></i>
-          <i class="icon-star-empty"></i>
-        </p>
-        <p style="margin-right: 10px;">
-          <i class="icon-pencil"></i>
-          <%= @location_tourism.comments.count %> cerita wisatawan
-        </p>
-        <p>
-          <i class="icon-th-list"></i> Kategori:
-          <%= @location_tourism.category_loc_tourism.parent.name %>,
-          <%= @location_tourism.category_loc_tourism.name %>
-        </p>
-        <p>
-          <i class="icon-user"></i> 
-          Cerita Wisatawan Pertama oleh:
-          <%= link_to @first_commentator.username, profile_path(@first_commentator) if @first_commentator %>
-        </p><br/>
-        <p><i class="icon-map-marker"></i> Alamat: <%= @location_tourism.address %></p>
-        <p><i class="icon-road"></i> Kota: <%= @location_tourism.city %></p>
-        <p><i class="icon-road"></i> Kode Pos: <%= @location_tourism.zip %></p>
-        <p><i class="icon-road"></i> Phone: <%= @location_tourism.phone %></p>
-        <p><i class="icon-road"></i> Web: <%= @location_tourism.web %></p>
-        <p><i class="icon-road"></i> Facebook: <%= @location_tourism.facebook %></p>
-        <p><i class="icon-road"></i> Twitter: <%= @location_tourism.twitter %></p>
-        <p><i class="icon-road"></i> Jam Buka: <%= @location_tourism.hours_description %></p>
-        <p><i class="icon-road"></i> Fasilitas: <%= @location_tourism.facility %></p>
-        <p><i class="icon-road"></i> Deskripsi: <%= @location_tourism.description %></p><br/>
-
-        <%= link_to t('.edit', :default => t("helpers.links.edit")),
-          edit_location_tourism_path(@location_tourism), :class => 'btn btn-mini' %>
-      </div>
-    </div>
-
-    <ul class="thumbnails">
-      <li class="span6">
-        <a href="#" class="thumbnail">
-          <%= image_tag(@location_tourism.image.url(:medium)) %>
-        </a>
-      </li>
-      <li class="span2">
-        <a href="#" class="thumbnail">
-          <%= image_tag(@location_tourism.image.url(:thumb)) %>
-        </a>
-      </li>
-      <li class="span2">
-        <a href="#" class="thumbnail">
-          <%= image_tag(@location_tourism.image.url(:thumb)) %>
-        </a>
-      </li>
-      <li class="span2">
-        <a href="#" class="thumbnail">
-          <%= image_tag(@location_tourism.image.url(:thumb)) %>
-        </a>
-      </li>
-    </ul>
+    </div> <!-- Content -->
 
   </div>
 
@@ -83,7 +143,7 @@
     <legend>Tulis Ceritamu Disini!</legend>
 
     <div class="row">
-      <div class="span8">
+      <div class="span8" style="margin-bottom: 30px;">
         <%= form_for @comment, :url => create_comment_location_tourism_path(@location_tourism), :html => { :class => 'form-horizontal' } do |f| %>
           <div class="span1" style="margin-left: 0">
             <%= image_tag((current_user || User.new).image.url(:small), :class => 'thumbnail')%>

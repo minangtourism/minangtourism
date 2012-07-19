@@ -1,10 +1,10 @@
 <% @things_to_dos.each do |to_do| %>
-  <div class="span3">
-    <div class="thumbnail"style="line-height: 18px;">
+  <ul class="span3">
+    <div class="thumbnail" style="line-height: 18px; margin-bottom: 30px;">
       <%= image_tag(to_do.image.url(:tiny)) %>
       <h3 style="margin-top: 10px; margin-bottom: 10px;"><%= to_do.title %></h3>
       <p>
         <%= to_do.content %></p>
     </div>
-  </div>
+  </ul>
 <% end %>
