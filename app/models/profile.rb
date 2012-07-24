@@ -10,6 +10,8 @@ class Profile < ActiveRecord::Base
     :small => "100x100#",
     :thumb => "50x50#"
   }, :default_url => '/assets/missing/:class/:style/missing.png'
+
+  scope :recent, order("created_at desc")
   
   def sex_enum
     [['Laki-laki', 'male'], ['Perempuan', 'female']]

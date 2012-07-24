@@ -13,7 +13,7 @@ class ProfilesController < ApplicationController
     :edit_tourism_article, :update_tourism_article, :destroy_tourism_article ]
 
   def index
-    @profiles = @profiles.member.page(params[:page]).per(20)
+    @profiles = @profiles.member.recent.page(params[:page]).per(20)
   end
 
   def abouts

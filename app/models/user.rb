@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
   validates :password_confirmation, :presence => true, :if => :password
 
   default_scope :include => :profile
+  scope :recent, order("created_at desc")
 
   before_save :set_default_roles
 
