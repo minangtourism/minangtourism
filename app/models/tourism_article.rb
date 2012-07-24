@@ -22,7 +22,12 @@ class TourismArticle < ActiveRecord::Base
     :thumb => "145x75#"
   }
 
-  validates :title, :content, :presence => true
+  #Validation
+  validates_format_of :title, :presence => true, :uniqueness => true,
+    :with => /^[^`!@#\$%\^&*+_=]+$/,
+    :message => "Hanya boleh huruf dan angka"
+  
+  validates :content, :presence => true
 
   scope :recent, order("created_at desc")
 

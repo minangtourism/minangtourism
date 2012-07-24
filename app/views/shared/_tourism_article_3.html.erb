@@ -24,7 +24,7 @@ end
         </div>
         <%= image_tag(article.image.url(:tiny)) %>
         <div class="caption">
-          <p class="three-content-article"><%= truncate(article.content, :length => 100, :separator => ' ') %></p>
+          <p class="three-content-article"><%= raw truncate(article.content, :length => 100, :separator => ' ') %></p>
           <p class="clearfix">
             <span class="pull-left" style="margin-right: 8px; margin-top: 9px">
               <%= article.comments.published.count %>   <i class="icon-comment"></i>

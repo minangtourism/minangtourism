@@ -11,12 +11,17 @@
         <div class="dashed"></div>
         <div class="info-title">Tempat wisata yang ada di Sumatera Barat</div>
         <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
-
-        <% @location_tourisms.each do |location_tourism| %>
-          <div class="title-news">
-            <%= link_to truncate(location_tourism.name, :length => 80, :separator => ' '), location_tourism_path(location_tourism) %>
-          </div>
-          <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
+        <% if can? :create_location_tourism, @profile %>
+          <%= link_to new_location_tourism_profile_path(@profile) do %>
+            <div class="btn btn-primary icon-plus"> Tambah Data</div>
+          <% end %>
+          <div class="dashed" style="margin-bottom: 30px; margin-top: 15px"></div>
+          <% @location_tourisms.each do |location_tourism| %>
+            <div class="title-news">
+              <%= link_to truncate(location_tourism.name, :length => 80, :separator => ' '), location_tourism_path(location_tourism) %>
+            </div>
+            <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
+          <% end %>
         <% end %>
 
         <div class="all-events" style="margin-bottom: 0">

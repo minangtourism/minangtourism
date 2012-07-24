@@ -1,5 +1,8 @@
 id:
-        
+  simple_form:
+    sex:
+      male: "Laki-laki"
+      female: "Perempuan"
   support:
     array:
       words_connector: ", "
@@ -47,26 +50,25 @@ id:
 
   date:
     formats:
-      # Use the strftime parameters for formats.
-      # When no format has been given, it uses default.
-      # You can provide other formats here if you like!
       default: "%d %b %Y"
       short: "%d-%m-%y"
       long: "%d %B %Y"
+      only_day: "%A"
+      only_date: "%d"
+      only_month: "%B"
+      only_year: "%Y"
 
     day_names: [Minggu, Senin, Selasa, Rabu, Kamis, Jumat, Sabtu]
     abbr_day_names: [Min, Sen, Sel, Rab, Kam, Jum, Sab]
 
-    # Don't forget the nil at the beginning; there's no such thing as a 0th month
     month_names: [~, Januari, Februari, Maret, April, Mei, Juni, Juli, Agustus, September, Oktober, November, Desember]
     abbr_month_names: [~, Jan, Feb, Mar, Apr, Mei, Jun, Jul, Ags, Sep, Okt, Nov, Des]
 
-    # Used in date_select and datetime_select.
     order:
       - :day
       - :month
       - :year
-  
+
   time:
     formats:
       default: "%d %b %Y %H:%M:%S"

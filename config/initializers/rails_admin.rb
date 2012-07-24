@@ -58,7 +58,7 @@ RailsAdmin.config do |config|
     User,
     Profile,
     Slideshow,
-    Rate,
+#    Rate,
     Setting,
     CategoryLocTourism, Comment, Contact, Event, Folktale, LocationTourism, TipsTrick, TourismArticle,
     SumbarContent, WhySumbar, GettingThere, WhereToStay, ThingsToDo, ThingsToSee, Food, Transportation
@@ -320,22 +320,22 @@ RailsAdmin.config do |config|
     update do; end
   end
 
-  config.model Rate do
-    configure :id, :integer
-    configure :score, :integer
-
-    list do
-      field :id
-    end
-    edit do
-      field :score do
-        read_only true
-        pretty_value do
-          bindings[:object].published? ? "Yes, it's live!" : "No, in the loop..."
-        end
-      end
-    end
-  end
+#  config.model Rate do
+#    configure :id, :integer
+#    configure :score, :integer
+#
+#    list do
+#      field :id
+#    end
+#    edit do
+#      field :score do
+#        read_only true
+#        pretty_value do
+#          bindings[:object].published? ? "Yes, it's live!" : "No, in the loop..."
+#        end
+#      end
+#    end
+#  end
 
   config.model Comment do
     configure :comments, :has_many_association
@@ -370,7 +370,11 @@ RailsAdmin.config do |config|
     end
     edit do
       field :state, :enum
-      field :comment
+      field :comment, :text do
+        ckeditor do
+          true
+        end
+      end
     end
     create do; end
     update do; end
@@ -410,7 +414,11 @@ RailsAdmin.config do |config|
       field :name
       field :email
       field :phone
-      field :message
+      field :message, :text do
+        ckeditor do
+          true
+        end
+      end
     end
     update do; end
   end
@@ -469,7 +477,11 @@ RailsAdmin.config do |config|
     edit do;
       field :title
       field :state, :enum
-      field :description
+      field :description, :text do
+        ckeditor do
+          true
+        end
+      end
       field :user
       field :start_date
       field :end_date
@@ -520,7 +532,11 @@ RailsAdmin.config do |config|
     edit do
       field :title
       field :state, :enum
-      field :description
+      field :description, :text do
+        ckeditor do
+          true
+        end
+      end
       field :user
       field :image
       field :created_at do
@@ -608,7 +624,11 @@ RailsAdmin.config do |config|
       field :twitter
       field :hours_description
       field :facility
-      field :description
+      field :description, :text do
+        ckeditor do
+          true
+        end
+      end
       field :user
       field :image
       field :state, :enum
@@ -669,7 +689,11 @@ RailsAdmin.config do |config|
     edit do
       field :title
       field :state, :enum
-      field :description
+      field :description, :text do
+        ckeditor do
+          true
+        end
+      end
       field :user
       field :image
     end
@@ -725,7 +749,11 @@ RailsAdmin.config do |config|
     edit do
       field :title
       field :state, :enum
-      field :content
+      field :content, :text do
+        ckeditor do
+          true
+        end
+      end
       field :video
       field :user
       field :image

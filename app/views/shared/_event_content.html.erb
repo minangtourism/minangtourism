@@ -21,10 +21,10 @@
       </p>
     </div>
 
-    <%= image_tag(@event.image.url) %>
+    <%= image_tag(@event.image.url(:large)) %>
     <div class="content-article-show">
       <p class="clearfix">
-        <%= @event.description %>
+        <%= raw @event.description %>
       </p>
     </div>
   </div>

@@ -15,14 +15,19 @@ class TipsTrick < ActiveRecord::Base
   end
   
   has_attached_file :image, :styles => {
-    :large => "740x380#",
+    :large => "740x500#",
     :medium => "340x180#",
     :tiny => "240x180#",
     :small => "100x100#",
     :thumb => "145x75#"
   }
 
-  validates :title, :description, :presence => true
+  #Validation
+  validates_format_of :title, :presence => true, :uniqueness => true,
+    :with => /^[^`!@#\$%\^&*+_=]+$/,
+    :message => "Hanya boleh huruf dan angka"
+
+  validates :description, :presence => true
 
   scope :recent, order("created_at desc")
 

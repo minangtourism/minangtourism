@@ -12,6 +12,9 @@ class HomesController < ApplicationController
     #    @tips_tricks = TipsTrick.order("created_at desc").page(params[:page]).per(5)
     @tips_tricks = TipsTrick.published.recent.page(params[:page]).per(5)
 
+    #    @tips_tricks = TipsTrick.order("created_at desc").page(params[:page]).per(5)
+    @location_tourisms = LocationTourism.published.recent.page(params[:page]).per(1)
+
     #    @reviews = Comment.reviews.order("created_at desc").page(params[:page]).per(4)
     @reviews = Comment.reviews.recent.published.page(params[:page]).per(4)
 

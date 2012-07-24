@@ -1,7 +1,12 @@
 <div class="profiles-home">
-  <%= f.input :title, :label => 'Judul Berita Wisata', :input_html => {:class => 'span6'} %>
-  <%= f.input :content, :as => :text, :label => 'Isi Berita Wisata', :input_html => { :rows => 20, :class => 'span6' } %>
-  <%= f.input :image %>
+  <h2>Tambah Berita Wisata</h2>
+  <div class="dashed" style="margin-bottom: 30px; margin-top: 0"></div>
+
+  <%= f.input :title, :label => 'Judul', :input_html => {:class => 'span5'} %>
+  <%= f.input :content, :label => false %>
+  <%= f.input :image, :label => false, :style => 'margin-top: 20px;' %>
+  <span class="help-block">Pilih gambar untuk berita wisata</span>
+  
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
@@ -10,3 +15,5 @@
 </div>
 
 
+<%#= f.input :content, :as => :ckeditor, :label => false, :input_html => { :toolbar => 'Full' } %>
+<%#= f.input :content, :as => :text, :label => 'Isi Berita Wisata', :input_html => { :rows => 20, :class => 'span6' } %>

@@ -21,7 +21,7 @@ end
         </div>
         <%= image_tag(tips_trick.image.url(:tiny)) %>
         <div class="caption">
-          <p class="three-content-article"><%= truncate(tips_trick.description, :length => 100, :separator => ' ') %></p>
+          <p class="three-content-article"><%= raw truncate(tips_trick.description, :length => 100, :separator => ' ') %></p>
           <p class="clearfix">
             <span class="pull-left" style="margin-right: 8px; margin-top: 9px">
               <%= tips_trick.comments.published.count %>

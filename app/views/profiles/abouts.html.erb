@@ -22,8 +22,8 @@
               <div class="dashed"></div>
               <div class="info-title">Informasi tentang saya</div>
               <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
-              <div class="about-me" style="white-space: pre-wrap">
-                <%= @profile.about %>
+              <div class="about-me">
+                <%= raw @profile.about %>
               </div>
             </div>
           </div>
@@ -78,12 +78,12 @@
               <table class="table table-striped">
                 <tbody>
                   <tr>
-                    <td><i class="icon-tags"></i></td>
+                    <td><i class="icon-envelope"></i></td>
                     <td>Email</td>
                     <td><%= @profile.email %></td>
                   </tr>
                   <tr>
-                    <td><i class="icon-bullhorn"></i></td>
+                    <td><i class="icon-phone"></i></td>
                     <td>Telepon</td>
                     <td><%= @profile.phone %></td>
                   </tr>
@@ -93,7 +93,7 @@
                     <td><%= @profile.address %></td>
                   </tr>
                   <tr>
-                    <td><i class="icon-globe"></i></td>
+                    <td><i class="icon-home"></i></td>
                     <td>Kota Asal</td>
                     <td><%= @profile.city %></td>
                   </tr>
@@ -113,17 +113,17 @@
               <table class="table table-striped">
                 <tbody>
                   <tr>
-                    <td><i class="icon-asterisk"></i></td>
+                    <td><i class="icon-globe"></i></td>
                     <td>Website</td>
                     <td><%= @profile.website %></td>
                   </tr>
                   <tr>
-                    <td><i class="icon-asterisk"></i></td>
+                    <td><i class="icon-facebook"></i></td>
                     <td>Facebook</td>
                     <td><%= @profile.facebook %></td>
                   </tr>
                   <tr>
-                    <td><i class="icon-asterisk"></i></td>
+                    <td><i class="icon-twitter"></i></td>
                     <td>Twitter</td>
                     <td><%= @profile.twitter %></td>
                   </tr>

@@ -1,6 +1,7 @@
 SumbarTourism::Application.routes.draw do
 
   root :to => 'homes#index'
+  mount Ckeditor::Engine => '/ckeditor'
   get '/search' => 'homes#search'
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
@@ -45,7 +46,10 @@ SumbarTourism::Application.routes.draw do
   resources :profiles do
     member do
       get :reviews
+
       get :folktales
+      get :new_folktale
+      post :create_folktale
 
       get :tourism_articles
       get :new_tourism_article
@@ -55,8 +59,16 @@ SumbarTourism::Application.routes.draw do
       delete "destroy_tourism_article/:tourism_article_id", action: :destroy_tourism_article, as: :destroy_tourism_article
       
       get :location_tourisms
+      get :new_location_tourism
+      post :create_location_tourism
+      
       get :events
+      get :new_event
+      post :create_event
+      
       get :tips_tricks
+      get :new_tips_trick
+      post :create_tips_trick
       
       get :abouts
       get :edit_about

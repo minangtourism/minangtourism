@@ -9,22 +9,26 @@
       <div class="profiles-home"> <!-- Acara / Event -->
         <h2>Cerita Rakyat</h2>
         <div class="dashed"></div>
-        <div class="info-title">Cerita Rakyat Sumatera Barat</div>
+        <div class="info-title">Arsip cerita rakyat saya</div>
         <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
-
-        <% @folktales.each do |folktale| %>
-          <div class="title-news">
-            <%= link_to truncate(folktale.title, :length => 80, :separator => ' '), folktale_path(folktale) %>
-          </div>
-          <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
+        <% if can? :create_folktale, @profile %>
+          <%= link_to new_folktale_profile_path(@profile) do %>
+            <div class="btn btn-primary icon-plus"> Tambah Data</div>
+          <% end %>
+          <div class="dashed" style="margin-bottom: 30px; margin-top: 15px"></div>
+          <% @folktales.each do |folktale| %>
+            <div class="title-news">
+              <%= link_to truncate(folktale.title, :length => 80, :separator => ' '), folktale_path(folktale) %>
+            </div>
+            <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
+          <% end %>
         <% end %>
-
         <div class="all-events" style="margin-bottom: 0">
           <%= paginate @folktales %>
         </div>
       </div>
     </div> <!-- Acara / Event -->
 
-  </div><!--/span-->
-</div><!--/row-->
+  </div>
+</div>
 

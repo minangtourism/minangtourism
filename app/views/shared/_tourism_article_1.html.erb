@@ -10,7 +10,7 @@
     </div>
     <%= image_tag(article.image.url(:large)) %>
     <div class="caption">
-      <p class="one-content-article"><%= truncate(article.content, :length => 400, :separator => ' ') %></p>
+      <p class="one-content-article"><%= raw truncate(article.content, :length => 400, :separator => ' ') %></p>
       <p class="clearfix">
         <span class="pull-left" style="margin-right: 8px; margin-top: 9px">
           <%= article.comments.published.count %> <i class="icon-comment"></i></span>

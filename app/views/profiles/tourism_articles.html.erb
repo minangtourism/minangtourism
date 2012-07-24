@@ -16,7 +16,6 @@
             <div class="btn btn-primary icon-plus"> Tambah Data</div>
           <% end %>
           <div class="dashed" style="margin-bottom: 30px; margin-top: 15px"></div>
-
           <% @tourism_articles.each do |tourism_article| %>
             <div class="title-news">
               <div class="clearfix">
@@ -35,7 +34,6 @@
             <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
           <% end %>
         <% end %>
-
         <div class="all-events" style="margin-bottom: 0">
           <%= paginate @tourism_articles %>
         </div>

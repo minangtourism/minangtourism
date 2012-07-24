@@ -5,7 +5,7 @@ class Event < ActiveRecord::Base
   has_many :likes, as: :likeable
 
   is_impressionable
-  
+
   attr_accessible  :state, :description, :title, :user_id, :image, :start_date, :end_date
 
   #search
@@ -23,7 +23,11 @@ class Event < ActiveRecord::Base
     :thumb => "145x75#"
   }
 
-  validates :title, :presence => true
+  #Validation
+  validates_format_of :title, :presence => true, :uniqueness => true,
+    :with => /^[^`!@#\$%\^&*+_=]+$/,
+    :message => "Hanya boleh huruf dan angka"
+  
   validates :description, :presence => true
   validates :start_date, :presence => true
   validates :end_date, :presence => true

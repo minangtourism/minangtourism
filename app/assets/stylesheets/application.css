@@ -12,6 +12,7 @@
  *= require bootstrap-combobox
  *= require bootstrap-datepicker
  *= require_self
+ *= require_contents
 */
 /*body {
     background: url("/assets/circles.png") repeat fixed 0 0 transparent;

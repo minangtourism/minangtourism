@@ -24,7 +24,7 @@
 </div>
 
 <div class="container content-sumbar"> <!-- CONTENT SUMBAR -->
-  <div class="row">
+  <div class="row" style="margin-bottom: 30px">
 
     <div class="span4"> <!-- EVENT / ACARA -->
       <h2>Acara Wisata</h2>
@@ -35,10 +35,10 @@
       <% @events.each do |event| %>
         <div class="eventsdate">
           <div class="span1 cont">
-            <%= l event.created_at, :format => :only_day %>
-            <div class="event-date"><%= l event.created_at, :format => :only_date %></div>
-            <div class="event-month"><%= l event.created_at, :format => :only_month %></div>
-            <div class="event-year"><%= l event.created_at, :format => :only_year %></div>
+            <%= l event.start_date, :format => :only_day  %>
+            <div class="event-date"><%= l event.start_date, :format => :only_date %></div>
+            <div class="event-month"><%= l event.start_date, :format => :only_month %></div>
+            <div class="event-year"><%= l event.start_date, :format => :only_year %></div>
           </div>
         </div>
 
@@ -47,7 +47,7 @@
             <%= link_to truncate(event.title, :length => 80, :separator => ' '), event_path(event) %>
           </div>
           <p>
-            <%= truncate(event.description, :length => 80, :separator => ' ') %>
+            <%= raw truncate(event.description, :length => 100, :separator => ' ') %>
           </p>
           <div class="clearfix">
             <div class="event-like pull-right">
@@ -107,25 +107,59 @@
     <% end %> <!-- END TOURISM ARTICLES / BERITA WISATA -->
 
 
-    <div class="span4"> <!-- PETA JARAK -->
-      <h2>Jarak</h2>
-      <div class="dashed"></div>
-      <div class="info-title">Cari jarak antara negara atau kota ke lokasi wisata Sumatera Barat</div>
-      <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+<%#*<div class="span4"> <!-- PETA JARAK -->%>
+<%#*<h2>Jarak</h2>%>
+<%#*<div class="dashed"></div>%>
+<%#*<div class="info-title">Cari jarak antara negara atau kota ke lokasi wisata Sumatera Barat</div>%>
+<%#*<div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>%>
 
-      <div class="maps">
-        <form class="well">
-          <input type="text" class="span3" placeholder="Lokasi Saya"/>
-          <input type="text" class="span3" placeholder="Lokasi Wisata Sumbar"/>
-          <button type="submit" class="btn">Submit</button>
-        </form>
-      </div>
-      <div class="dashed" style="margin-bottom: 15px; margin-top: 0;"></div>
-      <div class="all-events">
-        <%= link_to 'Selanjutnya', tourism_articles_path, :class => 'btn btn-inverse btn-mini' %>
-      </div>
-    </div> <!-- END PETA JARAK -->
+<%#*<div class="maps">%>
+<%#*<form class="well">%>
+<%#*<input type="text" class="span3" placeholder="Lokasi Saya"/>%>
+<%#*<input type="text" class="span3" placeholder="Lokasi Wisata Sumbar"/>%>
+<%#*<button type="submit" class="btn">Submit</button>%>
+<%#*</form>%>
+<%#*</div>%>
+<%#*<div class="dashed" style="margin-bottom: 15px; margin-top: 0;"></div>%>
+<%#*<div class="all-events">%>
+<%#= link_to 'Selanjutnya', tourism_articles_path, :class => 'btn btn-inverse btn-mini' %>
+<%#*</div>%>
+<%#*</div> <!-- END PETA JARAK -->%>
 
+    <% if @location_tourisms %>
+      <div class="span4">
+        <h2>Tempat Wisata</h2>
+        <div class="dashed"></div>
+        <div class="info-title">Tempat Wisata terbaru Sumatera Barat</div>
+        <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+        <div class="thumbnail" style="padding: 19px">
+          <% @location_tourisms.each do |location_tourism| %>
+            <div style="margin-bottom: 15px">
+              <%= image_tag(location_tourism.image.url) %>
+            </div>
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <td><i class="icon-user"></i></td>
+                  <td>Wisatawan</td>
+                  <td><%= link_to location_tourism.user.username, profile_path(location_tourism.user) %></td>
+                </tr>
+                <tr>
+                  <td><i class="icon-bookmark"></i></td>
+                  <td>Nama Tempat</td>
+                  <td><%= link_to location_tourism.name, location_tourism_path(location_tourism) %></td>
+                </tr>
+                <tr>
+                  <td><i class="icon-pencil"></i></td>
+                  <td>Cerita Wisatawan</td>
+                  <td><%= location_tourism.comments.published.count%></td>
+                </tr>
+              </tbody>
+            </table>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
   </div>
 
   <div class="row"> <!-- CERITA WISATAWAN -->
@@ -149,16 +183,16 @@
               <div class="clearfix">
                 <div class="date-publish pull-right"><i class="icon-time"></i> Rabu, 27 Juni 2012</div>
                 <div class="rate-location pull-left">
-                  <i class="icon-star"></i>
-                  <i class="icon-star"></i>
-                  <i class="icon-star"></i>
-                  <i class="icon-star"></i>
-                  <i class="icon-star-empty"></i>
+  <%#*<i class="icon-star"></i>%>
+  <%#*<i class="icon-star"></i>%>
+  <%#*<i class="icon-star"></i>%>
+  <%#*<i class="icon-star"></i>%>
+  <%#*<i class="icon-star-empty"></i>%>
                 </div>
               </div>
 
               <div>
-                <%= truncate(review.comment, :length => 50, :separator => ' ') %>
+                <%= raw truncate(review.comment, :length => 50, :separator => ' ') %>
                 <span class="small-view">
                   <i class="" >
                     <%= link_to location_tourism_path(review.commentable, anchor: "comment-#{review.id}") do %>
@@ -179,7 +213,7 @@
           </div>
         </div>
       </div> <!-- end row -->
-    </div> 
+    </div>
 
     <div class="span4">
       <h2>Menu Wisatawan</h2>

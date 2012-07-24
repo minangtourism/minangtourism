@@ -14,20 +14,25 @@ class LocationTourism < ActiveRecord::Base
     :small => "240x180#",
     :thumb => "160x120#"
   }
-
-  validates :name, :presence => true
+  
+  #Validation
+  validates_format_of :name, :presence => true, :uniqueness => true, 
+    :with => /^[^0-9`!@#\$%\^&*+_=]+$/,
+    :message => "Hanya boleh huruf dan angka"
+  
   validates :address, :presence => true
-  validates :city, :presence => true
-  #  validates :zip, :presence => true
-  #  validates :phone, :presence => true
-  #  validates :web, :presence => true
-  #  validates :web, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create }
-  #  validates :facebook, :presence => true
-  #  validates :facebook, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create }
-  #  validates :twitter, :presence => true
-  #  validates :twitter, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create }
-  validates :hours_description, :presence => true
-  validates :facility, :presence => true
+  
+  validates_format_of :zip,
+    :with => %r{\d{5}(-\d{4})?},
+    :allow_blank => true,
+    :allow_nil => true,
+    :message => "kode pos sumbar = 25111 - 27779"
+
+  validates_format_of :phone,
+    :with => /\A[0-9]{5}\Z/,
+    :allow_blank => true,
+    :allow_nil => true,
+    :message => "hanya boleh angka 0-9, minimal 5 digit"
 
   scope :recent, order("created_at desc")
 

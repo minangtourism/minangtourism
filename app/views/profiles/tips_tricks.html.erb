@@ -11,12 +11,18 @@
         <div class="dashed"></div>
         <div class="info-title">Tips & Trick Wisata Sumatera Barat</div>
         <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+        <% if can? :create_tips_trick, @profile %>
+          <%= link_to new_tips_trick_profile_path(@profile) do %>
+            <div class="btn btn-primary icon-plus"> Tambah Data</div>
+          <% end %>
+          <div class="dashed" style="margin-bottom: 30px; margin-top: 15px"></div>
 
-        <% @tips_tricks.each do |tips_trick| %>
-          <div class="title-news">
-            <%= link_to truncate(tips_trick.title, :length => 80, :separator => ' '), tips_trick_path(tips_trick) %>
-          </div>
-          <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
+          <% @tips_tricks.each do |tips_trick| %>
+            <div class="title-news">
+              <%= link_to truncate(tips_trick.title, :length => 80, :separator => ' '), tips_trick_path(tips_trick) %>
+            </div>
+            <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
+          <% end %>
         <% end %>
 
         <div class="all-events" style="margin-bottom: 0">

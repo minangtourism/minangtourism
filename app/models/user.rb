@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
   include RoleModel
 
-  #  has_many :why_sumbars
   has_many :tourism_articles
   has_many :events
   has_many :folktales
@@ -11,9 +10,27 @@ class User < ActiveRecord::Base
   has_many :sumbar_contents
   has_many :reviews, class_name: 'Comment', conditions: "commentable_type = 'LocationTourism'"
   has_many :likes
+  has_one :profile, :autosave => true
+
+  devise :database_authenticatable, :registerable,
+    :recoverable, :rememberable, :trackable, :validatable
+
+  attr_accessor :login
+  
+  attr_accessible :state, :username, :email, :password, :password_confirmation, :remember_me, :login, :roles
+
+  validates :username,
+    :presence => true,
+    :uniqueness => true,
+    :length => {:maximum => 15},
+    :format => {:with => /^[A-Za-z\d_]+$/}
+  #    :format => {:with => /^[^0-9`!@#\$%\^&*+_=]+$/}
+  validates :email,
+    :presence => true,
+    :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
+  validates :password_confirmation, :presence => true, :if => :password
 
   default_scope :include => :profile
-  has_one :profile, :autosave => true
 
   before_save :set_default_roles
 
@@ -44,18 +61,6 @@ class User < ActiveRecord::Base
   after_initialize do
     self.profile ||= self.build_profile
   end
-  
-  validates :username, :presence => true, :uniqueness => true, :length => { :maximum => 30 }
-  validates :password_confirmation, :presence => true, :if => :password
-
-  devise :database_authenticatable, :registerable,
-    :recoverable, :rememberable, :trackable, :validatable
-
-#  default_fields = [:state, :username, :email, :password, :password_confirmation, :remember_me, :login, :image]
-  attr_accessible :state, :username, :email, :password, :password_confirmation, :remember_me, :login, :roles
-#  attr_accessible *(default_fields + [:roles, as: :admin])
-
-  attr_accessor :login
 
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup

@@ -4,23 +4,20 @@
       <h2 class="one-title-tourism-article">
         <%= link_to tips_trick.title, tips_trick_path(tips_trick) %>
       </h2>
-      oleh <a href="#"><%= tips_trick.user.username %></a> | <%= l tips_trick.created_at, :format => :costum %>
+      oleh <%= link_to tips_trick.user.username, profile_path(tips_trick.user) %> | <%= l tips_trick.created_at, :format => :costum %>
     </div>
     <%= image_tag(tips_trick.image.url(:large)) %>
     <div class="caption">
-      <p class="one-content-article"><%= truncate(tips_trick.description, :length => 400, :separator => ' ') %></p>
-      <p class="clearfix">
-        <span class="pull-left" style="margin-right: 8px; margin-top: 9px">
-          <%= tips_trick.comments.published.count %>
-          <i class="icon-comment"></i>
-        </span>
-        <span class="pull-left" style="margin-top: 9px;">
-          <%= tips_trick.impressionist_count(:filter => :session_hash) %>
-          <i class="icon-eye-open"></i></span>
-        <span>
-          <%= link_to "Selanjutnya", tips_trick_path(tips_trick), :class => 'btn btn-primary pull-right' %>
-        </span>
-      </p>
+      <div class="one-content-article"><%= raw truncate(tips_trick.description, :length => 400, :separator => ' ') %></div>
+      <div class="pull-left" style="margin-right: 8px; margin-top: 9px">
+        <%= tips_trick.comments.published.count %>
+        <i class="icon-comment"></i>
+        <%= tips_trick.impressionist_count(:filter => :session_hash) %>
+        <i class="icon-eye-open"></i>
+      </div>
+      <div class="pull-right">
+        <%= link_to "Selanjutnya", tips_trick_path(tips_trick), :class => 'btn btn-primary pull-right' %>
+      </div>
     </div>
   </div>
 <% end %>

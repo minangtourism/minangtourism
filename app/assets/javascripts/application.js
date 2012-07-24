@@ -16,6 +16,7 @@
 //= require bootstrap-combobox
 //= require bootstrap-scrollspy
 //= require_tree
+//= require ckeditor/init
 //= require bootstrap-datepicker
 //= require mybootstrap
 
@@ -23,10 +24,66 @@
 //    format: 'mm-dd-yyyy'
 //});
 
+//handle ckeditor
+$(document).ready(function(){
+    if (CKEDITOR.instances['tourism_article_content']) {
+        CKEDITOR.remove(CKEDITOR.instances['tourism_article_content']);
+    }
+    if ($('#tourism_article_content').length) CKEDITOR.replace('tourism_article_content', {
+        "language":"id",
+        "toolbar":"Full",
+        "class":["ckeditor","required"]
+    });
+});
+
+$(document).ready(function(){
+    if (CKEDITOR.instances['folktale_description']) {
+        CKEDITOR.remove(CKEDITOR.instances['folktale_description']);
+    }
+    if ($('#folktale_description').length) CKEDITOR.replace('folktale_description', {
+        "language":"id",
+        "toolbar":"Full",
+        "class":["ckeditor","required"]
+    });
+});
+
+$(document).ready(function(){
+    if (CKEDITOR.instances['event_description']) {
+        CKEDITOR.remove(CKEDITOR.instances['event_description']);
+    }
+    if ($('#event_description').length) CKEDITOR.replace('event_description', {
+        "language":"id",
+        "toolbar":"Full",
+        "class":["ckeditor","required"]
+    });
+});
+
+$(document).ready(function(){
+    if (CKEDITOR.instances['location_tourism_description']) {
+        CKEDITOR.remove(CKEDITOR.instances['location_tourism_description']);
+    }
+    if ($('#location_tourism_description').length) CKEDITOR.replace('location_tourism_description', {
+        "language":"id",
+        "toolbar":"Full",
+        "class":["ckeditor","optional"]
+    });
+});
+
+$(document).ready(function(){
+    if (CKEDITOR.instances['tips_trick_description']) {
+        CKEDITOR.remove(CKEDITOR.instances['tips_trick_description']);
+    }
+    if ($('#tips_trick_description').length) CKEDITOR.replace('tips_trick_description', {
+        "language":"id",
+        "toolbar":"Full",
+        "class":["ckeditor","required"]
+        });
+});
+    
 //date
 $(document).on("focus", "[data-behaviour~='datepicker']", function(e){
     $(this).datepicker({
-//        "format": "dd-mm-yyyy",
+        //        "format": "dd-mm-yyyy",
         "format": "yyyy-mm-dd",
         "weekStart": 1,
         "autoclose": true
@@ -77,4 +134,3 @@ $(document).on('shown', '.modal', function(){
 }).on('ajax:complete', '#form-sign-in, #form-sign-up', function(){
     $(':submit.btn-primary', this).attr('disabled', false);
 });
-

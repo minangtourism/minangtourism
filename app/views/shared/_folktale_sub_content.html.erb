@@ -112,7 +112,7 @@
           <%= link_to truncate(event.title, :length => 80, :separator => ' '), event_path(event) %>
         </div>
         <p>
-          <%= truncate(event.description, :length => 80, :separator => ' ') %>
+          <%= raw truncate(event.description, :length => 80, :separator => ' ') %>
         </p>
         <div class="clearfix">
           <div class="event-like pull-right ">
@@ -152,16 +152,16 @@
             <div class="clearfix">
               <div class="date-publish pull-right"><i class="icon-time"></i> Rabu, 27 Juni 2012</div>
               <div class="rate-location pull-left">
-                <i class="icon-star"></i>
-                <i class="icon-star"></i>
-                <i class="icon-star"></i>
-                <i class="icon-star"></i>
-                <i class="icon-star-empty"></i>
+                <%#*<i class="icon-star"></i>%>
+                <%#*<i class="icon-star"></i>%>
+                <%#*<i class="icon-star"></i>%>
+                <%#*<i class="icon-star"></i>%>
+                <%#*<i class="icon-star-empty"></i>%>
               </div>
             </div>
 
             <div>
-              <%= truncate(review.comment, :length => 50, :separator => ' ') %>
+              <%= raw truncate(review.comment, :length => 50, :separator => ' ') %>
               <span class="small-view">
                 <i class="" >
                   <%= link_to location_tourism_path(review.commentable, anchor: "comment-#{review.id}") do %>
@@ -171,7 +171,7 @@
               </span>
             </div>
           </div>
-          <div class="dashed" style="margin-bottom: 15px; margin-top: 10px;"></div>
+          <%#*<div class="dashed" style="margin-bottom: 15px; margin-top: 10px;"></div>%>
         </div>
 
         <div class="span4">

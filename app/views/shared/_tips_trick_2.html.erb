@@ -8,7 +8,7 @@
     </div>
     <%= image_tag(tips_trick.image.url(:medium)) %>
     <div class="caption">
-      <p class="two-content-article"><%= truncate(tips_trick.description, :length => 200, :separator => ' ') %></p>
+      <p class="two-content-article"><%= raw truncate(tips_trick.description, :length => 200, :separator => ' ') %></p>
       <p class="clearfix">
         <span class="pull-left" style="margin-right: 8px; margin-top: 9px">
           <%= tips_trick.comments.published.count %>

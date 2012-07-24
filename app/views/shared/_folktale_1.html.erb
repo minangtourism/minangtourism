@@ -9,7 +9,7 @@
     </div>
     <%= image_tag(folktale.image.url(:large)) %>
     <div class="caption">
-      <p class="one-content-article"><%= truncate(folktale.description, :length => 400, :separator => ' ') %></p>
+      <p class="one-content-article"><%= raw truncate(folktale.description, :length => 400, :separator => ' ') %></p>
       <p class="clearfix">
         <span class="pull-left" style="margin-right: 8px; margin-top: 9px">
           <%= folktale.comments.published.count %>

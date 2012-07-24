@@ -1,0 +1,25 @@
+<div class="profiles-home">
+  <h2>Tambah Acara Wisata</h2>
+  <div class="dashed" style="margin-bottom: 30px; margin-top: 0"></div>
+
+  <%= f.input :title, :label => 'judul', :input_html => {:class => 'span5'} %>
+  <%= f.input :start_date, :label => 'Tanggal dimulai', as: :string,
+    :input_html => {:data => {:behaviour => 'datepicker'}} %>
+  <%= f.input :end_date, :label => 'Tanggal berakhir', as: :string,
+    :input_html => {:data => {:behaviour => 'datepicker'}} %>
+
+  <%= f.input :description, :label => false %>
+
+  <%= f.input :image, :label => false %>
+  <span class="help-block">Pilih gambar untuk acara wisata</span>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+      events_profile_path(@profile), :class => 'btn btn-danger delete' %>
+  </div>
+</div>
+
+
+<%#= f.input :description, :as => :ckeditor, :label => false, :input_html => { :toolbar => 'Full' } %>
+<%#= f.input :description, :as => :text, :label => 'Isi Berita Wisata', :input_html => { :rows => 20, :class => 'span6' } %>

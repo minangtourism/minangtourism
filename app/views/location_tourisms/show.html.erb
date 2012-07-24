@@ -62,17 +62,17 @@
         <div class="dashed" style="margin-bottom: 15px"></div>
         <table class="table table-striped" style="margin-bottom: 0px">
           <tbody>
-            <tr>
-              <td><i class="icon-thumbs-up"></i></td>
-              <td>Rating:</td>
-              <td>
-                <i class="icon-star"></i>
-                <i class="icon-star"></i>
-                <i class="icon-star"></i>
-                <i class="icon-star"></i>
-                <i class="icon-star-empty"></i>
-              </td>
-            </tr>
+<%#*<tr>%>
+<%#*<td><i class="icon-thumbs-up"></i></td>%>
+<%#*<td>Rating:</td>%>
+<%#*<td>%>
+<%#*<i class="icon-star"></i>%>
+<%#*<i class="icon-star"></i>%>
+<%#*<i class="icon-star"></i>%>
+<%#*<i class="icon-star"></i>%>
+<%#*<i class="icon-star-empty"></i>%>
+<%#*</td>%>
+<%#*</tr>%>
             <tr>
               <td><i class="icon-th-list"></i></td>
               <td>Kategori Wisata:</td>
@@ -161,15 +161,17 @@
         <% @comments.each do |comment| %>
           <div id="comment-<%= comment.id %>">
             <%= image_tag(comment.user.image.url(:thumb), :class => 'thumbnail') %>
-            <div>
+            <div class="clearfix">
               <h5 style="text-transform: uppercase; margin-bottom: 10px;">
-                <a href="#" style="text-decoration: none;">
+                <div class="pull-left">
                   <%= link_to comment.user.username, profile_path(comment.user) %>
-                </a>
-                <%= l comment.created_at, :format => :costum %>
+                </div>
+                <div class="pull-right">
+                  <%= l comment.created_at, :format => :costum %>
+                </div>
               </h5>
-              <p class="clearfix" style="white-space: pre-wrap"><%= comment.comment %></p>
             </div>
+            <p><%= raw comment.comment %></p>
           </div>
           <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
         <% end %>

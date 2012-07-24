@@ -24,7 +24,7 @@ end
         </div>
         <%= image_tag(folktale.image.url(:tiny)) %>
         <div class="caption">
-          <p class="three-content-article"><%= truncate(folktale.description, :length => 100, :separator => ' ') %></p>
+          <p class="three-content-article"><%= raw truncate(folktale.description, :length => 100, :separator => ' ') %></p>
           <p class="clearfix">
             <span class="pull-left" style="margin-right: 8px; margin-top: 9px">
               <%= folktale.comments.published.count %>

@@ -27,7 +27,7 @@ end
         </div>
         <%= image_tag(event.image.url(:tiny)) %>
         <div class="caption">
-          <p class="three-content-article"><%= truncate(event.description, :length => 100, :separator => ' ') %></p>
+          <p class="three-content-article"><%= raw truncate(event.description, :length => 100, :separator => ' ') %></p>
           <p class="clearfix">
             <span class="pull-left" style="margin-right: 8px; margin-top: 9px">
               <%= event.comments.published.count %>
