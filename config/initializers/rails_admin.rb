@@ -558,7 +558,7 @@ RailsAdmin.config do |config|
     configure :name, :string
     configure :address, :text
     configure :city, :string
-    configure :zip, :string
+    configure :zip, :integer
     configure :phone, :string
     configure :web, :string
     configure :facebook, :string

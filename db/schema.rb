@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120718154511) do
+ActiveRecord::Schema.define(:version => 20120724223948) do
 
   create_table "category_loc_tourisms", :force => true do |t|
     t.string   "name"
@@ -21,6 +21,22 @@ ActiveRecord::Schema.define(:version => 20120718154511) do
     t.integer  "lft"
     t.integer  "rgt"
   end
+
+  create_table "ckeditor_assets", :force => true do |t|
+    t.string   "data_file_name",                  :null => false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    :limit => 30
+    t.string   "type",              :limit => 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+  end
+
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], :name => "idx_ckeditor_assetable"
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_ckeditor_assetable_type"
 
   create_table "comments", :force => true do |t|
     t.text     "comment"
@@ -105,11 +121,32 @@ ActiveRecord::Schema.define(:version => 20120718154511) do
     t.datetime "updated_at",    :null => false
   end
 
+  create_table "location_tourism_revisions", :force => true do |t|
+    t.string   "name"
+    t.text     "address"
+    t.string   "city"
+    t.integer  "zip"
+    t.string   "phone"
+    t.string   "web"
+    t.string   "facebook"
+    t.string   "twitter"
+    t.text     "hours_description"
+    t.text     "facility"
+    t.text     "description"
+    t.integer  "category_loc_tourism_id"
+    t.integer  "user_id"
+    t.string   "state"
+    t.integer  "revisiontable_id"
+    t.string   "revisison_type"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.integer  "location_tourism_id"
+  end
+
   create_table "location_tourisms", :force => true do |t|
     t.string   "name"
     t.text     "address"
     t.string   "city"
-    t.string   "zip"
     t.string   "phone"
     t.string   "web"
     t.string   "facebook"
@@ -127,6 +164,7 @@ ActiveRecord::Schema.define(:version => 20120718154511) do
     t.datetime "image_updated_at"
     t.string   "access_state"
     t.string   "state"
+    t.integer  "zip"
   end
 
   create_table "profiles", :force => true do |t|

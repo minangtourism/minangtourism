@@ -13,4 +13,6 @@ class SumbarContent < ActiveRecord::Base
     :small => "160x120#",
     :thumb => "145x75#"
   }
+
+  scope :recent, order("created_at desc")
 end

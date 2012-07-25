@@ -3,13 +3,13 @@ class WhySumbarsController < ApplicationController
   # GET /why_sumbars.json
   def index
 
-    @why_sumbars      = WhySumbar.all
-    @getting_theres   = GettingThere.all
-    @where_to_stays   = WhereToStay.all
-    @things_to_dos    = ThingsToDo.all
-    @things_to_sees   = ThingsToSee.all
-    @foods            = Food.all
-    @transportations  = Transportation.all
+    @why_sumbars      = WhySumbar.recent.all
+    @getting_theres   = GettingThere.recent.all
+    @where_to_stays   = WhereToStay.recent.all
+    @things_to_dos    = ThingsToDo.recent.all
+    @things_to_sees   = ThingsToSee.recent.all
+    @foods            = Food.recent.all
+    @transportations  = Transportation.recent.all
 
     respond_to do |format|
       format.html # index.html.erb

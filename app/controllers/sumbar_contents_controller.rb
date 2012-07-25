@@ -2,7 +2,7 @@ class SumbarContentsController < ApplicationController
   # GET /sumbar_contents
   # GET /sumbar_contents.json
   def index
-    @sumbar_contents = SumbarContent.all
+    @sumbar_contents = SumbarContent.recent.all
 
     respond_to do |format|
       format.html # index.html.erb

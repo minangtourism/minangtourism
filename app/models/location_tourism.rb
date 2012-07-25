@@ -1,6 +1,7 @@
 class LocationTourism < ActiveRecord::Base
 
   belongs_to :user
+  belongs_to :location_tourism_revision
   belongs_to :category_loc_tourism
   has_many :comments, as: :commentable
 

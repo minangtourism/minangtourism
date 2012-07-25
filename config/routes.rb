@@ -54,8 +54,10 @@ SumbarTourism::Application.routes.draw do
       get :tourism_articles
       get :new_tourism_article
       post :create_tourism_article
+
       get "edit_tourism_article/:tourism_article_id", action: :edit_tourism_article, as: :edit_tourism_article
       put "update_tourism_article/:tourism_article_id", action: :update_tourism_article, as: :update_tourism_article
+
       delete "destroy_tourism_article/:tourism_article_id", action: :destroy_tourism_article, as: :destroy_tourism_article
       
       get :location_tourisms

@@ -82,7 +82,7 @@ class ProfilesController < ApplicationController
   def update_tourism_article
     respond_to do |format|
       if @tourism_article.update_attributes(params[:tourism_article])
-        format.html { redirect_to tourism_articles_profile_url(@profile), notice: 'Berita Wisata was successfully updated. Menunggu verifikasi admin' }
+        format.html { redirect_to tourism_articles_profile_url(@profile), notice: 'Berita Wisata telah sukses di perbaharui. Menunggu verifikasi admin' }
         format.json { head :no_content }
       else
         format.html { render action: "edit_tourism_article" }
