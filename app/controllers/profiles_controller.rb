@@ -34,10 +34,6 @@ class ProfilesController < ApplicationController
     @folktales = @profile.folktales.published.recent.page(params[:page]).per(10)
   end
 
-  def tourism_articles
-    @tourism_articles = @profile.tourism_articles.published.recent.page(params[:page]).per(10)
-  end
-
   def location_tourisms
     @location_tourisms = @profile.location_tourisms.published.recent.page(params[:page]).per(10)
   end
@@ -57,54 +53,6 @@ class ProfilesController < ApplicationController
     @events             = @profile.events.published.recent.limit(2)
     @tips_tricks        = @profile.tips_tricks.published.recent.limit(2)
     @reviews            = @profile.reviews.published.recent.limit(7)
-  end
-
-  #TOURISM ARTICLE
-  def new_tourism_article
-    @tourism_article = current_user.tourism_articles.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @tourism_article }
-    end
-  end
-
-  def create_tourism_article
-    @tourism_article = current_user.tourism_articles.new(params[:tourism_article])
-
-    respond_to do |format|
-      if @tourism_article.save
-        format.html { redirect_to tourism_articles_profile_url(@profile), notice: 'Berita Wisata telah sukses dibuat. Menunggu verifikasi admin' }
-        format.json { render json: @tourism_article, status: :created, location: @tourism_article }
-      else
-        format.html { render action: "new_tourism_article" }
-        format.json { render json: @tourism_article.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def edit_tourism_article
-  end
-
-  def update_tourism_article
-    respond_to do |format|
-      if @tourism_article.update_attributes(params[:tourism_article])
-        format.html { redirect_to tourism_articles_profile_url(@profile), notice: 'Berita Wisata telah sukses di perbaharui. Menunggu verifikasi admin' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit_tourism_article" }
-        format.json { render json: @tourism_article.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def destroy_tourism_article
-    @tourism_article.destroy
-
-    respond_to do |format|
-      format.html { redirect_to tourism_articles_profile_url(@profile) }
-      format.json { head :no_content }
-    end
   end
 
   #FOLKTALE

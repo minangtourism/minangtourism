@@ -27,9 +27,11 @@ gem "awesome_print", "~> 1.0.2"
 gem "acts_as_rateable", :git => "git://github.com/anton-zaytsev/acts_as_rateable.git"
 
 #admin
-gem 'rails_admin'
 gem "cancan"
 gem "role_model"
+gem 'rails_admin'
+gem 'rails_admin_approve', path: 'vendor/gems/rails_admin_approve'
+gem 'rails_admin_reject', path: 'vendor/gems/rails_admin_reject'
 
 #pagination
 gem 'kaminari'
@@ -58,6 +60,8 @@ group :assets do
 end
 
 gem 'jquery-rails'
+
+gem 'thin'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

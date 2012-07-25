@@ -12,20 +12,11 @@ class Ability
     can :create, Contact
     
     if user
-      if user.is? :admin
-        can :access, :rails_admin
-        can :dashboard
-        can :manage, :all
-      end
-
-      if user.is? :operator
-        can :access, :rails_admin
-        can :dashboard
-        can :manage,
-          [Contact, TourismArticle, Comment, Folktale, CategoryLocTourism, LocationTourism, Event, TipsTrick]
-      end
+      can :like, Event
+      can :search, TourismArticle
 
       if user.is? :member
+        can [:read, :update, :destroy], TourismArticle, user_id: user.id
         can [:create, :update],
           [TourismArticle, Comment, Folktale, LocationTourism, Event, TipsTrick]
         can :create_comment,
@@ -46,10 +37,23 @@ class Ability
           User, :id => user.id
       end
 
-      can :like, Event
-      cannot :like, Event, :likes => {user_id: user.id}
-      can :search, [TourismArticle]
+      if user.is? :operator
+        can :access, :rails_admin
+        can :dashboard
+        can :manage,
+          [Contact, TourismArticle, Comment, Folktale, CategoryLocTourism, LocationTourism, Event, TipsTrick]
+      end
 
+      if user.is? :admin
+        can :access, :rails_admin
+        can :dashboard
+        can :manage, :all
+        cannot [:approve, :destroy, :create, :reject, :update], DeletionRequest
+        can [:approve, :reject], DeletionRequest, state: "pending"
+        can :destroy, DeletionRequest, state: %w[approved rejected]
+      end
+
+      cannot :like, Event, likes: {user_id: user.id}
     end
 
     cannot :destroy, user

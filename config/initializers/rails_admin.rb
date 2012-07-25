@@ -19,12 +19,41 @@ RailsAdmin.config do |config|
   # config.audit_with :history, User
 
   # Or with a PaperTrail: (you need to install it first)
-  #  config.audit_with :paper_trail, User
+  # config.audit_with :paper_trail, User
 
   # Set the admin name here (optional second array element will appear in a beautiful RailsAdmin red ©)
   config.main_app_name = ['Sumbar Tourism', 'Admin']
   # or for a dynamic name:
   # config.main_app_name = Proc.new { |controller| [Rails.application.engine_name.titleize, controller.params['action'].titleize] }
+
+  config.actions do
+    # root actions
+    dashboard                     # mandatory
+    # collection actions
+    index                         # mandatory
+    new
+    export
+    history_index
+    bulk_delete
+    # member actions
+    show
+    approve do # custom action
+      # Make it visible only for specific models. You can remove this if you don't need.
+      visible do
+        visible? && bindings[:abstract_model].model.to_s.in?(%w[DeletionRequest])
+      end
+    end
+    reject do # custom action
+      # Make it visible only for specific models. You can remove this if you don't need.
+      visible do
+        visible? && bindings[:abstract_model].model.to_s.in?(%w[DeletionRequest])
+      end
+    end
+    edit
+    delete
+    history_show
+    show_in_app
+  end
 
   #  config.models do
   #    # Configuration here will affect all included models in all scopes, handle with care!
@@ -50,19 +79,32 @@ RailsAdmin.config do |config|
   #  ==> Included models
   # Add all excluded models here:
   # config.excluded_models = [CategoryLocTourism, Comment, Contact, Event, Folktale, LocationTourism, TipsTrick, TourismArticle, User]
-  #  config.excluded_models << Version
 
   # Add models here if you want to go 'whitelist mode':
   # config.included_models = [CategoryLocTourism, Comment, Contact, Event, Folktale, LocationTourism, TipsTrick, TourismArticle, User]
   config.included_models = [
-    User,
-    Profile,
-    Slideshow,
-#    Rate,
-    Setting,
+    CategoryLocTourism,
+    Comment,
+    Contact,
+    DeletionRequest,
+    Event,
+    Folktale,
+    Food,
+    GettingThere,
+    LocationTourism,
     LocationTourismRevision,
-    CategoryLocTourism, Comment, Contact, Event, Folktale, LocationTourism, TipsTrick, TourismArticle,
-    SumbarContent, WhySumbar, GettingThere, WhereToStay, ThingsToDo, ThingsToSee, Food, Transportation
+    Profile,
+    Setting,
+    Slideshow,
+    SumbarContent,
+    ThingsToDo,
+    ThingsToSee,
+    TipsTrick,
+    TourismArticle,
+    Transportation,
+    User,
+    WhereToStay,
+    WhySumbar,
   ]
 
   # Application wide tried label methods for models' instances
@@ -107,6 +149,35 @@ RailsAdmin.config do |config|
   # Your model's configuration, to help you get started:
 
   # All fields marked as 'hidden' won't be shown anywhere in the rails_admin unless you mark them as visible. (visible(true))
+
+  config.model DeletionRequest do
+
+    # Found associations:
+    configure :item
+    configure :user
+
+    # Found columns:
+    configure :id
+    configure :reason do
+      hide
+    end
+    configure :state, :enum do
+
+    end
+    configure :created_at, :datetime
+    configure :updated_at, :datetime
+
+    # Sections:
+    list do
+      include_fields :id, :item, :user, :reason, :state
+    end
+    show do
+      include_fields :id, :item, :user, :reason, :state
+    end
+    edit do
+      include_fields :id, :item, :user, :reason, :state
+    end
+  end
 
   config.model User do
 

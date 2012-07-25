@@ -61,6 +61,20 @@ ActiveRecord::Schema.define(:version => 20120725135837) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "deletion_requests", :force => true do |t|
+    t.integer  "item_id"
+    t.string   "item_type"
+    t.text     "reason"
+    t.string   "state"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "deletion_requests", ["item_id"], :name => "index_deletion_requests_on_item_id"
+  add_index "deletion_requests", ["item_type"], :name => "index_deletion_requests_on_item_type"
+  add_index "deletion_requests", ["user_id"], :name => "index_deletion_requests_on_user_id"
+
   create_table "events", :force => true do |t|
     t.string   "title"
     t.text     "description"

@@ -1,0 +1,11 @@
+
+en:
+  admin:
+    actions:
+      approve:
+        title: "Approve"
+        menu: "Approve"
+        breadcrumb: "Approve"
+        link: "Approve '%{object_label}'"
+        bulk_link: "Approve selected %{model_label_plural}"
+        done: "approved"

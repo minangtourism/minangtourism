@@ -14,9 +14,16 @@ SumbarTourism::Application.routes.draw do
   resources :sumbar_contents
   resources :contacts
   resources :category_loc_tourisms
-  resources :location_tourisms
-  resources :tips_tricks
-  resources :folktales
+  resources :tips_tricks do
+    member do
+      post :create_comment
+    end
+  end
+  resources :folktales do
+    member do
+      post :create_comment
+    end
+  end
   resources :why_sumbars
   resources :reviews
 
@@ -24,6 +31,9 @@ SumbarTourism::Application.routes.draw do
   resources :tourism_articles do
     collection do
       get :search
+    end
+    member do
+      post :create_comment
     end
   end
 
@@ -37,14 +47,14 @@ SumbarTourism::Application.routes.draw do
   # --------------------- LIKE -------------------- #
   resources :events do
     member do
+      post :create_comment
       post :like
     end
   end
   # --------------------- LIKE -------------------- #
   
   # ------------------- PROFILE ------------------- #
-#  resources :profile_location_tourisms, :path => 'profiles/:profile_id/location_tourisms', :except => :show
-  
+  resources :profile_tourism_articles, path: 'profiles/:profile_id/tourism_articles', except: :show
   resources :profiles do
     member do
       get :reviews
@@ -53,12 +63,12 @@ SumbarTourism::Application.routes.draw do
       get :new_folktale
       post :create_folktale
 
-      get :tourism_articles
-      get :new_tourism_article
-      post :create_tourism_article
-      get "edit_tourism_article/:tourism_article_id", action: :edit_tourism_article, as: :edit_tourism_article
-      put "update_tourism_article/:tourism_article_id", action: :update_tourism_article, as: :update_tourism_article
-      delete "destroy_tourism_article/:tourism_article_id", action: :destroy_tourism_article, as: :destroy_tourism_article
+#      get :tourism_articles
+#      get :new_tourism_article
+#      post :create_tourism_article
+#      get "edit_tourism_article/:tourism_article_id", action: :edit_tourism_article, as: :edit_tourism_article
+#      put "update_tourism_article/:tourism_article_id", action: :update_tourism_article, as: :update_tourism_article
+#      delete "destroy_tourism_article/:tourism_article_id", action: :destroy_tourism_article, as: :destroy_tourism_article
       
       get :location_tourisms
       get :new_location_tourism
@@ -78,41 +88,13 @@ SumbarTourism::Application.routes.draw do
       get :edit_about
       put :update_about
     end
+
   end
 
 
   # ------------------- PROFILE ------------------- #
 
   # ------------------- COMMENT ------------------- #
-  resources :events do
-    member do
-      post :create_comment
-    end
-  end
-
-  resources :tourism_articles do
-    member do
-      post :create_comment
-    end
-  end
-  
-  resources :folktales do
-    member do
-      post :create_comment
-    end
-  end
-
-  resources :tips_tricks do
-    member do
-      post :create_comment
-    end
-  end
-
-  resources :events do
-    member do
-      post :create_comment
-    end
-  end
 
   resources :location_tourisms do
     member do

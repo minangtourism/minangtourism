@@ -1,0 +1,10 @@
+<div class="profiles-home">
+  <%= f.input :title, :label => 'Judul Berita Wisata' %>
+  <%= f.input :content, :as => :text, :label => 'Isi Berita Wisata', :input_html => { :rows => 20 } %>
+  <%= f.input :image %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+      profile_tourism_articles_path(@profile), :class => 'btn btn-danger delete' %>
+  </div>
+</div>
