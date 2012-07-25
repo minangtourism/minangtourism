@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :folktales
   has_many :tips_tricks
   has_many :location_tourisms
+  has_many :location_tourism_revisions
   has_many :comments
   has_many :sumbar_contents
   has_many :reviews, class_name: 'Comment', conditions: "commentable_type = 'LocationTourism'"

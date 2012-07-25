@@ -9,8 +9,12 @@ class ProfilesController < ApplicationController
     :new_event, :create_event
   ]
   load_and_authorize_resource :class => 'User'
+
   before_filter :load_tourism_article, only: [
-    :edit_tourism_article, :update_tourism_article, :destroy_tourism_article ]
+    :edit_tourism_article, :update_tourism_article, :destroy_tourism_article]
+
+#  before_filter :load_location_tourism, only: [
+#    :edit_location_tourism, :update_location_tourism]
 
   def index
     @profiles = @profiles.member.recent.page(params[:page]).per(20)
@@ -31,9 +35,9 @@ class ProfilesController < ApplicationController
     @tourism_articles = @profile.tourism_articles.published.recent.page(params[:page]).per(10)
   end
 
-  def location_tourisms
-    @location_tourisms = @profile.location_tourisms.published.recent.page(params[:page]).per(10)
-  end
+#  def location_tourisms
+#    @location_tourisms = @profile.location_tourisms.published.recent.page(params[:page]).per(10)
+#  end
 
   def events
     @events = @profile.events.published.recent.page(params[:page]).per(10)
@@ -148,29 +152,48 @@ class ProfilesController < ApplicationController
     end
   end
 
-  #LOCATION TOURISM
-  def new_location_tourism
-    @location_tourism = current_user.location_tourisms.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @location_tourism }
-    end
-  end
-
-  def create_location_tourism
-    @location_tourism = current_user.location_tourisms.new(params[:location_tourism])
-
-    respond_to do |format|
-      if @location_tourism.save
-        format.html { redirect_to location_tourisms_profile_url(@profile), notice: 'Lokasi Wisata telah suskses dibuat. Menunggu verifikasi admin' }
-        format.json { render json: @location_tourism, status: :created, location: @location_tourism }
-      else
-        format.html { render action: "new_location_tourism" }
-        format.json { render json: @location_tourism.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+#  LOCATION TOURISM
+#  def new_location_tourism
+#    @location_tourism = current_user.location_tourisms.new
+#
+#    respond_to do |format|
+#      format.html # new.html.erb
+#      format.json { render json: @location_tourism }
+#    end
+#  end
+#
+#  def create_location_tourism
+#    @location_tourism = current_user.location_tourisms.new(params[:location_tourism])
+#
+#    respond_to do |format|
+#      if @location_tourism.save
+#        format.html { redirect_to location_tourisms_profile_url(@profile), notice: 'Lokasi Wisata telah suskses dibuat. Menunggu verifikasi admin' }
+#        format.json { render json: @location_tourism, status: :created, location: @location_tourism }
+#      else
+#        format.html { render action: "new_location_tourism" }
+#        format.json { render json: @location_tourism.errors, status: :unprocessable_entity }
+#      end
+#    end
+#  end
+#
+#  def edit_location_tourism
+#  end
+#
+#  def update_location_tourism
+#    location_tourism = @location_tourism
+#    @location_tourism = current_user.location_tourism_revisions.new(params[:location_tourism])
+#    @location_tourism.location_tourism = location_tourism
+#
+#    respond_to do |format|
+#      if @location_tourism.save
+#        format.html { redirect_to location_tourisms_profile_url(@profile), notice: 'Lokasi Wisata telah suskses perbaharui. Menunggu verifikasi admin' }
+#        format.json { render json: @location_tourism, status: :created, location: @location_tourism }
+#      else
+#        format.html { render action: "new_location_tourism" }
+#        format.json { render json: @location_tourism.errors, status: :unprocessable_entity }
+#      end
+#    end
+#  end
 
   #TIPS & TRICK
   def new_tips_trick
@@ -216,5 +239,9 @@ class ProfilesController < ApplicationController
   def load_tourism_article
     @tourism_article = @profile.tourism_articles.find(params[:tourism_article_id])
   end
+
+#  def load_location_tourism
+#    @location_tourism = @profile.location_tourisms.find(params[:location_tourism_id])
+#  end
 
 end

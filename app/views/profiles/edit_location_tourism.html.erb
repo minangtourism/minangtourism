@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+
+    <div class="span3">
+      <%= render 'user_navigation' %>
+    </div><!--/span-->
+    <div class="span9">
+      <%= simple_form_for @location_tourism, url: update_location_tourism_profile_path(@profile, @location_tourism) do |f| %>
+        <%= render 'form_location_tourism', f: f %>
+      <% end %>
+    </div>
+
+  </div>
+</div>

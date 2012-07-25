@@ -1,6 +1,8 @@
 class Comment < ActiveRecord::Base
 
   belongs_to :user
+  belongs_to :location_tourism_revision
+
   acts_as_rateable
   acts_as_commentable
 

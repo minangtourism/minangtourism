@@ -33,9 +33,13 @@ class Ability
         can [
           :new_tourism_article, :create_tourism_article,
           :edit_tourism_article, :update_tourism_article, :destroy_tourism_article,
+
           :new_folktale, :create_folktale,
           :new_event, :create_event,
+
           :new_location_tourism, :create_location_tourism,
+          :edit_location_tourism, :update_location_tourism,
+          
           :new_tips_trick, :create_tips_trick,
           :edit_about, :update_about
         ],

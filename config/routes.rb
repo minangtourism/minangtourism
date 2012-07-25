@@ -9,7 +9,7 @@ SumbarTourism::Application.routes.draw do
   get '/users/sign_in' => 'homes#index', :defaults => { :prompt_sign_in => true }
   devise_for :users
 
-#  post "versions/:id/revert" => "versions#revert", :as => "revert_version"
+  #  post "versions/:id/revert" => "versions#revert", :as => "revert_version"
 
   resources :sumbar_contents
   resources :contacts
@@ -27,11 +27,11 @@ SumbarTourism::Application.routes.draw do
     end
   end
 
-#  resources :homes do
-#    collection do
-#      get :search
-#    end
-#  end
+  #  resources :homes do
+  #    collection do
+  #      get :search
+  #    end
+  #  end
   # --------------------- SEARCH-------------------- #
 
   # --------------------- LIKE -------------------- #
@@ -43,6 +43,8 @@ SumbarTourism::Application.routes.draw do
   # --------------------- LIKE -------------------- #
   
   # ------------------- PROFILE ------------------- #
+#  resources :profile_location_tourisms, :path => 'profiles/:profile_id/location_tourisms', :except => :show
+  
   resources :profiles do
     member do
       get :reviews
@@ -54,15 +56,15 @@ SumbarTourism::Application.routes.draw do
       get :tourism_articles
       get :new_tourism_article
       post :create_tourism_article
-
       get "edit_tourism_article/:tourism_article_id", action: :edit_tourism_article, as: :edit_tourism_article
       put "update_tourism_article/:tourism_article_id", action: :update_tourism_article, as: :update_tourism_article
-
       delete "destroy_tourism_article/:tourism_article_id", action: :destroy_tourism_article, as: :destroy_tourism_article
       
       get :location_tourisms
       get :new_location_tourism
       post :create_location_tourism
+      get "edit_location_tourism/:location_tourism_id", action: :edit_location_tourism, as: :edit_location_tourism
+      put "update_location_tourism/:location_tourism_id", action: :update_location_tourism, as: :update_location_tourism
       
       get :events
       get :new_event

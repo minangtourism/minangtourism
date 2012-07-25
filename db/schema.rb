@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120724223948) do
+ActiveRecord::Schema.define(:version => 20120725135837) do
 
   create_table "category_loc_tourisms", :force => true do |t|
     t.string   "name"
@@ -136,11 +136,13 @@ ActiveRecord::Schema.define(:version => 20120724223948) do
     t.integer  "category_loc_tourism_id"
     t.integer  "user_id"
     t.string   "state"
-    t.integer  "revisiontable_id"
-    t.string   "revisison_type"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
     t.integer  "location_tourism_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "location_tourisms", :force => true do |t|
@@ -165,6 +167,7 @@ ActiveRecord::Schema.define(:version => 20120724223948) do
     t.string   "access_state"
     t.string   "state"
     t.integer  "zip"
+    t.integer  "updater_id"
   end
 
   create_table "profiles", :force => true do |t|
@@ -268,6 +271,20 @@ ActiveRecord::Schema.define(:version => 20120724223948) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "state"
+  end
+
+  create_table "tourism_article_revisions", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.string   "state"
+    t.integer  "user_id"
+    t.integer  "tourism_article_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "tourism_articles", :force => true do |t|

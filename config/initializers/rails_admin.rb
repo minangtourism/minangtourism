@@ -60,6 +60,7 @@ RailsAdmin.config do |config|
     Slideshow,
 #    Rate,
     Setting,
+    LocationTourismRevision,
     CategoryLocTourism, Comment, Contact, Event, Folktale, LocationTourism, TipsTrick, TourismArticle,
     SumbarContent, WhySumbar, GettingThere, WhereToStay, ThingsToDo, ThingsToSee, Food, Transportation
   ]
@@ -320,22 +321,8 @@ RailsAdmin.config do |config|
     update do; end
   end
 
-#  config.model Rate do
-#    configure :id, :integer
-#    configure :score, :integer
-#
-#    list do
-#      field :id
-#    end
-#    edit do
-#      field :score do
-#        read_only true
-#        pretty_value do
-#          bindings[:object].published? ? "Yes, it's live!" : "No, in the loop..."
-#        end
-#      end
-#    end
-#  end
+  config.model LocationTourismRevision do
+  end
 
   config.model Comment do
     configure :comments, :has_many_association
@@ -611,6 +598,7 @@ RailsAdmin.config do |config|
       field :user
       field :image
       field :state, :enum
+      field :updater
     end
     edit do
       field :name
@@ -630,6 +618,7 @@ RailsAdmin.config do |config|
         end
       end
       field :user
+      field :updater
       field :image
       field :state, :enum
       field :created_at do

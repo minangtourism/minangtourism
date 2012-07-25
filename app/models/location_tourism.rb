@@ -1,13 +1,13 @@
 class LocationTourism < ActiveRecord::Base
-
   belongs_to :user
-  belongs_to :location_tourism_revision
+  belongs_to :updater, class_name: 'User'
   belongs_to :category_loc_tourism
+  has_many :location_tourism_revisions
   has_many :comments, as: :commentable
 
-  attr_accessible :address, :state, :access_state, :category_loc_tourism_id, :category_tourism_id,
+  attr_accessible :address, :state, :access_state, :category_loc_tourism_id,
     :city, :description, :facebook, :facility, :hours_description,
-    :name, :phone, :twitter, :user_id, :web, :zip, :image
+    :name, :phone, :twitter, :user_id, :web, :zip, :image, :updater_id
 
   has_attached_file :image, :styles => { 
     :normal => "560x280#",
