@@ -30,8 +30,8 @@ class ProfileTourismArticlesController < ApplicationController
 
   def update
     respond_to do |format|
-      if false && @tourism_article_revision.save
-        format.html { redirect_to profile_tourism_article_url(@profile, @tourism_article), notice: 'Berita Wisata berhasil dibuat. Menunggu verifikasi admin' }
+      if @tourism_article_revision.save
+        format.html { redirect_to profile_tourism_articles_url(@profile), notice: 'Berita Wisata berhasil dibuat. Menunggu verifikasi admin' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

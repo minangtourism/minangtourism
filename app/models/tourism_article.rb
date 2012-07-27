@@ -1,7 +1,7 @@
 class TourismArticle < ActiveRecord::Base
   has_many :comments, as: :commentable
   has_many :deletion_requests, as: :item, dependent: :destroy
-  has_many :tourism_article_revision
+  has_many :revisions, class_name: "TourismArticleRevision", dependent: :destroy
   belongs_to :user
 
   is_impressionable

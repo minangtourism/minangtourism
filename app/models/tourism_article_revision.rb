@@ -13,29 +13,32 @@ class TourismArticleRevision < ActiveRecord::Base
 
   validates :content, :presence => true
 
-  has_attached_file :image, :styles => {
-    :large => "740x500#",  # # dipaksa, > kl ukurannya lebih akan di sesuaikan
-    :medium => "340x180#",
-    :tiny => "240x180#",
-    :small => "100x100#",
-    :thumb => "145x75#"
-  }
+#  has_attached_file :image, :styles => {
+#    :large => "740x500#",  # # dipaksa, > kl ukurannya lebih akan di sesuaikan
+#    :medium => "340x180#",
+#    :tiny => "240x180#",
+#    :small => "100x100#",
+#    :thumb => "145x75#"
+#  }
+  has_attached_file :image
   
-  state_machine :initial => :unpublished do
-    before_transition :unpublished => :published, :do => :apply_revision
-    event :publish do
-      transition :unpublished => :published
+  state_machine :initial => :pending do
+    before_transition any - :approved => :approved, :do => :apply_revision
+    event :approve do
+      transition :pending => :approved
     end
-    event :unpublish do
-      transition :published => :unpublished
+    event :reject do
+      transition :pending => :rejected
     end
-    state :unpublished
-    state :published
+    state :approved
+    state :pending
+    state :rejected
   end
 
-  scope :published, where(state: "published")
+  scope :approved, where(state: "approved")
+  scope :pending, where(state: "pending")
   scope :recent, order("created_at DESC")
-  scope :unpublished, where(state: "unpublished")
+  scope :rejected, where(state: "rejected")
 
   def state_enum
     self.class.state_machine.states.map do |state|
@@ -47,20 +50,13 @@ class TourismArticleRevision < ActiveRecord::Base
     target = tourism_article
     self.title = target.title
     self.content = target.content
-    self.image_file_name = target.image_file_name
-    self.image_content_type = target.image_content_type
-    self.image_file_size = target.image_file_size
-    self.image_updated_at = target.image_updated_at
   end
 
   def apply_revision
     target = tourism_article
     target.title = title
     target.content = content
-    target.image_file_name = image_file_name
-    target.image_content_type = image_content_type
-    target.image_file_size = image_file_size
-    target.image_updated_at = image_updated_at
+    target.image = image if image?
     target.save
   end
 end

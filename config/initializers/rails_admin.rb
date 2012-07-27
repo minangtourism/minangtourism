@@ -40,13 +40,13 @@ RailsAdmin.config do |config|
     approve do # custom action
       # Make it visible only for specific models. You can remove this if you don't need.
       visible do
-        visible? && bindings[:abstract_model].model.to_s.in?(%w[DeletionRequest])
+        visible? && bindings[:abstract_model].model.to_s.in?(%w[DeletionRequest TourismArticleRevision])
       end
     end
     reject do # custom action
       # Make it visible only for specific models. You can remove this if you don't need.
       visible do
-        visible? && bindings[:abstract_model].model.to_s.in?(%w[DeletionRequest])
+        visible? && bindings[:abstract_model].model.to_s.in?(%w[DeletionRequest TourismArticleRevision])
       end
     end
     edit
@@ -947,6 +947,10 @@ RailsAdmin.config do |config|
   end
 
   config.model TourismArticleRevision do
+    parent TourismArticle
+    label "Revision"
+    label_plural "Revisions"
+
     # Found associations:
     configure :user, :belongs_to_association   #   # Found columns:
     configure :tourism_article, :belongs_to_association   #   # Found columns:

@@ -14,9 +14,12 @@ class Ability
     can :create, Contact
 
     if user
-      if user.is? :member
+      if user.is_any_of? :member, :operator
         can [:create, :update, :destroy],
           [TourismArticle, Comment, Folktale, LocationTourism, Event, TipsTrick], user_id: user.id
+      end
+
+      if user.is? :member
         can :create_comment,
           [TourismArticle, Folktale, LocationTourism, Event, TipsTrick]
         can [
@@ -32,8 +35,6 @@ class Ability
       end
 
       if user.is? :operator
-        can [:create, :update, :destroy],
-          [TourismArticle, Comment, Folktale, LocationTourism, Event, TipsTrick], user_id: user.id
         can [
           :new_folktale, :create_folktale,
           :new_event, :create_event, :create_tourism_article,
@@ -51,20 +52,22 @@ class Ability
         can :manage,
           [Contact, TourismArticle, TourismArticleRevision, Comment, Folktale,
           CategoryLocTourism, LocationTourism, LocationTourismRevision, Event, TipsTrick]
-        cannot [:approve, :destroy, :create, :reject, :update], DeletionRequest
-        can [:approve, :reject], DeletionRequest, state: "pending"
-        can :destroy, DeletionRequest, state: %w[approved rejected]
       end
 
       if user.is? :admin
         can :access, :rails_admin
         can :dashboard
         can :manage, :all
-        cannot [:approve, :destroy, :create, :reject, :update], DeletionRequest
-        can [:approve, :reject], DeletionRequest, state: "pending"
-        can :destroy, DeletionRequest, state: %w[approved rejected]
       end
 
+      if user.is_any_of? :admin, :operator
+        cannot [:approve, :destroy, :create, :reject, :update], [DeletionRequest, TourismArticleRevision]
+        can [:approve, :reject], [DeletionRequest, TourismArticleRevision], state: "pending"
+        can :destroy, [DeletionRequest, TourismArticleRevision], state: %w[approved rejected]
+      end
+
+      cannot :approve, [DeletionRequest, TourismArticleRevision], state: "approved"
+      cannot :reject, [DeletionRequest, TourismArticleRevision], state: "rejected"
       can :like, Event
       cannot :like, Event, likes: {user_id: user.id}
       can :search, TourismArticle
