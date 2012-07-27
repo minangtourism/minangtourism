@@ -1,7 +1,7 @@
 # Rails
 config/database.yml
-log/*.log
-tmp/**/*
+log/*
+tmp/*
 
 # RVMRC
 .rvmrc
@@ -10,5 +10,6 @@ tmp/**/*
 nbproject
 
 # Public uploads
+public/ckeditor_assets
 public/system
 public/uploads

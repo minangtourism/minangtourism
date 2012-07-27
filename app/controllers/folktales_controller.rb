@@ -2,8 +2,6 @@ class FolktalesController < ApplicationController
   load_and_authorize_resource
   impressionist
   
-  # GET /folktales
-  # GET /folktales.json
   def index
     @folktales = @folktales.published.recent.page(params[:page]).per(10)
 
@@ -13,8 +11,6 @@ class FolktalesController < ApplicationController
     end
   end
 
-  # GET /folktales/1
-  # GET /folktales/1.json
   def show
     @comments = @folktale.comments.published.recent.page(params[:page]).per(10)
     @comment = Comment.new
@@ -30,14 +26,13 @@ class FolktalesController < ApplicationController
     @comment.commentable = @folktale
 
     if @comment.save
-      redirect_to @folktale
+      redirect_to @folktale, notice: 'Komentar sukses dibuat, menunggu verifikasi admin'
     else
-      render action: "show"
+      #       render action: "show"
+      redirect_to @folktale, notice: 'Komentar gagal dibuat, form komentar kosong'
     end
   end
 
-  # GET /folktales/new
-  # GET /folktales/new.json
   def new
     respond_to do |format|
       format.html # new.html.erb
@@ -45,12 +40,9 @@ class FolktalesController < ApplicationController
     end
   end
 
-  # GET /folktales/1/edit
   def edit
   end
 
-  # POST /folktales
-  # POST /folktales.json
   def create
     respond_to do |format|
       if @folktale.save
@@ -63,8 +55,6 @@ class FolktalesController < ApplicationController
     end
   end
 
-  # PUT /folktales/1
-  # PUT /folktales/1.json
   def update
     respond_to do |format|
       if @folktale.update_attributes(params[:folktale])
@@ -77,8 +67,6 @@ class FolktalesController < ApplicationController
     end
   end
 
-  # DELETE /folktales/1
-  # DELETE /folktales/1.json
   def destroy
     @folktale.destroy
 

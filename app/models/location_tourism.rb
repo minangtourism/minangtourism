@@ -9,12 +9,13 @@ class LocationTourism < ActiveRecord::Base
     :city, :description, :facebook, :facility, :hours_description,
     :name, :phone, :twitter, :user_id, :web, :zip, :image, :updater_id
 
-  has_attached_file :image, :styles => { 
+  has_attached_file :image, :styles => {
     :normal => "560x280#",
     :medium => "230x230#",
     :small => "240x180#",
     :thumb => "160x120#"
   }
+
   
   #Validation
   validates_format_of :name, :presence => true, :uniqueness => true, 

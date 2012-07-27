@@ -1,45 +1,26 @@
-<div class="container">
-  <div class="row">
+<div class="profiles-home">
+  <h2>Cerita Wisatawan</h2>
+  <div class="dashed"></div>
+  <div class="info-title">Cerita terbaru wisatawan tentang tempat wisata yang ada di Sumatera Barat</div>
+  <div class="dashed" style="margin-bottom: 25px; margin-top: 0"></div>
 
-    <div class="span3">
-      <%= render 'user_navigation' %>
-    </div><!--/span-->
+  <% @reviews.each do |review| %>
+    <div class="span1 photo-tourism">
+      <%= link_to image_tag(review.user.image.url(:thumb), :class => 'thumbnail'), profile_path(review.user) %>
+    </div>
 
-    <div class="span9"> <!-- Cerita Wisatawan / Comment -->
-      <div class="profiles-home">
-        <h2>Cerita Wisatawan</h2>
-        <div class="dashed"></div>
-        <div class="info-title">Cerita terbaru wisatawan tentang tempat wisata yang ada di Sumatera Barat</div>
-        <div class="dashed" style="margin-bottom: 25px; margin-top: 0"></div>
-
-        <% @reviews.each do |review| %>
-          <div class="span1 photo-tourism">
-            <%= link_to image_tag(review.user.image.url(:thumb), :class => 'thumbnail'), profile_path(review.user) %>
-          </div>
-
-          <div class="story-tourism">
-            <div class="name-location">
-              <%= link_to review.commentable.name, location_tourism_path(review.commentable, anchor: "comment-#{review.id}") %>
-            </div>
-            <div class="clearfix">
-              <div class="date-publish pull-right"><i class="icon-time"></i> Rabu, 27 Juni 2012</div>
-              <div class="rate-location pull-left">
-                <%#*<i class="icon-star"></i>%>
-                <%#*<i class="icon-star"></i>%>
-                <%#*<i class="icon-star"></i>%>
-                <%#*<i class="icon-star"></i>%>
-                <%#*<i class="icon-star-empty"></i>%>
-              </div>
-            </div>
-
-              <%= raw review.comment %>
-          </div>
-          <div class="dashed" style="margin-bottom: 15px; margin-top: 10px;"></div>
-        <% end %>
-        <%= paginate @reviews %>
+    <div class="story-tourism">
+      <div class="name-location">
+        <%= link_to review.commentable.name, location_tourism_path(review.commentable, anchor: "comment-#{review.id}") %>
       </div>
-    </div> <!-- End Cerita Wisatawan / Comment -->
+      <div class="clearfix">
+        <div class="date-publish pull-right"><i class="icon-time"></i> Rabu, 27 Juni 2012</div>
+      </div>
 
-  </div><!--/span-->
-</div><!--/row-->
+      <%= raw review.comment %>
+    </div>
+    <div class="dashed" style="margin-bottom: 15px; margin-top: 10px;"></div>
+  <% end %>
+  <%= paginate @reviews %>
+</div>
 

@@ -4,7 +4,7 @@
       <h2 class="two-title-tourism-article">
         <%= link_to tips_trick.title, tips_trick_path(tips_trick) %>
       </h2>
-      oleh <a href="#"><%= tips_trick.user.username %></a> | <%= l tips_trick.created_at, :format => :costum %>
+      oleh <%= link_to tips_trick.user.username %> | <%= l tips_trick.created_at, :format => :costum %>
     </div>
     <%= image_tag(tips_trick.image.url(:medium)) %>
     <div class="caption">

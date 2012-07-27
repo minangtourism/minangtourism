@@ -1,35 +1,22 @@
-<div class="container">
-  <div class="row">
-
-    <div class="span3">
-      <%= render 'user_navigation' %>
-    </div><!--/span-->
-
-    <div class="span9">
-      <div class="profiles-home"> <!-- Acara / Event -->
-        <h2>Acara Wisata</h2>
-        <div class="dashed"></div>
-        <div class="info-title">Acara wisata yang ada di Sumatera Barat</div>
-        <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
-        <% if can? :create_event, @profile %>
-          <%= link_to new_event_profile_path(@profile) do %>
-            <div class="btn btn-primary icon-plus"> Tambah Data</div>
-          <% end %>
-          <div class="dashed" style="margin-bottom: 30px; margin-top: 15px"></div>
-          <% @events.each do |event| %>
-            <div class="title-news">
-              <%= link_to truncate(event.title, :length => 80, :separator => ' '), event_path(event) %>
-            </div>
-            <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
-          <% end %>
-        <% end %>
-
-        <div class="all-events" style="margin-bottom: 0">
-          <%= paginate @events %>
-        </div>
-      </div>
-    </div> <!-- Acara / Event -->
-
-  </div><!--/span-->
-</div><!--/row-->
+<div class="profiles-home"> <!-- Acara / Event -->
+  <h2>Acara Wisata</h2>
+  <div class="dashed"></div>
+  <div class="info-title">Acara wisata yang ada di Sumatera Barat</div>
+  <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+  <% if can?(:create_event, @profile) && @profile == current_user %>
+    <%= link_to new_event_profile_path(@profile) do %>
+      <div class="btn btn-primary icon-plus"> Tambah Data</div>
+    <% end %>
+    <div class="dashed" style="margin-bottom: 30px; margin-top: 15px"></div>
+  <% end %>
+  <% @events.each do |event| %>
+    <div class="title-news">
+      <%= link_to truncate(event.title, :length => 80, :separator => ' '), event_path(event) %>
+    </div>
+    <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
+  <% end %>
+  <div class="all-events" style="margin-bottom: 0">
+    <%= paginate @events %>
+  </div>
+</div>
 

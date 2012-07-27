@@ -1,8 +1,6 @@
 class LocationTourismsController < ApplicationController
   load_and_authorize_resource
   
-  # GET /location_tourisms
-  # GET /location_tourisms.json
   def index
     if params[:category_loc_tourism_id].present?
       @category_loc_tourism = CategoryLocTourism.find(params[:category_loc_tourism_id])
@@ -18,8 +16,6 @@ class LocationTourismsController < ApplicationController
     end
   end
 
-  # GET /location_tourisms/1
-  # GET /location_tourisms/1.json
   def show
     @comments = @location_tourism.comments.published.recent.page(params[:page]).per(10)
     first_comment = @location_tourism.comments.published.recent.last
@@ -38,14 +34,13 @@ class LocationTourismsController < ApplicationController
     @comment.commentable = @location_tourism
 
     if @comment.save
-      redirect_to @location_tourism
+      redirect_to @location_tourism, notice: 'cerita sukses dibuat, menunggu verifikasi admin'
     else
-      render action: "show"
+      #       render action: "show"
+      redirect_to @location_tourism, notice: 'cerita gagal dibuat, form komentar kosong'
     end
   end
 
-  # GET /location_tourisms/new
-  # GET /location_tourisms/new.json
   def new
     respond_to do |format|
       format.html # new.html.erb
@@ -53,7 +48,6 @@ class LocationTourismsController < ApplicationController
     end
   end
 
-  # GET /location_tourisms/1/edit
   def edit
     location_tourism = @location_tourism
     @location_tourism = current_user.location_tourism_revisions.new(params[:location_tourism])
@@ -61,14 +55,12 @@ class LocationTourismsController < ApplicationController
     @location_tourism.copy_fields
   end
 
-  # POST /location_tourisms
-  # POST /location_tourisms.json
   def create
     @location_tourism = current_user.location_tourisms.new(params[:location_tourism])
 
     respond_to do |format|
       if @location_tourism.save
-        format.html { redirect_to @location_tourism, notice: 'Location tourism was successfully created.' }
+        format.html { redirect_to @location_tourism, notice: 'Tempat wisata sukses dibuat' }
         format.json { render json: @location_tourism, status: :created, location: @location_tourism }
       else
         format.html { render action: "new" }
@@ -77,15 +69,13 @@ class LocationTourismsController < ApplicationController
     end
   end
 
-  # PUT /location_tourisms/1
-  # PUT /location_tourisms/1.json
   def update
     location_tourism = @location_tourism
     @location_tourism = current_user.location_tourism_revisions.new(params[:location_tourism])
     @location_tourism.location_tourism = location_tourism
     respond_to do |format|
       if @location_tourism.save
-        format.html { redirect_to @location_tourism.location_tourism, notice: 'Location tourism was successfully updated.' }
+        format.html { redirect_to @location_tourism.location_tourism, notice: 'Tempat wisata sukses diperbaharui' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -94,8 +84,6 @@ class LocationTourismsController < ApplicationController
     end
   end
 
-  # DELETE /location_tourisms/1
-  # DELETE /location_tourisms/1.json
   def destroy
     @location_tourism.destroy
 

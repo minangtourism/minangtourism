@@ -27,32 +27,6 @@ SumbarTourism::Application.routes.draw do
   resources :why_sumbars
   resources :reviews
 
-  # --------------------- SEARCH-------------------- #
-  resources :tourism_articles do
-    collection do
-      get :search
-    end
-    member do
-      post :create_comment
-    end
-  end
-
-  #  resources :homes do
-  #    collection do
-  #      get :search
-  #    end
-  #  end
-  # --------------------- SEARCH-------------------- #
-
-  # --------------------- LIKE -------------------- #
-  resources :events do
-    member do
-      post :create_comment
-      post :like
-    end
-  end
-  # --------------------- LIKE -------------------- #
-  
   # ------------------- PROFILE ------------------- #
   resources :profile_tourism_articles, path: 'profiles/:profile_id/tourism_articles', except: :show
   resources :profiles do
@@ -63,39 +37,56 @@ SumbarTourism::Application.routes.draw do
       get :new_folktale
       post :create_folktale
 
-#      get :tourism_articles
-#      get :new_tourism_article
-#      post :create_tourism_article
-#      get "edit_tourism_article/:tourism_article_id", action: :edit_tourism_article, as: :edit_tourism_article
-#      put "update_tourism_article/:tourism_article_id", action: :update_tourism_article, as: :update_tourism_article
-#      delete "destroy_tourism_article/:tourism_article_id", action: :destroy_tourism_article, as: :destroy_tourism_article
-      
+      #      get :tourism_articles
+      #      get :new_tourism_article
+      #      post :create_tourism_article
+      #      get "edit_tourism_article/:tourism_article_id", action: :edit_tourism_article, as: :edit_tourism_article
+      #      put "update_tourism_article/:tourism_article_id", action: :update_tourism_article, as: :update_tourism_article
+      #      delete "destroy_tourism_article/:tourism_article_id", action: :destroy_tourism_article, as: :destroy_tourism_article
+
       get :location_tourisms
       get :new_location_tourism
       post :create_location_tourism
       get "edit_location_tourism/:location_tourism_id", action: :edit_location_tourism, as: :edit_location_tourism
       put "update_location_tourism/:location_tourism_id", action: :update_location_tourism, as: :update_location_tourism
-      
+
       get :events
       get :new_event
       post :create_event
-      
+
       get :tips_tricks
       get :new_tips_trick
       post :create_tips_trick
-      
+
       get :abouts
       get :edit_about
       put :update_about
     end
 
   end
+  # ------------------- PROFILE -------------------- #
 
+  # --------------------- SEARCH-------------------- #
+  resources :tourism_articles do
+    collection do
+      get :search
+    end
+    member do
+      post :create_comment
+    end
+  end
+  # --------------------- SEARCH------------------- #
 
-  # ------------------- PROFILE ------------------- #
-
+  # --------------------- LIKE -------------------- #
+  resources :events do
+    member do
+      post :create_comment
+      post :like
+    end
+  end
+  # --------------------- LIKE -------------------- #
+  
   # ------------------- COMMENT ------------------- #
-
   resources :location_tourisms do
     member do
       post :create_comment

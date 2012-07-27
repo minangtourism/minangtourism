@@ -38,7 +38,6 @@
     </span>
 
     <span class="pull-right" >
-<%#= @event.impressionist_count(:filter => :ip_address) %>
       <%= @event.impressionist_count(:filter => :session_hash) %>
       <i class="icon-eye-open"></i>
     </span>
@@ -63,7 +62,7 @@
             <%= link_to comment.user.username, profile_path(comment.user) %>
             <%= l comment.created_at, :format => :costum %>
           </h5>
-          <p class="clearfix" style="white-space: pre-wrap"><%= comment.comment %></p>
+          <p class="clearfix" style="white-space: pre-wrap"><%= raw comment.comment %></p>
         </div>
         <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
       <% end %>

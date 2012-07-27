@@ -3,45 +3,57 @@ class Ability
 
   def initialize(user)
     can :read, :all
-    can [:abouts, :reviews, :folktales, :tourism_articles, :location_tourisms, :events, :tips_tricks], User
+    can [:read, :abouts, :reviews, :folktales, :location_tourisms, :events, :tips_tricks], User
     cannot :access, :rails_admin
     cannot :dashboard
-    cannot :read, User, state: :disabled
+    cannot :manage, User, :state => 'disabled'
     cannot :read,
       [LocationTourism, Folktale, TourismArticle, Event, TipsTrick], :state => 'unpublished'
+    can :read,
+      [LocationTourism, Folktale, TourismArticle, Event, TipsTrick], :state => 'published'
     can :create, Contact
-    
-    if user
-      can :like, Event
-      can :search, TourismArticle
 
+    if user
       if user.is? :member
-        can [:read, :update, :destroy], TourismArticle, user_id: user.id
-        can [:create, :update],
-          [TourismArticle, Comment, Folktale, LocationTourism, Event, TipsTrick]
+        can [:create, :update, :destroy],
+          [TourismArticle, Comment, Folktale, LocationTourism, Event, TipsTrick], user_id: user.id
         can :create_comment,
           [TourismArticle, Folktale, LocationTourism, Event, TipsTrick]
         can [
-          :new_tourism_article, :create_tourism_article,
-          :edit_tourism_article, :update_tourism_article, :destroy_tourism_article,
-
           :new_folktale, :create_folktale,
-          :new_event, :create_event,
+          :new_event, :create_event, :create_tourism_article,
 
           :new_location_tourism, :create_location_tourism,
           :edit_location_tourism, :update_location_tourism,
-          
+
           :new_tips_trick, :create_tips_trick,
           :edit_about, :update_about
-        ],
-          User, :id => user.id
+        ], User, :id => user.id
       end
 
       if user.is? :operator
+        can [:create, :update, :destroy],
+          [TourismArticle, Comment, Folktale, LocationTourism, Event, TipsTrick], user_id: user.id
+        can [
+          :new_folktale, :create_folktale,
+          :new_event, :create_event, :create_tourism_article,
+
+          :new_location_tourism, :create_location_tourism,
+          :edit_location_tourism, :update_location_tourism,
+
+          :new_tips_trick, :create_tips_trick,
+          :edit_about, :update_about
+        ], User, :id => user.id
         can :access, :rails_admin
         can :dashboard
+        cannot :manage, [SumbarContent, Setting, Slideshow, Profile]
+        can [:read], User
         can :manage,
-          [Contact, TourismArticle, Comment, Folktale, CategoryLocTourism, LocationTourism, Event, TipsTrick]
+          [Contact, TourismArticle, TourismArticleRevision, Comment, Folktale,
+          CategoryLocTourism, LocationTourism, LocationTourismRevision, Event, TipsTrick]
+        cannot [:approve, :destroy, :create, :reject, :update], DeletionRequest
+        can [:approve, :reject], DeletionRequest, state: "pending"
+        can :destroy, DeletionRequest, state: %w[approved rejected]
       end
 
       if user.is? :admin
@@ -53,7 +65,9 @@ class Ability
         can :destroy, DeletionRequest, state: %w[approved rejected]
       end
 
+      can :like, Event
       cannot :like, Event, likes: {user_id: user.id}
+      can :search, TourismArticle
     end
 
     cannot :destroy, user
@@ -82,5 +96,4 @@ class Ability
   #   can :update, Article, :published => true
   #
   # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
-  #  end
 end

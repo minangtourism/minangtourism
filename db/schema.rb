@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120725135837) do
+ActiveRecord::Schema.define(:version => 20120726094004) do
 
   create_table "category_loc_tourisms", :force => true do |t|
     t.string   "name"
@@ -218,24 +218,6 @@ ActiveRecord::Schema.define(:version => 20120725135837) do
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
-  create_table "rates", :force => true do |t|
-    t.integer "score"
-  end
-
-  create_table "ratings", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "rate_id"
-    t.integer  "rateable_id"
-    t.string   "rateable_type", :limit => 32
-    t.text     "free_text"
-    t.string   "rater_name"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
-  end
-
-  add_index "ratings", ["rate_id"], :name => "index_ratings_on_rate_id"
-  add_index "ratings", ["rateable_id", "rateable_type"], :name => "index_ratings_on_rateable_id_and_rateable_type"
-
   create_table "settings", :force => true do |t|
     t.string   "key",        :null => false
     t.string   "alt"
@@ -304,15 +286,14 @@ ActiveRecord::Schema.define(:version => 20120725135837) do
   create_table "tourism_articles", :force => true do |t|
     t.string   "title"
     t.text     "content"
-    t.string   "video"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+    t.integer  "user_id"
+    t.string   "state"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.integer  "user_id"
-    t.string   "state"
   end
 
   create_table "users", :force => true do |t|

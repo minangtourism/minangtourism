@@ -54,9 +54,9 @@ class LocationTourismRevision < ActiveRecord::Base
     ['published','unpublished']
   end
 
-  def is_authorized_for?(transition)
-    permitted_to?(transition.event.to_sym)
-  end
+#  def is_authorized_for?(transition)
+#    permitted_to?(transition.event.to_sym)
+#  end
 
   def copy_fields
     target = location_tourism

@@ -1,9 +1,3 @@
-GIT
-  remote: git://github.com/anton-zaytsev/acts_as_rateable.git
-  revision: 01066eceb2d16e35be437b7392cc3375f1f377f7
-  specs:
-    acts_as_rateable (3.0.0)
-
 PATH
   remote: vendor/gems/rails_admin_approve
   specs:
@@ -215,7 +209,6 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_commentable
-  acts_as_rateable!
   awesome_print (~> 1.0.2)
   bootstrap-datepicker-rails
   cancan

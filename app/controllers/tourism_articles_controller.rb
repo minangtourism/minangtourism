@@ -2,9 +2,6 @@ class TourismArticlesController < ApplicationController
   load_and_authorize_resource
   impressionist
   
-  # GET /tourism_articles
-  # GET /tourism_articles.json
-
   def index
     @tourism_articles = @tourism_articles.published.recent.page(params[:page]).per(10)
 
@@ -23,8 +20,6 @@ class TourismArticlesController < ApplicationController
     end
   end
 
-  # GET /tourism_articles/1
-  # GET /tourism_articles/1.json
   def show
     @comments = @tourism_article.comments.published.recent.page(params[:page]).per(10)
     @comment = Comment.new
@@ -40,14 +35,13 @@ class TourismArticlesController < ApplicationController
     @comment.commentable = @tourism_article
 
     if @comment.save
-      redirect_to @tourism_article
+      redirect_to @tourism_article, notice: 'Komentar sukses dibuat, menunggu verifikasi admin'
     else
-      render action: "show"
+      #       render action: "show"
+      redirect_to @tourism_article, notice: 'Komentar gagal dibuat, form komentar kosong'
     end
   end
 
-  # GET /tourism_articles/new
-  # GET /tourism_articles/new.json
   def new
     respond_to do |format|
       format.html # new.html.erb
@@ -55,12 +49,9 @@ class TourismArticlesController < ApplicationController
     end
   end
 
-  # GET /tourism_articles/1/edit
   def edit
   end
 
-  # POST /tourism_articles
-  # POST /tourism_articles.json
   def create
     respond_to do |format|
       if @tourism_article.save
@@ -73,8 +64,6 @@ class TourismArticlesController < ApplicationController
     end
   end
 
-  # PUT /tourism_articles/1
-  # PUT /tourism_articles/1.json
   def update
     respond_to do |format|
       if @tourism_article.update_attributes(params[:tourism_article])
@@ -86,10 +75,7 @@ class TourismArticlesController < ApplicationController
     end
   end
 
-  # DELETE /tourism_articles/1
-  # DELETE /tourism_articles/1.json
   def destroy
-    #    @tourism_article = TourismArticle.find(params[:id])
     @tourism_article.destroy
 
     respond_to do |format|

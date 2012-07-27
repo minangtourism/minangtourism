@@ -65,6 +65,8 @@ id:
         other: "almost %{count} years"
 
   admin:
+    home:
+      name: "Home"
     pagination:
       previous: "&laquo; Prev"
       next: "Next &raquo;"

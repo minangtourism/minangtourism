@@ -65,10 +65,11 @@
         </div>
         <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
       <% end %>
-
-      <div class="all-events">
-        <%= link_to 'Selanjutnya', events_path, :class => 'btn btn-inverse btn-mini' %>
-      </div>
+      <% if @events.present? %>
+        <div class="all-events">
+          <%= link_to 'Selanjutnya', events_path, :class => 'btn btn-inverse btn-mini' %>
+        </div>
+      <% end %>
     </div> <!-- END EVENT / ACARA -->
 
     <% if @tourism_articles %> <!-- TOURISM ARTICLES / BERITA WISATA -->
@@ -99,39 +100,20 @@
           </div>
           <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
         <% end %>
-
-        <div class="all-events">
-          <%= link_to 'Selanjutnya', tourism_articles_path, :class => 'btn btn-inverse btn-mini' %>
-        </div>
+        <% if @tourism_articles.present? %>
+          <div class="all-events">
+            <%= link_to 'Selanjutnya', tourism_articles_path, :class => 'btn btn-inverse btn-mini' %>
+          </div>
+        <% end %>
       </div>
     <% end %> <!-- END TOURISM ARTICLES / BERITA WISATA -->
 
-
-<%#*<div class="span4"> <!-- PETA JARAK -->%>
-<%#*<h2>Jarak</h2>%>
-<%#*<div class="dashed"></div>%>
-<%#*<div class="info-title">Cari jarak antara negara atau kota ke lokasi wisata Sumatera Barat</div>%>
-<%#*<div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>%>
-
-<%#*<div class="maps">%>
-<%#*<form class="well">%>
-<%#*<input type="text" class="span3" placeholder="Lokasi Saya"/>%>
-<%#*<input type="text" class="span3" placeholder="Lokasi Wisata Sumbar"/>%>
-<%#*<button type="submit" class="btn">Submit</button>%>
-<%#*</form>%>
-<%#*</div>%>
-<%#*<div class="dashed" style="margin-bottom: 15px; margin-top: 0;"></div>%>
-<%#*<div class="all-events">%>
-<%#= link_to 'Selanjutnya', tourism_articles_path, :class => 'btn btn-inverse btn-mini' %>
-<%#*</div>%>
-<%#*</div> <!-- END PETA JARAK -->%>
-
-    <% if @location_tourisms %>
-      <div class="span4">
-        <h2>Tempat Wisata</h2>
-        <div class="dashed"></div>
-        <div class="info-title">Tempat Wisata terbaru Sumatera Barat</div>
-        <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+    <div class="span4">
+      <h2>Tempat Wisata</h2>
+      <div class="dashed"></div>
+      <div class="info-title">Tempat Wisata terbaru Sumatera Barat</div>
+      <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+      <% if @location_tourisms.present? %>
         <div class="thumbnail" style="padding: 19px">
           <% @location_tourisms.each do |location_tourism| %>
             <div style="margin-bottom: 15px">
@@ -157,9 +139,14 @@
               </tbody>
             </table>
           <% end %>
-        </div>
+        <% else %>
+          <div class="side-tourism">
+            Jadilah member pertama yang mengisi konten ini!
+          </div>
+          <div class="dashed" style="margin-bottom: 30px; margin-top: 30px;"></div>
+        <% end %>
       </div>
-    <% end %>
+    </div>
   </div>
 
   <div class="row"> <!-- CERITA WISATAWAN -->
@@ -205,13 +192,14 @@
             <div class="dashed" style="margin-bottom: 15px; margin-top: 10px;"></div>
           </div>
         <% end %>
-
-        <div class="span8">
-          <div class="dashed" style="margin-bottom: 15px; margin-top: 10px;"></div>
-          <div class="all-events">
-            <%= link_to 'Selanjutnya', reviews_path, :class => 'btn btn-inverse btn-mini' %>
+        <% if @reviews.present? %>
+          <div class="span8">
+            <div class="dashed" style="margin-bottom: 15px; margin-top: 10px;"></div>
+            <div class="all-events">
+              <%= link_to 'Selanjutnya', reviews_path, :class => 'btn btn-inverse btn-mini' %>
+            </div>
           </div>
-        </div>
+        <% end %>
       </div> <!-- end row -->
     </div>
 
@@ -235,9 +223,11 @@
                 <div class="dashed" style="margin-bottom: 10px; margin-top: 5px;"></div>
               </div>
             <% end %>
-            <div class="all-events">
-              <%= link_to 'Selanjutnya', folktales_path, :class => 'btn btn-inverse btn-mini' %>
-            </div>
+            <% if @folktales.present? %>
+              <div class="all-events">
+                <%= link_to 'Selanjutnya', folktales_path, :class => 'btn btn-inverse btn-mini' %>
+              </div>
+            <% end %>
           </div>
 
           <div class="tab-pane" id="profile">
@@ -247,9 +237,11 @@
               </div>
               <div class="dashed" style="margin-bottom: 10px; margin-top: 5px;"></div>
             <% end %>
-            <div class="all-events">
-              <%= link_to 'Selanjutnya', tips_tricks_path, :class => 'btn btn-inverse btn-mini' %>
-            </div>
+            <% if @tips_tricks.present? %>
+              <div class="all-events">
+                <%= link_to 'Selanjutnya', tips_tricks_path, :class => 'btn btn-inverse btn-mini' %>
+              </div>
+            <% end %>
           </div>
 
         </div>

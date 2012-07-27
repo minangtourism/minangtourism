@@ -1,18 +1,19 @@
 class User < ActiveRecord::Base
   include RoleModel
 
-  has_many :tourism_articles
+  has_many :comments
+  has_many :deletion_requests
   has_many :events
   has_many :folktales
-  has_many :tips_tricks
+  has_many :likes
   has_many :location_tourisms
   has_many :location_tourism_revisions
-  has_many :comments
-  has_many :sumbar_contents
+  has_one  :profile, :autosave => true
   has_many :reviews, class_name: 'Comment', conditions: "commentable_type = 'LocationTourism'"
-  has_many :likes
-  has_many :deletion_requests
-  has_one :profile, :autosave => true
+  has_many :sumbar_contents
+  has_many :tips_tricks
+  has_many :tourism_articles
+  has_many :tourism_article_revisions
 
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable
@@ -26,7 +27,6 @@ class User < ActiveRecord::Base
     :uniqueness => true,
     :length => {:maximum => 15},
     :format => {:with => /^[A-Za-z\d_]+$/}
-  #    :format => {:with => /^[^0-9`!@#\$%\^&*+_=]+$/}
   validates :email,
     :presence => true,
     :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }

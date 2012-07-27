@@ -1,9 +1,7 @@
 class TipsTrick < ActiveRecord::Base
-
   belongs_to :user
   has_many :comments, as: :commentable
 
-  # sebelum di rails s, di comment dulu. Setelah rails s selesai, aktifkan lagi yang di comment
   is_impressionable
 
   attr_accessible :state, :description, :title, :user_id, :image

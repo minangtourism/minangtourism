@@ -1,142 +1,133 @@
-<div class="container">
-  <div class="row">
-
-    <div class="span3">
-      <%= render 'user_navigation' %>
-    </div>
+<div class="row">
+  <div class="span5">
     <div class="row">
-      <div class="span5">
-        <div class="row">
-          <% if can? :create_tourism_article, @profile %>
-            <div class="span5">
-              <div class="profiles-home"> <!-- Berita Wisatawan / TourismArticle -->
-                <%= link_to edit_about_profile_path(@profile) do %>
-                  <div class="btn btn-primary icon-pencil"> Perbarui Informasi</div>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
-          <div class="span5">
-            <div class="profiles-home">
-              <h2>Tentang Saya</h2>
-              <div class="dashed"></div>
-              <div class="info-title">Informasi tentang saya</div>
-              <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
-              <div class="about-me">
-                <%= raw @profile.about %>
-              </div>
-            </div>
-          </div>
-
-          <div class="span5">
-            <div class="profiles-home">
-              <h2>Info Umum</h2>
-              <div class="dashed"></div>
-              <div class="info-title">Informasi umum saya</div>
-              <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
-
-              <table class="table table-striped">
-                <tbody>
-                  <tr>
-                    <td><i class="icon-bookmark"></i></td>
-                    <td>Nama</td>
-                    <td><%= @profile.name %></td>
-                  </tr>
-                  <tr>
-                    <td><i class="icon-user"></i></td>
-                    <td>Saya seorang</td>
-                    <td><%= @profile.sex %></td>
-                  </tr>
-                  <tr>
-                    <td><i class="icon-gift"></i> </td>
-                    <td>Ulang Tahun</td>
-                    <td><%= l @profile.birthday, :format => :long if @profile.birthday.present? %></td>
-                  </tr>
-                  <tr>
-                    <td><i class="icon-briefcase"></i> </td>
-                    <td>Pekerjaan</td>
-                    <td><%= @profile.work %></td>
-                  </tr>
-                </tbody>
-              </table>
-
-            </div>
+      <% if can?(:create_tourism_article, @profile) && @profile == current_user %>
+        <div class="span5">
+          <div class="profiles-home"> 
+            <%= link_to edit_about_profile_path(@profile) do %>
+              <div class="btn btn-primary icon-pencil"> Perbarui Informasi</div>
+            <% end %>
           </div>
         </div>
+      <% end %>
+      <div class="span5">
+        <div class="profiles-home">
+          <h2>Tentang Saya</h2>
+          <div class="dashed"></div>
+          <div class="info-title">Informasi tentang saya</div>
+          <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+          <div class="about-me">
+            <%= raw @profile.about %>
+          </div>
+        </div>
+      </div>
+
+      <div class="span5">
+        <div class="profiles-home">
+          <h2>Info Umum</h2>
+          <div class="dashed"></div>
+          <div class="info-title">Informasi umum saya</div>
+          <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+
+          <table class="table table-striped">
+            <tbody>
+              <tr>
+                <td><i class="icon-bookmark"></i></td>
+                <td>Nama</td>
+                <td><%= @profile.name %></td>
+              </tr>
+              <tr>
+                <td><i class="icon-user"></i></td>
+                <td>Saya seorang</td>
+                <td><%= @profile.sex %></td>
+              </tr>
+              <tr>
+                <td><i class="icon-gift"></i> </td>
+                <td>Ulang Tahun</td>
+                <td><%= l @profile.birthday, :format => :long if @profile.birthday.present? %></td>
+              </tr>
+              <tr>
+                <td><i class="icon-briefcase"></i> </td>
+                <td>Pekerjaan</td>
+                <td><%= @profile.work %></td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="span4">
+    <div class="row">
+
+      <div class="span4">
+        <div class="profiles-home">
+          <h2>Info Kontak</h2>
+          <div class="dashed"></div>
+          <div class="info-title">Info kontak  saya</div>
+          <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+
+          <table class="table table-striped">
+            <tbody>
+              <tr>
+                <td><i class="icon-envelope"></i></td>
+                <td>Email</td>
+                <td><%= @profile.email %></td>
+              </tr>
+              <tr>
+                <td><i class="icon-phone"></i></td>
+                <td>Telepon</td>
+                <td><%= @profile.phone %></td>
+              </tr>
+              <tr>
+                <td><i class="icon-map-marker"></i></td>
+                <td>Alamat</td>
+                <td><%= @profile.address %></td>
+              </tr>
+              <tr>
+                <td><i class="icon-home"></i></td>
+                <td>Kota Asal</td>
+                <td><%= @profile.city %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
       </div>
 
       <div class="span4">
-        <div class="row">
+        <div class="profiles-home">
+          <h2>Instant Messaging</h2>
+          <div class="dashed"></div>
+          <div class="info-title">Instant Messaging saya</div>
+          <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
 
-          <div class="span4">
-            <div class="profiles-home">
-              <h2>Info Kontak</h2>
-              <div class="dashed"></div>
-              <div class="info-title">Info kontak  saya</div>
-              <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+          <table class="table table-striped">
+            <tbody>
+              <tr>
+                <td><i class="icon-globe"></i></td>
+                <td>Website</td>
+                <td><%= @profile.website %></td>
+              </tr>
+              <tr>
+                <td><i class="icon-facebook"></i></td>
+                <td>Facebook</td>
+                <td><%= @profile.facebook %></td>
+              </tr>
+              <tr>
+                <td><i class="icon-twitter"></i></td>
+                <td>Twitter</td>
+                <td><%= @profile.twitter %></td>
+              </tr>
+            </tbody>
+          </table>
 
-              <table class="table table-striped">
-                <tbody>
-                  <tr>
-                    <td><i class="icon-envelope"></i></td>
-                    <td>Email</td>
-                    <td><%= @profile.email %></td>
-                  </tr>
-                  <tr>
-                    <td><i class="icon-phone"></i></td>
-                    <td>Telepon</td>
-                    <td><%= @profile.phone %></td>
-                  </tr>
-                  <tr>
-                    <td><i class="icon-map-marker"></i></td>
-                    <td>Alamat</td>
-                    <td><%= @profile.address %></td>
-                  </tr>
-                  <tr>
-                    <td><i class="icon-home"></i></td>
-                    <td>Kota Asal</td>
-                    <td><%= @profile.city %></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-          </div>
-
-          <div class="span4">
-            <div class="profiles-home">
-              <h2>Instant Messaging</h2>
-              <div class="dashed"></div>
-              <div class="info-title">Instant Messaging saya</div>
-              <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
-
-              <table class="table table-striped">
-                <tbody>
-                  <tr>
-                    <td><i class="icon-globe"></i></td>
-                    <td>Website</td>
-                    <td><%= @profile.website %></td>
-                  </tr>
-                  <tr>
-                    <td><i class="icon-facebook"></i></td>
-                    <td>Facebook</td>
-                    <td><%= @profile.facebook %></td>
-                  </tr>
-                  <tr>
-                    <td><i class="icon-twitter"></i></td>
-                    <td>Twitter</td>
-                    <td><%= @profile.twitter %></td>
-                  </tr>
-                </tbody>
-              </table>
-
-            </div>
-          </div>
         </div>
-
       </div>
-
     </div>
+
   </div>
 
 </div>

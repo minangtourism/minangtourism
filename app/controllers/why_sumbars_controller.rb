@@ -1,8 +1,6 @@
 class WhySumbarsController < ApplicationController
-  # GET /why_sumbars
-  # GET /why_sumbars.json
-  def index
 
+  def index
     @why_sumbars      = WhySumbar.recent.all
     @getting_theres   = GettingThere.recent.all
     @where_to_stays   = WhereToStay.recent.all
@@ -17,8 +15,6 @@ class WhySumbarsController < ApplicationController
     end
   end
 
-  # GET /why_sumbars/1
-  # GET /why_sumbars/1.json
   def show
     @why_sumbar = WhySumbar.find(params[:id])
 
@@ -28,8 +24,6 @@ class WhySumbarsController < ApplicationController
     end
   end
 
-  # GET /why_sumbars/new
-  # GET /why_sumbars/new.json
   def new
     @why_sumbar = WhySumbar.new
 
@@ -39,15 +33,11 @@ class WhySumbarsController < ApplicationController
     end
   end
 
-  # GET /why_sumbars/1/edit
   def edit
     @why_sumbar = WhySumbar.find(params[:id])
   end
 
-  # POST /why_sumbars
-  # POST /why_sumbars.json
   def create
-#    @why_sumbar = current_user.why_sumbars.new(params[:why_sumbar])
     @why_sumbar = WhySumbar.new(params[:why_sumbar])
     @why_sumbar.user_id =  current_user.id
 
@@ -62,8 +52,6 @@ class WhySumbarsController < ApplicationController
     end
   end
 
-  # PUT /why_sumbars/1
-  # PUT /why_sumbars/1.json
   def update
     @why_sumbar = WhySumbar.find(params[:id])
 
@@ -78,8 +66,6 @@ class WhySumbarsController < ApplicationController
     end
   end
 
-  # DELETE /why_sumbars/1
-  # DELETE /why_sumbars/1.json
   def destroy
     @why_sumbar = WhySumbar.find(params[:id])
     @why_sumbar.destroy

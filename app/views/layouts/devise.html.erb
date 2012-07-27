@@ -36,71 +36,11 @@
               <input type="text" placeholder="Search" class="search-query span2" style="margin-bottom: 0"/>
             </form>
             <li class="divider-vertical"></li>
-            <%= render "shared/user_nav" %>
+            <%= render "shared/nav_user" %>
           </div>
 
           <div class="nav-collapse">
-            <ul class="nav">
-              <li class="<%= current_page?(root_path) ? "active" : nil%>" >
-                <%= link_to '/' do %>
-                  <i class="icon-home"></i>Home
-                <% end %>
-              </li>
-              <li class="<%= current_page?(why_sumbars_path) ? "active" : nil%>">
-                <%= link_to why_sumbars_path do %>
-                  <i class="icon-road"></i>Why Sumbar
-                <% end %>
-              </li>
-              <li class="<%= current_page?(tourism_articles_path) ? "active" : nil%>">
-                <%= link_to tourism_articles_path do %>
-                  <i class="icon-globe"></i>Berita Wisata
-                <% end %>
-              </li>
-
-              <li class="dropdown" id="menu1">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1">
-                  <i class="icon-pencil"></i>Cerita
-                  <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                  <li class="<%= current_page?(reviews_path) ? "active" : nil%>">
-                    <%= link_to reviews_path do %>
-                      <i class="icon-pencil"></i>Cerita Wisatawan
-                    <% end %>
-                  </li>
-                  <li class="<%= current_page?(folktales_path) ? "active" : nil%>">
-                    <%= link_to folktales_path do %>
-                      <i class="icon-book"></i>Cerita Rakyat
-                    <% end %>
-                  </li>
-                </ul>
-              </li>
-
-              <li class="dropdown" id="menu2">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#menu2">
-                  <i class="icon-plane"></i>Wisata
-                  <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                  <li class="<%= current_page?(location_tourisms_path) ? "active" : nil%>">
-                    <%= link_to location_tourisms_path do %>
-                      <i class="icon-map-marker"></i>Tempat Wisata
-                    <% end %>
-                  </li>
-                  <li class="<%= current_page?(events_path) ? "active" : nil%>">
-                    <%= link_to events_path do %>
-                      <i class="icon-bullhorn"></i>Acara
-                    <% end %>
-                  </li>
-                  <li class="<%= current_page?(tips_tricks_path) ? "active" : nil%>">
-                    <%= link_to tips_tricks_path do %>
-                      <i class="icon-star"></i>Tips & Trikcs
-                    <% end %>
-                  </li>
-                </ul>
-              </li>
-
-            </ul>
+            <%= render "shared/nav_main" %>
           </div><!--/.nav-collapse -->
         </div>
       </div>
@@ -114,72 +54,8 @@
       <%= yield %>
     </div> <!-- /container -->
 
-    <%#*<div class="footer">%>
-      <%#*<div class="container">%>
-        <%#*<div class="row">%>
-          <%#*<div class="span3">%>
-            <%#*<h5><i class="icon-home colored"></i> Sumbar Tourism</h5>%>
-            <%#*<hr class=" hidden-phone" />%>
-            <%#*<p>Valera is designed to help people of all skill levels designer or developer, huge nerd or early beginner. Use it as a complete kit or use to start something more complex.</p>%>
-          <%#*</div>%>
-          <%#*<div class="span3">%>
-            <%#*<h5><i class="icon-search colored"></i> Help</h5>%>
-            <%#*<hr class=" hidden-phone" />%>
-            <%#*<a href="#"><strong class="colored">FAQ</strong></a>%>
-            <%#*<br class="visible-phone" />%>
-            <%#*<hr class=" hidden-phone" />%>
-            <%#*<a href="#"><strong class="colored">Advertise</strong></a>%>
-            <%#*<hr class=" hidden-phone" />%>
-            <%#*<a href="#"><strong class="colored">Content Guidelines</strong></a>%>
-            <%#*<hr class=" hidden-phone" />%>
-          <%#*</div>%>
-          <%#*<div class="span3">%>
-            <%#*<h5><i class="icon-user colored"></i> Contact info</h5>%>
-            <%#*<hr class=" hidden-phone" />%>
-            <%#*<span><strong class="colored"> Adress:</strong> 123456 Street Name, Sumatera Barat</span>%>
-            <%#*<br class="visible-phone" />%>
-            <%#*<hr class=" hidden-phone" />%>
-            <%#*<span><strong class="colored">Phone:</strong> (022) 765-4321</span>%>
-            <%#*<hr class=" hidden-phone" />%>
-            <%#*<span><strong class="colored">Email:</strong> info@sumbar-tourism.com</span>%>
-            <%#*<hr class=" hidden-phone" />%>
-          <%#*</div>%>
-          <%#*<div class="span3 soc_icons">%>
-            <%#*<h5><i class="icon-globe colored"></i> Stay in touch</h5>%>
-            <%#*<span>Find out what's happening:</span>%>
-            <%#*<hr />%>
-            <%#*<a href="#"><div class="icon_t"></div></a>%>
-            <%#*<a href="#"><div class="icon_facebook"></div></a>%>
-            <%#*<a href="#"><div class="icon_dribble"></div></a>%>
-            <%#*<a href="#"><div class="icon_google"></div></a>%>
-            <%#*<a href="#"><div class="icon_in"></div></a>%>
-            <%#*<a href="#"><div class="icon_flickr"></div></a>%>
-          <%#*</div>%>
-        <%#*</div>%>
-      <%#*</div>%>
-    <%#*</div>%>
-
     <div class="bottom-block">
-      <div class="container">
-        <div class="row">
-          <div class="span6">
-            <span>&copy; 2012 Sumbar Tourism. Design by
-              <span class="undercolored">
-                <a href="#">aminus</a>
-              </span>
-            </span>
-          </div>
-          <div class="span6">
-            <span class="pull-right visible-desktop">
-              <span>Powered by
-                <span class="undercolored">
-                  <a href="#">Bootstrap</a>
-                </span>
-              </span>
-            </span>
-          </div>
-        </div>
-      </div>
+      <%= render "shared/nav_footer" %>
     </div>
 
     <!-- Javascripts

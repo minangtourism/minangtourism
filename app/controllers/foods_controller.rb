@@ -1,4 +1,3 @@
-
 class FoodsController < ApplicationController
   # GET /foods
   # GET /foods.json

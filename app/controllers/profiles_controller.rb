@@ -1,26 +1,22 @@
 class ProfilesController < ApplicationController
+  load_and_authorize_resource :class => 'User'
 
   skip_before_filter :authenticate_user!, 
-    only: [:abouts, :reviews, :folktales, :tourism_articles, :location_tourisms, :events, :tips_tricks,
-    :new_tourism_article, :create_tourism_article,
+    only: [:abouts, :reviews, :folktales, :location_tourisms, :events, :tips_tricks,
+    :tourism_articles,
     :new_folktale, :create_folktale,
     :new_location_tourism, :create_location_tourism,
     :new_tips_tricks, :create_tips_tricks,
     :new_event, :create_event
   ]
-  load_and_authorize_resource :class => 'User'
-#  before_filter :load_tourism_article, :load_location_tourism, only: [
-#    :edit_tourism_article, :update_tourism_article, :destroy_tourism_article,
-#    :edit_location_tourism, :update_location_tourism]
-
-  before_filter :load_tourism_article, only: [
-    :edit_tourism_article, :update_tourism_article, :destroy_tourism_article]
 
   before_filter :load_location_tourism, only: [
     :edit_location_tourism, :update_location_tourism]
 
+  layout "profile", :except => :index
+  
   def index
-    @profiles = @profiles.member.recent.page(params[:page]).per(20)
+    @profiles = @profiles.member.enabled.recent.page(params[:page]).per(20)
   end
 
   def abouts
@@ -186,10 +182,6 @@ class ProfilesController < ApplicationController
   end
 
   protected
-
-  def load_tourism_article
-    @tourism_article = @profile.tourism_articles.find(params[:tourism_article_id])
-  end
 
   def load_location_tourism
     @location_tourism = @profile.location_tourisms.find(params[:location_tourism_id])

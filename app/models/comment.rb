@@ -1,9 +1,9 @@
 class Comment < ActiveRecord::Base
 
-  belongs_to :user
   belongs_to :location_tourism_revision
+  belongs_to :tourism_article_revision
+  belongs_to :user
 
-  acts_as_rateable
   acts_as_commentable
 
   include ActsAsCommentable::Comment
@@ -20,12 +20,6 @@ class Comment < ActiveRecord::Base
   validates :comment, :presence => true
 
   scope :reviews, where(commentable_type: 'LocationTourism')
-
-  # NOTE: install the acts_as_votable plugin if you
-  # want user to vote on the quality of comments.
-  #acts_as_voteable
-
-  # NOTE: Comments belong to a user
   scope :recent, order("created_at desc")
 
   state_machine :initial => :unpublished do

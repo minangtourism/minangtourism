@@ -1,44 +1,31 @@
-<div class="container">
-  <div class="row">
+<div class="profiles-home"> <!-- Lokasi Wisatawan / location tourism -->
+  <h2>Tempat Wisata</h2>
+  <div class="dashed"></div>
+  <div class="info-title">Tempat wisata yang ada di Sumatera Barat</div>
+  <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+  <% if can?(:create_location_tourism, @profile) && @profile == current_user %>
+    <%= link_to new_location_tourism_profile_path(@profile) do %>
+      <div class="btn btn-primary icon-plus"> Tambah Data</div>
+    <% end %>
+    <div class="dashed" style="margin-bottom: 30px; margin-top: 15px"></div>
+  <% end %>
 
-    <div class="span3">
-      <%= render 'user_navigation' %>
-    </div><!--/span-->
-
-    <div class="span9">
-      <div class="profiles-home"> <!-- Lokasi Wisatawan / location tourism -->
-        <h2>Tempat Wisata</h2>
-        <div class="dashed"></div>
-        <div class="info-title">Tempat wisata yang ada di Sumatera Barat</div>
-        <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
-        <% if can? :create_location_tourism, @profile %>
-          <%= link_to new_location_tourism_profile_path(@profile) do %>
-            <div class="btn btn-primary icon-plus"> Tambah Data</div>
-          <% end %>
-          <div class="dashed" style="margin-bottom: 30px; margin-top: 15px"></div>
-          <% @location_tourisms.each do |location_tourism| %>
-
-            <div class="title-news">
-              <div class="clearfix">
-                <%= link_to_if can?(:read, location_tourism), truncate(location_tourism.name, :length => 80, :separator => ' '), location_tourism_path(location_tourism) %>
-                <div class="pull-right">
-                  <%= link_to edit_location_tourism_profile_path(@profile, location_tourism), :rel => 'tooltip',data: {original_title: "Edit Data"} do %>
-                    <i class="btn btn-primary btn-mini icon-pencil"></i>
-                  <% end if can? :update_location_tourism, @profile %>
-                </div>
-              </div>
-            </div>
-
-            <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
-          <% end %>
-        <% end %>
-
-        <div class="all-events" style="margin-bottom: 0">
-          <%= paginate @location_tourisms %>
+  <% @location_tourisms.each do |location_tourism| %>
+    <div class="title-news">
+      <div class="clearfix">
+        <%= link_to_if can?(:read, location_tourism), truncate(location_tourism.name, :length => 80, :separator => ' '), location_tourism_path(location_tourism) %>
+        <div class="pull-right">
+          <%= link_to edit_location_tourism_profile_path(@profile, location_tourism), :rel => 'tooltip',data: {original_title: "Edit Data"} do %>
+            <i class="btn btn-primary btn-mini icon-pencil"></i>
+          <% end if can?(:update_location_tourism, @profile) && @profile == current_user %>
         </div>
       </div>
-    </div> <!-- END Lokasi Wisatawan / location tourism  -->
+    </div>
+    <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
+  <% end %>
 
-  </div><!--/span-->
-</div><!--/row-->
+  <div class="all-events" style="margin-bottom: 0">
+    <%= paginate @location_tourisms %>
+  </div>
+</div>
 

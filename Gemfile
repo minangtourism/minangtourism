@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 #searching
 gem 'thinking-sphinx'
 
+#rails
 gem 'rails', '3.2.5'
 
 # Bundle edge Rails instead:
@@ -22,9 +23,6 @@ gem 'nested_set'
 gem 'acts_as_commentable'
 gem 'settler'
 gem "awesome_print", "~> 1.0.2"
-
-#rating
-gem "acts_as_rateable", :git => "git://github.com/anton-zaytsev/acts_as_rateable.git"
 
 #admin
 gem "cancan"

@@ -3,7 +3,7 @@
   <div class="dashed"></div>
   <div class="info-title">Arsip Berita Wisata Saya</div>
   <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
-  <% if can? :create, TourismArticle %>
+  <% if can?(:create, @new_tourism_article) && @profile == current_user %>
     <%= link_to new_profile_tourism_article_path(@profile) do %>
       <i class="btn btn-primary icon-plus"> Tambah Data</i>
     <% end %>
@@ -17,11 +17,11 @@
         <div class="pull-right">
           <%= link_to edit_profile_tourism_article_path(@profile, tourism_article), rel: "tooltip", data: {original_title: "Edit Data"} do %>
             <i class="btn btn-primary btn-mini icon-pencil"></i>
-          <% end if can? :update, tourism_article %>
+          <% end if can?(:update, tourism_article) && @profile == current_user %>
           <%= link_to profile_tourism_article_path(@profile, tourism_article), method: :delete,
             rel: "tooltip", data: {original_title: "Delete Data", confirm: "Are you sure?"} do %>
             <i class="btn btn-danger btn-mini icon-trash"></i>
-          <% end if can? :destroy, tourism_article %>
+          <% end if can?(:destroy, tourism_article) && @profile == current_user %>
         </div>
       </div>
     </div>

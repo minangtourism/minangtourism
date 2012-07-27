@@ -4,8 +4,7 @@
       <h2 class="one-title-tourism-article">
         <%= link_to folktale.title, folktale_path(folktale) %>
       </h2>
-      oleh <%= link_to folktale.user.username, profile_path(folktale.user) %> |
-      <%= l folktale.created_at, :format => :costum %>
+      oleh <%= link_to folktale.user.username, profile_path(folktale.user) %> | <%= l folktale.created_at, :format => :costum %>
     </div>
     <%= image_tag(folktale.image.url(:large)) %>
     <div class="caption">
