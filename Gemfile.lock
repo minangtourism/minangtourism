@@ -5,6 +5,12 @@ PATH
       rails (~> 3.2.5)
 
 PATH
+  remote: vendor/gems/rails_admin_publish
+  specs:
+    rails_admin_publish (0.0.1)
+      rails (~> 3.2.5)
+
+PATH
   remote: vendor/gems/rails_admin_reject
   specs:
     rails_admin_reject (0.0.1)
@@ -225,6 +231,7 @@ DEPENDENCIES
   rails (= 3.2.5)
   rails_admin
   rails_admin_approve!
+  rails_admin_publish!
   rails_admin_reject!
   role_model
   sass-rails (~> 3.2.3)

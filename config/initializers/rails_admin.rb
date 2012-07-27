@@ -37,6 +37,8 @@ RailsAdmin.config do |config|
     bulk_delete
     # member actions
     show
+    edit
+    delete
     approve do # custom action
       # Make it visible only for specific models. You can remove this if you don't need.
       visible do
@@ -49,8 +51,12 @@ RailsAdmin.config do |config|
         visible? && bindings[:abstract_model].model.to_s.in?(%w[DeletionRequest TourismArticleRevision])
       end
     end
-    edit
-    delete
+    publish do # custom action
+      # Make it visible only for specific models. You can remove this if you don't need.
+      visible do
+        visible? && bindings[:abstract_model].model.to_s.in?(%w[TourismArticle])
+      end
+    end
     history_show
     show_in_app
   end
@@ -940,7 +946,6 @@ RailsAdmin.config do |config|
         end
       end
       field :image
-      field :state, :enum
     end
     create do; end
     update do; end

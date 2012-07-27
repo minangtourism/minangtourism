@@ -1,0 +1,11 @@
+
+en:
+  admin:
+    actions:
+      publish:
+        title: "Publish"
+        menu: "Publish"
+        breadcrumb: "Publish"
+        link: "Publish '%{object_label}'"
+        bulk_link: "Publish selected %{model_label_plural}"
+        done: "published"
