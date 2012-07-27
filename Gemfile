@@ -11,6 +11,8 @@ gem 'rails', '3.2.5'
 
 gem "ckeditor", "3.7.1"
 
+gem "heroku", "~> 2.30.1"
+
 #debug
 gem 'pg'
 
