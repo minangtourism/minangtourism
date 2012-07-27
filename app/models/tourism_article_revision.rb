@@ -13,13 +13,6 @@ class TourismArticleRevision < ActiveRecord::Base
 
   validates :content, :presence => true
 
-#  has_attached_file :image, :styles => {
-#    :large => "740x500#",  # # dipaksa, > kl ukurannya lebih akan di sesuaikan
-#    :medium => "340x180#",
-#    :tiny => "240x180#",
-#    :small => "100x100#",
-#    :thumb => "145x75#"
-#  }
   has_attached_file :image
   
   state_machine :initial => :pending do

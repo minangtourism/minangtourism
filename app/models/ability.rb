@@ -3,7 +3,7 @@ class Ability
 
   def initialize(user)
     can :read, :all
-    can [:read, :abouts, :reviews, :folktales, :location_tourisms, :events, :tips_tricks], User
+    can [:read, :abouts, :reviews, :folktales, :events, :tips_tricks], User
     cannot :access, :rails_admin
     cannot :dashboard
     cannot :manage, User, :state => 'disabled'
@@ -17,6 +17,7 @@ class Ability
       if user.is_any_of? :member, :operator
         can [:create, :update, :destroy],
           [TourismArticle, Comment, Folktale, LocationTourism, Event, TipsTrick], user_id: user.id
+        can :update, LocationTourism
       end
 
       if user.is? :member
@@ -24,11 +25,7 @@ class Ability
           [TourismArticle, Folktale, LocationTourism, Event, TipsTrick]
         can [
           :new_folktale, :create_folktale,
-          :new_event, :create_event, :create_tourism_article,
-
-          :new_location_tourism, :create_location_tourism,
-          :edit_location_tourism, :update_location_tourism,
-
+          :new_event, :create_event,
           :new_tips_trick, :create_tips_trick,
           :edit_about, :update_about
         ], User, :id => user.id
@@ -37,11 +34,7 @@ class Ability
       if user.is? :operator
         can [
           :new_folktale, :create_folktale,
-          :new_event, :create_event, :create_tourism_article,
-
-          :new_location_tourism, :create_location_tourism,
-          :edit_location_tourism, :update_location_tourism,
-
+          :new_event, :create_event,
           :new_tips_trick, :create_tips_trick,
           :edit_about, :update_about
         ], User, :id => user.id
@@ -61,19 +54,19 @@ class Ability
       end
 
       if user.is_any_of? :admin, :operator
-        cannot [:approve, :destroy, :create, :reject, :update], [DeletionRequest, TourismArticleRevision]
-        can [:approve, :reject], [DeletionRequest, TourismArticleRevision], state: "pending"
-        can :destroy, [DeletionRequest, TourismArticleRevision], state: %w[approved rejected]
+        cannot [:approve, :destroy, :create, :reject, :update], [DeletionRequest, TourismArticleRevision, LocationTourismRevision]
+        can [:approve, :reject], [DeletionRequest, TourismArticleRevision, LocationTourismRevision], state: "pending"
+        can :destroy, [DeletionRequest, TourismArticleRevision, LocationTourismRevision], state: %w[approved rejected]
 
-        cannot [:publish, :unpublish], TourismArticle
-        can :publish, TourismArticle, state: "unpublished"
-        can :unpublish, TourismArticle, state: "published"
+        cannot [:publish, :unpublish], [TourismArticle, LocationTourism]
+        can :publish, [TourismArticle, LocationTourism], state: "unpublished"
+        can :unpublish, [TourismArticle, LocationTourism], state: "published"
       end
 
-      cannot :approve, [DeletionRequest, TourismArticleRevision], state: "approved"
-      cannot :reject, [DeletionRequest, TourismArticleRevision], state: "rejected"
-      cannot :publish, TourismArticle, state: "published"
-      cannot :unpublish, TourismArticle, state: "unpublished"
+      cannot :approve, [DeletionRequest, TourismArticleRevision, LocationTourismRevision], state: "approved"
+      cannot :reject, [DeletionRequest, TourismArticleRevision, LocationTourismRevision], state: "rejected"
+      cannot :publish, [TourismArticle, LocationTourism], state: "published"
+      cannot :unpublish, [TourismArticle, LocationTourism], state: "unpublished"
       can :like, Event
       cannot :like, Event, likes: {user_id: user.id}
       can :search, TourismArticle

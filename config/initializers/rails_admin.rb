@@ -42,25 +42,25 @@ RailsAdmin.config do |config|
     approve do # custom action
       # Make it visible only for specific models. You can remove this if you don't need.
       visible do
-        visible? && bindings[:abstract_model].model.to_s.in?(%w[DeletionRequest TourismArticleRevision])
+        visible? && bindings[:abstract_model].model.to_s.in?(%w[DeletionRequest TourismArticleRevision LocationTourismRevision])
       end
     end
     reject do # custom action
       # Make it visible only for specific models. You can remove this if you don't need.
       visible do
-        visible? && bindings[:abstract_model].model.to_s.in?(%w[DeletionRequest TourismArticleRevision])
+        visible? && bindings[:abstract_model].model.to_s.in?(%w[DeletionRequest TourismArticleRevision LocationTourismRevision])
       end
     end
     publish do # custom action
       # Make it visible only for specific models. You can remove this if you don't need.
       visible do
-        visible? && bindings[:abstract_model].model.to_s.in?(%w[TourismArticle])
+        visible? && bindings[:abstract_model].model.to_s.in?(%w[TourismArticle LocationTourism])
       end
     end
     unpublish do # custom action
       # Make it visible only for specific models. You can remove this if you don't need.
       visible do
-        visible? && bindings[:abstract_model].model.to_s.in?(%w[TourismArticle])
+        visible? && bindings[:abstract_model].model.to_s.in?(%w[TourismArticle LocationTourism])
       end
     end
     history_show
@@ -407,6 +407,10 @@ RailsAdmin.config do |config|
   end
 
   config.model LocationTourismRevision do
+    parent LocationTourism
+    label "Revision"
+    label_plural "Revisions"
+
     # Found associations:
     configure :category_loc_tourism, :belongs_to_association
     configure :location_tourism, :belongs_to_association
@@ -500,7 +504,7 @@ RailsAdmin.config do |config|
       field :updated_at do
         strftime_format "%A, %d %B %Y"
       end
-      field :state, :enum
+#      field :state, :enum
     end
     create do; end
     update do; end
@@ -757,6 +761,7 @@ RailsAdmin.config do |config|
     configure :image_file_size, :integer         # Hidden
     configure :image_updated_at, :datetime         # Hidden
     configure :image, :paperclip   #   # Sections:
+    configure :updater_id, :integer
     list do
       field :id
       field :state
@@ -828,7 +833,7 @@ RailsAdmin.config do |config|
       field :updated_at do
         strftime_format "%A, %d %B %Y"
       end
-      field :state, :enum
+#      field :state, :enum
     end
     create do; end
     update do; end

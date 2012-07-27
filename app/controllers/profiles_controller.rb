@@ -5,13 +5,9 @@ class ProfilesController < ApplicationController
     only: [:abouts, :reviews, :folktales, :location_tourisms, :events, :tips_tricks,
     :tourism_articles,
     :new_folktale, :create_folktale,
-    :new_location_tourism, :create_location_tourism,
     :new_tips_tricks, :create_tips_tricks,
     :new_event, :create_event
   ]
-
-  before_filter :load_location_tourism, only: [
-    :edit_location_tourism, :update_location_tourism]
 
   layout "profile", :except => :index
   
@@ -99,49 +95,6 @@ class ProfilesController < ApplicationController
     end
   end
 
-  #LOCATION TOURISM
-  def new_location_tourism
-    @location_tourism = current_user.location_tourisms.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @location_tourism }
-    end
-  end
-
-  def create_location_tourism
-    @location_tourism = current_user.location_tourisms.new(params[:location_tourism])
-
-    respond_to do |format|
-      if @location_tourism.save
-        format.html { redirect_to location_tourisms_profile_url(@profile), notice: 'Lokasi Wisata telah suskses dibuat. Menunggu verifikasi admin' }
-        format.json { render json: @location_tourism, status: :created, location: @location_tourism }
-      else
-        format.html { render action: "new_location_tourism" }
-        format.json { render json: @location_tourism.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def edit_location_tourism
-  end
-
-  def update_location_tourism
-    location_tourism = @location_tourism
-    @location_tourism = current_user.location_tourism_revisions.new(params[:location_tourism])
-    @location_tourism.location_tourism = location_tourism
-    
-    respond_to do |format|
-      if @location_tourism.save
-        format.html { redirect_to location_tourisms_profile_url(@profile), notice: 'Lokasi Wisata telah suskses perbaharui. Menunggu verifikasi admin' }
-        format.json { render json: @location_tourism, status: :created, location: @location_tourism }
-      else
-        format.html { render action: "new_location_tourism" }
-        format.json { render json: @location_tourism.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   #TIPS & TRICK
   def new_tips_trick
     @tips_trick = current_user.tips_tricks.new
@@ -179,12 +132,6 @@ class ProfilesController < ApplicationController
         format.json { render json: @profile.profile.errors, status: :unprocessable_entity }
       end
     end
-  end
-
-  protected
-
-  def load_location_tourism
-    @location_tourism = @profile.location_tourisms.find(params[:location_tourism_id])
   end
 
 end

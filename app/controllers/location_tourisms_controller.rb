@@ -1,5 +1,6 @@
 class LocationTourismsController < ApplicationController
   load_and_authorize_resource
+  impressionist
   
   def index
     if params[:category_loc_tourism_id].present?
@@ -48,13 +49,6 @@ class LocationTourismsController < ApplicationController
     end
   end
 
-  def edit
-    location_tourism = @location_tourism
-    @location_tourism = current_user.location_tourism_revisions.new(params[:location_tourism])
-    @location_tourism.location_tourism = location_tourism
-    @location_tourism.copy_fields
-  end
-
   def create
     @location_tourism = current_user.location_tourisms.new(params[:location_tourism])
 
@@ -67,6 +61,13 @@ class LocationTourismsController < ApplicationController
         format.json { render json: @location_tourism.errors, status: :unprocessable_entity }
       end
     end
+  end
+  
+  def edit
+    location_tourism = @location_tourism
+    @location_tourism = current_user.location_tourism_revisions.new(params[:location_tourism])
+    @location_tourism.location_tourism = location_tourism
+    @location_tourism.copy_fields
   end
 
   def update

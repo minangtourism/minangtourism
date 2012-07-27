@@ -40,7 +40,7 @@
         <div class="thumbnail" style="padding: 15px;">
           <div class="title-location clearfix">
             <h2>
-              <%= location_tourism.name %>
+              <%= truncate(location_tourism.name, :length => 20, :separator => ' ') %>
             </h2>
 
             <p class="pull-right">

@@ -178,6 +178,13 @@ id:
         link: "Publish '%{object_label}'"
         bulk_link: "Publish selected %{model_label_plural}"
         done: "published"
+      unpublish:
+        title: "Unpublish"
+        menu: "Unpublish"
+        breadcrumb: "Unpublish"
+        link: "Unpublish '%{object_label}'"
+        bulk_link: "Unpublish selected %{model_label_plural}"
+        done: "unpublished"
       reject:
         title: "Reject"
         menu: "Reject"

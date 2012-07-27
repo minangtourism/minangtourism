@@ -1,7 +1,8 @@
 <div class="row">
   <div class="span5">
     <div class="row">
-      <% if can?(:create_tourism_article, @profile) && @profile == current_user %>
+      <%# if can?(:create_tourism_article, @profile) && @profile == current_user %>
+      <% if can?(:update_about, @profile) && @profile == current_user %>
         <div class="span5">
           <div class="profiles-home"> 
             <%= link_to edit_about_profile_path(@profile) do %>
