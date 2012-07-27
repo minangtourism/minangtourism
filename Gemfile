@@ -29,8 +29,9 @@ gem "cancan"
 gem "role_model"
 gem 'rails_admin'
 gem 'rails_admin_approve', path: 'vendor/gems/rails_admin_approve'
-gem 'rails_admin_reject', path: 'vendor/gems/rails_admin_reject'
 gem 'rails_admin_publish', path: 'vendor/gems/rails_admin_publish'
+gem 'rails_admin_reject', path: 'vendor/gems/rails_admin_reject'
+gem 'rails_admin_unpublish', path: 'vendor/gems/rails_admin_unpublish'
 
 #pagination
 gem 'kaminari'

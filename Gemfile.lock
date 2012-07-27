@@ -16,6 +16,12 @@ PATH
     rails_admin_reject (0.0.1)
       rails (~> 3.2.5)
 
+PATH
+  remote: vendor/gems/rails_admin_unpublish
+  specs:
+    rails_admin_unpublish (0.0.1)
+      rails (~> 3.2.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -233,6 +239,7 @@ DEPENDENCIES
   rails_admin_approve!
   rails_admin_publish!
   rails_admin_reject!
+  rails_admin_unpublish!
   role_model
   sass-rails (~> 3.2.3)
   settler

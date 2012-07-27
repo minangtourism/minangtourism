@@ -171,6 +171,20 @@ id:
         link: "Reject '%{object_label}'"
         bulk_link: "Reject selected %{model_label_plural}"
         done: "rejected"
+      publish:
+        title: "Publish"
+        menu: "Publish"
+        breadcrumb: "Publish"
+        link: "Publish '%{object_label}'"
+        bulk_link: "Publish selected %{model_label_plural}"
+        done: "published"
+      reject:
+        title: "Reject"
+        menu: "Reject"
+        breadcrumb: "Reject"
+        link: "Reject '%{object_label}'"
+        bulk_link: "Reject selected %{model_label_plural}"
+        done: "rejected"
     form:
       cancel: "Cancel"
       basic_info: "Basic info"

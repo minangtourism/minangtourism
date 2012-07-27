@@ -1,0 +1,11 @@
+
+en:
+  admin:
+    actions:
+      unpublish:
+        title: "Unpublish"
+        menu: "Unpublish"
+        breadcrumb: "Unpublish"
+        link: "Unpublish '%{object_label}'"
+        bulk_link: "Unpublish selected %{model_label_plural}"
+        done: "unpublished"

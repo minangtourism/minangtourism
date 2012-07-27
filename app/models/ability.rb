@@ -64,10 +64,16 @@ class Ability
         cannot [:approve, :destroy, :create, :reject, :update], [DeletionRequest, TourismArticleRevision]
         can [:approve, :reject], [DeletionRequest, TourismArticleRevision], state: "pending"
         can :destroy, [DeletionRequest, TourismArticleRevision], state: %w[approved rejected]
+
+        cannot [:publish, :unpublish], TourismArticle
+        can :publish, TourismArticle, state: "unpublished"
+        can :unpublish, TourismArticle, state: "published"
       end
 
       cannot :approve, [DeletionRequest, TourismArticleRevision], state: "approved"
       cannot :reject, [DeletionRequest, TourismArticleRevision], state: "rejected"
+      cannot :publish, TourismArticle, state: "published"
+      cannot :unpublish, TourismArticle, state: "unpublished"
       can :like, Event
       cannot :like, Event, likes: {user_id: user.id}
       can :search, TourismArticle

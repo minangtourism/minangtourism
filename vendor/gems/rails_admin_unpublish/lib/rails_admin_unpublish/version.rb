@@ -1,0 +1,3 @@
+module RailsAdminUnpublish
+  VERSION = "0.0.1"
+end
