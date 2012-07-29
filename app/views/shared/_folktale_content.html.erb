@@ -20,11 +20,9 @@
       </p>
     </div>
 
-    <%= image_tag(@folktale.image.url(:large)) %>
+    <%= image_tag(@folktale.image.url) %>
     <div class="content-article-show">
-      <p class="clearfix">
-        <%= raw @folktale.description %>
-      </p>
+      <p><%= raw @folktale.description %></p>
     </div>
   </div>
 </div>

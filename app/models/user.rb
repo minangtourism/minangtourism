@@ -4,7 +4,9 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :deletion_requests
   has_many :events
+  has_many :event_revisions
   has_many :folktales
+  has_many :folktale_revisions
   has_many :likes
   has_many :location_tourisms
   has_many :location_tourism_revisions
@@ -12,6 +14,7 @@ class User < ActiveRecord::Base
   has_many :reviews, class_name: 'Comment', conditions: "commentable_type = 'LocationTourism'"
   has_many :sumbar_contents
   has_many :tips_tricks
+  has_many :tips_trick_revisions
   has_many :tourism_articles
   has_many :tourism_article_revisions
 
@@ -27,9 +30,11 @@ class User < ActiveRecord::Base
     :uniqueness => true,
     :length => {:maximum => 15},
     :format => {:with => /^[A-Za-z\d_]+$/}
+
   validates :email,
     :presence => true,
     :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
+
   validates :password_confirmation, :presence => true, :if => :password
 
   default_scope :include => :profile

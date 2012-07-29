@@ -30,35 +30,12 @@ SumbarTourism::Application.routes.draw do
   # ------------------- PROFILE ------------------- #
   resources :profile_tourism_articles, path: 'profiles/:profile_id/tourism_articles', except: :show
   resources :profile_location_tourisms, path: 'profiles/:profile_id/location_tourisms', except: :show
+  resources :profile_events, path: 'profiles/:profile_id/events', except: :show
+  resources :profile_folktales, path: 'profiles/:profile_id/folktales', except: :show
+  resources :profile_tips_tricks, path: 'profiles/:profile_id/tips_tricks', except: :show
   resources :profiles do
     member do
       get :reviews
-
-      get :folktales
-      get :new_folktale
-      post :create_folktale
-
-      #      get :tourism_articles
-      #      get :new_tourism_article
-      #      post :create_tourism_article
-      #      get "edit_tourism_article/:tourism_article_id", action: :edit_tourism_article, as: :edit_tourism_article
-      #      put "update_tourism_article/:tourism_article_id", action: :update_tourism_article, as: :update_tourism_article
-      #      delete "destroy_tourism_article/:tourism_article_id", action: :destroy_tourism_article, as: :destroy_tourism_article
-
-      #      get :location_tourisms
-      #      get :new_location_tourism
-      #      post :create_location_tourism
-      #      get "edit_location_tourism/:location_tourism_id", action: :edit_location_tourism, as: :edit_location_tourism
-      #      put "update_location_tourism/:location_tourism_id", action: :update_location_tourism, as: :update_location_tourism
-
-      get :events
-      get :new_event
-      post :create_event
-
-      get :tips_tricks
-      get :new_tips_trick
-      post :create_tips_trick
-
       get :abouts
       get :edit_about
       put :update_about

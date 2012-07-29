@@ -168,7 +168,7 @@
 
 .title-news a{
     color: #0088CC;
-    font-size: 14px;
+    font-size: 18px;
     text-decoration: none
 }
 
@@ -183,12 +183,12 @@
 }
 
 .news-info a{
-    color: #FF9900;
+    color: #0088CC;
     text-decoration: none;
 }
 
 .news-info a:hover{
-    color: #FF0000;
+    color: #005580;
 }
 /* END TOURISM ARTICLES / BERITA WISATA */
 
@@ -221,28 +221,28 @@
 .name-location a{
     font-size: 16px;
     font-weight: bold;
-    color: #F53A26;
+    color: #49AFCD;
     text-decoration: none;
 }
 
 .name-location a:hover{
-    color: #000000;
+    color: #2F96B4;
 }
 
 .date-publish{
-    color: #F53A26;
+    color: #49AFCD;
 }
 
 .rate-location{
 }
 
 .small-view a{
-    color: #F53A26;
+    color: #49AFCD;
     text-decoration: none;
 }
 
 .small-view a:hover{
-    color: #000000;
+    color: #2F96B4;
 }
 
 /* END CERITA WISATAWAN / COMMENT */
@@ -280,7 +280,6 @@
 /* END CERITA WISATAWAN REVIEW */
 
 /*MENU WISATAWAN*/
-
 .side-tourism a {
     color: #444;
     font-size: 14px;

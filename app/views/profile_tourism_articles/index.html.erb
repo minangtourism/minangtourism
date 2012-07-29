@@ -19,7 +19,7 @@
             <i class="btn btn-primary btn-mini icon-pencil"></i>
           <% end if can?(:update, tourism_article) && @profile == current_user %>
           <%= link_to profile_tourism_article_path(@profile, tourism_article), method: :delete,
-            rel: "tooltip", data: {original_title: "Delete Data", confirm: "Are you sure?"} do %>
+            rel: "tooltip", data: {original_title: "Hapus Data", confirm: "Apakah anda yakin?"} do %>
             <i class="btn btn-danger btn-mini icon-trash"></i>
           <% end if can?(:destroy, tourism_article) && @profile == current_user %>
         </div>

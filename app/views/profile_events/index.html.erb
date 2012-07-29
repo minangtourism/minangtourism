@@ -1,0 +1,34 @@
+<div class="profiles-home">
+  <h2>Acara Wisata</h2>
+  <div class="dashed"></div>
+  <div class="info-title">Arsip Acara Wisata Saya</div>
+  <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+  <% if can?(:create, @new_event) && @profile == current_user %>
+    <%= link_to new_profile_event_path(@profile) do %>
+      <i class="btn btn-primary icon-plus"> Tambah Data</i>
+    <% end %>
+    <div class="dashed" style="margin-bottom: 30px; margin-top: 15px"></div>
+  <% end %>
+
+  <% @events.each do |event| %>
+    <div class="title-news">
+      <div class="clearfix">
+        <%= link_to_if can?(:read, event), event.title.truncate(80, separator: " "), event_path(event) %>
+        <div class="pull-right">
+          <%= link_to edit_profile_event_path(@profile, event), rel: "tooltip", data: {original_title: "Edit Data"} do %>
+            <i class="btn btn-primary btn-mini icon-pencil"></i>
+          <% end if can?(:update, event) && @profile == current_user %>
+          <%= link_to profile_event_path(@profile, event), method: :delete,
+            rel: "tooltip", data: {original_title: "Delete Data", confirm: "Are you sure?"} do %>
+            <i class="btn btn-danger btn-mini icon-trash"></i>
+          <% end if can?(:destroy, event) && @profile == current_user %>
+        </div>
+      </div>
+    </div>
+    <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
+  <% end %>
+
+  <div class="all-events" style="margin-bottom: 0">
+    <%= paginate @events %>
+  </div>
+</div>

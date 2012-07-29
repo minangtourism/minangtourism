@@ -9,7 +9,7 @@ class Comment < ActiveRecord::Base
   include ActsAsCommentable::Comment
 
   belongs_to :commentable, :polymorphic => true
-  attr_accessible :state, :comment
+  attr_accessible :state, :comment, :user_id
 
   define_index do
     indexes comment, :as => :comment, :sortable => true
@@ -19,32 +19,56 @@ class Comment < ActiveRecord::Base
   
   validates :comment, :presence => true
 
-  scope :reviews, where(commentable_type: 'LocationTourism')
-  scope :recent, order("created_at desc")
-
-  state_machine :initial => :unpublished do
-    before_transition all => all do |comment, transition|
-      comment.is_authorized_for?(transition)
-    end
+  state_machine initial: :unpublished do
     event :publish do
       transition :unpublished => :published
     end
+
     event :unpublish do
       transition :published => :unpublished
     end
-    state :unpublished
+
     state :published
+    state :unpublished
   end
 
-  scope :published, where(:state => 'published')
-  scope :unpublished, where(:state => 'unpublished')
+  scope :reviews, where(commentable_type: 'LocationTourism')
+  scope :published, where(state: "published")
+  scope :recent, order("created_at DESC")
+  scope :unpublished, where(state: "unpublished")
 
   def state_enum
-    ['published','unpublished']
+    self.class.state_machine.states.map do |state|
+      [state.name.to_s.humanize, state.value]
+    end.sort
   end
-
-  def is_authorized_for?(transition)
-    permitted_to?(transition.event.to_sym)
-  end
+  
+  #  scope :reviews, where(commentable_type: 'LocationTourism')
+  #  scope :recent, order("created_at desc")
+  #
+  #  state_machine :initial => :unpublished do
+  #    before_transition all => all do |comment, transition|
+  #      comment.is_authorized_for?(transition)
+  #    end
+  #    event :publish do
+  #      transition :unpublished => :published
+  #    end
+  #    event :unpublish do
+  #      transition :published => :unpublished
+  #    end
+  #    state :unpublished
+  #    state :published
+  #  end
+  #
+  #  scope :published, where(:state => 'published')
+  #  scope :unpublished, where(:state => 'unpublished')
+  #
+  #  def state_enum
+  #    ['published','unpublished']
+  #  end
+  #
+  #  def is_authorized_for?(transition)
+  #    permitted_to?(transition.event.to_sym)
+  #  end
   
 end

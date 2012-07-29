@@ -1,0 +1,34 @@
+<div class="profiles-home">
+  <h2>Tips dan Trik Wisata</h2>
+  <div class="dashed"></div>
+  <div class="info-title">Arsip Tips dan Trik Wisata Saya</div>
+  <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+  <% if can?(:create, @new_tips_trick) && @profile == current_user %>
+    <%= link_to new_profile_tips_trick_path(@profile) do %>
+      <i class="btn btn-primary icon-plus"> Tambah Data</i>
+    <% end %>
+    <div class="dashed" style="margin-bottom: 30px; margin-top: 15px"></div>
+  <% end %>
+
+  <% @tips_tricks.each do |tips_trick| %>
+    <div class="title-news">
+      <div class="clearfix">
+        <%= link_to_if can?(:read, tips_trick), tips_trick.title.truncate(80, separator: " "), tips_trick_path(tips_trick) %>
+        <div class="pull-right">
+          <%= link_to edit_profile_tips_trick_path(@profile, tips_trick), rel: "tooltip", data: {original_title: "Edit Data"} do %>
+            <i class="btn btn-primary btn-mini icon-pencil"></i>
+          <% end if can?(:update, tips_trick) && @profile == current_user %>
+          <%= link_to profile_tips_trick_path(@profile, tips_trick), method: :delete,
+            rel: "tooltip", data: {original_title: "Hapus Data", confirm: "Apakah anda yakin?"} do %>
+            <i class="btn btn-danger btn-mini icon-trash"></i>
+          <% end if can?(:destroy, tips_trick) && @profile == current_user %>
+        </div>
+      </div>
+    </div>
+    <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
+  <% end %>
+
+  <div class="all-events" style="margin-bottom: 0">
+    <%= paginate @tips_tricks %>
+  </div>
+</div>

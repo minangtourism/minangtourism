@@ -1,13 +1,15 @@
 class Folktale < ActiveRecord::Base
 
-  belongs_to :user
   has_many :comments, as: :commentable
+  has_many :deletion_requests, as: :item, dependent: :destroy
+  has_many :revisions, class_name: "FolktaleRevision", dependent: :destroy
+  belongs_to :user
 
-  # sebelum di rails s, di comment dulu. Setelah rails s selesai, aktifkan lagi yang di comment
   is_impressionable
   
   attr_accessible :state, :description, :title, :user_id, :image
 
+  #search
   define_index do
     indexes title, :as => :title, :sortable => true
 
@@ -29,30 +31,26 @@ class Folktale < ActiveRecord::Base
   
   validates :description, :presence => true
 
-  scope :recent, order("created_at desc")
-
-  state_machine :initial => :unpublished do
-    before_transition all => all do |folktale, transition|
-      folktale.is_authorized_for?(transition)
-    end
+  state_machine initial: :unpublished do
     event :publish do
       transition :unpublished => :published
     end
+
     event :unpublish do
       transition :published => :unpublished
     end
-    state :unpublished
+
     state :published
+    state :unpublished
   end
 
-  scope :published, where(:state => 'published')
-  scope :unpublished, where(:state => 'unpublished')
+  scope :published, where(state: "published")
+  scope :recent, order("created_at DESC")
+  scope :unpublished, where(state: "unpublished")
 
   def state_enum
-    ['published','unpublished']
-  end
-
-  def is_authorized_for?(transition)
-    permitted_to?(transition.event.to_sym)
+    self.class.state_machine.states.map do |state|
+      [state.name.to_s.humanize, state.value]
+    end.sort
   end
 end

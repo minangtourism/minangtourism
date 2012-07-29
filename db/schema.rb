@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120727190310) do
+ActiveRecord::Schema.define(:version => 20120729034829) do
 
   create_table "category_loc_tourisms", :force => true do |t|
     t.string   "name"
@@ -75,6 +75,23 @@ ActiveRecord::Schema.define(:version => 20120727190310) do
   add_index "deletion_requests", ["item_type"], :name => "index_deletion_requests_on_item_type"
   add_index "deletion_requests", ["user_id"], :name => "index_deletion_requests_on_user_id"
 
+  create_table "event_revisions", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "user_id"
+    t.string   "image"
+    t.string   "state"
+    t.integer  "event_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
   create_table "events", :force => true do |t|
     t.string   "title"
     t.text     "description"
@@ -88,6 +105,20 @@ ActiveRecord::Schema.define(:version => 20120727190310) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "state"
+  end
+
+  create_table "folktale_revisions", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "state"
+    t.integer  "user_id"
+    t.integer  "folktale_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "folktales", :force => true do |t|
@@ -248,6 +279,20 @@ ActiveRecord::Schema.define(:version => 20120727190310) do
     t.text     "content"
     t.string   "type"
     t.integer  "user_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  create_table "tips_trick_revisions", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "state"
+    t.integer  "user_id"
+    t.integer  "tips_trick_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.string   "image_file_name"

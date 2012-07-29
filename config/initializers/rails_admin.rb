@@ -42,25 +42,25 @@ RailsAdmin.config do |config|
     approve do # custom action
       # Make it visible only for specific models. You can remove this if you don't need.
       visible do
-        visible? && bindings[:abstract_model].model.to_s.in?(%w[DeletionRequest TourismArticleRevision LocationTourismRevision])
+        visible? && bindings[:abstract_model].model.to_s.in?(%w[DeletionRequest TourismArticleRevision LocationTourismRevision EventRevision FolktaleRevision TipsTrickRevision])
       end
     end
     reject do # custom action
       # Make it visible only for specific models. You can remove this if you don't need.
       visible do
-        visible? && bindings[:abstract_model].model.to_s.in?(%w[DeletionRequest TourismArticleRevision LocationTourismRevision])
+        visible? && bindings[:abstract_model].model.to_s.in?(%w[DeletionRequest TourismArticleRevision LocationTourismRevision EventRevision FolktaleRevision TipsTrickRevision])
       end
     end
     publish do # custom action
       # Make it visible only for specific models. You can remove this if you don't need.
       visible do
-        visible? && bindings[:abstract_model].model.to_s.in?(%w[TourismArticle LocationTourism])
+        visible? && bindings[:abstract_model].model.to_s.in?(%w[TourismArticle LocationTourism Event Folktale TipsTrick Comment Slideshow])
       end
     end
     unpublish do # custom action
       # Make it visible only for specific models. You can remove this if you don't need.
       visible do
-        visible? && bindings[:abstract_model].model.to_s.in?(%w[TourismArticle LocationTourism])
+        visible? && bindings[:abstract_model].model.to_s.in?(%w[TourismArticle LocationTourism Event Folktale TipsTrick Comment Slideshow])
       end
     end
     history_show
@@ -100,7 +100,9 @@ RailsAdmin.config do |config|
     Contact,
     DeletionRequest,
     Event,
+    EventRevision,
     Folktale,
+    FolktaleRevision,
     Food,
     GettingThere,
     LocationTourism,
@@ -112,6 +114,7 @@ RailsAdmin.config do |config|
     ThingsToDo,
     ThingsToSee,
     TipsTrick,
+    TipsTrickRevision,
     TourismArticle,
     TourismArticleRevision,
     Transportation,
@@ -163,6 +166,135 @@ RailsAdmin.config do |config|
 
   # All fields marked as 'hidden' won't be shown anywhere in the rails_admin unless you mark them as visible. (visible(true))
 
+  config.model CategoryLocTourism do
+    configure :parent, :belongs_to_association
+    configure :children, :has_many_association
+    configure :location_tourisms, :has_many_association
+    configure :id, :integer
+    configure :name, :string
+    configure :created_at, :datetime
+    configure :updated_at, :datetime
+    configure :parent_id, :integer
+    configure :lft, :integer
+    configure :rgt, :integer
+    list do
+      field :id
+      field :name
+      field :parent
+      field :children
+      field :created_at do
+        strftime_format "%A, %d %B %Y"
+      end
+      field :updated_at do
+        strftime_format "%A, %d %B %Y"
+      end
+    end
+    export do; end
+    show do
+      field :id
+      field :name
+      field :parent
+      field :children
+    end
+    edit do
+      field :name
+      field :parent
+    end
+    create do; end
+    update do; end
+  end
+
+  config.model Comment do
+    configure :comments, :has_many_association
+    configure :user, :belongs_to_association   #   # Found columns:
+    configure :id, :integer
+    configure :comment, :text
+    configure :commentable_id, :integer         # Hidden
+    configure :commentable_type, :string
+    configure :user_id, :integer         # Hidden
+    configure :created_at, :datetime
+    configure :updated_at, :datetime   #   # Sections:
+    list do
+      field :id
+      field :state
+      field :comment
+      field :commentable_type
+      field :user
+      field :created_at do
+        strftime_format "%A, %d %B %Y"
+      end
+      field :updated_at do
+        strftime_format "%A, %d %B %Y"
+      end
+    end
+    export do; end
+    show do
+      field :id
+      field :state
+      field :comment
+      field :commentable_type
+      field :user
+    end
+    edit do
+      field :comment, :text do
+        ckeditor do
+          true
+        end
+      end
+      field :user do
+        visible do
+          current_user.roles.include?(:admin)
+        end
+      end
+      #      field :state, :enum
+    end
+    create do; end
+    update do; end
+  end
+
+  config.model Contact do
+    configure :id, :integer
+    configure :name, :string
+    configure :email, :string
+    configure :phone, :string
+    configure :message, :text
+    configure :created_at, :datetime
+    configure :updated_at, :datetime   #   # Sections:
+    list do
+      field :id
+      field :name
+      field :email
+      field :phone
+      field :message
+      field :created_at do
+        strftime_format "%A, %d %B %Y"
+      end
+      field :updated_at do
+        strftime_format "%A, %d %B %Y"
+      end
+    end
+    export do; end
+    show do
+      field :id
+      field :name
+      field :email
+      field :phone
+      field :message
+    end
+    edit do; end
+    create do
+      field :name
+      field :email
+      field :phone
+      field :message, :text do
+        ckeditor do
+          true
+        end
+      end
+    end
+    update do; end
+  end
+
   config.model DeletionRequest do
 
     # Found associations:
@@ -192,162 +324,192 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.model User do
-
-    object_label_method do
-      :email
-    end
-
-    configure :tourism_articles, :has_many_association
-    configure :events, :has_many_association
-    configure :folktales, :has_many_association
-    configure :tips_tricks, :has_many_association
-    configure :location_tourisms, :has_many_association
-    configure :comments, :has_many_association   
+  config.model Event do
+    configure :user, :belongs_to_association
+    configure :comments, :has_many_association   #   # Found columns:
     configure :id, :integer
-    configure :email, :string
-    configure :password, :password         
-    configure :password_confirmation, :password        
-    configure :reset_password_token, :string     
-    configure :reset_password_sent_at, :datetime
-    configure :remember_created_at, :datetime
-    configure :sign_in_count, :integer
-    configure :current_sign_in_at, :datetime
-    configure :last_sign_in_at, :datetime
-    configure :current_sign_in_ip, :string
-    configure :last_sign_in_ip, :string
-    configure :created_at, :datetime
-    configure :updated_at, :datetime  
-    list do
-      field :id
-      field :state
-      field :username
-      field :email
-      field :roles do
-        pretty_value do
-          value.map do |role|
-            role.to_s.humanize
-          end.to_sentence
-        end
-      end
-    end
-    export do; end
-    show do
-      field :id
-      field :state
-      field :username
-      field :email
-      field :roles do
-        pretty_value do
-          value.map do |role|
-            role.to_s.humanize
-          end.to_sentence
-        end
-      end
-    end
-    edit do
-      field :username
-      field :email
-      field :password
-      field :password_confirmation
-      field :roles do
-        visible do
-          visible && !read_only
-        end
-        render do
-          bindings[:view].render "custom_form_field_user_roles", field: self, form: bindings[:form]
-          #          bindings[:form].select("roles", bindings[:object].roles_enum, {}, { :multiple => true })
-        end
-      end
-      field :state, :enum
-    end
-    create do; end
-    update do; end
-  end
-
-  config.model Profile do
-    configure :user, :belongs_to_association   
-    configure :id, :integer
-    configure :name, :string
-    configure :sex, :string
-    configure :birthday, :date
-    configure :about, :text
-    configure :work, :text
-    configure :phone, :string
-    configure :address, :text
-    configure :city, :string
-    configure :website, :string
-    configure :facebook, :string
-    configure :twitter, :string
-    configure :user_id, :integer        
+    configure :title, :string
+    configure :description, :text
+    configure :start_date, :date
+    configure :end_date, :date
+    configure :user_id, :integer         # Hidden
     configure :created_at, :datetime
     configure :updated_at, :datetime
-    configure :image_file_name, :string         
-    configure :image_content_type, :string         
-    configure :image_file_size, :integer         
-    configure :image_updated_at, :datetime         
-    configure :image, :paperclip   
+    configure :image_file_name, :string         # Hidden
+    configure :image_content_type, :string         # Hidden
+    configure :image_file_size, :integer         # Hidden
+    configure :image_updated_at, :datetime         # Hidden
+    configure :image, :paperclip   #   # Sections:
     list do
       field :id
-      field :name
-      field :phone
+      field :state
+      field :title
+      field :description
+      field :start_date
+      field :end_date
       field :user
-      field :image
-    end
-    export do; end
-    show do
-      field :id
-      field :name
-      field :sex
-      field :birthday do
+      field :created_at do
         strftime_format "%A, %d %B %Y"
       end
-      field :about
-      field :work
-      field :phone
-      field :address
-      field :city
-      field :website
-      field :facebook
-      field :twitter
-      field :user
+      field :updated_at do
+        strftime_format "%A, %d %B %Y"
+      end
       field :image
+      field :comments
     end
-    edit do
-      field :name
-      field :sex, :enum
-      field :birthday
-      field :about
-      field :work
-      field :phone
-      field :address
-      field :city
-      field :website
-      field :facebook
-      field :twitter
+    export do; end
+    show do
+      field :id
+      field :state
+      field :title
+      field :description
+      field :start_date
+      field :end_date
       field :user
+      field :created_at do
+        strftime_format "%A, %d %B %Y"
+      end
+      field :updated_at do
+        strftime_format "%A, %d %B %Y"
+      end
       field :image
+      field :comments
     end
-    create do; end
-    update do; end
+    edit do;
+      field :title
+      field :description, :text do
+        ckeditor do
+          true
+        end
+      end
+      field :user do
+        visible do
+          current_user.roles.include?(:admin)
+        end
+      end
+      field :start_date
+      field :end_date
+      field :image
+#      field :state, :enum
+    end
+    create do
+    end
+    update do
+    end
   end
 
-  config.model Slideshow do
-    configure :id,                  :integer
-    configure :title,               :string
-    configure :description,         :text
-    configure :state,               :string
-    configure :created_at,          :datetime
-    configure :updated_at,          :datetime
-    configure :image_file_name,     :string
-    configure :image_content_type,  :string
-    configure :image_file_size,     :integer
-    configure :image_updated_at,    :datetime
-    configure :image,               :paperclip
+  config.model EventRevision do
+    parent Event
+    label "Revision"
+    label_plural "Revisions"
+    
+    configure :user, :belongs_to_association
+    configure :event, :belongs_to_association
+    configure :comments, :has_many_association   #   # Found columns:
+    configure :id, :integer
+    configure :title, :string
+    configure :description, :text
+    configure :start_date, :date
+    configure :end_date, :date
+    configure :user_id, :integer         # Hidden
+    configure :event_id, :integer         # Hidden
+    configure :created_at, :datetime
+    configure :updated_at, :datetime
+    configure :image_file_name, :string         # Hidden
+    configure :image_content_type, :string         # Hidden
+    configure :image_file_size, :integer         # Hidden
+    configure :image_updated_at, :datetime         # Hidden
+    configure :image, :paperclip   #   # Sections:
     list do
       field :id
       field :state
       field :title
+      field :description
+      field :start_date
+      field :end_date
+      field :user
+      field :created_at do
+        strftime_format "%A, %d %B %Y"
+      end
+      field :updated_at do
+        strftime_format "%A, %d %B %Y"
+      end
+      field :image
+      field :comments
+      field :event
+    end
+    export do; end
+    show do
+      field :id
+      field :state
+      field :title
+      field :description
+      field :start_date
+      field :end_date
+      field :user
+      field :created_at do
+        strftime_format "%A, %d %B %Y"
+      end
+      field :updated_at do
+        strftime_format "%A, %d %B %Y"
+      end
+      field :image
+      field :comments
+      field :event
+    end
+    edit do;
+      field :title
+      field :description, :text do
+        ckeditor do
+          true
+        end
+      end
+      field :user do
+        visible do
+          current_user.roles.include?(:admin)
+        end
+      end
+      field :event do
+        visible do
+          current_user.roles.include?(:admin)
+        end
+      end
+      field :start_date
+      field :end_date
+      field :image
+#      field :state, :enum
+    end
+    create do
+    end
+    update do
+    end
+  end
+
+  config.model Folktale do
+    configure :user, :belongs_to_association   #   # Found columns:
+    configure :id, :integer
+    configure :title, :string
+    configure :description, :text
+    configure :user_id, :integer         # Hidden
+    configure :created_at, :datetime
+    configure :updated_at, :datetime
+    configure :image_file_name, :string         # Hidden
+    configure :image_content_type, :string         # Hidden
+    configure :image_file_size, :integer         # Hidden
+    configure :image_updated_at, :datetime         # Hidden
+    configure :image, :paperclip   #   # Sections:
+    list do
+      field :id
+      field :state
+      field :title
+      field :description
+      field :user
+      field :created_at do
+        strftime_format "%A, %d %B %Y"
+      end
+      field :updated_at do
+        strftime_format "%A, %d %B %Y"
+      end
       field :image
     end
     export do; end
@@ -356,34 +518,144 @@ RailsAdmin.config do |config|
       field :state
       field :title
       field :description
+      field :user
       field :image
     end
     edit do
       field :title
-      field :description
+      field :description, :text do
+        ckeditor do
+          true
+        end
+      end
+      field :user do
+        visible do
+          current_user.roles.include?(:admin)
+        end
+      end
       field :image
-      field :state, :enum
+      field :created_at do
+        strftime_format "%A, %d %B %Y"
+      end
+      field :updated_at do
+        strftime_format "%A, %d %B %Y"
+      end
+      #      field :state, :enum
     end
     create do; end
     update do; end
   end
   
-  config.model CategoryLocTourism do
-    configure :parent, :belongs_to_association
-    configure :children, :has_many_association
-    configure :location_tourisms, :has_many_association   
+  config.model FolktaleRevision do
+    parent Folktale
+    label "Revision"
+    label_plural "Revisions"
+
+    configure :user, :belongs_to_association   #   # Found columns:
+    configure :folktale, :belongs_to_association   #   # Found columns:
     configure :id, :integer
-    configure :name, :string
+    configure :title, :string
+    configure :description, :text
+    configure :user_id, :integer         # Hidden
+    configure :folktale_id, :integer         # Hidden
     configure :created_at, :datetime
     configure :updated_at, :datetime
-    configure :parent_id, :integer         
-    configure :lft, :integer
-    configure :rgt, :integer   
+    configure :image_file_name, :string         # Hidden
+    configure :image_content_type, :string         # Hidden
+    configure :image_file_size, :integer         # Hidden
+    configure :image_updated_at, :datetime         # Hidden
+    configure :image, :paperclip   #   # Sections:
     list do
       field :id
+      field :state
+      field :folktale
+      field :title
+      field :description
+      field :user
+      field :created_at do
+        strftime_format "%A, %d %B %Y"
+      end
+      field :updated_at do
+        strftime_format "%A, %d %B %Y"
+      end
+      field :image
+    end
+    export do; end
+    show do
+      field :id
+      field :state
+      field :folktale
+      field :title
+      field :description
+      field :user
+      field :image
+    end
+    edit do
+      field :title
+      field :description, :text do
+        ckeditor do
+          true
+        end
+      end
+      field :user do
+        visible do
+          current_user.roles.include?(:admin)
+        end
+      end
+      field :folktale do
+        visible do
+          current_user.roles.include?(:admin)
+        end
+      end
+      field :image
+      field :created_at do
+        strftime_format "%A, %d %B %Y"
+      end
+      field :updated_at do
+        strftime_format "%A, %d %B %Y"
+      end
+      #      field :state, :enum
+    end
+    create do; end
+    update do; end
+  end
+
+  config.model LocationTourism do
+    # Found associations:
+    configure :category_loc_tourism, :belongs_to_association
+    configure :user, :belongs_to_association   #   # Found columns:
+    configure :id, :integer
+    configure :name, :string
+    configure :address, :text
+    configure :city, :string
+    configure :zip, :integer
+    configure :phone, :string
+    configure :web, :string
+    configure :facebook, :string
+    configure :twitter, :string
+    configure :hours_description, :text
+    configure :facility, :text
+    configure :description, :text
+    configure :category_loc_tourism_id, :integer         # Hidden
+    configure :user_id, :integer         # Hidden
+    configure :created_at, :datetime
+    configure :updated_at, :datetime
+    configure :image_file_name, :string         # Hidden
+    configure :image_content_type, :string         # Hidden
+    configure :image_file_size, :integer         # Hidden
+    configure :image_updated_at, :datetime         # Hidden
+    configure :image, :paperclip   #   # Sections:
+    configure :updater_id, :integer
+    list do
+      field :id
+      field :state
       field :name
-      field :parent
-      field :children
+      #      field :access_state
+      field :address
+      field :city
+      field :category_loc_tourism
+      field :user
+      field :image
       field :created_at do
         strftime_format "%A, %d %B %Y"
       end
@@ -394,13 +666,58 @@ RailsAdmin.config do |config|
     export do; end
     show do
       field :id
+      field :state
       field :name
-      field :parent
-      field :children
+      field :category_loc_tourism
+      field :address
+      field :city
+      field :zip
+      field :phone
+      field :web
+      field :facebook
+      field :twitter
+      field :hours_description
+      field :facility
+      field :description
+      field :user
+      field :image
+      field :updater
     end
     edit do
       field :name
-      field :parent
+      field :category_loc_tourism
+      field :address
+      field :city
+      field :zip
+      field :phone
+      field :web
+      field :facebook
+      field :twitter
+      field :hours_description
+      field :facility
+      field :description, :text do
+        ckeditor do
+          true
+        end
+      end
+      field :user do
+        visible do
+          current_user.roles.include?(:admin)
+        end
+      end
+      field :updater do
+        visible do
+          current_user.roles.include?(:admin)
+        end
+      end
+      field :image
+      field :created_at do
+        strftime_format "%A, %d %B %Y"
+      end
+      field :updated_at do
+        strftime_format "%A, %d %B %Y"
+      end
+      #      field :state, :enum
     end
     create do; end
     update do; end
@@ -494,7 +811,7 @@ RailsAdmin.config do |config|
       end
       field :user do
         visible do
-          bindings[:view].current_user.is?(:admin)
+          current_user.roles.include?(:admin)
         end
       end
       field :image
@@ -504,341 +821,141 @@ RailsAdmin.config do |config|
       field :updated_at do
         strftime_format "%A, %d %B %Y"
       end
-#      field :state, :enum
+      #      field :state, :enum
     end
     create do; end
     update do; end
   end
 
-  config.model Comment do
-    configure :comments, :has_many_association
-    configure :user, :belongs_to_association   #   # Found columns:
-    configure :id, :integer
-    configure :comment, :text
-    configure :commentable_id, :integer         # Hidden
-    configure :commentable_type, :string
-    configure :user_id, :integer         # Hidden
-    configure :created_at, :datetime
-    configure :updated_at, :datetime   #   # Sections:
-    list do
-      field :id
-      field :state
-      field :comment
-      field :commentable_type
-      field :user
-      field :created_at do
-        strftime_format "%A, %d %B %Y"
-      end
-      field :updated_at do
-        strftime_format "%A, %d %B %Y"
-      end
-    end
-    export do; end
-    show do
-      field :id
-      field :state
-      field :comment
-      field :commentable_type
-      field :user
-    end
-    edit do
-      field :comment, :text do
-        ckeditor do
-          true
-        end
-      end
-      field :user do
-        visible do
-          bindings[:view].current_user.is?(:admin)
-        end
-      end
-      field :state, :enum
-    end
-    create do; end
-    update do; end
-  end
-
-  config.model Contact do
-    configure :id, :integer
-    configure :name, :string
-    configure :email, :string
-    configure :phone, :string
-    configure :message, :text
-    configure :created_at, :datetime
-    configure :updated_at, :datetime   #   # Sections:
-    list do
-      field :id
-      field :name
-      field :email
-      field :phone
-      field :message
-      field :created_at do
-        strftime_format "%A, %d %B %Y"
-      end
-      field :updated_at do
-        strftime_format "%A, %d %B %Y"
-      end
-    end
-    export do; end
-    show do
-      field :id
-      field :name
-      field :email
-      field :phone
-      field :message
-    end
-    edit do; end
-    create do
-      field :name
-      field :email
-      field :phone
-      field :message, :text do
-        ckeditor do
-          true
-        end
-      end
-    end
-    update do; end
-  end
-
-  config.model Event do
+  config.model Profile do
     configure :user, :belongs_to_association
-    configure :comments, :has_many_association   #   # Found columns:
-    configure :id, :integer
-    configure :title, :string
-    configure :description, :text
-    configure :start_date, :date
-    configure :end_date, :date
-    configure :user_id, :integer         # Hidden
-    configure :created_at, :datetime
-    configure :updated_at, :datetime
-    configure :image_file_name, :string         # Hidden
-    configure :image_content_type, :string         # Hidden
-    configure :image_file_size, :integer         # Hidden
-    configure :image_updated_at, :datetime         # Hidden
-    configure :image, :paperclip   #   # Sections:
-    list do
-      field :id
-      field :state
-      field :title
-      field :description
-      field :start_date
-      field :end_date
-      field :user
-      field :created_at do
-        strftime_format "%A, %d %B %Y"
-      end
-      field :updated_at do
-        strftime_format "%A, %d %B %Y"
-      end
-      field :image
-      field :comments
-    end
-    export do; end
-    show do
-      field :id
-      field :state
-      field :title
-      field :description
-      field :start_date
-      field :end_date
-      field :user
-      field :created_at do
-        strftime_format "%A, %d %B %Y"
-      end
-      field :updated_at do
-        strftime_format "%A, %d %B %Y"
-      end
-      field :image
-      field :comments
-    end
-    edit do;
-      field :title
-      field :description, :text do
-        ckeditor do
-          true
-        end
-      end
-      field :user do
-        visible do
-          bindings[:view].current_user.is?(:admin)
-        end
-      end
-      field :start_date
-      field :end_date
-      field :image
-      field :state, :enum
-    end
-    create do
-    end
-    update do
-    end
-  end
-
-  config.model Folktale do
-    configure :user, :belongs_to_association   #   # Found columns:
-    configure :id, :integer
-    configure :title, :string
-    configure :description, :text
-    configure :user_id, :integer         # Hidden
-    configure :created_at, :datetime
-    configure :updated_at, :datetime
-    configure :image_file_name, :string         # Hidden
-    configure :image_content_type, :string         # Hidden
-    configure :image_file_size, :integer         # Hidden
-    configure :image_updated_at, :datetime         # Hidden
-    configure :image, :paperclip   #   # Sections:
-    list do
-      field :id
-      field :state
-      field :title
-      field :description
-      field :user
-      field :created_at do
-        strftime_format "%A, %d %B %Y"
-      end
-      field :updated_at do
-        strftime_format "%A, %d %B %Y"
-      end
-      field :image
-    end
-    export do; end
-    show do
-      field :id
-      field :state
-      field :title
-      field :description
-      field :user
-      field :image
-    end
-    edit do
-      field :title
-      field :description, :text do
-        ckeditor do
-          true
-        end
-      end
-      field :user do
-        visible do
-          bindings[:view].current_user.is?(:admin)
-        end
-      end
-      field :image
-      field :created_at do
-        strftime_format "%A, %d %B %Y"
-      end
-      field :updated_at do
-        strftime_format "%A, %d %B %Y"
-      end
-      field :state, :enum
-    end
-    create do; end
-    update do; end
-  end
-
-  config.model LocationTourism do
-    # Found associations:
-    configure :category_loc_tourism, :belongs_to_association
-    configure :user, :belongs_to_association   #   # Found columns:
     configure :id, :integer
     configure :name, :string
+    configure :sex, :string
+    configure :birthday, :date
+    configure :about, :text
+    configure :work, :text
+    configure :phone, :string
     configure :address, :text
     configure :city, :string
-    configure :zip, :integer
-    configure :phone, :string
-    configure :web, :string
+    configure :website, :string
     configure :facebook, :string
     configure :twitter, :string
-    configure :hours_description, :text
-    configure :facility, :text
-    configure :description, :text
-    configure :category_loc_tourism_id, :integer         # Hidden
-    configure :user_id, :integer         # Hidden
+    configure :user_id, :integer
     configure :created_at, :datetime
     configure :updated_at, :datetime
-    configure :image_file_name, :string         # Hidden
-    configure :image_content_type, :string         # Hidden
-    configure :image_file_size, :integer         # Hidden
-    configure :image_updated_at, :datetime         # Hidden
-    configure :image, :paperclip   #   # Sections:
-    configure :updater_id, :integer
+    configure :image_file_name, :string
+    configure :image_content_type, :string
+    configure :image_file_size, :integer
+    configure :image_updated_at, :datetime
+    configure :image, :paperclip
     list do
       field :id
-      field :state
       field :name
-      #      field :access_state
-      field :address
-      field :city
-      field :category_loc_tourism
+      field :phone
       field :user
       field :image
-      field :created_at do
-        strftime_format "%A, %d %B %Y"
-      end
-      field :updated_at do
-        strftime_format "%A, %d %B %Y"
-      end
     end
     export do; end
     show do
       field :id
-      field :state
       field :name
-      field :category_loc_tourism
+      field :sex
+      field :birthday do
+        strftime_format "%A, %d %B %Y"
+      end
+      field :about
+      field :work
+      field :phone
       field :address
       field :city
-      field :zip
-      field :phone
-      field :web
+      field :website
       field :facebook
       field :twitter
-      field :hours_description
-      field :facility
-      field :description
       field :user
       field :image
-      field :updater
     end
     edit do
       field :name
-      field :category_loc_tourism
+      field :sex, :enum
+      field :birthday
+      field :about
+      field :work
+      field :phone
       field :address
       field :city
-      field :zip
-      field :phone
-      field :web
+      field :website
       field :facebook
       field :twitter
-      field :hours_description
-      field :facility
-      field :description, :text do
-        ckeditor do
-          true
-        end
-      end
-      field :user do
-        visible do
-          bindings[:view].current_user.is?(:admin)
-        end
-      end
-      field :updater do
-        visible do
-          bindings[:view].current_user.is?(:admin)
-        end
-      end
+      field :user
       field :image
-      field :created_at do
-        strftime_format "%A, %d %B %Y"
-      end
-      field :updated_at do
-        strftime_format "%A, %d %B %Y"
-      end
-#      field :state, :enum
+    end
+    create do; end
+    update do; end
+  end
+
+  config.model Setting do
+    configure :key, :string
+    configure :alt, :string
+    configure :value, :text
+    list do
+      field :id
+      field :key
+      field :alt
+      field :value
+    end
+    export do; end
+    show do
+      field :id
+      field :key
+      field :alt
+      field :value
+    end
+    edit do
+      field :key
+      field :alt
+      field :value
     end
     create do; end
     update do; end
   end
   
+  config.model Slideshow do
+    configure :id,                  :integer
+    configure :title,               :string
+    configure :description,         :text
+    configure :state,               :string
+    configure :created_at,          :datetime
+    configure :updated_at,          :datetime
+    configure :image_file_name,     :string
+    configure :image_content_type,  :string
+    configure :image_file_size,     :integer
+    configure :image_updated_at,    :datetime
+    configure :image,               :paperclip
+    list do
+      field :id
+      field :state
+      field :title
+      field :image
+    end
+    export do; end
+    show do
+      field :id
+      field :state
+      field :title
+      field :description
+      field :image
+    end
+    edit do
+      field :title
+      field :description
+      field :image
+      #      field :state, :enum
+    end
+    create do; end
+    update do; end
+  end
+
   config.model TipsTrick do
     # Found associations:
     configure :user, :belongs_to_association   #   # Found columns:
@@ -891,11 +1008,86 @@ RailsAdmin.config do |config|
       end
       field :user do
         visible do
-          bindings[:view].current_user.is?(:admin)
+          current_user.roles.include?(:admin)
         end
       end
       field :image
-      field :state, :enum
+#      field :state, :enum
+    end
+    create do; end
+    update do; end
+  end
+
+  config.model TipsTrickRevision do
+    parent TipsTrick
+    label "Revision"
+    label_plural "Revisions"
+
+    # Found associations:
+    configure :user, :belongs_to_association   #   # Found columns:
+    configure :tips_trick, :belongs_to_association   #   # Found columns:
+    configure :id, :integer
+    configure :title, :string
+    configure :description, :text
+    configure :user_id, :integer         # Hidden
+    configure :tips_trick_id, :integer         # Hidden
+    configure :created_at, :datetime
+    configure :updated_at, :datetime
+    configure :image_file_name, :string         # Hidden
+    configure :image_content_type, :string         # Hidden
+    configure :image_file_size, :integer         # Hidden
+    configure :image_updated_at, :datetime         # Hidden
+    configure :image, :paperclip   #   # Sections:
+    list do
+      field :id
+      field :state
+      field :tips_trick
+      field :title
+      field :description
+      field :user
+      field :created_at do
+        strftime_format "%A, %d %B %Y"
+      end
+      field :updated_at do
+        strftime_format "%A, %d %B %Y"
+      end
+      field :image
+    end
+    export do; end
+    show do
+      field :id
+      field :state
+      field :tips_trick
+      field :title
+      field :description
+      field :user
+      field :created_at do
+        strftime_format "%A, %d %B %Y"
+      end
+      field :updated_at do
+        strftime_format "%A, %d %B %Y"
+      end
+      field :image
+    end
+    edit do
+      field :title
+      field :description, :text do
+        ckeditor do
+          true
+        end
+      end
+      field :user do
+        visible do
+          current_user.roles.include?(:admin)
+        end
+      end
+      field :tips_trick do
+        visible do
+          current_user.roles.include?(:admin)
+        end
+      end
+      field :image
+#      field :state, :enum
     end
     create do; end
     update do; end
@@ -953,7 +1145,7 @@ RailsAdmin.config do |config|
       end
       field :user do
         visible do
-          bindings[:view].current_user.is?(:admin)
+          current_user.roles.include?(:admin)
         end
       end
       field :image
@@ -1023,11 +1215,11 @@ RailsAdmin.config do |config|
       end
       field :user do
         visible do
-          bindings[:view].current_user.is?(:admin)
+          current_user.roles.include?(:admin)
         end
       end
       field :image
-      field :state, :enum
+#      field :state, :enum
     end
     create do; end
     update do; end
@@ -1369,27 +1561,74 @@ RailsAdmin.config do |config|
     update do; end
   end
 
-  config.model Setting do
-    configure :key, :string
-    configure :alt, :string
-    configure :value, :text
+  config.model User do
+
+    object_label_method do
+      :email
+    end
+
+    configure :tourism_articles, :has_many_association
+    configure :events, :has_many_association
+    configure :folktales, :has_many_association
+    configure :tips_tricks, :has_many_association
+    configure :location_tourisms, :has_many_association
+    configure :comments, :has_many_association
+    configure :id, :integer
+    configure :email, :string
+    configure :password, :password
+    configure :password_confirmation, :password
+    configure :reset_password_token, :string
+    configure :reset_password_sent_at, :datetime
+    configure :remember_created_at, :datetime
+    configure :sign_in_count, :integer
+    configure :current_sign_in_at, :datetime
+    configure :last_sign_in_at, :datetime
+    configure :current_sign_in_ip, :string
+    configure :last_sign_in_ip, :string
+    configure :created_at, :datetime
+    configure :updated_at, :datetime
     list do
       field :id
-      field :key
-      field :alt
-      field :value
+      field :state
+      field :username
+      field :email
+      field :roles do
+        pretty_value do
+          value.map do |role|
+            role.to_s.humanize
+          end.to_sentence
+        end
+      end
     end
     export do; end
     show do
       field :id
-      field :key
-      field :alt
-      field :value
+      field :state
+      field :username
+      field :email
+      field :roles do
+        pretty_value do
+          value.map do |role|
+            role.to_s.humanize
+          end.to_sentence
+        end
+      end
     end
     edit do
-      field :key
-      field :alt
-      field :value
+      field :username
+      field :email
+      field :password
+      field :password_confirmation
+      field :roles do
+        visible do
+          visible && !read_only
+        end
+        render do
+          bindings[:view].render "custom_form_field_user_roles", field: self, form: bindings[:form]
+          #          bindings[:form].select("roles", bindings[:object].roles_enum, {}, { :multiple => true })
+        end
+      end
+      field :state, :enum
     end
     create do; end
     update do; end

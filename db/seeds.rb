@@ -84,6 +84,7 @@ LocationTourism.destroy_all
     category_loc_tourism_id: "1",
     address: Faker::Lorem.sentence.gsub(/\.$/, ""),
     city: Faker::Lorem.sentence.gsub(/\.$/, ""),
+    zip: "21155",
     phone: "1+ (123) 456.4789",
     web: "www.nama-web.com",
     facebook: "www.facebook.com",

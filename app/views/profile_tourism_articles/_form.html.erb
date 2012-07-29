@@ -1,7 +1,12 @@
 <div class="profiles-home">
-  <%= f.input :title, :label => 'Judul Berita Wisata', :input_html => {:class => 'span7'} %>
-  <%= f.input :content, :as => :text, :label => 'Isi Berita Wisata', :input_html => { :rows => 20 } %>
-  <%= f.input :image, :as => :file %>
+  <h2>Berita Wisata</h2>
+  <div class="dashed" style="margin-bottom: 30px; margin-top: 0"></div>
+  <%= f.input :title, :label => 'Judul', :input_html => {:class => 'span7'} %>
+  <div style="margin-bottom: 20px;" >
+    <%= f.input :content, :label => false%>
+  </div>
+  <%= f.input :image, :label => false %>
+  <span class="help-block">Pilih gambar untuk berita wisata</span>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

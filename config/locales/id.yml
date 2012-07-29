@@ -1,4 +1,11 @@
 id:
+  helpers:
+    links:
+      cancel: "Batal"
+    submit:
+      create: "Simpan"
+      update: "Perbaharui"
+
   simple_form:
     sex:
       male: "Laki-laki"

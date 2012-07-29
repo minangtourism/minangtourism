@@ -54,7 +54,7 @@ class LocationTourismsController < ApplicationController
 
     respond_to do |format|
       if @location_tourism.save
-        format.html { redirect_to @location_tourism, notice: 'Tempat wisata sukses dibuat' }
+        format.html { redirect_to @location_tourism, notice: 'Tempat wisata sukses dibuat, menunggu verifikasi admin' }
         format.json { render json: @location_tourism, status: :created, location: @location_tourism }
       else
         format.html { render action: "new" }
@@ -76,7 +76,7 @@ class LocationTourismsController < ApplicationController
     @location_tourism.location_tourism = location_tourism
     respond_to do |format|
       if @location_tourism.save
-        format.html { redirect_to @location_tourism.location_tourism, notice: 'Tempat wisata sukses diperbaharui' }
+        format.html { redirect_to @location_tourism.location_tourism, notice: 'Tempat wisata sukses diperbaharui, menunggu verifikasi admin' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

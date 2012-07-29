@@ -13,7 +13,7 @@
 
         <span class="eventdescription pull-right" style="margin-left: 20px">
           <i class="icon-thumbs-up"></i> <%= @event.likes.count %> tertarik.
-          
+
           <%= link_to like_event_path(@event), method: :post, :class => 'btn btn-primary btn-mini' do %>
             <i class="icon-thumbs-up"></i> Saya tertarik!
           <% end if can? :like, @event %>
@@ -21,11 +21,10 @@
       </p>
     </div>
 
-    <%= image_tag(@event.image.url(:large)) %>
+<%#= image_tag(@event.image.url(:large)) %>
+    <%= image_tag(@event.image.url) %>
     <div class="content-article-show">
-      <p class="clearfix">
-        <%= raw @event.description %>
-      </p>
+      <p><%= raw @event.description %></p>
     </div>
   </div>
 </div>

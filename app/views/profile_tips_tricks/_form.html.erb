@@ -1,15 +1,17 @@
 <div class="profiles-home">
-  <h2>Tambah Tips Dan Trik Wisata</h2>
+  <h2>Tips dan Trik Wisata</h2>
   <div class="dashed" style="margin-bottom: 30px; margin-top: 0"></div>
 
   <%= f.input :title, :label => 'Judul', :input_html => {:class => 'span5'} %>
-  <%= f.input :description, :label => false %>
-  <%= f.input :image, :label => false, :style => 'margin-top: 20px;'%>
+  <div style="margin-bottom: 20px;" >
+    <%= f.input :description, :label => false%>
+  </div>
+  <%= f.input :image, :label => false%>
   <span class="help-block">Pilih gambar untuk cerita rakyat</span>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-      tips_tricks_profile_path(@profile), :class => 'btn btn-danger delete' %>
+      profile_tips_tricks_path(@profile), :class => 'btn btn-danger delete' %>
   </div>
 </div>
 
