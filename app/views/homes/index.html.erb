@@ -41,7 +41,7 @@
           <% end %>
         </div>
       </div>
-      <div class="breadcrumb" style="padding: 14px 14px 0px 14px">
+      <div class="breadcrumb" style="padding: 20px 15px 0px 15px">
         <% @events.each do |event| %>
           <div class="eventsdate">
             <div class="span1 cont">
@@ -61,19 +61,31 @@
             </p>
             <div class="clearfix">
               <div class="event-like pull-right">
-                <span class="eventdescription" style="margin-left: 20px">
-                  <i class="icon-thumbs-up"></i> <%= event.likes.count %> tertarik.
-                </span>
+                <div class="eventdescription"  style="margin-left: 5px">
+                  <a href="#" rel="tooltip" data-original-title="tertarik">
+                    <i class="btn btn-mini icon-thumbs-up">
+                      <%= event.likes.count %>
+                    </i>
+                  </a>
+                </div>
               </div>
-              <div class="pull-right" style="margin-left: 10px; margin-right: 10px;">
-                <%= event.comments.published.count %> <i class="icon-comment"></i>
+              <div class="pull-right" style="margin-left: 5px;">
+                <a href="#" rel="tooltip" data-original-title="komentar">
+                  <i class="btn btn-mini icon-comment">
+                    <%= event.comments.published.count %>
+                  </i>
+                </a>
               </div>
               <div class="pull-right">
-                <%= event.impressionist_count(:filter => :session_hash) %> <i class="icon-eye-open"></i>
+                <a href="#" rel="tooltip" data-original-title="melihat">
+                  <i class="btn btn-mini icon-eye-open">
+                    <%= event.impressionist_count(:filter => :session_hash) %>
+                  </i>
+                </a>
               </div>
             </div>
           </div>
-          <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
+          <div class="dashed" style="margin-bottom: 20px; margin-top: 10px;"></div>
         <% end %>
       </div>
     </div> <!-- END EVENT / ACARA -->
@@ -95,24 +107,33 @@
         </div>
       </div>
 
-      <div class="breadcrumb" style="padding: 14px 14px 0px 14px">
+      <div class="breadcrumb" style="padding: 20px 15px 0px 15px">
         <% @tourism_articles.each do |article| %>
           <div class="span4 clearfix" style="margin-left: 0;">
             <div class="image-news">
               <%= image_tag(article.image.url(:thumb)) %>
             </div>
             <div class="title-news">
-              <%= link_to truncate(article.title, :length => 80, :separator => ' '), tourism_article_path(article) %>
+              <%= link_to truncate(article.title, :length => 50, :separator => ' '), tourism_article_path(article) %>
             </div>
           </div>
           <div class="news-info clearfix">
             <%= link_to article.user.username, profile_path(article.user) %> |
             <%= l article.created_at, :format => :costum %>
-            <div class="pull-right" style="margin-left: 10px;">
-              <%= article.comments.published.count %> <i class="icon-comment"></i>
+
+            <div class="pull-right" style="margin-left: 5px;">
+              <a href="#" rel="tooltip" data-original-title="komentar">
+                <i class="btn btn-mini icon-comment">
+                  <%= article.comments.published.count %>
+                </i>
+              </a>
             </div>
             <div class="pull-right">
-              <%= article.impressionist_count(:filter => :session_hash) %> <i class="icon-eye-open"></i>
+              <a href="#" rel="tooltip" data-original-title="melihat">
+                <i class="btn btn-mini icon-eye-open">
+                  <%= article.impressionist_count(:filter => :session_hash) %>
+                </i>
+              </a>
             </div>
           </div>
           <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
@@ -146,14 +167,14 @@
             <table class="table table-striped" style="margin-bottom: 0px;">
               <tbody>
                 <tr>
+                  <td><i class="icon-bookmark"></i></td>
+                  <td>Nama</td>
+                  <td><%= link_to location_tourism.name, location_tourism_path(location_tourism) %></td>
+                </tr>
+                <tr>
                   <td><i class="icon-user"></i></td>
                   <td>Wisatawan</td>
                   <td><%= link_to location_tourism.user.username, profile_path(location_tourism.user) %></td>
-                </tr>
-                <tr>
-                  <td><i class="icon-bookmark"></i></td>
-                  <td>Nama Tempat</td>
-                  <td><%= link_to location_tourism.name, location_tourism_path(location_tourism) %></td>
                 </tr>
                 <tr>
                   <td><i class="icon-pencil"></i></td>
@@ -191,10 +212,10 @@
         </div>
       </div>
 
-      <div class="breadcrumb" style="padding: 19px 19px 0 19px">
-        <div class="row">
-          <% @reviews.each do |review| %>
-            <div class="span4">
+      <div class="row">
+        <% @reviews.each do |review| %>
+          <div class="span4">
+            <div class="breadcrumb" style="padding: 15px">
               <div class="span1 photo-tourism">
                 <%= link_to image_tag(review.user.image.url(:thumb), :class => 'thumbnail'), profile_path(review.user) %>
               </div>
@@ -218,10 +239,9 @@
                   </span>
                 </div>
               </div>
-              <div class="dashed" style="margin-bottom: 15px; margin-top: 10px;"></div>
             </div>
-          <% end %>
-        </div> <!-- end row -->
+          </div>
+        <% end %>
       </div> <!-- end row -->
     </div>
 

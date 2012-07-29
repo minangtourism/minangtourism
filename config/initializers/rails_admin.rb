@@ -390,7 +390,7 @@ RailsAdmin.config do |config|
       field :start_date
       field :end_date
       field :image
-#      field :state, :enum
+      #      field :state, :enum
     end
     create do
     end
@@ -477,7 +477,7 @@ RailsAdmin.config do |config|
       field :start_date
       field :end_date
       field :image
-#      field :state, :enum
+      #      field :state, :enum
     end
     create do
     end
@@ -1012,7 +1012,7 @@ RailsAdmin.config do |config|
         end
       end
       field :image
-#      field :state, :enum
+      #      field :state, :enum
     end
     create do; end
     update do; end
@@ -1087,7 +1087,7 @@ RailsAdmin.config do |config|
         end
       end
       field :image
-#      field :state, :enum
+      #      field :state, :enum
     end
     create do; end
     update do; end
@@ -1219,7 +1219,7 @@ RailsAdmin.config do |config|
         end
       end
       field :image
-#      field :state, :enum
+      #      field :state, :enum
     end
     create do; end
     update do; end

@@ -43,6 +43,23 @@
         </table>
       </div><!--/.well -->
 
+      <div class="well sidebar-nav">
+        <table class="table table-striped" style="margin-bottom: 0px">
+          <tbody>
+            <tr>
+              <td><i class="icon-repeat"></i></td>
+              <td>Terakhir diperbarui oleh:</td>
+              <td><%= @location_tourism.updater.name if @location_tourism %></td>
+            </tr>
+            <tr>
+              <td><i class="icon-time"></i></td>
+              <td>Hari:</td>
+              <td><%= (l @location_tourism.updated_at, :format => :costum) if @location_tourism %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div><!--/.well -->
+
     </div> <!-- Side Bar -->
 
     <div class="span9"> <!-- Content -->
@@ -56,7 +73,7 @@
 
       <div class="well sidebar-nav">
         <%= link_to edit_location_tourism_path(@location_tourism), :class => 'btn btn-primary btn-mini pull-right' do %>
-          <i class="icon-pencil"></i> Update Informasi
+          <i class="icon-pencil"></i> Perbarui Informasi
         <% end %>
 
         <h3>Informasi <%= @location_tourism.name %></h3>
@@ -157,11 +174,11 @@
                   <%= link_to comment.user.username, profile_path(comment.user) %>
                 </div>
                 <div class="pull-right">
-                  <%= l comment.created_at, :format => :costum %>
+                  <i class="icon-time"></i> <%= l comment.created_at, :format => :costum %>
                 </div>
               </h5>
             </div>
-            <p style="margin-top: 9px"><%= raw comment.comment %></p>
+            <p style="margin-top: 9px; white-space: pre-wrap"><%= raw comment.comment %></p>
           </div>
           <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
         <% end %>
