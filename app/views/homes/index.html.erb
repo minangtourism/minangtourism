@@ -24,7 +24,7 @@
 </div>
 
 <div class="container content-sumbar"> <!-- CONTENT SUMBAR -->
-  <div class="row" style="margin-bottom: 30px">
+  <div class="row" style="margin-bottom: 20px">
 
     <div class="span4"> <!-- EVENT / ACARA -->
       <div class="breadcrumb">
@@ -41,7 +41,7 @@
           <% end %>
         </div>
       </div>
-      <div class="breadcrumb" style="padding: 20px 15px 0px 15px">
+      <div class="breadcrumb" style="padding: 20px 15px 0px 15px; margin-bottom: 0px;">
         <% @events.each do |event| %>
           <div class="eventsdate">
             <div class="span1 cont">
@@ -107,7 +107,7 @@
         </div>
       </div>
 
-      <div class="breadcrumb" style="padding: 20px 15px 0px 15px">
+      <div class="breadcrumb" style="padding: 20px 15px 0px 15px; margin-bottom: 0px;">
         <% @tourism_articles.each do |article| %>
           <div class="span4 clearfix" style="margin-left: 0;">
             <div class="image-news">
@@ -265,7 +265,7 @@
               <% if @folktales.present? %>
                 <div class="pull-right">
                   <%= link_to folktales_path, rel: "tooltip", data: {original_title: "Selanjutnya"} do %>
-                    <i class="btn btn-primary btn-mini icon-share-alt icon-white"></i>
+                    <i class="btn btn-mini icon-share-alt icon-white"></i>
                   <% end %>
                 </div>
               <% end %>
@@ -281,7 +281,7 @@
               <% if @tips_tricks.present? %>
                 <div class="pull-right">
                   <%= link_to tips_tricks_path, rel: "tooltip", data: {original_title: "Selanjutnya"} do %>
-                    <i class="btn btn-primary btn-mini icon-share-alt icon-white"></i>
+                    <i class="btn btn-mini icon-share-alt icon-white"></i>
                   <% end %>
                 </div>
               <% end %>

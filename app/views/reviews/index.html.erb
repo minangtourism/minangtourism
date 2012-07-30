@@ -46,17 +46,10 @@
                       <i class="icon-time"></i>
                       <%= l review.commentable.created_at, :format => :costum %>
                     </div>
-                    <div class="rate-location pull-left">
-                      <%#*<i class="icon-star"></i>%>
-                      <%#*<i class="icon-star"></i>%>
-                      <%#*<i class="icon-star"></i>%>
-                      <%#*<i class="icon-star"></i>%>
-                      <%#*<i class="icon-star-empty"></i>%>
-                    </div>
                   </div>
                 </div>
 
-                <div>
+                <div style="white-space: pre-wrap">
                   <%= raw review.comment %>
                 </div>
               </div>

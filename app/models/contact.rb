@@ -7,10 +7,10 @@ class Contact < ActiveRecord::Base
     :message => "Hanya boleh huruf"
 
   validates_format_of :phone,
-    :with => /\A[0-9]{5}\Z/,
+    :with => /\A\S[0-9\+\/\(\)\s\-]*\z/i,
     :allow_blank => true,
     :allow_nil => true,
-    :message => "hanya boleh angka 0-9, minimal 5 digit"
+    :message => "hanya boleh angka"
 
   validates :email,
     :presence => true,

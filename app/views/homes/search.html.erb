@@ -4,15 +4,27 @@
       <div class="page-header">
         <h1>Hasil Pencarian <small></small></h1>
       </div>
+      <div class="page-header">
+        <h1><small>Hasil pencarian untuk berita wisata</small></h1>
+      </div>
       <% @search_article.each do |article| %>
         <p><%= link_to article.title, tourism_article_path(article) %></p>
       <% end %>
+      <div class="page-header">
+        <h1><small>Hasil pencarian untuk cerita rakyat</small></h1>
+      </div>
       <% @search_folktale.each do |folktale| %>
         <p><%= link_to folktale.title, folktale_path(folktale) %></p>
       <% end %>
+      <div class="page-header">
+        <h1><small>Hasil pencarian untuk acara wisata</small></h1>
+      </div>
       <% @search_event.each do |event| %>
         <p><%= link_to event.title, event_path(event) %></p>
       <% end %>
+      <div class="page-header">
+        <h1><small>Hasil pencarian untuk tips dan trik wisata</small></h1>
+      </div>
       <% @search_trick.each do |trick| %>
         <p><%= link_to trick.title, tips_trick_path(trick) %></p>
       <% end %>

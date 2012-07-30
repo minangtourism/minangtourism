@@ -9,7 +9,7 @@
     </p>
     <%= simple_form_for @contact, :html => {:class => 'form-horizontal'} do |f| %>
       <%= f.input :name, :label => 'Nama Lengkap', :input_html => {:class => 'span3'} %>
-      <%= f.input :email, :label => 'Email Kamu', :input_html => {:class => 'span3'} %>
+      <%= f.input :email, :label => 'Email', :input_html => {:class => 'span3'} %>
       <%= f.input :phone, :label => 'Nomor Kontak', :input_html => {:class => 'span3'} %>
       <%= f.input :message, :as => :text, :label => 'Pesan', :input_html => {:rows => '5', :class => 'span5'} %>
 

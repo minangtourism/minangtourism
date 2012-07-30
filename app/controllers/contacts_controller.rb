@@ -30,7 +30,7 @@ class ContactsController < ApplicationController
   def create
     @contact = Contact.new(params[:contact])
     if @contact.save
-      redirect_to contacts_path, :notice => "Your message was successfully sent."
+      redirect_to contacts_path, :notice => "Pesan telah dikirim, silahkan cek email anda 1x24 jam untuk melihat balasan dari kami"
     else
       render :action => :index
     end
