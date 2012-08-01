@@ -60,10 +60,14 @@
       </li>
     </ul>
   </li>
+  <li class="<%= current_page?(helps_path) ? "active" : nil%>">
+    <%= link_to helps_path do %>
+      <i class="icon-wrench"></i>Bantuan
+    <% end %>
+  </li>
   <li class="<%= current_page?(contacts_path) ? "active" : nil%>">
     <%= link_to contacts_path do %>
       <i class="icon-share-alt"></i>Kontak
     <% end %>
   </li>
-
 </ul>

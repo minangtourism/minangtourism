@@ -243,7 +243,7 @@ RailsAdmin.config do |config|
       end
       field :user do
         visible do
-          current_user.roles.include?(:admin)
+          bindings[:view].current_user.roles.include?(:admin)
         end
       end
       #      field :state, :enum
@@ -384,7 +384,7 @@ RailsAdmin.config do |config|
       end
       field :user do
         visible do
-          current_user.roles.include?(:admin)
+          bindings[:view].current_user.roles.include?(:admin)
         end
       end
       field :start_date
@@ -466,12 +466,12 @@ RailsAdmin.config do |config|
       end
       field :user do
         visible do
-          current_user.roles.include?(:admin)
+          bindings[:view].current_user.roles.include?(:admin)
         end
       end
       field :event do
         visible do
-          current_user.roles.include?(:admin)
+          bindings[:view].current_user.roles.include?(:admin)
         end
       end
       field :start_date
@@ -530,7 +530,7 @@ RailsAdmin.config do |config|
       end
       field :user do
         visible do
-          current_user.roles.include?(:admin)
+          bindings[:view].current_user.roles.include?(:admin)
         end
       end
       field :image
@@ -599,12 +599,12 @@ RailsAdmin.config do |config|
       end
       field :user do
         visible do
-          current_user.roles.include?(:admin)
+          bindings[:view].current_user.roles.include?(:admin)
         end
       end
       field :folktale do
         visible do
-          current_user.roles.include?(:admin)
+          bindings[:view].current_user.roles.include?(:admin)
         end
       end
       field :image
@@ -702,12 +702,12 @@ RailsAdmin.config do |config|
       end
       field :user do
         visible do
-          current_user.roles.include?(:admin)
+          bindings[:view].current_user.roles.include?(:admin)
         end
       end
       field :updater do
         visible do
-          current_user.roles.include?(:admin)
+          bindings[:view].current_user.roles.include?(:admin)
         end
       end
       field :image
@@ -811,7 +811,7 @@ RailsAdmin.config do |config|
       end
       field :user do
         visible do
-          current_user.roles.include?(:admin)
+          bindings[:view].current_user.roles.include?(:admin)
         end
       end
       field :image
@@ -1008,7 +1008,7 @@ RailsAdmin.config do |config|
       end
       field :user do
         visible do
-          current_user.roles.include?(:admin)
+          bindings[:view].current_user.roles.include?(:admin)
         end
       end
       field :image
@@ -1078,12 +1078,12 @@ RailsAdmin.config do |config|
       end
       field :user do
         visible do
-          current_user.roles.include?(:admin)
+          bindings[:view].current_user.roles.include?(:admin)
         end
       end
       field :tips_trick do
         visible do
-          current_user.roles.include?(:admin)
+          bindings[:view].current_user.roles.include?(:admin)
         end
       end
       field :image
@@ -1145,7 +1145,7 @@ RailsAdmin.config do |config|
       end
       field :user do
         visible do
-          current_user.roles.include?(:admin)
+          bindings[:view].current_user.roles.include?(:admin)
         end
       end
       field :image
@@ -1215,7 +1215,7 @@ RailsAdmin.config do |config|
       end
       field :user do
         visible do
-          current_user.roles.include?(:admin)
+          bindings[:view].current_user.roles.include?(:admin)
         end
       end
       field :image

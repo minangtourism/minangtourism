@@ -3,6 +3,7 @@ SumbarTourism::Application.routes.draw do
   root :to => 'homes#index'
   mount Ckeditor::Engine => '/ckeditor'
   get '/search' => 'homes#search'
+#  get '/help' => 'homes#help'
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
@@ -26,6 +27,7 @@ SumbarTourism::Application.routes.draw do
   end
   resources :why_sumbars
   resources :reviews
+  resources :helps
 
   # ------------------- PROFILE ------------------- #
   resources :profile_tourism_articles, path: 'profiles/:profile_id/tourism_articles', except: :show
