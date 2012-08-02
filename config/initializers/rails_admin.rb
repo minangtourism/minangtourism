@@ -232,6 +232,7 @@ RailsAdmin.config do |config|
       field :id
       field :state
       field :comment
+      field :comment
       field :commentable_type
       field :user
     end
@@ -362,7 +363,13 @@ RailsAdmin.config do |config|
       field :id
       field :state
       field :title
-      field :description
+      field :description do
+#        partial "custom_form_field_title_event"
+        render do
+          bindings[:view].render "custom_form_field_title_event", field: self, form: bindings[:form]
+          #          bindings[:form].select("roles", bindings[:object].roles_enum, {}, { :multiple => true })
+        end
+      end
       field :start_date
       field :end_date
       field :user

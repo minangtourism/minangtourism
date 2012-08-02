@@ -114,7 +114,7 @@
               <%= image_tag(article.image.url(:thumb)) %>
             </div>
             <div class="title-news">
-              <%= link_to truncate(article.title, :length => 50, :separator => ' '), tourism_article_path(article) %>
+              <%= link_to truncate(article.title.titleize, :length => 40, :separator => ' '), tourism_article_path(article) %>
             </div>
           </div>
           <div class="news-info clearfix">
