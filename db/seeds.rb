@@ -9,7 +9,7 @@
 dummy_images = {
   :image_event => (open(Rails.root.join("app/assets/images/acara_wisata.jpg")) rescue nil),
   :image_folktale => (open(Rails.root.join("app/assets/images/cerita_rakyat.jpg")) rescue nil),
-  :image_location_tourism => (open(Rails.root.join("app/assets/images/logo-sumbar.png")) rescue nil),
+  :image_tourism_location => (open(Rails.root.join("app/assets/images/logo-sumbar.png")) rescue nil),
   :image_slideshow => (open(Rails.root.join("app/assets/images/slideshow.jpg")) rescue nil),
   :image_tips_trick => (open(Rails.root.join("app/assets/images/tips_wisata.jpg")) rescue nil),
   :image_tourism_article => (open(Rails.root.join("app/assets/images/berita_wisata.jpg")) rescue nil)
@@ -206,11 +206,11 @@ Folktale.destroy_all
   )
 end
 
-LocationTourism.destroy_all
+TourismLocation.destroy_all
 
 1.upto(1).each do |i|
   admin = admins[i.pred % admins.count]
-  admin.location_tourisms.create!(
+  admin.tourism_locations.create!(
     name: "Pantai Padang",
     category_loc_tourism_id: CategoryLocTourism.find_by_name("Pantai").id,
     address: "2 KM dari pusat Kota Padang",
@@ -222,7 +222,7 @@ LocationTourism.destroy_all
     twitter: " ",
     hours_description: " ",
     facility: " ",
-    image: dummy_images[:image_location_tourism],
+    image: dummy_images[:image_tourism_location],
     description: "Pantai Padang adalah salah satu pantai indah di sisi barat Sumatera Barat",
     state: "published"
   )
@@ -230,7 +230,7 @@ end
 
 1.upto(1).each do |i|
   admin = admins[i.pred % admins.count]
-  admin.location_tourisms.create!(
+  admin.tourism_locations.create!(
     name: "Jembatan Siti Nurbaya",
     category_loc_tourism_id: CategoryLocTourism.find_by_name("Jembatan").id,
     address: "Kota Padang",
@@ -242,7 +242,7 @@ end
     twitter: " ",
     hours_description: " ",
     facility: " ",
-    image: dummy_images[:image_location_tourism],
+    image: dummy_images[:image_tourism_location],
     description: "Jembatan sepanjang 60 meter membentang di atas Muara Batang ini menghubungkan kota tua Padang
     dengan Taman Bukit Gunung Padang. Dari atas jembatan, pengunjung bisa melihat pemandangan Bukit Gunung Padang.
     Di Bukit itulah Siti Nurbaya dikubur, mungkin karena itu jembatan ini dinamakan Jembatan Siti Nurbaya",

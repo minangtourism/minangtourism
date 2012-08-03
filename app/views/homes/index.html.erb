@@ -156,9 +156,9 @@
           <div class="pull-left" style="color: #005580; font-size: 18px; margin-top: 4px;">
             <i class="icon-map-marker"></i> Tempat Wisata
           </div>
-          <% if @location_tourisms.present? %>
+          <% if @tourism_locations.present? %>
             <div class="pull-right">
-              <%= link_to location_tourisms_path, rel: "tooltip", data: {original_title: "Selanjutnya"} do %>
+              <%= link_to tourism_locations_path, rel: "tooltip", data: {original_title: "Selanjutnya"} do %>
                 <i class="btn btn-mini icon-share-alt"></i>
               <% end %>
             </div>
@@ -166,28 +166,28 @@
         </div>
       </div>
 
-      <% if @location_tourisms.present? %>
+      <% if @tourism_locations.present? %>
         <div class="breadcrumb" style="padding: 19px">
-          <% @location_tourisms.each do |location_tourism| %>
+          <% @tourism_locations.each do |tourism_location| %>
             <div style="margin-bottom: 15px">
-              <%= image_tag(location_tourism.image.url) %>
+              <%= image_tag(tourism_location.image.url) %>
             </div>
             <table class="table table-striped" style="margin-bottom: 0px;">
               <tbody>
                 <tr>
                   <td><i class="icon-bookmark"></i></td>
                   <td>Nama</td>
-                  <td><%= link_to location_tourism.name, location_tourism_path(location_tourism) %></td>
+                  <td><%= link_to tourism_location.name, tourism_location_path(tourism_location) %></td>
                 </tr>
                 <tr>
                   <td><i class="icon-user"></i></td>
                   <td>Wisatawan</td>
-                  <td><%= link_to location_tourism.user.username, profile_path(location_tourism.user) %></td>
+                  <td><%= link_to tourism_location.user.username, profile_path(tourism_location.user) %></td>
                 </tr>
                 <tr>
                   <td><i class="icon-pencil"></i></td>
                   <td>Cerita Wisatawan</td>
-                  <td><%= location_tourism.comments.published.count%></td>
+                  <td><%= tourism_location.comments.published.count%></td>
                 </tr>
               </tbody>
             </table>
@@ -230,7 +230,7 @@
 
               <div class="story-tourism">
                 <div class="name-location">
-                  <%= link_to review.commentable.name, location_tourism_path(review.commentable, anchor: "comment-#{review.id}") %>
+                  <%= link_to review.commentable.name, tourism_location_path(review.commentable, anchor: "comment-#{review.id}") %>
                 </div>
                 <div class="clearfix">
                   <div class="date-publish"><i class="icon-time"></i> Rabu, 27 Juni 2012</div>
@@ -240,7 +240,7 @@
                   <%= raw truncate(review.comment, :length => 50, :separator => ' ') %>
                   <span class="small-view">
                     <i class="" >
-                      <%= link_to location_tourism_path(review.commentable, anchor: "comment-#{review.id}") do %>
+                      <%= link_to tourism_location_path(review.commentable, anchor: "comment-#{review.id}") do %>
                         <i class="icon-external-link"></i>
                       <% end %>
                     </i>

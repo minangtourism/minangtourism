@@ -1,6 +1,6 @@
 class Comment < ActiveRecord::Base
 
-  belongs_to :location_tourism_revision
+  belongs_to :tourism_location_revision
   belongs_to :tourism_article_revision
   belongs_to :user
 
@@ -32,7 +32,7 @@ class Comment < ActiveRecord::Base
     state :unpublished
   end
 
-  scope :reviews, where(commentable_type: 'LocationTourism')
+  scope :reviews, where(commentable_type: 'TourismLocation')
   scope :published, where(state: "published")
   scope :recent, order("created_at DESC")
   scope :unpublished, where(state: "unpublished")

@@ -8,21 +8,21 @@ class Ability
     cannot :dashboard
     cannot :manage, User, :state => 'disabled'
     cannot :read,
-      [LocationTourism, Folktale, TourismArticle, Event, TipsTrick], :state => 'unpublished'
+      [TourismLocation, Folktale, TourismArticle, Event, TipsTrick], :state => 'unpublished'
     can :read,
-      [LocationTourism, Folktale, TourismArticle, Event, TipsTrick], :state => 'published'
+      [TourismLocation, Folktale, TourismArticle, Event, TipsTrick], :state => 'published'
     can :create, Contact
 
     if user
       if user.is_any_of? :member, :operator
         can [:create, :update, :destroy],
-          [TourismArticle, Comment, Folktale, LocationTourism, Event, TipsTrick], user_id: user.id
-        can :update, LocationTourism
+          [TourismArticle, Comment, Folktale, TourismLocation, Event, TipsTrick], user_id: user.id
+        can :update, TourismLocation
       end
 
       if user.is? :member
         can :create_comment,
-          [TourismArticle, Folktale, LocationTourism, Event, TipsTrick]
+          [TourismArticle, Folktale, TourismLocation, Event, TipsTrick]
         can [
           :new_folktale, :create_folktale,
           :new_event, :create_event,
@@ -44,7 +44,7 @@ class Ability
         can [:read], User
         can :manage,
           [Contact, TourismArticle, TourismArticleRevision, Comment, Folktale, FolktaleRevision,
-          CategoryLocTourism, LocationTourism, LocationTourismRevision, 
+          CategoryLocTourism, TourismLocation, TourismLocationRevision, 
           Event, EventRevision, TipsTrick]
       end
 
@@ -56,28 +56,28 @@ class Ability
 
       if user.is_any_of? :admin, :operator
         cannot [:approve, :destroy, :create, :reject, :update], 
-          [DeletionRequest, TourismArticleRevision, LocationTourismRevision, EventRevision, FolktaleRevision, TipsTrickRevision]
+          [DeletionRequest, TourismArticleRevision, TourismLocationRevision, EventRevision, FolktaleRevision, TipsTrickRevision]
         can [:approve, :reject],
-          [DeletionRequest, TourismArticleRevision, LocationTourismRevision, EventRevision, FolktaleRevision, TipsTrickRevision], state: "pending"
+          [DeletionRequest, TourismArticleRevision, TourismLocationRevision, EventRevision, FolktaleRevision, TipsTrickRevision], state: "pending"
         can :destroy,
-          [DeletionRequest, TourismArticleRevision, LocationTourismRevision, EventRevision, FolktaleRevision, TipsTrickRevision], state: %w[approved rejected]
+          [DeletionRequest, TourismArticleRevision, TourismLocationRevision, EventRevision, FolktaleRevision, TipsTrickRevision], state: %w[approved rejected]
 
         cannot [:publish, :unpublish],
-          [TourismArticle, LocationTourism, Event, Folktale, TipsTrick, Comment, Slideshow]
+          [TourismArticle, TourismLocation, Event, Folktale, TipsTrick, Comment, Slideshow]
         can :publish,
-          [TourismArticle, LocationTourism, Event, Folktale, TipsTrick, Comment, Slideshow], state: "unpublished"
+          [TourismArticle, TourismLocation, Event, Folktale, TipsTrick, Comment, Slideshow], state: "unpublished"
         can :unpublish,
-          [TourismArticle, LocationTourism, Event, Folktale, TipsTrick, Comment, Slideshow], state: "published"
+          [TourismArticle, TourismLocation, Event, Folktale, TipsTrick, Comment, Slideshow], state: "published"
       end
 
       cannot :approve,
-        [DeletionRequest, TourismArticleRevision, LocationTourismRevision, EventRevision, FolktaleRevision, TipsTrickRevision], state: "approved"
+        [DeletionRequest, TourismArticleRevision, TourismLocationRevision, EventRevision, FolktaleRevision, TipsTrickRevision], state: "approved"
       cannot :reject,
-        [DeletionRequest, TourismArticleRevision, LocationTourismRevision, EventRevision, FolktaleRevision, TipsTrickRevision], state: "rejected"
+        [DeletionRequest, TourismArticleRevision, TourismLocationRevision, EventRevision, FolktaleRevision, TipsTrickRevision], state: "rejected"
       cannot :publish,
-        [TourismArticle, LocationTourism, Event, Folktale, TipsTrick, Comment, Slideshow], state: "published"
+        [TourismArticle, TourismLocation, Event, Folktale, TipsTrick, Comment, Slideshow], state: "published"
       cannot :unpublish,
-        [TourismArticle, LocationTourism, Event, Folktale, TipsTrick, Comment, Slideshow], state: "unpublished"
+        [TourismArticle, TourismLocation, Event, Folktale, TipsTrick, Comment, Slideshow], state: "unpublished"
       can :like, Event
       cannot :like, Event, likes: {user_id: user.id}
       can :search, TourismArticle

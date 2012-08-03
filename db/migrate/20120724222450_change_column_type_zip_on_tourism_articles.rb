@@ -1,11 +1,11 @@
 class ChangeColumnTypeZipOnTourismArticles < ActiveRecord::Migration
   def up
-    remove_column :location_tourisms, :zip
-    add_column :location_tourisms, :zip, :integer
+    remove_column :tourism_locations, :zip
+    add_column :tourism_locations, :zip, :integer
   end
 
   def down
-    remove_column :location_tourisms, :zip
-    add_column :location_tourisms, :zip, :string
+    remove_column :tourism_locations, :zip
+    add_column :tourism_locations, :zip, :string
   end
 end

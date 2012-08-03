@@ -1,0 +1,74 @@
+<div class="container">
+
+  <div class="navbar navbar-static" id="navbarExample">
+    <div class="navbar-inner">
+      <div style="width: auto;" class="container">
+        <a href="#" class="brand">Tempat Wisata</a>
+        <ul class="nav">
+          <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Wisata Alam <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <% CategoryLocTourism.find_by_name('Wisata Alam').children.each do |category_loc_tourism| %>
+                <li class="<%= current_page?(tourism_locations_path(category_loc_tourism_id: category_loc_tourism.to_param)) ? "active" : nil%>">
+                  <%= link_to tourism_locations_path(category_loc_tourism_id: category_loc_tourism.to_param) do %>
+                    <%= category_loc_tourism.name %>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Wisata Sejarah <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <% CategoryLocTourism.find_by_name('Wisata Sejarah').children.each do |category_loc_tourism| %>
+                <li class="<%= current_page?(tourism_locations_path(category_loc_tourism_id: category_loc_tourism.to_param)) ? "active" : nil%>">
+                  <%= link_to tourism_locations_path(category_loc_tourism_id: category_loc_tourism.to_param) do %>
+                    <%= category_loc_tourism.name %>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <ul class="thumbnails">
+    <% @tourism_locations.each do |tourism_location| %>
+      <li class="span3">
+        <div class="thumbnail" style="padding: 15px;">
+          <div class="title-location clearfix">
+            <h2>
+              <%= truncate(tourism_location.name, :length => 20, :separator => ' ') %>
+            </h2>
+
+            <p class="pull-right">
+              <i class="icon-pencil"></i>
+              <%= tourism_location.comments.count %> Cerita Wisatawan
+            </p>
+          </div>
+
+          <%= image_tag(tourism_location.image.url(:medium)) %>
+
+          <div class="caption">
+            <div class="clearfix">
+              <p><i class="icon-th-list"></i>
+                <%= tourism_location.category_loc_tourism.parent.name %>,
+                <%= tourism_location.category_loc_tourism.name %>
+              </p>
+              <p><i class="icon-map-marker"></i> <%= tourism_location.city %></p>
+              <p><i class="icon-user"></i>
+                <%= link_to tourism_location.user.username, profile_path(tourism_location.user) %>
+              </p>
+              <span>
+                <%= link_to "Selanjutnya »", tourism_location_path(tourism_location),
+                  :class => 'btn btn-primary pull-right' %>
+              </span>
+            </div>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>

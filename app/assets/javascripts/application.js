@@ -59,10 +59,10 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
-    if (CKEDITOR.instances['location_tourism_description']) {
-        CKEDITOR.remove(CKEDITOR.instances['location_tourism_description']);
+    if (CKEDITOR.instances['tourism_location_description']) {
+        CKEDITOR.remove(CKEDITOR.instances['tourism_location_description']);
     }
-    if ($('#location_tourism_description').length) CKEDITOR.replace('location_tourism_description', {
+    if ($('#tourism_location_description').length) CKEDITOR.replace('tourism_location_description', {
         "language":"id",
         "toolbar":"Full",
         "class":["ckeditor","optional"]

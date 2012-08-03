@@ -147,7 +147,7 @@
 
           <div class="story-tourism">
             <div class="name-location">
-              <%= link_to review.commentable.name, location_tourism_path(review.commentable, anchor: "comment-#{review.id}") %>
+              <%= link_to review.commentable.name, tourism_location_path(review.commentable, anchor: "comment-#{review.id}") %>
             </div>
             <div class="clearfix">
               <div class="date-publish"><i class="icon-time"></i> Rabu, 27 Juni 2012</div>
@@ -157,7 +157,7 @@
               <%= raw truncate(review.comment, :length => 50, :separator => ' ') %>
               <span class="small-view">
                 <i class="" >
-                  <%= link_to location_tourism_path(review.commentable, anchor: "comment-#{review.id}") do %>
+                  <%= link_to tourism_location_path(review.commentable, anchor: "comment-#{review.id}") do %>
                     <i class="icon-external-link"></i>
                   <% end %>
                 </i>

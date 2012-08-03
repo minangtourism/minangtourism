@@ -30,7 +30,7 @@
                 </div>
 
                 <%#*<div class="link-article">%>
-                  <%#= link_to 'Selanjutnya', location_tourism_path(review.commentable, anchor: "comment-#{review.id}"), :class => 'btn btn-primary btn-mini' %>
+                  <%#= link_to 'Selanjutnya', tourism_location_path(review.commentable, anchor: "comment-#{review.id}"), :class => 'btn btn-primary btn-mini' %>
                 <%#*</div>%>
               </div>
             </div>
@@ -38,8 +38,8 @@
             <div class="span10">
               <div class="well">
                 <div class="story-tourism">
-                  <div class="title-location-tourism">
-                    <%= link_to review.commentable.name, location_tourism_path(review.commentable, anchor: "comment-#{review.id}") %>
+                  <div class="title-tourism-location">
+                    <%= link_to review.commentable.name, tourism_location_path(review.commentable, anchor: "comment-#{review.id}") %>
                   </div>
                   <div style="line-height: 20px; font-size: 14px;">
                     <div><i class="icon-list-alt"></i>

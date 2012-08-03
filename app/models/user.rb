@@ -8,10 +8,10 @@ class User < ActiveRecord::Base
   has_many :folktales
   has_many :folktale_revisions
   has_many :likes
-  has_many :location_tourisms
-  has_many :location_tourism_revisions
+  has_many :tourism_locations
+  has_many :tourism_location_revisions
   has_one  :profile, :autosave => true
-  has_many :reviews, class_name: 'Comment', conditions: "commentable_type = 'LocationTourism'"
+  has_many :reviews, class_name: 'Comment', conditions: "commentable_type = 'TourismLocation'"
   has_many :sumbar_contents
   has_many :tips_tricks
   has_many :tips_trick_revisions

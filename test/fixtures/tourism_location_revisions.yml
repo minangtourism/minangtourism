@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  address: MyText
+  city: MyString
+  zip: 1
+  phone: MyString
+  web: MyString
+  facebook: MyString
+  twitter: MyString
+  hours_description: MyText
+  facility: MyText
+  description: MyText
+  category_loc_tourism_id: 1
+  user_id: 1
+  state: MyString
+  revisiontable_id: 1
+  revisison_type: MyString
+
+two:
+  name: MyString
+  address: MyText
+  city: MyString
+  zip: 1
+  phone: MyString
+  web: MyString
+  facebook: MyString
+  twitter: MyString
+  hours_description: MyText
+  facility: MyText
+  description: MyText
+  category_loc_tourism_id: 1
+  user_id: 1
+  state: MyString
+  revisiontable_id: 1
+  revisison_type: MyString

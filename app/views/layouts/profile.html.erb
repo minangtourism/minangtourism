@@ -69,7 +69,7 @@
 
               <li class="nav-header">Wisata Saya</li>
               <%= profile_left_nav "Berita Wisata", profile_tourism_articles_path(@profile), icon: :globe, active: controller_name == "profile_tourism_articles" %>
-              <%= profile_left_nav "Tempat Wisata", profile_location_tourisms_path(@profile), :icon => 'map-marker', active: controller_name == "profile_location_tourisms" %>
+              <%= profile_left_nav "Tempat Wisata", profile_tourism_locations_path(@profile), :icon => 'map-marker', active: controller_name == "profile_tourism_locations" %>
               <%= profile_left_nav "Acara Wisata", profile_events_path(@profile), icon: :bullhorn %>
               <%= profile_left_nav "Tips & Trik Wisata", profile_tips_tricks_path(@profile), icon: :star %>
             </ul>

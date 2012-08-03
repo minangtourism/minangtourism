@@ -4,7 +4,7 @@ class HomesController < ApplicationController
     @folktales = Folktale.published.recent.page(params[:page]).per(5)
     @events = Event.published.recent.page(params[:page]).per(3)
     @tips_tricks = TipsTrick.published.recent.page(params[:page]).per(5)
-    @location_tourisms = LocationTourism.published.recent.page(params[:page]).per(1)
+    @tourism_locations = TourismLocation.published.recent.page(params[:page]).per(1)
     @reviews = Comment.reviews.recent.published.page(params[:page]).per(4)
     @slideshows = Slideshow.recent.published.page(params[:page])
   end

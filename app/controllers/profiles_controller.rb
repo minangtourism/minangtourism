@@ -2,7 +2,7 @@ class ProfilesController < ApplicationController
   load_and_authorize_resource :class => 'User'
 
   skip_before_filter :authenticate_user!, 
-    only: [:abouts, :reviews, :folktales, :location_tourisms, :events, :tips_tricks,
+    only: [:abouts, :reviews, :folktales, :tourism_locations, :events, :tips_tricks,
     :tourism_articles,
     :new_folktale, :create_folktale,
     :new_tips_tricks, :create_tips_tricks,
@@ -26,8 +26,8 @@ class ProfilesController < ApplicationController
     @folktales = @profile.folktales.published.recent.page(params[:page]).per(10)
   end
 
-  def location_tourisms
-    @location_tourisms = @profile.location_tourisms.published.recent.page(params[:page]).per(10)
+  def tourism_locations
+    @tourism_locations = @profile.tourism_locations.published.recent.page(params[:page]).per(10)
   end
 
   def events
@@ -41,7 +41,7 @@ class ProfilesController < ApplicationController
   def show
     @tourism_articles   = @profile.tourism_articles.published.recent.limit(2)
     @folktales          = @profile.folktales.published.recent.limit(2)
-    @location_tourisms  = @profile.location_tourisms.published.recent.limit(2)
+    @tourism_locations  = @profile.tourism_locations.published.recent.limit(2)
     @events             = @profile.events.published.recent.limit(2)
     @tips_tricks        = @profile.tips_tricks.published.recent.limit(2)
     @reviews            = @profile.reviews.published.recent.limit(7)

@@ -269,11 +269,11 @@
     margin-bottom: 7px;
 }
 
-.title-location-tourism{
+.title-tourism-location{
     margin-bottom: 20px;
 }
 
-.title-location-tourism a{
+.title-tourism-location a{
     font-size: 24px;
     text-decoration: none;
 }
@@ -463,7 +463,7 @@
     color: #0088CC;
 }
 
-.show-location-tourism hr{
+.show-tourism-location hr{
     margin-top: 0;
 }
 /*end tempat wisata*/

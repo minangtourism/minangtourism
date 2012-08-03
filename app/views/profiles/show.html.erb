@@ -14,7 +14,7 @@
 
         <div class="story-tourism">
           <div class="name-location">
-            <%= link_to review.commentable.name, location_tourism_path(review.commentable, anchor: "comment-#{review.id}") %>
+            <%= link_to review.commentable.name, tourism_location_path(review.commentable, anchor: "comment-#{review.id}") %>
           </div>
           <div class="clearfix">
             <div class="date-publish pull-right"><i class="icon-time"></i> Rabu, 27 Juni 2012</div>
@@ -23,7 +23,7 @@
           <div>
             <%= raw truncate(review.comment, :length => 50, :separator => ' ') %>
             <span class="small-view">
-              <%= link_to location_tourism_path(review.commentable, anchor: "comment-#{review.id}") do %>
+              <%= link_to tourism_location_path(review.commentable, anchor: "comment-#{review.id}") do %>
                 <i class="icon-external-link"></i>
               <% end %>
             </span>
@@ -82,23 +82,23 @@
       </div> <!-- END Berita Wisatawan / TourismArticle -->
 
       <div class="span3">
-        <div class="profiles-home"> <!-- Location Tourism / Tempat Wisata -->
+        <div class="profiles-home"> <!-- Tourism Location / Tempat Wisata -->
           <h2>Tempat Wisata</h2>
           <div class="dashed"></div>
           <div class="info-title">Tempat wisata yang ada Sumatera Barat</div>
           <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
 
-          <% @location_tourisms.each do |location_tourism| %>
+          <% @tourism_locations.each do |tourism_location| %>
             <div class="title-news">
-              <%= link_to truncate(location_tourism.name, :length => 80, :separator => ' '), location_tourism_path(location_tourism) %>
+              <%= link_to truncate(tourism_location.name, :length => 80, :separator => ' '), tourism_location_path(tourism_location) %>
             </div>
             <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
           <% end %>
 
           <div class="all-events" style="margin-bottom: 0">
-            <%= link_to 'Arsip', profile_location_tourisms_path(@profile), :class => 'btn btn-primary btn-mini' %>
+            <%= link_to 'Arsip', profile_tourism_locations_path(@profile), :class => 'btn btn-primary btn-mini' %>
           </div>
-        </div> <!-- End Location Tourism / Tempat Wisata -->
+        </div> <!-- End Tourism Location / Tempat Wisata -->
       </div>
 
       <div class="span3">
