@@ -49,7 +49,7 @@
             <tr>
               <td><i class="icon-repeat"></i></td>
               <td>Terakhir diperbarui oleh:</td>
-              <td><%= @location_tourism.updater.name if @location_tourism %></td>
+              <td><%= @location_tourism.updater.try('name') if @location_tourism %></td>
             </tr>
             <tr>
               <td><i class="icon-time"></i></td>
@@ -98,46 +98,62 @@
               <td>Kota/Kabupaten:</td>
               <td><%= @location_tourism.city %></td>
             </tr>
+            <% if @location_tourism.zip? %>
+              <tr>
+                <td><i class="icon-briefcase"></i></td>
+                <td>Kode Pos:</td>
+                <td><%= @location_tourism.zip %></td>
+              </tr>
+            <% end %>
+            <% if @location_tourism.phone? %>
+              <tr>
+                <td><i class="icon-phone"></i></td>
+                <td>Nomor Telepon:</td>
+                <td><%= @location_tourism.phone %></td>
+              </tr>
+            <% end %>
+            <% if @location_tourism.web? %>
+              <tr>
+                <td><i class="icon-asterisk"></i></td>
+                <td>Website:</td>
+                <td><%= @location_tourism.web %></td>
+              </tr>
+            <% end %>
+            <% if @location_tourism.facebook? %>
+              <tr>
+                <td><i class="icon-facebook"></i></td>
+                <td>Facebook:</td>
+                <td><%= @location_tourism.facebook %></td>
+              </tr>
+            <% end %>
+            <% if @location_tourism.twitter? %>
             <tr>
-              <td><i class="icon-briefcase"></i></td>
-              <td>Kode Pos:</td>
-              <td><%= @location_tourism.zip %></td>
-            </tr>
-            <tr>
-              <td><i class="icon-bullhorn"></i></td>
-              <td>Nomor Telepon:</td>
-              <td><%= @location_tourism.phone %></td>
-            </tr>
-            <tr>
-              <td><i class="icon-asterisk"></i></td>
-              <td>Website:</td>
-              <td><%= @location_tourism.web %></td>
-            </tr>
-            <tr>
-              <td><i class="icon-asterisk"></i></td>
-              <td>Facebook:</td>
-              <td><%= @location_tourism.facebook %></td>
-            </tr>
-            <tr>
-              <td><i class="icon-asterisk"></i></td>
+              <td><i class="icon-twitter"></i></td>
               <td>Twitter:</td>
               <td><%= @location_tourism.twitter %></td>
             </tr>
+            <% end %>
+            <% if @location_tourism.hours_description? %>
             <tr>
               <td><i class="icon-time"></i></td>
               <td>Jam Buka:</td>
               <td><%= @location_tourism.hours_description %></td>
             </tr>
+            <% end %>
+            <% if @location_tourism.facility? %>
             <tr>
               <td><i class="icon-list-alt"></i></td>
               <td>Fasilitas:</td>
               <td style="white-space: pre-line"><%= @location_tourism.facility %></td>
             </tr>
+            <% end %>
+            <% if @location_tourism.description? %>
             <tr>
               <td><i class="icon-book"></i></td>
               <td>Deskripsi:</td>
               <td><%= raw @location_tourism.description %></td>
             </tr>
+            <% end %>
           </tbody>
         </table>
 

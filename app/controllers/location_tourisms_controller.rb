@@ -74,6 +74,7 @@ class LocationTourismsController < ApplicationController
     location_tourism = @location_tourism
     @location_tourism = current_user.location_tourism_revisions.new(params[:location_tourism])
     @location_tourism.location_tourism = location_tourism
+    
     respond_to do |format|
       if @location_tourism.save
         format.html { redirect_to @location_tourism.location_tourism, notice: 'Tempat wisata sukses diperbaharui, menunggu verifikasi admin' }

@@ -109,17 +109,25 @@
 
       <div class="breadcrumb" style="padding: 20px 15px 0px 15px; margin-bottom: 0px;">
         <% @tourism_articles.each do |article| %>
-          <div class="span4 clearfix" style="margin-left: 0;">
+          <div class="clearfix" style="margin-left: 0;">
             <div class="image-news">
-              <%= image_tag(article.image.url(:thumb)) %>
+              <ul class="thumbnails" style="margin-bottom: 0">
+                <li class="span2" style="margin-bottom: 0">
+                  <a href="" class="thumbnail">
+                    <%= image_tag(article.image.url(:thumb)) %>
+                  </a>
+                </li>
+              </ul>
             </div>
             <div class="title-news">
               <%= link_to truncate(article.title.titleize, :length => 40, :separator => ' '), tourism_article_path(article) %>
             </div>
           </div>
           <div class="news-info clearfix">
-            <%= link_to article.user.username, profile_path(article.user) %> |
-            <%= l article.created_at, :format => :costum %>
+            <div class="pull-left" style="margin-top: 5px">
+              <%= link_to article.user.username, profile_path(article.user) %> |
+              <%= l article.created_at, :format => :costum %>
+            </div>
 
             <div class="pull-right" style="margin-left: 5px;">
               <a href="#" rel="tooltip" data-original-title="komentar">

@@ -106,7 +106,7 @@ id:
       message: "Message"
     actions:
       dashboard:
-        title: "Site administration"
+        title: "Halaman administration"
         menu: "Dashboard"
         breadcrumb: "Dashboard"
       index:

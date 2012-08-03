@@ -165,8 +165,9 @@ RailsAdmin.config do |config|
   # Your model's configuration, to help you get started:
 
   # All fields marked as 'hidden' won't be shown anywhere in the rails_admin unless you mark them as visible. (visible(true))
-
   config.model CategoryLocTourism do
+    parent LocationTourism
+    label_plural "Kategori Tempat Wisata"
     configure :parent, :belongs_to_association
     configure :children, :has_many_association
     configure :location_tourisms, :has_many_association
@@ -205,6 +206,7 @@ RailsAdmin.config do |config|
   end
 
   config.model Comment do
+    label_plural "Komentar"
     configure :comments, :has_many_association
     configure :user, :belongs_to_association   #   # Found columns:
     configure :id, :integer
@@ -254,6 +256,7 @@ RailsAdmin.config do |config|
   end
 
   config.model Contact do
+    label_plural "Pesan Kontak"
     configure :id, :integer
     configure :name, :string
     configure :email, :string
@@ -297,7 +300,8 @@ RailsAdmin.config do |config|
   end
 
   config.model DeletionRequest do
-
+    navigation_label 'Penghapusan'
+    label_plural "Permintaan Penghapusan"
     # Found associations:
     configure :item
     configure :user
@@ -326,6 +330,8 @@ RailsAdmin.config do |config|
   end
 
   config.model Event do
+    navigation_label 'Informasi Wisata'
+    label_plural "Acara Wisata"
     configure :user, :belongs_to_association
     configure :comments, :has_many_association   #   # Found columns:
     configure :id, :integer
@@ -364,7 +370,7 @@ RailsAdmin.config do |config|
       field :state
       field :title
       field :description do
-#        partial "custom_form_field_title_event"
+        #        partial "custom_form_field_title_event"
         render do
           bindings[:view].render "custom_form_field_title_event", field: self, form: bindings[:form]
           #          bindings[:form].select("roles", bindings[:object].roles_enum, {}, { :multiple => true })
@@ -408,7 +414,7 @@ RailsAdmin.config do |config|
   config.model EventRevision do
     parent Event
     label "Revision"
-    label_plural "Revisions"
+    label_plural "Permintaan Perbaikan Acara Wisata"
     
     configure :user, :belongs_to_association
     configure :event, :belongs_to_association
@@ -493,6 +499,8 @@ RailsAdmin.config do |config|
   end
 
   config.model Folktale do
+    navigation_label 'Informasi Wisata'
+    label_plural "Cerita Rakyat"
     configure :user, :belongs_to_association   #   # Found columns:
     configure :id, :integer
     configure :title, :string
@@ -556,7 +564,7 @@ RailsAdmin.config do |config|
   config.model FolktaleRevision do
     parent Folktale
     label "Revision"
-    label_plural "Revisions"
+    label_plural "Permintaan Perbaikan Cerita Rakyat"
 
     configure :user, :belongs_to_association   #   # Found columns:
     configure :folktale, :belongs_to_association   #   # Found columns:
@@ -628,6 +636,9 @@ RailsAdmin.config do |config|
   end
 
   config.model LocationTourism do
+    #    parent CategoryLocTourism
+    navigation_label 'Informasi Wisata'
+    label_plural "Tempat Wisata"
     # Found associations:
     configure :category_loc_tourism, :belongs_to_association
     configure :user, :belongs_to_association   #   # Found columns:
@@ -733,7 +744,7 @@ RailsAdmin.config do |config|
   config.model LocationTourismRevision do
     parent LocationTourism
     label "Revision"
-    label_plural "Revisions"
+    label_plural "Permintaan Perbaikan Tempat Wisata"
 
     # Found associations:
     configure :category_loc_tourism, :belongs_to_association
@@ -835,6 +846,8 @@ RailsAdmin.config do |config|
   end
 
   config.model Profile do
+    navigation_label 'Informasi Wisata'
+    label_plural "Profil Wisatawan"
     configure :user, :belongs_to_association
     configure :id, :integer
     configure :name, :string
@@ -902,6 +915,7 @@ RailsAdmin.config do |config|
   end
 
   config.model Setting do
+    label_plural "Info Kontak"
     configure :key, :string
     configure :alt, :string
     configure :value, :text
@@ -964,6 +978,8 @@ RailsAdmin.config do |config|
   end
 
   config.model TipsTrick do
+    navigation_label 'Informasi Wisata'
+    label_plural "Tips & Trik Wisata"
     # Found associations:
     configure :user, :belongs_to_association   #   # Found columns:
     configure :id, :integer
@@ -1028,7 +1044,7 @@ RailsAdmin.config do |config|
   config.model TipsTrickRevision do
     parent TipsTrick
     label "Revision"
-    label_plural "Revisions"
+    label_plural "Permintaan Perbaikan Tips & Trik Wisata"
 
     # Found associations:
     configure :user, :belongs_to_association   #   # Found columns:
@@ -1101,6 +1117,8 @@ RailsAdmin.config do |config|
   end
   
   config.model TourismArticle do
+    navigation_label 'Informasi Wisata'
+    label_plural "Berita Wisata"
     # Found associations:
     configure :user, :belongs_to_association   #   # Found columns:
     configure :id, :integer
@@ -1164,7 +1182,7 @@ RailsAdmin.config do |config|
   config.model TourismArticleRevision do
     parent TourismArticle
     label "Revision"
-    label_plural "Revisions"
+    label_plural "Permintaan Perbaikan Berita Wisata"
 
     # Found associations:
     configure :user, :belongs_to_association   #   # Found columns:
@@ -1233,6 +1251,7 @@ RailsAdmin.config do |config|
   end
 
   config.model WhySumbar do
+    label_plural "Why Sumbar?"
     # Found associations:
     configure :id, :integer
     configure :title, :string
@@ -1281,6 +1300,7 @@ RailsAdmin.config do |config|
   end
 
   config.model GettingThere do
+    label_plural "Cara Ke Sini"
     # Found associations:
     configure :id, :integer
     configure :title, :string
@@ -1329,6 +1349,7 @@ RailsAdmin.config do |config|
   end
 
   config.model WhereToStay do
+    label_plural "Dimana Tinggal"
     # Found associations:
     configure :id, :integer
     configure :title, :string
@@ -1377,6 +1398,7 @@ RailsAdmin.config do |config|
   end
 
   config.model ThingsToDo do
+    label_plural "Hal yang bisa dilakukan"
     # Found associations:
     configure :id, :integer
     configure :title, :string
@@ -1425,6 +1447,7 @@ RailsAdmin.config do |config|
   end
 
   config.model ThingsToSee do
+    label_plural "Hal yang bisa dilihat"
     # Found associations:
     configure :id, :integer
     configure :title, :string
@@ -1473,6 +1496,7 @@ RailsAdmin.config do |config|
   end
 
   config.model Food do
+    label_plural "Makanan"
     # Found associations:
     configure :id, :integer
     configure :title, :string
@@ -1521,6 +1545,7 @@ RailsAdmin.config do |config|
   end
 
   config.model Transportation do
+    label_plural "Transportasi"
     # Found associations:
     configure :id, :integer
     configure :title, :string
@@ -1569,7 +1594,8 @@ RailsAdmin.config do |config|
   end
 
   config.model User do
-
+    label "User"
+    label_plural "Users"
     object_label_method do
       :email
     end

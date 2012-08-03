@@ -43,32 +43,4 @@ class Comment < ActiveRecord::Base
     end.sort
   end
   
-  #  scope :reviews, where(commentable_type: 'LocationTourism')
-  #  scope :recent, order("created_at desc")
-  #
-  #  state_machine :initial => :unpublished do
-  #    before_transition all => all do |comment, transition|
-  #      comment.is_authorized_for?(transition)
-  #    end
-  #    event :publish do
-  #      transition :unpublished => :published
-  #    end
-  #    event :unpublish do
-  #      transition :published => :unpublished
-  #    end
-  #    state :unpublished
-  #    state :published
-  #  end
-  #
-  #  scope :published, where(:state => 'published')
-  #  scope :unpublished, where(:state => 'unpublished')
-  #
-  #  def state_enum
-  #    ['published','unpublished']
-  #  end
-  #
-  #  def is_authorized_for?(transition)
-  #    permitted_to?(transition.event.to_sym)
-  #  end
-  
 end

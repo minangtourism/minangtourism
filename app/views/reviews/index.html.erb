@@ -1,56 +1,66 @@
 <div class="container">
   <div class="row">
     <div class="span12">
-      <h2>Cerita Wisatawan</h2>
-      <div class="dashed"></div>
-      <div class="info-title">Cerita terbaru wisatawan tentang tempat wisata yang ada di Sumatera Barat</div>
-      <div class="dashed" style="margin-bottom: 30px; margin-top: 0"></div>
+
+      <div class="breadcrumb">
+        <div class="clearfix">
+          <div class="pull-left" style="color: #005580; font-size: 18px; margin-top: 4px;">
+            <i class="icon-pencil"></i> Cerita Wisatawan
+          </div>
+        </div>
+      </div>
       <div style="text-align: center">
         <%= paginate @reviews %>
       </div>
+
       <% @reviews.each do |review| %>
         <div class="row">
           <div class="span12">
             <div class="span2" style="margin-left: 0">
-              <div class="pp-tourism">
-                <%= link_to image_tag(review.user.image.url(:medium)), profile_path(review.user) %>
-              </div>
+              <div class="well">
+                <div class="pp-tourism">
+                  <%= link_to image_tag(review.user.image.url(:medium)), profile_path(review.user) %>
+                </div>
 
-              <div class="info-story-tourism">
-                <span><i class="icon-user"></i>
-                  <%= link_to review.user.username, profile_path(review.user) %>
-                </span>
-                <span><i class="icon-home"></i> Alamat</span>
-              </div>
+                <div class="info-story-tourism">
+                  <span><i class="icon-user"></i>
+                    <%= link_to review.user.username, profile_path(review.user) %>
+                  </span>
+                  <span><i class="icon-home"></i> <%= review.user.city %> </span>
+                </div>
 
-              <div class="link-article">
-                <%= link_to 'Link to This Review', location_tourism_path(review.commentable, anchor: "comment-#{review.id}"), :class => 'btn btn-inverse btn-mini' %>
+                <%#*<div class="link-article">%>
+                  <%#= link_to 'Selanjutnya', location_tourism_path(review.commentable, anchor: "comment-#{review.id}"), :class => 'btn btn-primary btn-mini' %>
+                <%#*</div>%>
               </div>
             </div>
 
             <div class="span10">
-              <div class="story-tourism">
-                <div class="title-location-tourism">
-                  <%= link_to review.commentable.name, location_tourism_path(review.commentable, anchor: "comment-#{review.id}") %>
-                </div>
-                <div style="line-height: 20px; font-size: 14px;">
-                  <div><i class="icon-list-alt"></i>
-                    <%= review.commentable.category_loc_tourism.parent.name %>,
-                    <%= review.commentable.category_loc_tourism.name %>
+              <div class="well">
+                <div class="story-tourism">
+                  <div class="title-location-tourism">
+                    <%= link_to review.commentable.name, location_tourism_path(review.commentable, anchor: "comment-#{review.id}") %>
                   </div>
-                  <div><i class="icon-map-marker"></i>
-                    <%= review.commentable.city %>
-                  </div>
-                  <div class="clearfix">
-                    <div class="date-publish pull-right">
-                      <i class="icon-time"></i>
-                      <%= l review.commentable.created_at, :format => :costum %>
+                  <div style="line-height: 20px; font-size: 14px;">
+                    <div><i class="icon-list-alt"></i>
+                      <%= review.commentable.category_loc_tourism.parent.name %>,
+                      <%= review.commentable.category_loc_tourism.name %>
+                    </div>
+                    <div><i class="icon-map-marker"></i>
+                      <%= review.commentable.city %>
+                    </div>
+                    <div class="dashed" style="margin-bottom: 10px; margin-top: 10"></div>
+                    <div class="clearfix">
+                      <div class="date-publish pull-right">
+                        <i class="icon-time"></i>
+                        <%= l review.commentable.created_at, :format => :costum %>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div style="white-space: pre-wrap">
-                  <%= raw review.comment %>
+                  <div style="white-space: pre-wrap">
+                    <%= raw review.comment %>
+                  </div>
                 </div>
               </div>
             </div>

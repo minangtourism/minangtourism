@@ -1,35 +1,35 @@
 settings: &settings
   facebook:
     alt: Facebook
-    value: 'http://facebook.com/'
+    value: 'http://www.facebook.com/minang.tourism'
     editable: true
     deletable: false
     validations:
       presence: true
   twitter:
     alt: Twitter
-    value: 'http://twitter.com/'
+    value: 'https://twitter.com/MinangTourism'
     editable: true
     deletable: false
     validations:
       presence: true
   phone:
     alt: Phone
-    value: '08136312345679'
+    value: '081363152211'
     editable: true
     deletable: false
     validations:
       presence: true
   email:
     alt: Phone
-    value: 'info@sumbar_tourism.com'
+    value: 'minangtourism@gmail.com'
     editable: true
     deletable: false
     validations:
       presence: true
   address:
     alt: Address
-    value: 'belum ada'
+    value: '-'
     editable: true
     deletable: false
     validations:
