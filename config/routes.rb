@@ -31,7 +31,7 @@ SumbarTourism::Application.routes.draw do
 
   # ------------------- PROFILE ------------------- #
   resources :profile_tourism_articles, path: 'profiles/:profile_id/tourism_articles', except: :show
-  resources :profile_location_tourisms, path: 'profiles/:profile_id/location_tourisms', except: :show
+  resources :profile_tourism_locations, path: 'profiles/:profile_id/tourism_locations', except: :show
   resources :profile_events, path: 'profiles/:profile_id/events', except: :show
   resources :profile_folktales, path: 'profiles/:profile_id/folktales', except: :show
   resources :profile_tips_tricks, path: 'profiles/:profile_id/tips_tricks', except: :show
@@ -67,7 +67,7 @@ SumbarTourism::Application.routes.draw do
   # --------------------- LIKE -------------------- #
   
   # ------------------- COMMENT ------------------- #
-  resources :location_tourisms do
+  resources :tourism_locations do
     member do
       post :create_comment
     end

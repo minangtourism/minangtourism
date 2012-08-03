@@ -42,25 +42,25 @@ RailsAdmin.config do |config|
     approve do # custom action
       # Make it visible only for specific models. You can remove this if you don't need.
       visible do
-        visible? && bindings[:abstract_model].model.to_s.in?(%w[DeletionRequest TourismArticleRevision LocationTourismRevision EventRevision FolktaleRevision TipsTrickRevision])
+        visible? && bindings[:abstract_model].model.to_s.in?(%w[DeletionRequest TourismArticleRevision TourismLocationRevision EventRevision FolktaleRevision TipsTrickRevision])
       end
     end
     reject do # custom action
       # Make it visible only for specific models. You can remove this if you don't need.
       visible do
-        visible? && bindings[:abstract_model].model.to_s.in?(%w[DeletionRequest TourismArticleRevision LocationTourismRevision EventRevision FolktaleRevision TipsTrickRevision])
+        visible? && bindings[:abstract_model].model.to_s.in?(%w[DeletionRequest TourismArticleRevision TourismLocationRevision EventRevision FolktaleRevision TipsTrickRevision])
       end
     end
     publish do # custom action
       # Make it visible only for specific models. You can remove this if you don't need.
       visible do
-        visible? && bindings[:abstract_model].model.to_s.in?(%w[TourismArticle LocationTourism Event Folktale TipsTrick Comment Slideshow])
+        visible? && bindings[:abstract_model].model.to_s.in?(%w[TourismArticle TourismLocation Event Folktale TipsTrick Comment Slideshow])
       end
     end
     unpublish do # custom action
       # Make it visible only for specific models. You can remove this if you don't need.
       visible do
-        visible? && bindings[:abstract_model].model.to_s.in?(%w[TourismArticle LocationTourism Event Folktale TipsTrick Comment Slideshow])
+        visible? && bindings[:abstract_model].model.to_s.in?(%w[TourismArticle TourismLocation Event Folktale TipsTrick Comment Slideshow])
       end
     end
     history_show
@@ -90,10 +90,10 @@ RailsAdmin.config do |config|
 
   #  ==> Included models
   # Add all excluded models here:
-  # config.excluded_models = [CategoryLocTourism, Comment, Contact, Event, Folktale, LocationTourism, TipsTrick, TourismArticle, User]
+  # config.excluded_models = [CategoryLocTourism, Comment, Contact, Event, Folktale, TourismLocation, TipsTrick, TourismArticle, User]
 
   # Add models here if you want to go 'whitelist mode':
-  # config.included_models = [CategoryLocTourism, Comment, Contact, Event, Folktale, LocationTourism, TipsTrick, TourismArticle, User]
+  # config.included_models = [CategoryLocTourism, Comment, Contact, Event, Folktale, TourismLocation, TipsTrick, TourismArticle, User]
   config.included_models = [
     CategoryLocTourism,
     Comment,
@@ -105,8 +105,8 @@ RailsAdmin.config do |config|
     FolktaleRevision,
     Food,
     GettingThere,
-    LocationTourism,
-    LocationTourismRevision,
+    TourismLocation,
+    TourismLocationRevision,
     Profile,
     Setting,
     Slideshow,
@@ -166,11 +166,11 @@ RailsAdmin.config do |config|
 
   # All fields marked as 'hidden' won't be shown anywhere in the rails_admin unless you mark them as visible. (visible(true))
   config.model CategoryLocTourism do
-    parent LocationTourism
+    parent TourismLocation
     label_plural "Kategori Tempat Wisata"
     configure :parent, :belongs_to_association
     configure :children, :has_many_association
-    configure :location_tourisms, :has_many_association
+    configure :tourism_locations, :has_many_association
     configure :id, :integer
     configure :name, :string
     configure :created_at, :datetime
@@ -635,10 +635,9 @@ RailsAdmin.config do |config|
     update do; end
   end
 
-  config.model LocationTourism do
+  config.model TourismLocation do
     #    parent CategoryLocTourism
     navigation_label 'Informasi Wisata'
-    label_plural "Tempat Wisata"
     # Found associations:
     configure :category_loc_tourism, :belongs_to_association
     configure :user, :belongs_to_association   #   # Found columns:
@@ -741,14 +740,14 @@ RailsAdmin.config do |config|
     update do; end
   end
 
-  config.model LocationTourismRevision do
-    parent LocationTourism
+  config.model TourismLocationRevision do
+    parent TourismLocation
     label "Revision"
     label_plural "Permintaan Perbaikan Tempat Wisata"
 
     # Found associations:
     configure :category_loc_tourism, :belongs_to_association
-    configure :location_tourism, :belongs_to_association
+    configure :tourism_location, :belongs_to_association
     configure :user, :belongs_to_association   #   # Found columns:
     configure :id, :integer
     configure :name, :string
@@ -779,7 +778,7 @@ RailsAdmin.config do |config|
       field :address
       field :city
       field :category_loc_tourism
-      field :location_tourism
+      field :tourism_location
       field :user
       field :image
       field :created_at do
@@ -795,7 +794,7 @@ RailsAdmin.config do |config|
       field :state
       field :name
       field :category_loc_tourism
-      field :location_tourism
+      field :tourism_location
       field :address
       field :city
       field :zip
@@ -812,7 +811,7 @@ RailsAdmin.config do |config|
     edit do
       field :name
       field :category_loc_tourism
-      field :location_tourism
+      field :tourism_location
       field :address
       field :city
       field :zip
@@ -1604,7 +1603,7 @@ RailsAdmin.config do |config|
     configure :events, :has_many_association
     configure :folktales, :has_many_association
     configure :tips_tricks, :has_many_association
-    configure :location_tourisms, :has_many_association
+    configure :tourism_locations, :has_many_association
     configure :comments, :has_many_association
     configure :id, :integer
     configure :email, :string

@@ -54,6 +54,10 @@ id:
         not_found: "tidak ditemukan"
         already_confirmed: "sudah di konfirmasi"
         not_locked: "tidak dikunci"
+    models:
+      tourism_location: Tempat Wisata
+      plural:
+        tourism_location: Tempat Wisata
 
   date:
     formats:
