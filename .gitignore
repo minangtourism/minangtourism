@@ -1,4 +1,5 @@
 # Rails
+db/sphinx
 config/database.yml
 log/*
 tmp/*
