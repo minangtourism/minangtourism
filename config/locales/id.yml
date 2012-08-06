@@ -58,6 +58,75 @@ id:
       tourism_location: Tempat Wisata
       plural:
         tourism_location: Tempat Wisata
+      tourism_location_revision: Permintaan Perbaikan Tempat Wisata
+      plural:
+        tourism_location_revision: Permintaan Perbaikan Tempat Wisata
+      category_loc_tourism: Kategori Tempat wisata
+      plural:
+        category_loc_tourism: Kategori Tempat wisata
+      comment: Komentar
+      plural:
+        comment: Komentar
+      contact: Pesan Kontak
+      plural:
+        contact: Pesan Kontak
+      deletion_request: Permintaan Penghapusan
+      plural:
+        deletion_request: Permintaan Penghapusan
+      event: Acara Wisata
+      plural:
+        event: Acara Wisata
+      event_revision: Permintaan Perbaikan Acara Wisata
+      plural:
+        event_revision: Permintaan Perbaikan Acara Wisata
+      folktale: Cerita Rakyat
+      plural:
+        folktale: Cerita Rakyat
+      folktale_revision: Permintaan Perbaikan Cerita Rakyat
+      plural:
+        folktale_revision: Permintaan Perbaikan Cerita Rakyat
+      profile: Profil Wisatawan
+      plural:
+        profile: Profil Wisatawan
+      setting: Info Kontak
+      plural:
+        setting: Info Kontak
+      tips_trick: Tips & Trik Wisata
+      plural:
+        tips_trick: Tips & Trik Wisata
+      tips_trick_revision: Permintaan Perbaikan Tips & Trik Wisata
+      plural:
+        tips_trick_revision: Permintaan Perbaikan Tips & Trik Wisata
+      tourism_article: Berita Wisata
+      plural:
+        tourism_article: Berita Wisata
+      tourism_article_revision: Permintaan Perbaikan Berita Wisata
+      plural:
+        tourism_article_revision: Permintaan Perbaikan Berita Wisata
+      why_sumbar: Why Sumbar?
+      plural:
+        why_sumbar: Why Sumbar?
+      getting_there: Cara Ke Sini
+      plural:
+        getting_there: Cara Ke Sini
+      where_to_stay: Dimana tingal
+      plural:
+        where_to_stay: Dimana tingal
+      things_to_do: Hal yang bisa dilakukan
+      plural:
+        things_to_do: Hal yang bisa dilakukan
+      things_to_see: Hal yang bisa dilihat
+      plural:
+        things_to_see: Hal yang bisa dilihat
+      food: Makanan
+      plural:
+        food: Makanan
+      transportation: Transportasi
+      plural:
+        transportation: Transportasi
+      user: User
+      plural:
+        user: User
 
   date:
     formats:

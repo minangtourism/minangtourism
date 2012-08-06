@@ -20,7 +20,7 @@ class TourismArticle < ActiveRecord::Base
     :medium => "340x180#",
     :tiny => "240x180#",
     :small => "100x100#",
-    :thumb => "145x75#",
+    :thumb => "155x85#",
   }
 
   #Validation

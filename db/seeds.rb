@@ -10,7 +10,7 @@ dummy_images = {
   :image_event => (open(Rails.root.join("app/assets/images/acara_wisata.jpg")) rescue nil),
   :image_folktale => (open(Rails.root.join("app/assets/images/cerita_rakyat.jpg")) rescue nil),
   :image_tourism_location => (open(Rails.root.join("app/assets/images/logo-sumbar.png")) rescue nil),
-  :image_slideshow => (open(Rails.root.join("app/assets/images/slideshow.jpg")) rescue nil),
+  :image_slideshow => (open(Rails.root.join("app/assets/images/slide-show.JPG")) rescue nil),
   :image_tips_trick => (open(Rails.root.join("app/assets/images/tips_wisata.jpg")) rescue nil),
   :image_tourism_article => (open(Rails.root.join("app/assets/images/berita_wisata.jpg")) rescue nil)
 }

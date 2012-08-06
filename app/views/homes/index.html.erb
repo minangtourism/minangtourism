@@ -41,53 +41,49 @@
           <% end %>
         </div>
       </div>
-      <div class="breadcrumb" style="padding: 20px 15px 0px 15px; margin-bottom: 0px;">
-        <% @events.each do |event| %>
-          <div class="eventsdate">
-            <div class="span1 cont">
-              <%= l event.start_date, :format => :only_day  %>
-              <div class="event-date"><%= l event.start_date, :format => :only_date %></div>
-              <div class="event-month"><%= l event.start_date, :format => :only_month %></div>
-              <div class="event-year"><%= l event.start_date, :format => :only_year %></div>
+      <% if @events.present? %>
+        <div class="breadcrumb" style="padding: 20px 15px 0px 15px; margin-bottom: 0px;">
+          <% @events.each do |event| %>
+            <div class="eventsdate">
+              <div class="span1 cont">
+                <%= l event.start_date, :format => :only_day  %>
+                <div class="event-date"><%= l event.start_date, :format => :only_date %></div>
+                <div class="event-month"><%= l event.start_date, :format => :only_month %></div>
+                <div class="event-year"><%= l event.start_date, :format => :only_year %></div>
+              </div>
             </div>
-          </div>
 
-          <div class="eventscontent">
-            <div class="title-event">
-              <%= link_to truncate(event.title, :length => 50, :separator => ' '), event_path(event) %>
-            </div>
-            <p>
-              <%= raw truncate(event.description, :length => 70, :separator => ' ') %>
-            </p>
-            <div class="clearfix">
-              <div class="event-like pull-right">
-                <div class="eventdescription"  style="margin-left: 5px">
-                  <a href="#" rel="tooltip" data-original-title="tertarik">
-                    <i class="btn btn-mini icon-thumbs-up">
-                      <%= event.likes.count %>
-                    </i>
+            <div class="eventscontent">
+              <div class="title-event">
+                <%= link_to truncate(event.title, :length => 50, :separator => ' '), event_path(event) %>
+              </div>
+              <p>
+                <%= raw truncate(event.description, :length => 70, :separator => ' ') %>
+              </p>
+              <div class="clearfix">
+                <div class="event-like pull-right">
+                  <div class="eventdescription"  style="margin-left: 5px">
+                    <a href="#" rel="tooltip" data-original-title="tertarik" class="btn btn-mini">
+                      <i class="icon-thumbs-up"></i> <%= event.likes.count %>
+                    </a>
+                  </div>
+                </div>
+                <div class="pull-right" style="margin-left: 5px;">
+                  <a href="#" rel="tooltip" data-original-title="komentar" class="btn btn-mini">
+                    <i class="icon-comment"></i> <%= event.comments.published.count %>
+                  </a>
+                </div>
+                <div class="pull-right">
+                  <a href="#" rel="tooltip" data-original-title="melihat" class="btn btn-mini">
+                    <i class="icon-eye-open"></i> <%= event.impressionist_count(:filter => :session_hash) %>
                   </a>
                 </div>
               </div>
-              <div class="pull-right" style="margin-left: 5px;">
-                <a href="#" rel="tooltip" data-original-title="komentar">
-                  <i class="btn btn-mini icon-comment">
-                    <%= event.comments.published.count %>
-                  </i>
-                </a>
-              </div>
-              <div class="pull-right">
-                <a href="#" rel="tooltip" data-original-title="melihat">
-                  <i class="btn btn-mini icon-eye-open">
-                    <%= event.impressionist_count(:filter => :session_hash) %>
-                  </i>
-                </a>
-              </div>
             </div>
-          </div>
-          <div class="dashed" style="margin-bottom: 20px; margin-top: 10px;"></div>
-        <% end %>
-      </div>
+            <div class="dashed" style="margin-bottom: 20px; margin-top: 10px;"></div>
+          <% end %>
+        </div>
+      <% end %>
     </div> <!-- END EVENT / ACARA -->
 
     <div class="span4">
@@ -106,47 +102,44 @@
           <% end %>
         </div>
       </div>
+      <% if @tourism_articles.present? %>
+        <div class="breadcrumb" style="padding: 20px 15px 0px 15px; margin-bottom: 0px;">
+          <% @tourism_articles.each do |article| %>
+            <div class="clearfix" style="margin-left: 0;">
+              <div class="image-news">
+                <ul class="thumbnails" style="margin-bottom: 0">
+                  <li class="span2" style="margin-bottom: 0">
+                    <a href="" class="thumbnail">
+                      <%= image_tag(article.image.url(:thumb)) %>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="title-news">
+                <%= link_to truncate(article.title.titleize, :length => 55, :separator => ' '), tourism_article_path(article) %>
+              </div>
+            </div>
+            <div class="news-info clearfix">
+              <div class="pull-left" style="margin-top: 5px">
+                <%= link_to article.user.username, profile_path(article.user) %> |
+                <%= l article.created_at, :format => :costum %>
+              </div>
 
-      <div class="breadcrumb" style="padding: 20px 15px 0px 15px; margin-bottom: 0px;">
-        <% @tourism_articles.each do |article| %>
-          <div class="clearfix" style="margin-left: 0;">
-            <div class="image-news">
-              <ul class="thumbnails" style="margin-bottom: 0">
-                <li class="span2" style="margin-bottom: 0">
-                  <a href="" class="thumbnail">
-                    <%= image_tag(article.image.url(:thumb)) %>
-                  </a>
-                </li>
-              </ul>
+              <div class="pull-right" style="margin-left: 5px;">
+                <a href="#" rel="tooltip" data-original-title="komentar" class="btn btn-mini">
+                  <i class="icon-comment"></i> <%= article.comments.published.count %>
+                </a>
+              </div>
+              <div class="pull-right">
+                <a href="#" rel="tooltip" data-original-title="melihat" class="btn btn-mini">
+                  <i class="icon-eye-open"></i> <%= article.impressionist_count(:filter => :session_hash) %>
+                </a>
+              </div>
             </div>
-            <div class="title-news">
-              <%= link_to truncate(article.title.titleize, :length => 40, :separator => ' '), tourism_article_path(article) %>
-            </div>
-          </div>
-          <div class="news-info clearfix">
-            <div class="pull-left" style="margin-top: 5px">
-              <%= link_to article.user.username, profile_path(article.user) %> |
-              <%= l article.created_at, :format => :costum %>
-            </div>
-
-            <div class="pull-right" style="margin-left: 5px;">
-              <a href="#" rel="tooltip" data-original-title="komentar">
-                <i class="btn btn-mini icon-comment">
-                  <%= article.comments.published.count %>
-                </i>
-              </a>
-            </div>
-            <div class="pull-right">
-              <a href="#" rel="tooltip" data-original-title="melihat">
-                <i class="btn btn-mini icon-eye-open">
-                  <%= article.impressionist_count(:filter => :session_hash) %>
-                </i>
-              </a>
-            </div>
-          </div>
-          <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
-        <% end %>
-      </div>
+            <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
+          <% end %>
+        </div>
+      <% end %>
     </div><!-- END TOURISM ARTICLES / BERITA WISATA -->
 
     <div class="span4">

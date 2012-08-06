@@ -1,10 +1,10 @@
 <div class="row">
   <div class="span5">
     <div class="row">
-      <%# if can?(:create_tourism_article, @profile) && @profile == current_user %>
+<%# if can?(:create_tourism_article, @profile) && @profile == current_user %>
       <% if can?(:update_about, @profile) && @profile == current_user %>
         <div class="span5">
-          <div class="profiles-home"> 
+          <div class="profiles-home">
             <%= link_to edit_about_profile_path(@profile) do %>
               <div class="btn btn-primary icon-pencil"> Perbarui Informasi</div>
             <% end %>
@@ -17,9 +17,11 @@
           <div class="dashed"></div>
           <div class="info-title">Informasi tentang saya</div>
           <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
-          <div class="about-me">
-            <%= raw @profile.about %>
-          </div>
+          <% if @profile.about %>
+            <div class="about-me">
+              <%= raw @profile.about %>
+            </div>
+          <% end %>
         </div>
       </div>
 
@@ -32,26 +34,34 @@
 
           <table class="table table-striped">
             <tbody>
-              <tr>
-                <td><i class="icon-bookmark"></i></td>
-                <td>Nama</td>
-                <td><%= @profile.name %></td>
-              </tr>
-              <tr>
-                <td><i class="icon-user"></i></td>
-                <td>Saya seorang</td>
-                <td><%= @profile.sex %></td>
-              </tr>
-              <tr>
-                <td><i class="icon-gift"></i> </td>
-                <td>Ulang Tahun</td>
-                <td><%= l @profile.birthday, :format => :long if @profile.birthday.present? %></td>
-              </tr>
-              <tr>
-                <td><i class="icon-briefcase"></i> </td>
-                <td>Pekerjaan</td>
-                <td><%= @profile.work %></td>
-              </tr>
+              <% if @profile.name %>
+                <tr>
+                  <td><i class="icon-bookmark"></i></td>
+                  <td>Nama</td>
+                  <td><%= @profile.name %></td>
+                </tr>
+              <% end %>
+              <% if @profile.sex %>
+                <tr>
+                  <td><i class="icon-user"></i></td>
+                  <td>Saya seorang</td>
+                  <td><%= @profile.sex %></td>
+                </tr>
+              <% end %>
+              <% if @profile.birthday %>
+                <tr>
+                  <td><i class="icon-gift"></i> </td>
+                  <td>Ulang Tahun</td>
+                  <td><%= l @profile.birthday, :format => :long %></td>
+                </tr>
+              <% end %>
+              <% if @profile.work %>
+                <tr>
+                  <td><i class="icon-briefcase"></i> </td>
+                  <td>Pekerjaan</td>
+                  <td><%= @profile.work %></td>
+                </tr>
+              <% end %>
             </tbody>
           </table>
 
@@ -72,26 +82,34 @@
 
           <table class="table table-striped">
             <tbody>
-              <tr>
-                <td><i class="icon-envelope"></i></td>
-                <td>Email</td>
-                <td><%= @profile.email %></td>
-              </tr>
-              <tr>
-                <td><i class="icon-phone"></i></td>
-                <td>Telepon</td>
-                <td><%= @profile.phone %></td>
-              </tr>
-              <tr>
-                <td><i class="icon-map-marker"></i></td>
-                <td>Alamat</td>
-                <td><%= @profile.address %></td>
-              </tr>
-              <tr>
-                <td><i class="icon-home"></i></td>
-                <td>Kota Asal</td>
-                <td><%= @profile.city %></td>
-              </tr>
+              <% if @profile.email %>
+                <tr>
+                  <td><i class="icon-envelope"></i></td>
+                  <td>Email</td>
+                  <td><%= @profile.email %></td>
+                </tr>
+              <% end %>
+              <% if @profile.phone %>
+                <tr>
+                  <td><i class="icon-phone"></i></td>
+                  <td>Telepon</td>
+                  <td><%= @profile.phone %></td>
+                </tr>
+              <% end %>
+              <% if @profile.address %>
+                <tr>
+                  <td><i class="icon-map-marker"></i></td>
+                  <td>Alamat</td>
+                  <td><%= @profile.address %></td>
+                </tr>
+              <% end %>
+              <% if @profile.city %>
+                <tr>
+                  <td><i class="icon-home"></i></td>
+                  <td>Kota Asal</td>
+                  <td><%= @profile.city %></td>
+                </tr>
+              <% end %>
             </tbody>
           </table>
         </div>
@@ -102,26 +120,32 @@
         <div class="profiles-home">
           <h2>Link</h2>
           <div class="dashed"></div>
-          <div class="info-title">Instant Messaging saya</div>
+          <div class="info-title">Link saya</div>
           <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
 
           <table class="table table-striped">
             <tbody>
-              <tr>
-                <td><i class="icon-globe"></i></td>
-                <td>Website</td>
-                <td><%= @profile.website %></td>
-              </tr>
-              <tr>
-                <td><i class="icon-facebook"></i></td>
-                <td>Facebook</td>
-                <td><%= @profile.facebook %></td>
-              </tr>
-              <tr>
-                <td><i class="icon-twitter"></i></td>
-                <td>Twitter</td>
-                <td><%= @profile.twitter %></td>
-              </tr>
+              <% if @profile.website %>
+                <tr>
+                  <td><i class="icon-globe"></i></td>
+                  <td>Website</td>
+                  <td><%= @profile.website %></td>
+                </tr>
+              <% end %>
+              <% if @profile.facebook %>
+                <tr>
+                  <td><i class="icon-facebook"></i></td>
+                  <td>Facebook</td>
+                  <td><%= @profile.facebook %></td>
+                </tr>
+              <% end %>
+              <% if @profile.twitter %>
+                <tr>
+                  <td><i class="icon-twitter"></i></td>
+                  <td>Twitter</td>
+                  <td><%= @profile.twitter %></td>
+                </tr>
+              <% end %>
             </tbody>
           </table>
 

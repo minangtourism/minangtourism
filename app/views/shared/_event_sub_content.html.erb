@@ -1,5 +1,152 @@
 <div class="row">
   <div class="span4">
+    <h2>Berita Wisata</h2>
+    <div class="dashed"></div>
+    <div class="info-title">Berita terbaru tentang wisata yang ada di  Sumatera Barat</div>
+    <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+
+    <% if article %>
+      <div class="span4 clearfix" style="margin-left: 0;">
+        <div class="image-news">
+          <%= image_tag(article.image.url(:thumb)) %>
+        </div>
+        <div class="title-news">
+          <%= link_to truncate(article.title, :length => 80, :separator => ' '), tourism_article_path(article) %>
+        </div>
+      </div>
+      <div class="news-info clearfix">
+        <div class="pull-left" style="margin-top: 5px">
+          <%= link_to article.user.username, profile_path(article.user) %> |
+          <%= l article.created_at, :format => :costum %>
+        </div>
+
+        <div class="pull-right" style="margin-left: 5px;">
+          <a href="#" rel="tooltip" data-original-title="komentar" class="btn btn-mini">
+            <i class="icon-comment"></i> <%= article.comments.published.count %>
+          </a>
+        </div>
+        <div class="pull-right">
+          <a href="#" rel="tooltip" data-original-title="melihat" class="btn btn-mini">
+            <i class="icon-eye-open"></i> <%= article.impressionist_count(:filter => :session_hash) %>
+          </a>
+        </div>
+      </div>
+      <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
+
+      <div class="all-events">
+        <%= link_to 'Selanjutnya', tourism_articles_path, :class => 'btn btn-inverse btn-mini' %>
+      </div>
+    <% else %>
+      <div class="span4">
+        <p>Jadilah wisatawan pertama yang akan mengisi konten ini!</p>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="span4">
+    <h2>Acara Wisata</h2>
+    <div class="dashed"></div>
+    <div class="info-title">Acara wisata terbaru yang diadakan di Sumatera Barat</div>
+    <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
+
+    <% if event %>
+      <div class="eventsdate">
+        <div class="span1 cont">
+          <%= l event.start_date, :format => :only_day  %>
+          <div class="event-date"><%= l event.start_date, :format => :only_date %></div>
+          <div class="event-month"><%= l event.start_date, :format => :only_month %></div>
+          <div class="event-year"><%= l event.start_date, :format => :only_year %></div>
+        </div>
+      </div>
+
+      <div class="eventscontent">
+        <div class="title-event">
+          <%= link_to truncate(event.title, :length => 50, :separator => ' '), event_path(event) %>
+        </div>
+        <p>
+          <%= raw truncate(event.description, :length => 70, :separator => ' ') %>
+        </p>
+        <div class="clearfix">
+          <div class="event-like pull-right">
+            <div class="eventdescription"  style="margin-left: 5px">
+              <a href="#" rel="tooltip" data-original-title="tertarik" class="btn btn-mini">
+                <i class="icon-thumbs-up"></i> <%= event.likes.count %>
+              </a>
+            </div>
+          </div>
+          <div class="pull-right" style="margin-left: 5px;">
+            <a href="#" rel="tooltip" data-original-title="komentar" class="btn btn-mini">
+              <i class="icon-comment"></i> <%= event.comments.published.count %>
+            </a>
+          </div>
+          <div class="pull-right">
+            <a href="#" rel="tooltip" data-original-title="melihat" class="btn btn-mini">
+              <i class="icon-eye-open"></i> <%= event.impressionist_count(:filter => :session_hash) %>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
+
+      <div class="all-events">
+        <%= link_to 'Selanjutnya', events_path, :class => 'btn btn-inverse btn-mini' %>
+      </div>
+    <% else %>
+      <div class="span4">
+        <p>Jadilah wisatawan pertama yang akan mengisi konten ini!</p>
+      </div>
+    <% end %>
+  </div>
+  <div class="span4">
+    <h2>Cerita Wisatawan</h2>
+    <div class="dashed"></div>
+    <div class="info-title">Cerita terbaru wisatawan tentang tempat wisata yang ada di Sumatera Barat</div>
+    <div class="dashed" style="margin-bottom: 10px; margin-top: 0"></div>
+
+    <div class="row">
+      <% if review %>
+        <div class="span4">
+          <div class="span1 photo-tourism">
+            <%= link_to image_tag(review.user.image.url(:thumb), :class => 'thumbnail'), profile_path(review.user) %>
+          </div>
+
+          <div class="story-tourism">
+            <div class="name-location">
+              <%= link_to review.commentable.name, tourism_location_path(review.commentable, anchor: "comment-#{review.id}") %>
+            </div>
+            <div class="clearfix">
+              <div class="date-publish"><i class="icon-time"></i> Rabu, 27 Juni 2012</div>
+            </div>
+
+            <div>
+              <%= raw truncate(review.comment, :length => 50, :separator => ' ') %>
+              <span class="small-view">
+                <i class="" >
+                  <%= link_to tourism_location_path(review.commentable, anchor: "comment-#{review.id}") do %>
+                    <i class="icon-external-link"></i>
+                  <% end %>
+                </i>
+              </span>
+            </div>
+          </div>
+  <%#*<div class="dashed" style="margin-bottom: 15px; margin-top: 10px;"></div>%>
+        </div>
+
+        <div class="span4">
+          <div class="dashed" style="margin-bottom: 15px; margin-top: 10px;"></div>
+          <div class="all-events">
+            <%= link_to 'Selanjutnya', reviews_path, :class => 'btn btn-inverse btn-mini' %>
+          </div>
+        </div>
+      <% else %>
+        <div class="span4">
+          <p>Jadilah wisatawan pertama yang akan mengisi konten ini!</p>
+        </div>
+      <% end %>
+    </div> <!-- end row -->
+  </div>
+
+  <div class="span4">
 
     <h2>Menu Wisatawan</h2>
     <div class="dashed"></div>
@@ -54,129 +201,5 @@
       </div>
 
     </div>
-  </div>
-
-  <div class="span4">
-    <h2>Berita Wisata</h2>
-    <div class="dashed"></div>
-    <div class="info-title">Berita terbaru tentang wisata yang ada di  Sumatera Barat</div>
-    <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
-
-    <% if article %>
-      <div class="span4 clearfix" style="margin-left: 0;">
-        <div class="image-news">
-          <%= image_tag(article.image.url(:thumb)) %>
-        </div>
-        <div class="title-news">
-          <%= link_to truncate(article.title, :length => 80, :separator => ' '), tourism_article_path(article) %>
-        </div>
-      </div>
-      <div class="news-info clearfix">
-        <%= link_to article.user.username, profile_path(article.user) %> |
-        <%= l article.created_at, :format => :costum %>
-        <div class="pull-right" style="margin-left: 10px;">
-          <%= article.comments.published.count %> <i class="icon-comment"></i></div>
-        <div class="pull-right">
-          <%= article.impressionist_count(:filter => :session_hash) %> <i class="icon-eye-open"></i></div>
-      </div>
-      <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
-
-      <div class="all-events">
-        <%= link_to 'Selanjutnya', tourism_articles_path, :class => 'btn btn-inverse btn-mini' %>
-      </div>
-    <% else %>
-      <div class="span4">
-        <p>Jadilah wisatawan pertama yang akan mengisi konten ini!</p>
-      </div>
-    <% end %>
-  </div>
-
-  <div class="span4">
-    <h2>Acara Wisata</h2>
-    <div class="dashed"></div>
-    <div class="info-title">Acara wisata terbaru yang diadakan di Sumatera Barat</div>
-    <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
-
-    <% if event %>
-      <div class="eventsdate">
-        <div class="span1 cont">
-          <%= l event.created_at, :format => :only_day %>
-          <div class="event-date"><%= l event.created_at, :format => :only_date %></div>
-          <div class="event-month"><%= l event.created_at, :format => :only_month %></div>
-          <div class="event-year"><%= l event.created_at, :format => :only_year %></div>
-        </div>
-      </div>
-
-      <div class="eventscontent">
-        <div class="title-event">
-          <%= link_to truncate(event.title, :length => 80, :separator => ' '), event_path(event) %>
-        </div>
-        <p>
-          <%= raw truncate(event.description, :length => 80, :separator => ' ') %>
-        </p>
-        <div class="clearfix">
-          <div class="event-like pull-right ">
-            <i class="icon-thumbs-up"></i> <%= event.likes.count %> tertarik!
-          </div>
-        </div>
-      </div>
-      <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
-
-      <div class="all-events">
-        <%= link_to 'Selanjutnya', events_path, :class => 'btn btn-inverse btn-mini' %>
-      </div>
-    <% else %>
-      <div class="span4">
-        <p>Jadilah wisatawan pertama yang akan mengisi konten ini!</p>
-      </div>
-    <% end %>
-  </div>
-  <div class="span4">
-    <h2>Cerita Wisatawan</h2>
-    <div class="dashed"></div>
-    <div class="info-title">Cerita terbaru wisatawan tentang tempat wisata yang ada di Sumatera Barat</div>
-    <div class="dashed" style="margin-bottom: 10px; margin-top: 0"></div>
-
-    <div class="row">
-      <% if review %>
-        <div class="span4">
-          <div class="span1 photo-tourism">
-            <%= link_to image_tag(review.user.image.url(:thumb), :class => 'thumbnail'), profile_path(review.user) %>
-          </div>
-
-          <div class="story-tourism">
-            <div class="name-location">
-              <%= link_to review.commentable.name, tourism_location_path(review.commentable, anchor: "comment-#{review.id}") %>
-            </div>
-            <div class="clearfix">
-              <div class="date-publish"><i class="icon-time"></i> Rabu, 27 Juni 2012</div>
-            </div>
-
-            <div>
-              <%= raw truncate(review.comment, :length => 50, :separator => ' ') %>
-              <span class="small-view">
-                <i class="" >
-                  <%= link_to tourism_location_path(review.commentable, anchor: "comment-#{review.id}") do %>
-                    <i class="icon-external-link"></i>
-                  <% end %>
-                </i>
-              </span>
-            </div>
-          </div>
-          <%#*<div class="dashed" style="margin-bottom: 15px; margin-top: 10px;"></div>%>
-        </div>
-
-        <div class="span4">
-          <div class="dashed" style="margin-bottom: 15px; margin-top: 10px;"></div>
-          <div class="all-events">
-            <%= link_to 'Selanjutnya', reviews_path, :class => 'btn btn-inverse btn-mini' %>
-          </div>
-        </div>
-      <% else %>
-        <div class="span4">
-          <p>Jadilah wisatawan pertama yang akan mengisi konten ini!</p>
-        </div>
-      <% end %>
-    </div> <!-- end row -->
   </div>
 </div>

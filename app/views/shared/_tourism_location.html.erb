@@ -3,10 +3,10 @@
   <div class="navbar navbar-static" id="navbarExample">
     <div class="navbar-inner">
       <div style="width: auto;" class="container">
-        <a href="#" class="brand">Tempat Wisata</a>
+        <%= link_to "Tempat Wisata", tourism_locations_path, :class => 'brand'%>
         <ul class="nav">
           <li class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Wisata Alam <b class="caret"></b></a>
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Alam <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <% CategoryLocTourism.find_by_name('Wisata Alam').children.each do |category_loc_tourism| %>
                 <li class="<%= current_page?(tourism_locations_path(category_loc_tourism_id: category_loc_tourism.to_param)) ? "active" : nil%>">
@@ -18,9 +18,81 @@
             </ul>
           </li>
           <li class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Wisata Sejarah <b class="caret"></b></a>
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Sejarah <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <% CategoryLocTourism.find_by_name('Wisata Sejarah').children.each do |category_loc_tourism| %>
+                <li class="<%= current_page?(tourism_locations_path(category_loc_tourism_id: category_loc_tourism.to_param)) ? "active" : nil%>">
+                  <%= link_to tourism_locations_path(category_loc_tourism_id: category_loc_tourism.to_param) do %>
+                    <%= category_loc_tourism.name %>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Kuliner <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <% CategoryLocTourism.find_by_name('Wisata Kuliner').children.each do |category_loc_tourism| %>
+                <li class="<%= current_page?(tourism_locations_path(category_loc_tourism_id: category_loc_tourism.to_param)) ? "active" : nil%>">
+                  <%= link_to tourism_locations_path(category_loc_tourism_id: category_loc_tourism.to_param) do %>
+                    <%= category_loc_tourism.name %>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Belanja <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <% CategoryLocTourism.find_by_name('Wisata Belanja').children.each do |category_loc_tourism| %>
+                <li class="<%= current_page?(tourism_locations_path(category_loc_tourism_id: category_loc_tourism.to_param)) ? "active" : nil%>">
+                  <%= link_to tourism_locations_path(category_loc_tourism_id: category_loc_tourism.to_param) do %>
+                    <%= category_loc_tourism.name %>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Seni dan Budaya <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <% CategoryLocTourism.find_by_name('Wisata Seni dan Budaya').children.each do |category_loc_tourism| %>
+                <li class="<%= current_page?(tourism_locations_path(category_loc_tourism_id: category_loc_tourism.to_param)) ? "active" : nil%>">
+                  <%= link_to tourism_locations_path(category_loc_tourism_id: category_loc_tourism.to_param) do %>
+                    <%= category_loc_tourism.name %>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Adventure <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <% CategoryLocTourism.find_by_name('Wisata Adventure').children.each do |category_loc_tourism| %>
+                <li class="<%= current_page?(tourism_locations_path(category_loc_tourism_id: category_loc_tourism.to_param)) ? "active" : nil%>">
+                  <%= link_to tourism_locations_path(category_loc_tourism_id: category_loc_tourism.to_param) do %>
+                    <%= category_loc_tourism.name %>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Rekreasi <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <% CategoryLocTourism.find_by_name('Wisata Rekreasi').children.each do |category_loc_tourism| %>
+                <li class="<%= current_page?(tourism_locations_path(category_loc_tourism_id: category_loc_tourism.to_param)) ? "active" : nil%>">
+                  <%= link_to tourism_locations_path(category_loc_tourism_id: category_loc_tourism.to_param) do %>
+                    <%= category_loc_tourism.name %>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Religi <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <% CategoryLocTourism.find_by_name('Wisata Religi').children.each do |category_loc_tourism| %>
                 <li class="<%= current_page?(tourism_locations_path(category_loc_tourism_id: category_loc_tourism.to_param)) ? "active" : nil%>">
                   <%= link_to tourism_locations_path(category_loc_tourism_id: category_loc_tourism.to_param) do %>
                     <%= category_loc_tourism.name %>
