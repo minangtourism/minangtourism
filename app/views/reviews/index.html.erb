@@ -26,12 +26,12 @@
                   <span><i class="icon-user"></i>
                     <%= link_to review.user.username, profile_path(review.user) %>
                   </span>
-                  <span><i class="icon-home"></i> <%= review.user.city %> </span>
+                  <%#*<span><i class="icon-home"></i> <%= review.user.city %>
                 </div>
 
-                <%#*<div class="link-article">%>
-                  <%#= link_to 'Selanjutnya', tourism_location_path(review.commentable, anchor: "comment-#{review.id}"), :class => 'btn btn-primary btn-mini' %>
-                <%#*</div>%>
+  <%#*<div class="link-article">%>
+  <%#= link_to 'Selanjutnya', tourism_location_path(review.commentable, anchor: "comment-#{review.id}"), :class => 'btn btn-primary btn-mini' %>
+  <%#*</div>%>
               </div>
             </div>
 

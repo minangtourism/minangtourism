@@ -250,6 +250,28 @@ end
   )
 end
 
+1.upto(1).each do |i|
+  admin = admins[i.pred % admins.count]
+  admin.tourism_locations.create!(
+    name: "Museum Adityawarman",
+    category_loc_tourism_id: CategoryLocTourism.find_by_name("Museum").id,
+    address: "Jl. Diponegoro No. 10 Padang",
+    city: "Kota Padang",
+    zip: " ",
+    phone: "0751-31523/39587",
+    web: " ",
+    facebook: " ",
+    twitter: " ",
+    hours_description: "08:00 - 17:00 WIB",
+    facility: " ",
+    image: dummy_images[:image_tourism_location],
+    description: "Museum Adityawarman diresmikan tahun 1979. Menempati areal seluas 2,5 hektar.Sesuai namanya di museum ini terdapat replika
+    arca Adityawarman, sedangkan arca asli saat ini berada di Museum Nasional Jakarta. Adityawarman adalah raja pertama yang berkuasa di Pagaruyung,
+    Kabupaten Batusangkar, Sumatera Barat.",
+    state: "published"
+  )
+end
+
 Slideshow.destroy_all
 
 1.upto(5).each do |i|

@@ -49,12 +49,16 @@
             <tr>
               <td><i class="icon-repeat"></i></td>
               <td>Terakhir diperbarui oleh:</td>
-              <td><%= @tourism_location.updater.try('name') if @tourism_location %></td>
+              <% if @tourism_location.updater.try('username') %>
+                <td><%= @tourism_location.updater.try('username')  %></td>
+              <% end %>
             </tr>
             <tr>
               <td><i class="icon-time"></i></td>
               <td>Hari:</td>
-              <td><%= (l @tourism_location.updated_at, :format => :costum) if @tourism_location %></td>
+              <% if @tourism_location.updated_at != @tourism_location.created_at %>
+                <td><%= (l @tourism_location.updated_at, :format => :costum) %></td>
+              <% end %>
             </tr>
           </tbody>
         </table>
@@ -65,11 +69,11 @@
     <div class="span9"> <!-- Content -->
       <h3>Foto <%= @tourism_location.name %></h3>
       <div class="dashed" style="margin-bottom: 15px"></div>
-      <ul class="thumbnails">
-        <li class="span3">
+      <div class="thumbnails">
+        <div class="span3">
           <%= image_tag(@tourism_location.image.url, :class => 'thumbnail') %>
-        </li>
-      </ul>
+        </div>
+      </div>
 
       <div class="well sidebar-nav">
         <%= link_to edit_tourism_location_path(@tourism_location), :class => 'btn btn-primary btn-mini pull-right' do %>
@@ -127,32 +131,32 @@
               </tr>
             <% end %>
             <% if @tourism_location.twitter? %>
-            <tr>
-              <td><i class="icon-twitter"></i></td>
-              <td>Twitter:</td>
-              <td><%= @tourism_location.twitter %></td>
-            </tr>
+              <tr>
+                <td><i class="icon-twitter"></i></td>
+                <td>Twitter:</td>
+                <td><%= @tourism_location.twitter %></td>
+              </tr>
             <% end %>
             <% if @tourism_location.hours_description? %>
-            <tr>
-              <td><i class="icon-time"></i></td>
-              <td>Jam Buka:</td>
-              <td><%= @tourism_location.hours_description %></td>
-            </tr>
+              <tr>
+                <td><i class="icon-time"></i></td>
+                <td>Jam Buka:</td>
+                <td><%= @tourism_location.hours_description %></td>
+              </tr>
             <% end %>
             <% if @tourism_location.facility? %>
-            <tr>
-              <td><i class="icon-list-alt"></i></td>
-              <td>Fasilitas:</td>
-              <td style="white-space: pre-line"><%= @tourism_location.facility %></td>
-            </tr>
+              <tr>
+                <td><i class="icon-list-alt"></i></td>
+                <td>Fasilitas:</td>
+                <td style="white-space: pre-line"><%= @tourism_location.facility %></td>
+              </tr>
             <% end %>
             <% if @tourism_location.description? %>
-            <tr>
-              <td><i class="icon-book"></i></td>
-              <td>Deskripsi:</td>
-              <td><%= raw @tourism_location.description %></td>
-            </tr>
+              <tr>
+                <td><i class="icon-book"></i></td>
+                <td>Deskripsi:</td>
+                <td><%= raw @tourism_location.description %></td>
+              </tr>
             <% end %>
           </tbody>
         </table>
