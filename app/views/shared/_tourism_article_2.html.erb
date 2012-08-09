@@ -2,7 +2,7 @@
   <div class="thumbnail">
     <div class="caption">
       <h2 class="two-title-tourism-article">
-        <%= link_to article.title, tourism_article_path(article) %>
+        <%= link_to article.title.titleize, tourism_article_path(article) %>
       </h2>
       oleh
       <%= link_to article.user.username, profile_path(article.user) %> |

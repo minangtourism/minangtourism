@@ -3,7 +3,9 @@
   <div class="dashed" style="margin-bottom: 30px; margin-top: 0"></div>
   <%= f.input :title, :label => 'Judul', :input_html => {:class => 'span7'} %>
   <div style="margin-bottom: 20px;" >
-    <%= f.input :content, :label => false%>
+    <%= f.input :content, :label => false %>
+    <%#= f.input :content, :label => false, :input_html => { :toolbar => 'Full' } %>
+    <%#= f.input :content, :as => :ckeditor, :label => false, :input_html => { :toolbar => 'MyToolbar' } %>
   </div>
   <%= f.input :image, :label => false %>
   <span class="help-block">Pilih gambar untuk berita wisata</span>

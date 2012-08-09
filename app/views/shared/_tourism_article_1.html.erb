@@ -2,7 +2,7 @@
   <div class="thumbnail">
     <div class="caption">
       <h2 class="one-title-tourism-article">
-        <%= link_to article.title, tourism_article_path(article) %>
+        <%= link_to article.title.titleize, tourism_article_path(article) %>
       </h2>
       oleh
       <%= link_to article.user.username, profile_path(article.user) %> |
@@ -10,7 +10,7 @@
     </div>
     <%= image_tag(article.image.url(:large)) %>
     <div class="caption">
-      <p class="one-content-article"><%= raw truncate(article.content, :length => 400, :separator => ' ') %></p>
+      <%#*<p class="one-content-article"><%= raw truncate(article.content, :length => 400, :separator => ' ') %>
       <p class="clearfix">
         <span class="pull-left" style="margin-right: 8px; margin-top: 9px">
           <%= article.comments.published.count %> <i class="icon-comment"></i></span>

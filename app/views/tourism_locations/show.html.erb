@@ -46,20 +46,20 @@
       <div class="well sidebar-nav">
         <table class="table table-striped" style="margin-bottom: 0px">
           <tbody>
-            <tr>
-              <td><i class="icon-repeat"></i></td>
-              <td>Terakhir diperbarui oleh:</td>
-              <% if @tourism_location.updater.try('username') %>
+            <% if @tourism_location.updater.try('username').present? %>
+              <tr>
+                <td><i class="icon-repeat"></i></td>
+                <td>Terakhir diperbarui oleh:</td>
                 <td><%= @tourism_location.updater.try('username')  %></td>
-              <% end %>
-            </tr>
-            <tr>
-              <td><i class="icon-time"></i></td>
-              <td>Hari:</td>
-              <% if @tourism_location.updated_at != @tourism_location.created_at %>
+              </tr>
+            <% end %>
+            <% if @tourism_location.updated_at != @tourism_location.created_at %>
+              <tr>
+                <td><i class="icon-time"></i></td>
+                <td>Hari:</td>
                 <td><%= (l @tourism_location.updated_at, :format => :costum) %></td>
-              <% end %>
-            </tr>
+              </tr>
+            <% end %>
           </tbody>
         </table>
       </div><!--/.well -->
@@ -69,7 +69,7 @@
     <div class="span9"> <!-- Content -->
       <h3>Foto <%= @tourism_location.name %></h3>
       <div class="dashed" style="margin-bottom: 15px"></div>
-      <div class="thumbnails">
+      <div class="thumbnails" style="margin-bottom: 15px;">
         <div class="span3">
           <%= image_tag(@tourism_location.image.url, :class => 'thumbnail') %>
         </div>

@@ -3,7 +3,7 @@
 <div class="thumbnail" style="margin-bottom: 30px;">
   <div class="caption">
     <h2 class="title-show-tourism-article">
-      <%= @tourism_article.title %>
+      <%= @tourism_article.title.titleize %>
     </h2>
 
     <div class="author-content-article-show">
@@ -20,9 +20,11 @@
       </p>
     </div>
 
-    <%= image_tag(@tourism_article.image.url(:large)) %>
+    <%#= image_tag(@tourism_article.image.url(:large)) %>
+    <%= image_tag(@tourism_article.image.url) %>
     <div class="content-article-show">
-      <p><%= raw @tourism_article.content %></p>
+      <%#*<p style="white-space: pre-wrap"> <%= @tourism_article.content %>
+      <%= raw @tourism_article.content %>
     </div>
   </div>
 </div>

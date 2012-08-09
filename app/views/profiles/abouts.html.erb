@@ -17,7 +17,7 @@
           <div class="dashed"></div>
           <div class="info-title">Informasi tentang saya</div>
           <div class="dashed" style="margin-bottom: 15px; margin-top: 0"></div>
-          <% if @profile.about %>
+          <% if @profile.about.present? %>
             <div class="about-me">
               <%= raw @profile.about %>
             </div>
@@ -34,28 +34,28 @@
 
           <table class="table table-striped">
             <tbody>
-              <% if @profile.name %>
+              <% if @profile.name.present? %>
                 <tr>
                   <td><i class="icon-bookmark"></i></td>
                   <td>Nama</td>
                   <td><%= @profile.name %></td>
                 </tr>
               <% end %>
-              <% if @profile.sex %>
+              <% if @profile.sex.present? %>
                 <tr>
                   <td><i class="icon-user"></i></td>
                   <td>Saya seorang</td>
                   <td><%= @profile.sex %></td>
                 </tr>
               <% end %>
-              <% if @profile.birthday %>
+              <% if @profile.birthday.present? %>
                 <tr>
                   <td><i class="icon-gift"></i> </td>
                   <td>Ulang Tahun</td>
                   <td><%= l @profile.birthday, :format => :long %></td>
                 </tr>
               <% end %>
-              <% if @profile.work %>
+              <% if @profile.work.present? %>
                 <tr>
                   <td><i class="icon-briefcase"></i> </td>
                   <td>Pekerjaan</td>

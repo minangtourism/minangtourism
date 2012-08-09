@@ -16,7 +16,7 @@ end
         <div class="caption">
           <h2 class="three-title-tourism-article">
             <a>
-              <%= link_to article.title, tourism_article_path(article) %>
+              <%= link_to article.title.titleize, tourism_article_path(article) %>
             </a>
           </h2>
           <%= link_to article.user.username, profile_path(article.user) %> |
