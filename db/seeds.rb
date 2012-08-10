@@ -37,15 +37,9 @@ User.valid_roles.each do |role|
   end
 end
 
-admins = User.all.select do |user|
-  user.is? :admin
-end
-operators = User.all.select do |user|
-  user.is? :operator
-end
-members = User.all.select do |user|
-  user.is? :member
-end
+admins = User.admin
+operators = User.operator
+members = User.member
 
 CategoryLocTourism.destroy_all
 
@@ -182,8 +176,7 @@ CategoryLocTourism.create([
 
 Event.destroy_all
 
-1.upto(5).each do |i|
-  member = members[i.pred % members.count]
+members.limit(5).find_each do |member|
   member.events.create!(
     title: Faker::Lorem.sentence.gsub(/\.$/, ""),
     description: Faker::Lorem.paragraph(6),
