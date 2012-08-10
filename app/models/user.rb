@@ -37,8 +37,15 @@ class User < ActiveRecord::Base
 
   validates :password_confirmation, :presence => true, :if => :password
 
+  roles_attribute :roles_mask
+
+  roles :admin, :operator, :member
+
   default_scope :include => :profile
   scope :recent, order("created_at desc")
+  valid_roles.map do |role|
+    scope role, where("roles_mask & :role = :role", role: mask_for(role))
+  end
 
   before_save :set_default_roles
 
@@ -78,10 +85,6 @@ class User < ActiveRecord::Base
       where(conditions).first
     end
   end
-
-  roles_attribute :roles_mask
-
-  roles :admin, :operator, :member
 
   valid_roles.map do |role|
     scope role, where("roles_mask & :role = :role", role: mask_for(role))
