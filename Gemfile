@@ -25,6 +25,7 @@ gem 'nested_set'
 gem 'acts_as_commentable'
 gem 'settler'
 gem "awesome_print", "~> 1.0.2"
+gem "bcrypt-ruby", "~> 3.0.1"
 
 #admin
 gem "cancan"
