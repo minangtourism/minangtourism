@@ -14,7 +14,8 @@ gem "ckeditor", "3.7.1"
 gem "heroku", "~> 2.30.1"
 
 #debug
-gem 'pg'
+#gem 'pg'
+gem 'sqlite3'
 
 gem "paperclip", "~> 3.0"
 gem "twitter-bootstrap-rails"
