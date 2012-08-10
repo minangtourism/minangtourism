@@ -1,0 +1,2064 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: category_loc_tourisms; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE category_loc_tourisms (
+    id integer NOT NULL,
+    name character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    parent_id integer,
+    lft integer,
+    rgt integer
+);
+
+
+ALTER TABLE public.category_loc_tourisms OWNER TO postgres;
+
+--
+-- Name: category_loc_tourisms_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE category_loc_tourisms_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.category_loc_tourisms_id_seq OWNER TO postgres;
+
+--
+-- Name: category_loc_tourisms_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE category_loc_tourisms_id_seq OWNED BY category_loc_tourisms.id;
+
+
+--
+-- Name: category_loc_tourisms_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('category_loc_tourisms_id_seq', 75, true);
+
+
+--
+-- Name: ckeditor_assets; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE ckeditor_assets (
+    id integer NOT NULL,
+    data_file_name character varying(255) NOT NULL,
+    data_content_type character varying(255),
+    data_file_size integer,
+    assetable_id integer,
+    assetable_type character varying(30),
+    type character varying(30),
+    width integer,
+    height integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.ckeditor_assets OWNER TO postgres;
+
+--
+-- Name: ckeditor_assets_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE ckeditor_assets_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.ckeditor_assets_id_seq OWNER TO postgres;
+
+--
+-- Name: ckeditor_assets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE ckeditor_assets_id_seq OWNED BY ckeditor_assets.id;
+
+
+--
+-- Name: ckeditor_assets_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('ckeditor_assets_id_seq', 1, false);
+
+
+--
+-- Name: comments; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE comments (
+    id integer NOT NULL,
+    comment text,
+    commentable_id integer,
+    commentable_type character varying(255),
+    user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    state character varying(255)
+);
+
+
+ALTER TABLE public.comments OWNER TO postgres;
+
+--
+-- Name: comments_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE comments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.comments_id_seq OWNER TO postgres;
+
+--
+-- Name: comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE comments_id_seq OWNED BY comments.id;
+
+
+--
+-- Name: comments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('comments_id_seq', 1, false);
+
+
+--
+-- Name: contacts; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE contacts (
+    id integer NOT NULL,
+    name character varying(255),
+    email character varying(255),
+    phone character varying(255),
+    message text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.contacts OWNER TO postgres;
+
+--
+-- Name: contacts_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE contacts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.contacts_id_seq OWNER TO postgres;
+
+--
+-- Name: contacts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE contacts_id_seq OWNED BY contacts.id;
+
+
+--
+-- Name: contacts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('contacts_id_seq', 1, false);
+
+
+--
+-- Name: deletion_requests; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE deletion_requests (
+    id integer NOT NULL,
+    item_id integer,
+    item_type character varying(255),
+    reason text,
+    state character varying(255),
+    user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.deletion_requests OWNER TO postgres;
+
+--
+-- Name: deletion_requests_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE deletion_requests_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.deletion_requests_id_seq OWNER TO postgres;
+
+--
+-- Name: deletion_requests_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE deletion_requests_id_seq OWNED BY deletion_requests.id;
+
+
+--
+-- Name: deletion_requests_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('deletion_requests_id_seq', 1, false);
+
+
+--
+-- Name: event_revisions; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE event_revisions (
+    id integer NOT NULL,
+    title character varying(255),
+    description text,
+    start_date date,
+    end_date date,
+    user_id integer,
+    image character varying(255),
+    state character varying(255),
+    event_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    image_file_name character varying(255),
+    image_content_type character varying(255),
+    image_file_size integer,
+    image_updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.event_revisions OWNER TO postgres;
+
+--
+-- Name: event_revisions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE event_revisions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.event_revisions_id_seq OWNER TO postgres;
+
+--
+-- Name: event_revisions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE event_revisions_id_seq OWNED BY event_revisions.id;
+
+
+--
+-- Name: event_revisions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('event_revisions_id_seq', 1, false);
+
+
+--
+-- Name: events; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE events (
+    id integer NOT NULL,
+    title character varying(255),
+    description text,
+    start_date date,
+    end_date date,
+    user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    image_file_name character varying(255),
+    image_content_type character varying(255),
+    image_file_size integer,
+    image_updated_at timestamp without time zone,
+    state character varying(255)
+);
+
+
+ALTER TABLE public.events OWNER TO postgres;
+
+--
+-- Name: events_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE events_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.events_id_seq OWNER TO postgres;
+
+--
+-- Name: events_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE events_id_seq OWNED BY events.id;
+
+
+--
+-- Name: events_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('events_id_seq', 5, true);
+
+
+--
+-- Name: folktale_revisions; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE folktale_revisions (
+    id integer NOT NULL,
+    title character varying(255),
+    description text,
+    state character varying(255),
+    user_id integer,
+    folktale_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    image_file_name character varying(255),
+    image_content_type character varying(255),
+    image_file_size integer,
+    image_updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.folktale_revisions OWNER TO postgres;
+
+--
+-- Name: folktale_revisions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE folktale_revisions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.folktale_revisions_id_seq OWNER TO postgres;
+
+--
+-- Name: folktale_revisions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE folktale_revisions_id_seq OWNED BY folktale_revisions.id;
+
+
+--
+-- Name: folktale_revisions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('folktale_revisions_id_seq', 1, false);
+
+
+--
+-- Name: folktales; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE folktales (
+    id integer NOT NULL,
+    title character varying(255),
+    description text,
+    user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    image_file_name character varying(255),
+    image_content_type character varying(255),
+    image_file_size integer,
+    image_updated_at timestamp without time zone,
+    state character varying(255)
+);
+
+
+ALTER TABLE public.folktales OWNER TO postgres;
+
+--
+-- Name: folktales_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE folktales_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.folktales_id_seq OWNER TO postgres;
+
+--
+-- Name: folktales_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE folktales_id_seq OWNED BY folktales.id;
+
+
+--
+-- Name: folktales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('folktales_id_seq', 5, true);
+
+
+--
+-- Name: impressions; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE impressions (
+    id integer NOT NULL,
+    impressionable_type character varying(255),
+    impressionable_id integer,
+    user_id integer,
+    controller_name character varying(255),
+    action_name character varying(255),
+    view_name character varying(255),
+    request_hash character varying(255),
+    ip_address character varying(255),
+    session_hash character varying(255),
+    message text,
+    referrer text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.impressions OWNER TO postgres;
+
+--
+-- Name: impressions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE impressions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.impressions_id_seq OWNER TO postgres;
+
+--
+-- Name: impressions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE impressions_id_seq OWNED BY impressions.id;
+
+
+--
+-- Name: impressions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('impressions_id_seq', 1, false);
+
+
+--
+-- Name: likes; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE likes (
+    id integer NOT NULL,
+    likeable_id integer,
+    likeable_type character varying(255),
+    user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.likes OWNER TO postgres;
+
+--
+-- Name: likes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE likes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.likes_id_seq OWNER TO postgres;
+
+--
+-- Name: likes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE likes_id_seq OWNED BY likes.id;
+
+
+--
+-- Name: likes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('likes_id_seq', 1, false);
+
+
+--
+-- Name: profiles; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE profiles (
+    id integer NOT NULL,
+    name character varying(255),
+    sex character varying(255),
+    birthday date,
+    about text,
+    phone character varying(255),
+    address text,
+    city character varying(255),
+    website character varying(255),
+    facebook character varying(255),
+    twitter character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    user_id integer,
+    work text,
+    image_file_name character varying(255),
+    image_content_type character varying(255),
+    image_file_size integer,
+    image_updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.profiles OWNER TO postgres;
+
+--
+-- Name: profiles_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE profiles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.profiles_id_seq OWNER TO postgres;
+
+--
+-- Name: profiles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE profiles_id_seq OWNED BY profiles.id;
+
+
+--
+-- Name: profiles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('profiles_id_seq', 3, true);
+
+
+--
+-- Name: rails_admin_histories; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE rails_admin_histories (
+    id integer NOT NULL,
+    message text,
+    username character varying(255),
+    item integer,
+    "table" character varying(255),
+    month smallint,
+    year bigint,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.rails_admin_histories OWNER TO postgres;
+
+--
+-- Name: rails_admin_histories_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE rails_admin_histories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.rails_admin_histories_id_seq OWNER TO postgres;
+
+--
+-- Name: rails_admin_histories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE rails_admin_histories_id_seq OWNED BY rails_admin_histories.id;
+
+
+--
+-- Name: rails_admin_histories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('rails_admin_histories_id_seq', 1, false);
+
+
+--
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE schema_migrations (
+    version character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.schema_migrations OWNER TO postgres;
+
+--
+-- Name: settings; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE settings (
+    id integer NOT NULL,
+    key character varying(255) NOT NULL,
+    alt character varying(255),
+    value text,
+    editable boolean,
+    deletable boolean,
+    deleted boolean,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.settings OWNER TO postgres;
+
+--
+-- Name: settings_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE settings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.settings_id_seq OWNER TO postgres;
+
+--
+-- Name: settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE settings_id_seq OWNED BY settings.id;
+
+
+--
+-- Name: settings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('settings_id_seq', 1, false);
+
+
+--
+-- Name: slideshows; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE slideshows (
+    id integer NOT NULL,
+    title character varying(255),
+    description text,
+    state character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    image_file_name character varying(255),
+    image_content_type character varying(255),
+    image_file_size integer,
+    image_updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.slideshows OWNER TO postgres;
+
+--
+-- Name: slideshows_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE slideshows_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.slideshows_id_seq OWNER TO postgres;
+
+--
+-- Name: slideshows_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE slideshows_id_seq OWNED BY slideshows.id;
+
+
+--
+-- Name: slideshows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('slideshows_id_seq', 5, true);
+
+
+--
+-- Name: sumbar_contents; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE sumbar_contents (
+    id integer NOT NULL,
+    title character varying(255),
+    content text,
+    type character varying(255),
+    user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    image_file_name character varying(255),
+    image_content_type character varying(255),
+    image_file_size integer,
+    image_updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.sumbar_contents OWNER TO postgres;
+
+--
+-- Name: sumbar_contents_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE sumbar_contents_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.sumbar_contents_id_seq OWNER TO postgres;
+
+--
+-- Name: sumbar_contents_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE sumbar_contents_id_seq OWNED BY sumbar_contents.id;
+
+
+--
+-- Name: sumbar_contents_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('sumbar_contents_id_seq', 1, false);
+
+
+--
+-- Name: tips_trick_revisions; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tips_trick_revisions (
+    id integer NOT NULL,
+    title character varying(255),
+    description text,
+    state character varying(255),
+    user_id integer,
+    tips_trick_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    image_file_name character varying(255),
+    image_content_type character varying(255),
+    image_file_size integer,
+    image_updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.tips_trick_revisions OWNER TO postgres;
+
+--
+-- Name: tips_trick_revisions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tips_trick_revisions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tips_trick_revisions_id_seq OWNER TO postgres;
+
+--
+-- Name: tips_trick_revisions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tips_trick_revisions_id_seq OWNED BY tips_trick_revisions.id;
+
+
+--
+-- Name: tips_trick_revisions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tips_trick_revisions_id_seq', 1, false);
+
+
+--
+-- Name: tips_tricks; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tips_tricks (
+    id integer NOT NULL,
+    title character varying(255),
+    description text,
+    user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    image_file_name character varying(255),
+    image_content_type character varying(255),
+    image_file_size integer,
+    image_updated_at timestamp without time zone,
+    state character varying(255)
+);
+
+
+ALTER TABLE public.tips_tricks OWNER TO postgres;
+
+--
+-- Name: tips_tricks_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tips_tricks_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tips_tricks_id_seq OWNER TO postgres;
+
+--
+-- Name: tips_tricks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tips_tricks_id_seq OWNED BY tips_tricks.id;
+
+
+--
+-- Name: tips_tricks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tips_tricks_id_seq', 5, true);
+
+
+--
+-- Name: tourism_article_revisions; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tourism_article_revisions (
+    id integer NOT NULL,
+    title character varying(255),
+    content text,
+    state character varying(255),
+    user_id integer,
+    tourism_article_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.tourism_article_revisions OWNER TO postgres;
+
+--
+-- Name: tourism_article_revisions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tourism_article_revisions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tourism_article_revisions_id_seq OWNER TO postgres;
+
+--
+-- Name: tourism_article_revisions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tourism_article_revisions_id_seq OWNED BY tourism_article_revisions.id;
+
+
+--
+-- Name: tourism_article_revisions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tourism_article_revisions_id_seq', 1, false);
+
+
+--
+-- Name: tourism_articles; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tourism_articles (
+    id integer NOT NULL,
+    title character varying(255),
+    content text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    user_id integer,
+    state character varying(255),
+    image_file_name character varying(255),
+    image_content_type character varying(255),
+    image_file_size integer,
+    image_updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.tourism_articles OWNER TO postgres;
+
+--
+-- Name: tourism_articles_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tourism_articles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tourism_articles_id_seq OWNER TO postgres;
+
+--
+-- Name: tourism_articles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tourism_articles_id_seq OWNED BY tourism_articles.id;
+
+
+--
+-- Name: tourism_articles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tourism_articles_id_seq', 5, true);
+
+
+--
+-- Name: tourism_location_revisions; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tourism_location_revisions (
+    id integer NOT NULL,
+    name character varying(255),
+    address text,
+    city character varying(255),
+    zip integer,
+    phone character varying(255),
+    web character varying(255),
+    facebook character varying(255),
+    twitter character varying(255),
+    hours_description text,
+    facility text,
+    description text,
+    category_loc_tourism_id integer,
+    user_id integer,
+    state character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    tourism_location_id integer,
+    image_file_name character varying(255),
+    image_content_type character varying(255),
+    image_file_size integer,
+    image_updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.tourism_location_revisions OWNER TO postgres;
+
+--
+-- Name: tourism_location_revisions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tourism_location_revisions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tourism_location_revisions_id_seq OWNER TO postgres;
+
+--
+-- Name: tourism_location_revisions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tourism_location_revisions_id_seq OWNED BY tourism_location_revisions.id;
+
+
+--
+-- Name: tourism_location_revisions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tourism_location_revisions_id_seq', 1, false);
+
+
+--
+-- Name: tourism_locations; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tourism_locations (
+    id integer NOT NULL,
+    name character varying(255),
+    address text,
+    city character varying(255),
+    phone character varying(255),
+    web character varying(255),
+    facebook character varying(255),
+    twitter character varying(255),
+    hours_description text,
+    facility text,
+    description text,
+    category_loc_tourism_id integer,
+    user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    image_file_name character varying(255),
+    image_content_type character varying(255),
+    image_file_size integer,
+    image_updated_at timestamp without time zone,
+    state character varying(255),
+    access_state character varying(255),
+    zip integer,
+    updater_id integer
+);
+
+
+ALTER TABLE public.tourism_locations OWNER TO postgres;
+
+--
+-- Name: tourism_locations_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tourism_locations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tourism_locations_id_seq OWNER TO postgres;
+
+--
+-- Name: tourism_locations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tourism_locations_id_seq OWNED BY tourism_locations.id;
+
+
+--
+-- Name: tourism_locations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tourism_locations_id_seq', 3, true);
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE users (
+    id integer NOT NULL,
+    email character varying(255) DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying(255) DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying(255),
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    sign_in_count integer DEFAULT 0,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip character varying(255),
+    last_sign_in_ip character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    username character varying(255),
+    roles_mask integer DEFAULT 0,
+    state character varying(255)
+);
+
+
+ALTER TABLE public.users OWNER TO postgres;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO postgres;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('users_id_seq', 3, true);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY category_loc_tourisms ALTER COLUMN id SET DEFAULT nextval('category_loc_tourisms_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY ckeditor_assets ALTER COLUMN id SET DEFAULT nextval('ckeditor_assets_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY comments ALTER COLUMN id SET DEFAULT nextval('comments_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY contacts ALTER COLUMN id SET DEFAULT nextval('contacts_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY deletion_requests ALTER COLUMN id SET DEFAULT nextval('deletion_requests_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY event_revisions ALTER COLUMN id SET DEFAULT nextval('event_revisions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY events ALTER COLUMN id SET DEFAULT nextval('events_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY folktale_revisions ALTER COLUMN id SET DEFAULT nextval('folktale_revisions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY folktales ALTER COLUMN id SET DEFAULT nextval('folktales_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY impressions ALTER COLUMN id SET DEFAULT nextval('impressions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY likes ALTER COLUMN id SET DEFAULT nextval('likes_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY profiles ALTER COLUMN id SET DEFAULT nextval('profiles_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY rails_admin_histories ALTER COLUMN id SET DEFAULT nextval('rails_admin_histories_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY settings ALTER COLUMN id SET DEFAULT nextval('settings_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY slideshows ALTER COLUMN id SET DEFAULT nextval('slideshows_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY sumbar_contents ALTER COLUMN id SET DEFAULT nextval('sumbar_contents_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tips_trick_revisions ALTER COLUMN id SET DEFAULT nextval('tips_trick_revisions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tips_tricks ALTER COLUMN id SET DEFAULT nextval('tips_tricks_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tourism_article_revisions ALTER COLUMN id SET DEFAULT nextval('tourism_article_revisions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tourism_articles ALTER COLUMN id SET DEFAULT nextval('tourism_articles_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tourism_location_revisions ALTER COLUMN id SET DEFAULT nextval('tourism_location_revisions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tourism_locations ALTER COLUMN id SET DEFAULT nextval('tourism_locations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Data for Name: category_loc_tourisms; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY category_loc_tourisms (id, name, created_at, updated_at, parent_id, lft, rgt) FROM stdin;
+1	Wisata Alam	2012-08-10 14:07:30.382406	2012-08-10 14:07:30.382406	\N	1	36
+2	Air Terjun	2012-08-10 14:07:30.403935	2012-08-10 14:07:30.403935	1	2	3
+3	Air Panas	2012-08-10 14:07:30.451206	2012-08-10 14:07:30.451206	1	4	5
+4	Bahari	2012-08-10 14:07:30.495021	2012-08-10 14:07:30.495021	1	6	7
+5	Bukit/Puncak	2012-08-10 14:07:30.539153	2012-08-10 14:07:30.539153	1	8	9
+6	Cagar Alam	2012-08-10 14:07:30.583528	2012-08-10 14:07:30.583528	1	10	11
+7	Danau	2012-08-10 14:07:30.629034	2012-08-10 14:07:30.629034	1	12	13
+8	Gunung	2012-08-10 14:07:30.676782	2012-08-10 14:07:30.676782	1	14	15
+9	Gua	2012-08-10 14:07:30.728057	2012-08-10 14:07:30.728057	1	16	17
+10	Hutan/Hutan Lindung	2012-08-10 14:07:30.772125	2012-08-10 14:07:30.772125	1	18	19
+11	Jembatan	2012-08-10 14:07:30.817093	2012-08-10 14:07:30.817093	1	20	21
+12	Lembah/Ngarai	2012-08-10 14:07:30.861567	2012-08-10 14:07:30.861567	1	22	23
+13	Pantai	2012-08-10 14:07:30.914211	2012-08-10 14:07:30.914211	1	24	25
+14	Pulau	2012-08-10 14:07:30.949819	2012-08-10 14:07:30.949819	1	26	27
+41	Wisata Seni dan Budaya	2012-08-10 14:07:32.006787	2012-08-10 14:07:32.006787	\N	81	90
+42	Seni Pertunjukan	2012-08-10 14:07:32.032227	2012-08-10 14:07:32.032227	41	82	83
+39	Pasar Tradisional	2012-08-10 14:07:31.949423	2012-08-10 14:07:31.949423	37	76	77
+35	Pusat Jajanan & Makanan	2012-08-10 14:07:31.831671	2012-08-10 14:07:31.831671	32	68	69
+30	Rumah	2012-08-10 14:07:31.629973	2012-08-10 14:07:31.629973	19	58	59
+15	Selat	2012-08-10 14:07:30.995699	2012-08-10 14:07:30.995699	1	28	29
+16	Sungai	2012-08-10 14:07:31.039679	2012-08-10 14:07:31.039679	1	30	31
+17	Taman Nasional	2012-08-10 14:07:31.083777	2012-08-10 14:07:31.083777	1	32	33
+18	Taman Laut	2012-08-10 14:07:31.128623	2012-08-10 14:07:31.128623	1	34	35
+19	Wisata Sejarah	2012-08-10 14:07:31.173438	2012-08-10 14:07:31.173438	\N	37	62
+20	Benteng	2012-08-10 14:07:31.195478	2012-08-10 14:07:31.195478	19	38	39
+21	Gedung	2012-08-10 14:07:31.239815	2012-08-10 14:07:31.239815	19	40	41
+22	Keraton/Istana	2012-08-10 14:07:31.284879	2012-08-10 14:07:31.284879	19	42	43
+23	Makam	2012-08-10 14:07:31.329868	2012-08-10 14:07:31.329868	19	44	45
+24	Menara	2012-08-10 14:07:31.374308	2012-08-10 14:07:31.374308	19	46	47
+25	Monumen	2012-08-10 14:07:31.418002	2012-08-10 14:07:31.418002	19	48	49
+26	Museum	2012-08-10 14:07:31.463674	2012-08-10 14:07:31.463674	19	50	51
+27	Pelabuhan	2012-08-10 14:07:31.50273	2012-08-10 14:07:31.50273	19	52	53
+28	PLTA	2012-08-10 14:07:31.537337	2012-08-10 14:07:31.537337	19	54	55
+29	Prasasti/Situs	2012-08-10 14:07:31.584885	2012-08-10 14:07:31.584885	19	56	57
+31	Stasiun	2012-08-10 14:07:31.680778	2012-08-10 14:07:31.680778	19	60	61
+32	Wisata Kuliner	2012-08-10 14:07:31.719263	2012-08-10 14:07:31.719263	\N	63	72
+33	Cafe dan Resto	2012-08-10 14:07:31.742995	2012-08-10 14:07:31.742995	32	64	65
+34	Makanan Tradisional	2012-08-10 14:07:31.786647	2012-08-10 14:07:31.786647	32	66	67
+36	Pusat Oleh-Oleh	2012-08-10 14:07:31.876478	2012-08-10 14:07:31.876478	32	70	71
+37	Wisata Belanja	2012-08-10 14:07:31.915499	2012-08-10 14:07:31.915499	\N	73	80
+38	Pasar Seni	2012-08-10 14:07:31.926572	2012-08-10 14:07:31.926572	37	74	75
+64	Taman Kota	2012-08-10 14:07:32.976149	2012-08-10 14:07:32.976149	59	126	127
+61	Kawasan Wisata	2012-08-10 14:07:32.892801	2012-08-10 14:07:32.892801	59	120	121
+40	Pasar Modern	2012-08-10 14:07:31.971543	2012-08-10 14:07:31.971543	37	78	79
+43	Senjata Tradisional	2012-08-10 14:07:32.077506	2012-08-10 14:07:32.077506	41	84	85
+44	Tradisi Adat	2012-08-10 14:07:32.121021	2012-08-10 14:07:32.121021	41	86	87
+45	Upacara Adat	2012-08-10 14:07:32.167269	2012-08-10 14:07:32.167269	41	88	89
+46	Wisata Adventure	2012-08-10 14:07:32.221712	2012-08-10 14:07:32.221712	\N	91	116
+47	Arung Jeram	2012-08-10 14:07:32.244906	2012-08-10 14:07:32.244906	46	92	93
+48	Bungy Jumping	2012-08-10 14:07:32.288941	2012-08-10 14:07:32.288941	46	94	95
+49	Dayung dan Sky Air	2012-08-10 14:07:32.333902	2012-08-10 14:07:32.333902	46	96	97
+50	Diving dan snorkeling	2012-08-10 14:07:32.378092	2012-08-10 14:07:32.378092	46	98	99
+51	Fishing	2012-08-10 14:07:32.422875	2012-08-10 14:07:32.422875	46	100	101
+52	Flaying Fish	2012-08-10 14:07:32.467706	2012-08-10 14:07:32.467706	46	102	103
+53	Pacuan Kuda	2012-08-10 14:07:32.512373	2012-08-10 14:07:32.512373	46	104	105
+54	Panjat Tebing	2012-08-10 14:07:32.568003	2012-08-10 14:07:32.568003	46	106	107
+55	Paralayang	2012-08-10 14:07:32.612211	2012-08-10 14:07:32.612211	46	108	109
+56	Parasailing	2012-08-10 14:07:32.656952	2012-08-10 14:07:32.656952	46	110	111
+57	Surfing	2012-08-10 14:07:32.712734	2012-08-10 14:07:32.712734	46	112	113
+58	Terbang Layang	2012-08-10 14:07:32.768569	2012-08-10 14:07:32.768569	46	114	115
+59	Wisata Rekreasi	2012-08-10 14:07:32.81349	2012-08-10 14:07:32.81349	\N	117	136
+60	Alun-alun	2012-08-10 14:07:32.835615	2012-08-10 14:07:32.835615	59	118	119
+62	Konservasi/Suaka Margasatwa	2012-08-10 14:07:32.919414	2012-08-10 14:07:32.919414	59	122	123
+63	Kebun Binatang	2012-08-10 14:07:32.942987	2012-08-10 14:07:32.942987	59	124	125
+65	Taman Pemancingan	2012-08-10 14:07:33.012868	2012-08-10 14:07:33.012868	59	128	129
+66	Taman Pemandian	2012-08-10 14:07:33.22191	2012-08-10 14:07:33.22191	59	130	131
+67	Taman Wisata	2012-08-10 14:07:33.281433	2012-08-10 14:07:33.281433	59	132	133
+68	Waduk	2012-08-10 14:07:33.321278	2012-08-10 14:07:33.321278	59	134	135
+69	Wisata Religi	2012-08-10 14:07:33.356918	2012-08-10 14:07:33.356918	\N	137	150
+70	Candi	2012-08-10 14:07:33.381388	2012-08-10 14:07:33.381388	69	138	139
+71	Gereja	2012-08-10 14:07:33.437701	2012-08-10 14:07:33.437701	69	140	141
+72	Klenteng	2012-08-10 14:07:33.492861	2012-08-10 14:07:33.492861	69	142	143
+73	Mesjid	2012-08-10 14:07:33.548611	2012-08-10 14:07:33.548611	69	144	145
+74	Pura	2012-08-10 14:07:33.593566	2012-08-10 14:07:33.593566	69	146	147
+75	Vihara	2012-08-10 14:07:33.650311	2012-08-10 14:07:33.650311	69	148	149
+\.
+
+
+--
+-- Data for Name: ckeditor_assets; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY ckeditor_assets (id, data_file_name, data_content_type, data_file_size, assetable_id, assetable_type, type, width, height, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: comments; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY comments (id, comment, commentable_id, commentable_type, user_id, created_at, updated_at, state) FROM stdin;
+\.
+
+
+--
+-- Data for Name: contacts; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY contacts (id, name, email, phone, message, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: deletion_requests; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY deletion_requests (id, item_id, item_type, reason, state, user_id, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: event_revisions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY event_revisions (id, title, description, start_date, end_date, user_id, image, state, event_id, created_at, updated_at, image_file_name, image_content_type, image_file_size, image_updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: events; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY events (id, title, description, start_date, end_date, user_id, created_at, updated_at, image_file_name, image_content_type, image_file_size, image_updated_at, state) FROM stdin;
+1	Nihil corporis temporibus voluptates debitis asperiores	Laborum ratione soluta quae reiciendis eius sapiente voluptas non. In et rerum autem. Et optio dolorum a quia ut et eius. Molestias quo ea repellat adipisci pariatur possimus est. Odit quas enim non molestiae tempore aut. Temporibus ab in consectetur provident quis.	2012-01-01	2012-02-01	3	2012-08-10 14:07:36.170784	2012-08-10 14:07:36.170784	acara_wisata.jpg	image/jpeg	158981	2012-08-10 14:07:35.099735	unpublished
+2	Ea molestiae aliquid officiis et fuga mollitia est	Rerum error tempore quo quis facilis omnis. Et consequuntur sit non aliquid et. Qui sint voluptatum possimus nulla magnam. Ipsum voluptatem veritatis aliquam quo et. Quam ut qui aut voluptatem at sint et voluptas. Saepe ea ipsa commodi ducimus modi suscipit ipsum. Excepturi vel vel ut quia quia commodi. Temporibus ratione dolores architecto.	2012-01-01	2012-02-01	3	2012-08-10 14:07:37.312504	2012-08-10 14:07:37.312504	acara_wisata.jpg	image/jpeg	158981	2012-08-10 14:07:36.330183	unpublished
+3	Sint quidem doloribus fugiat	Et autem ab tenetur. Expedita aliquam in est sed. Ea ut voluptatum quisquam minima ipsam earum optio. Consequatur earum et inventore officiis sit. Odio cupiditate quia corrupti aliquam velit magnam et. Quam numquam quia nemo optio iusto hic.	2012-01-01	2012-02-01	3	2012-08-10 14:07:38.391845	2012-08-10 14:07:38.391845	acara_wisata.jpg	image/jpeg	158981	2012-08-10 14:07:37.468773	unpublished
+4	A illo at debitis qui	Eos assumenda provident commodi. Quidem voluptatem voluptatem omnis omnis sit alias. Doloremque atque consequuntur tempora sed et optio. Nulla perspiciatis qui esse sint libero ut et. Et ipsam sunt minus. Et aspernatur sit consectetur sit.	2012-01-01	2012-02-01	3	2012-08-10 14:07:39.557018	2012-08-10 14:07:39.557018	acara_wisata.jpg	image/jpeg	158981	2012-08-10 14:07:38.626678	unpublished
+5	Libero molestias et quia et	Voluptate officia laborum omnis id repellat itaque quia maxime. Voluptas quis rem cupiditate dignissimos reiciendis fugiat quia. Asperiores quis qui assumenda et officiis. Exercitationem mollitia explicabo omnis vero quasi qui eum. Voluptatem beatae tenetur aspernatur facere repellat debitis. Minima non non accusantium dolorem. Tempora et iure blanditiis.	2012-01-01	2012-02-01	3	2012-08-10 14:07:40.731852	2012-08-10 14:07:40.731852	acara_wisata.jpg	image/jpeg	158981	2012-08-10 14:07:39.797136	unpublished
+\.
+
+
+--
+-- Data for Name: folktale_revisions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY folktale_revisions (id, title, description, state, user_id, folktale_id, created_at, updated_at, image_file_name, image_content_type, image_file_size, image_updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: folktales; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY folktales (id, title, description, user_id, created_at, updated_at, image_file_name, image_content_type, image_file_size, image_updated_at, state) FROM stdin;
+1	Eos ut rerum odio earum natus fugiat nisi	Ullam aliquam aperiam natus et. Amet sit omnis illo repudiandae. Beatae eligendi sunt autem aspernatur cumque omnis sint nam. Ab sint voluptatibus quia laboriosam blanditiis corporis voluptatem. Est quas doloremque autem. Accusamus et placeat sit. Maxime dolores enim sed dolores inventore. Ut omnis quidem odit.	3	2012-08-10 14:07:41.750206	2012-08-10 14:07:41.750206	cerita_rakyat.jpg	image/jpeg	31851	2012-08-10 14:07:40.943736	published
+2	Dolores alias explicabo vel consequatur	Culpa voluptatem temporibus est recusandae modi repudiandae deleniti. Consequatur doloribus sunt culpa magnam est fuga sapiente. Sed natus enim excepturi et dolorem. A pariatur neque dolore voluptatibus illo inventore. Consequuntur sint ut dolorem assumenda a necessitatibus molestias. Repudiandae est harum eum. Asperiores ipsum quia aperiam maiores ducimus iste molestias expedita. Laboriosam deserunt quos quia et dicta nesciunt non consectetur.	3	2012-08-10 14:07:42.70717	2012-08-10 14:07:42.70717	cerita_rakyat.jpg	image/jpeg	31851	2012-08-10 14:07:41.871239	published
+3	Ipsum officia ratione et nostrum eligendi voluptatem dolorem et	Explicabo et ut error dolorem incidunt. Non et consequatur cumque et sed quod. Asperiores unde cumque ea repellendus velit impedit veniam rem. Reprehenderit rerum sint voluptatem. Illum quam exercitationem voluptatem non. Reprehenderit officia voluptatem necessitatibus quis. Voluptatem sequi placeat est.	3	2012-08-10 14:07:43.537389	2012-08-10 14:07:43.537389	cerita_rakyat.jpg	image/jpeg	31851	2012-08-10 14:07:42.791515	published
+4	Et laboriosam et aut numquam illo	Perspiciatis tenetur in atque fuga cupiditate ut. Officiis et consequatur ducimus. Dolores sint molestiae sit ratione eum eveniet. Consequatur dolore voluptatem est dolorum nisi. Blanditiis molestias beatae eius minima ut. Ut incidunt iusto eos ab aut optio magnam. Culpa consequuntur necessitatibus sint error. Cupiditate sed earum laudantium minima minus suscipit.	3	2012-08-10 14:07:44.52553	2012-08-10 14:07:44.52553	cerita_rakyat.jpg	image/jpeg	31851	2012-08-10 14:07:43.744393	published
+5	Earum recusandae beatae nulla enim	Temporibus recusandae tenetur corporis non tempore. Unde eum magnam molestiae. Quos nostrum qui quis sint dolor sint reiciendis. Esse veritatis vitae dolorem asperiores sunt. Quo provident exercitationem ut non possimus. Laudantium ut adipisci ad magnam id impedit eos.	3	2012-08-10 14:07:45.41883	2012-08-10 14:07:45.41883	cerita_rakyat.jpg	image/jpeg	31851	2012-08-10 14:07:44.617605	published
+\.
+
+
+--
+-- Data for Name: impressions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY impressions (id, impressionable_type, impressionable_id, user_id, controller_name, action_name, view_name, request_hash, ip_address, session_hash, message, referrer, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: likes; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY likes (id, likeable_id, likeable_type, user_id, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: profiles; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY profiles (id, name, sex, birthday, about, phone, address, city, website, facebook, twitter, created_at, updated_at, user_id, work, image_file_name, image_content_type, image_file_size, image_updated_at) FROM stdin;
+1	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	2012-08-10 14:07:29.679732	2012-08-10 14:07:29.679732	1	\N	\N	\N	\N	\N
+2	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	2012-08-10 14:07:29.865424	2012-08-10 14:07:29.865424	2	\N	\N	\N	\N	\N
+3	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	2012-08-10 14:07:30.127872	2012-08-10 14:07:30.127872	3	\N	\N	\N	\N	\N
+\.
+
+
+--
+-- Data for Name: rails_admin_histories; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY rails_admin_histories (id, message, username, item, "table", month, year, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY schema_migrations (version) FROM stdin;
+20120729034829
+20120607063908
+20120607144532
+20120607170123
+20120608155452
+20120608163837
+20120608231913
+20120608232135
+20120609025718
+20120609040831
+20120609040953
+20120609043746
+20120609152740
+20120609152843
+20120609162203
+20120610063939
+20120610091547
+20120610101026
+20120611074530
+20120611080228
+20120612114226
+20120612182122
+20120616093403
+20120620030436
+20120620155652
+20120622090127
+20120622104738
+20120622161432
+20120624135359
+20120624143230
+20120626005039
+20120628103846
+20120628104230
+20120628113249
+20120629184401
+20120629192150
+20120629193514
+20120629194301
+20120629200516
+20120629201336
+20120629203711
+20120630100517
+20120630101009
+20120707181122
+20120712105838
+20120712184212
+20120713102003
+20120713102109
+20120713125820
+20120715025322
+20120718154144
+20120718154511
+20120719235932
+20120724221534
+20120724222450
+20120725091823
+20120725092301
+20120725094032
+20120725104220
+20120725125738
+20120725125952
+20120725135605
+20120725171329
+20120726093738
+20120726094004
+20120727190310
+20120728154005
+20120728162957
+20120729025022
+20120729025343
+20120729034619
+20120609043535
+20120613145139
+20120628104421
+20120712123516
+20120724223948
+\.
+
+
+--
+-- Data for Name: settings; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY settings (id, key, alt, value, editable, deletable, deleted, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: slideshows; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY slideshows (id, title, description, state, created_at, updated_at, image_file_name, image_content_type, image_file_size, image_updated_at) FROM stdin;
+1	Nostrum est sed repudiandae ullam optio	Consequatur est eos qui perspiciatis cumque maxime. Minus incidunt officia rerum voluptates porro voluptatem. Inventore optio neque fugit nemo sint rem.	published	2012-08-10 14:07:50.889495	2012-08-10 14:07:50.889495	slide-show.JPG	image/jpeg	3111148	2012-08-10 14:07:48.779714
+2	Consequatur sit tempora non nesciunt	Et sed at adipisci quia. Nisi iusto omnis ab id ut doloribus dolore. Aliquid est eligendi tempora dolor odio suscipit odit.	published	2012-08-10 14:07:53.165121	2012-08-10 14:07:53.165121	slide-show.JPG	image/jpeg	3111148	2012-08-10 14:07:51.164774
+3	Omnis qui adipisci reprehenderit possimus rem harum	Qui neque voluptate quia sunt quia ducimus cupiditate sed. Sit temporibus quo deserunt et sit atque occaecati esse.	published	2012-08-10 14:07:55.604914	2012-08-10 14:07:55.604914	slide-show.JPG	image/jpeg	3111148	2012-08-10 14:07:53.623088
+4	Error minima non perspiciatis voluptatem debitis reprehenderit	Cum quia amet id quod. Eos voluptatem possimus soluta molestiae et est aut odio.	published	2012-08-10 14:07:57.942866	2012-08-10 14:07:57.942866	slide-show.JPG	image/jpeg	3111148	2012-08-10 14:07:55.935757
+5	Eos veniam exercitationem eos commodi et ut	Aut est in eos excepturi vel qui nesciunt laborum.	published	2012-08-10 14:08:00.632088	2012-08-10 14:08:00.632088	slide-show.JPG	image/jpeg	3111148	2012-08-10 14:07:58.496551
+\.
+
+
+--
+-- Data for Name: sumbar_contents; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY sumbar_contents (id, title, content, type, user_id, created_at, updated_at, image_file_name, image_content_type, image_file_size, image_updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: tips_trick_revisions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tips_trick_revisions (id, title, description, state, user_id, tips_trick_id, created_at, updated_at, image_file_name, image_content_type, image_file_size, image_updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: tips_tricks; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tips_tricks (id, title, description, user_id, created_at, updated_at, image_file_name, image_content_type, image_file_size, image_updated_at, state) FROM stdin;
+1	Qui nihil repudiandae odio labore enim voluptate ea consequatur	Suscipit consequatur molestiae architecto rerum eaque eos veritatis. Velit rerum quia ut eos. Quis consectetur sed corporis voluptas reiciendis vel. Non dolorum voluptatibus asperiores dolorem. In consequuntur tenetur maiores incidunt. Suscipit est qui perferendis quisquam in laudantium alias odit.	3	2012-08-10 14:08:01.699242	2012-08-10 14:08:01.699242	tips_wisata.jpg	image/jpeg	20452	2012-08-10 14:08:00.905223	published
+2	Quam ut repellendus voluptas delectus	Quibusdam saepe dolores nisi non magni. Sunt odio autem dolorem quam ut possimus veritatis est. Aliquid asperiores accusamus ullam unde vel et. Reprehenderit optio quis dolor ipsam consequatur est. Ducimus nulla eum temporibus. Et quam ut qui repellat quia minima consequatur est. Recusandae reprehenderit dolores nulla suscipit beatae numquam nemo incidunt.	3	2012-08-10 14:08:02.716518	2012-08-10 14:08:02.716518	tips_wisata.jpg	image/jpeg	20452	2012-08-10 14:08:01.878018	published
+3	Repellat aut delectus autem	Velit illo perspiciatis quas rem molestias ut optio. Quod quaerat quia cum quasi in exercitationem ut. Autem id aspernatur officiis sint et provident. Et suscipit quasi nisi eaque quam molestiae. Nobis suscipit tenetur accusantium. Alias aut qui incidunt ut animi consequatur nisi perferendis. Error hic illum distinctio quo quia. Tempore impedit et recusandae dolorem voluptatem maxime reiciendis.	3	2012-08-10 14:08:03.558888	2012-08-10 14:08:03.558888	tips_wisata.jpg	image/jpeg	20452	2012-08-10 14:08:02.824317	published
+4	Rerum atque fugiat vitae dicta reiciendis	Iusto eos eaque nobis id vel. Id nostrum sed aspernatur. Explicabo officiis earum eos qui. Minus sed sed sunt cum reiciendis dolorum. Voluptatem sint cumque omnis non esse est non debitis. Vel beatae qui recusandae in.	3	2012-08-10 14:08:04.495037	2012-08-10 14:08:04.495037	tips_wisata.jpg	image/jpeg	20452	2012-08-10 14:08:03.743208	published
+5	Aliquid error quasi a ipsum	Iusto corporis tenetur aut quia doloribus. Mollitia laboriosam recusandae fugiat perferendis. Minima est qui amet eveniet quia sed. Id eaque tenetur quam. Repudiandae aperiam voluptatem pariatur sequi asperiores et numquam. Ducimus quidem optio aliquid voluptate et necessitatibus et. Corrupti quia aut iure voluptatem at. Omnis vero doloribus sit maxime omnis ipsum.	3	2012-08-10 14:08:05.449132	2012-08-10 14:08:05.449132	tips_wisata.jpg	image/jpeg	20452	2012-08-10 14:08:04.588894	published
+\.
+
+
+--
+-- Data for Name: tourism_article_revisions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tourism_article_revisions (id, title, content, state, user_id, tourism_article_id, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: tourism_articles; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tourism_articles (id, title, content, created_at, updated_at, user_id, state, image_file_name, image_content_type, image_file_size, image_updated_at) FROM stdin;
+1	Excepturi est temporibus quo	Amet ut quo voluptas est. Autem dolor magni aut totam fugit. Esse est sunt facere quia. Quibusdam quo ut facilis. Quia vel vitae nesciunt adipisci iusto. Unde cum deleniti maiores omnis et labore. Ipsa neque laudantium rerum numquam. Dignissimos et neque libero et dolorum occaecati.	2012-08-10 14:08:06.967996	2012-08-10 14:08:06.967996	3	published	berita_wisata.jpg	image/jpeg	146216	2012-08-10 14:08:05.67461
+2	Est doloremque soluta id ad quia odit ut eos	Occaecati sunt saepe et est nihil ducimus modi aut. Dolor fuga voluptatem libero saepe quaerat. Debitis enim ipsam cupiditate. Minus eveniet vel reprehenderit pariatur. Magni quas veniam molestias temporibus. Similique et non beatae molestiae itaque ut magnam voluptatem.	2012-08-10 14:08:08.372585	2012-08-10 14:08:08.372585	3	published	berita_wisata.jpg	image/jpeg	146216	2012-08-10 14:08:07.16254
+3	Autem consequatur cum ut	Delectus blanditiis suscipit ex vel distinctio similique saepe id. Nihil occaecati voluptatem doloribus qui. Consequuntur veniam sed aut rerum dolore similique dolorum optio. Dignissimos ut occaecati sit saepe. Suscipit animi iusto quo modi. Eius soluta velit commodi nam et ut quidem sunt.	2012-08-10 14:08:09.873013	2012-08-10 14:08:09.873013	3	published	berita_wisata.jpg	image/jpeg	146216	2012-08-10 14:08:08.587782
+4	Eius explicabo vero nobis pariatur eos quae	Fugiat tempora recusandae sed expedita accusantium laboriosam. Ea molestiae a est iusto. Minima dolorem nisi cupiditate et est rem ipsa in. Sit quia earum voluptatem quaerat aut. Amet delectus consequatur dicta quaerat. Distinctio consequatur facilis quos beatae rem est. Enim ipsam illum consequuntur aut eius ut cumque et. Laborum repellat et nihil ut sit eveniet.	2012-08-10 14:08:11.350838	2012-08-10 14:08:11.350838	3	published	berita_wisata.jpg	image/jpeg	146216	2012-08-10 14:08:10.119682
+5	Ut sed dignissimos iste voluptatem	Eligendi quam sed aut maxime aliquam. Aperiam a voluptate laborum sit sequi. Hic ut architecto voluptas. Officiis qui corrupti occaecati magnam culpa. Placeat dolorem eos dolorem dolorum. Accusamus vel ex earum officiis minus.	2012-08-10 14:08:12.892412	2012-08-10 14:08:12.892412	3	published	berita_wisata.jpg	image/jpeg	146216	2012-08-10 14:08:11.480419
+\.
+
+
+--
+-- Data for Name: tourism_location_revisions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tourism_location_revisions (id, name, address, city, zip, phone, web, facebook, twitter, hours_description, facility, description, category_loc_tourism_id, user_id, state, created_at, updated_at, tourism_location_id, image_file_name, image_content_type, image_file_size, image_updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: tourism_locations; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tourism_locations (id, name, address, city, phone, web, facebook, twitter, hours_description, facility, description, category_loc_tourism_id, user_id, created_at, updated_at, image_file_name, image_content_type, image_file_size, image_updated_at, state, access_state, zip, updater_id) FROM stdin;
+1	Pantai Padang	2 KM dari pusat Kota Padang	Kota Padang	 	 	 	 	 	 	Pantai Padang adalah salah satu pantai indah di sisi barat Sumatera Barat	13	1	2012-08-10 14:07:46.560356	2012-08-10 14:07:46.560356	logo-sumbar.png	image/png	66899	2012-08-10 14:07:45.631033	published	\N	\N	\N
+2	Jembatan Siti Nurbaya	Kota Padang	Kota Padang	 	 	 	 	 	 	Jembatan sepanjang 60 meter membentang di atas Muara Batang ini menghubungkan kota tua Padang\n    dengan Taman Bukit Gunung Padang. Dari atas jembatan, pengunjung bisa melihat pemandangan Bukit Gunung Padang.\n    Di Bukit itulah Siti Nurbaya dikubur, mungkin karena itu jembatan ini dinamakan Jembatan Siti Nurbaya	11	1	2012-08-10 14:07:47.528632	2012-08-10 14:07:47.528632	logo-sumbar.png	image/png	66899	2012-08-10 14:07:46.669507	published	\N	\N	\N
+3	Museum Adityawarman	Jl. Diponegoro No. 10 Padang	Kota Padang	0751-31523/39587	 	 	 	08:00 - 17:00 WIB	 	Museum Adityawarman diresmikan tahun 1979. Menempati areal seluas 2,5 hektar.Sesuai namanya di museum ini terdapat replika\n    arca Adityawarman, sedangkan arca asli saat ini berada di Museum Nasional Jakarta. Adityawarman adalah raja pertama yang berkuasa di Pagaruyung,\n    Kabupaten Batusangkar, Sumatera Barat.	26	1	2012-08-10 14:07:48.553702	2012-08-10 14:07:48.553702	logo-sumbar.png	image/png	66899	2012-08-10 14:07:47.717254	published	\N	\N	\N
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, created_at, updated_at, username, roles_mask, state) FROM stdin;
+1	admin@sumbar-tourism.com	$2a$10$iszMLcuTYJsCKJ6BLI/LaO/q94z6j9x/ol0mVD6R9ovKlLZ1xHEze	\N	\N	\N	0	\N	\N	\N	\N	2012-08-10 14:07:29.409969	2012-08-10 14:07:29.409969	admin	1	enabled
+2	operator@sumbar-tourism.com	$2a$10$IvJ8nliaJkjTiG24RHhybuhFx/WCCUvAeMOk4KLXjNCyfhx7AR54K	\N	\N	\N	0	\N	\N	\N	\N	2012-08-10 14:07:29.838461	2012-08-10 14:07:29.838461	operator	2	enabled
+3	member@sumbar-tourism.com	$2a$10$NhEmFZUfHRm1t0IhkUsERO8rq2rtYUWPJGfVrLo8Bl468W8gTGfv2	\N	\N	\N	0	\N	\N	\N	\N	2012-08-10 14:07:30.030509	2012-08-10 14:07:30.030509	member	4	enabled
+\.
+
+
+--
+-- Name: category_loc_tourisms_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY category_loc_tourisms
+    ADD CONSTRAINT category_loc_tourisms_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ckeditor_assets_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY ckeditor_assets
+    ADD CONSTRAINT ckeditor_assets_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: comments_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY comments
+    ADD CONSTRAINT comments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: contacts_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY contacts
+    ADD CONSTRAINT contacts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: deletion_requests_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY deletion_requests
+    ADD CONSTRAINT deletion_requests_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: event_revisions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY event_revisions
+    ADD CONSTRAINT event_revisions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: events_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY events
+    ADD CONSTRAINT events_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: folktale_revisions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY folktale_revisions
+    ADD CONSTRAINT folktale_revisions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: folktales_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY folktales
+    ADD CONSTRAINT folktales_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: impressions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY impressions
+    ADD CONSTRAINT impressions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: likes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY likes
+    ADD CONSTRAINT likes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: profiles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY profiles
+    ADD CONSTRAINT profiles_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: rails_admin_histories_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY rails_admin_histories
+    ADD CONSTRAINT rails_admin_histories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: settings_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY settings
+    ADD CONSTRAINT settings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: slideshows_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY slideshows
+    ADD CONSTRAINT slideshows_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sumbar_contents_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY sumbar_contents
+    ADD CONSTRAINT sumbar_contents_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: tips_trick_revisions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tips_trick_revisions
+    ADD CONSTRAINT tips_trick_revisions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: tips_tricks_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tips_tricks
+    ADD CONSTRAINT tips_tricks_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: tourism_article_revisions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tourism_article_revisions
+    ADD CONSTRAINT tourism_article_revisions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: tourism_articles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tourism_articles
+    ADD CONSTRAINT tourism_articles_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: tourism_location_revisions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tourism_location_revisions
+    ADD CONSTRAINT tourism_location_revisions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: tourism_locations_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tourism_locations
+    ADD CONSTRAINT tourism_locations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: controlleraction_ip_index; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX controlleraction_ip_index ON impressions USING btree (controller_name, action_name, ip_address);
+
+
+--
+-- Name: controlleraction_request_index; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX controlleraction_request_index ON impressions USING btree (controller_name, action_name, request_hash);
+
+
+--
+-- Name: controlleraction_session_index; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX controlleraction_session_index ON impressions USING btree (controller_name, action_name, session_hash);
+
+
+--
+-- Name: idx_ckeditor_assetable; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX idx_ckeditor_assetable ON ckeditor_assets USING btree (assetable_type, assetable_id);
+
+
+--
+-- Name: idx_ckeditor_assetable_type; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX idx_ckeditor_assetable_type ON ckeditor_assets USING btree (assetable_type, type, assetable_id);
+
+
+--
+-- Name: index_comments_on_commentable_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX index_comments_on_commentable_id ON comments USING btree (commentable_id);
+
+
+--
+-- Name: index_comments_on_commentable_type; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX index_comments_on_commentable_type ON comments USING btree (commentable_type);
+
+
+--
+-- Name: index_comments_on_user_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX index_comments_on_user_id ON comments USING btree (user_id);
+
+
+--
+-- Name: index_deletion_requests_on_item_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX index_deletion_requests_on_item_id ON deletion_requests USING btree (item_id);
+
+
+--
+-- Name: index_deletion_requests_on_item_type; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX index_deletion_requests_on_item_type ON deletion_requests USING btree (item_type);
+
+
+--
+-- Name: index_deletion_requests_on_user_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX index_deletion_requests_on_user_id ON deletion_requests USING btree (user_id);
+
+
+--
+-- Name: index_impressions_on_user_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX index_impressions_on_user_id ON impressions USING btree (user_id);
+
+
+--
+-- Name: index_rails_admin_histories; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX index_rails_admin_histories ON rails_admin_histories USING btree (item, "table", month, year);
+
+
+--
+-- Name: index_settings_on_key; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX index_settings_on_key ON settings USING btree (key);
+
+
+--
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
+
+
+--
+-- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (reset_password_token);
+
+
+--
+-- Name: poly_ip_index; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX poly_ip_index ON impressions USING btree (impressionable_type, impressionable_id, ip_address);
+
+
+--
+-- Name: poly_request_index; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX poly_request_index ON impressions USING btree (impressionable_type, impressionable_id, request_hash);
+
+
+--
+-- Name: poly_session_index; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX poly_session_index ON impressions USING btree (impressionable_type, impressionable_id, session_hash);
+
+
+--
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
