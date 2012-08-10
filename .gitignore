@@ -15,3 +15,6 @@ nbproject
 public/ckeditor_assets
 public/system
 public/uploads
+
+# Precompiled assets
+public/assets
