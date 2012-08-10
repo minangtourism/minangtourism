@@ -166,55 +166,6 @@ ActiveRecord::Schema.define(:version => 20120729034829) do
     t.datetime "updated_at",    :null => false
   end
 
-  create_table "tourism_location_revisions", :force => true do |t|
-    t.string   "name"
-    t.text     "address"
-    t.string   "city"
-    t.integer  "zip"
-    t.string   "phone"
-    t.string   "web"
-    t.string   "facebook"
-    t.string   "twitter"
-    t.text     "hours_description"
-    t.text     "facility"
-    t.text     "description"
-    t.integer  "category_loc_tourism_id"
-    t.integer  "user_id"
-    t.string   "state"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
-    t.integer  "tourism_location_id"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-  end
-
-  create_table "tourism_locations", :force => true do |t|
-    t.string   "name"
-    t.text     "address"
-    t.string   "city"
-    t.string   "phone"
-    t.string   "web"
-    t.string   "facebook"
-    t.string   "twitter"
-    t.text     "hours_description"
-    t.text     "facility"
-    t.text     "description"
-    t.integer  "category_loc_tourism_id"
-    t.integer  "user_id"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-    t.string   "state"
-    t.string   "access_state"
-    t.integer  "zip"
-    t.integer  "updater_id"
-  end
-
   create_table "profiles", :force => true do |t|
     t.string   "name"
     t.string   "sex"
@@ -335,6 +286,55 @@ ActiveRecord::Schema.define(:version => 20120729034829) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+  end
+
+  create_table "tourism_location_revisions", :force => true do |t|
+    t.string   "name"
+    t.text     "address"
+    t.string   "city"
+    t.integer  "zip"
+    t.string   "phone"
+    t.string   "web"
+    t.string   "facebook"
+    t.string   "twitter"
+    t.text     "hours_description"
+    t.text     "facility"
+    t.text     "description"
+    t.integer  "category_loc_tourism_id"
+    t.integer  "user_id"
+    t.string   "state"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.integer  "tourism_location_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  create_table "tourism_locations", :force => true do |t|
+    t.string   "name"
+    t.text     "address"
+    t.string   "city"
+    t.string   "phone"
+    t.string   "web"
+    t.string   "facebook"
+    t.string   "twitter"
+    t.text     "hours_description"
+    t.text     "facility"
+    t.text     "description"
+    t.integer  "category_loc_tourism_id"
+    t.integer  "user_id"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "state"
+    t.string   "access_state"
+    t.integer  "zip"
+    t.integer  "updater_id"
   end
 
   create_table "users", :force => true do |t|
