@@ -1,30 +1,23 @@
-<div class="container">
-  <div class="breadcrumb">
-    <div class="clearfix">
-      <div class="pull-left" style="color: #005580; font-size: 18px; margin-top: 4px;">
-        <i class="icon-book"></i> Cerita Rakyat Sumatera Barat
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="span12">
-
-      <ul class="thumbnails">
-        <li class="span8">
-          <%= render "shared/folktale_1", :folktales => @folktales[0..0] || [] %>
-        </li>
-
-        <li class="span4">
-          <%= render "shared/folktale_2", :folktales => @folktales[1..1] || [] %>
-        </li>
-      </ul> <!-- Berita Utama -->
-
-      <ul class="thumbnails">
-        <%= render "shared/folktale_3", :folktales => @folktales.to_a.from(2) || [] %>
-
-      </ul>
-
-      <%= paginate @folktales %>
+<div class="breadcrumb">
+  <div class="clearfix">
+    <div class="pull-left" style="color: #005580; font-size: 18px; margin-top: 4px;">
+      <i class="icon-book"></i> Cerita Rakyat Sumatera Barat
     </div>
   </div>
 </div>
+
+<ul class="thumbnails">
+  <li class="span8">
+    <%= render "shared/folktale_1", :folktales => @folktales[0..0] || [] %>
+  </li>
+
+  <li class="span4">
+    <%= render "shared/folktale_2", :folktales => @folktales[1..1] || [] %>
+  </li>
+</ul> <!-- Berita Utama -->
+
+<ul class="thumbnails" style="margin-bottom: 0;">
+  <%= render "shared/folktale_3", :folktales => @folktales.to_a.from(2) || [] %>
+</ul>
+
+<%= paginate @folktales %>

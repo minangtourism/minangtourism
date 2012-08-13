@@ -22,9 +22,11 @@
     </div>
 
 <%#= image_tag(@event.image.url(:large)) %>
-    <%= image_tag(@event.image.url) %>
+    <% if @event.image.url.present? %>
+      <%= image_tag(@event.image.url) %>
+    <% end %>
     <div class="content-article-show">
-      <p><%= raw @event.description %></p>
+      <%= raw @event.description %>
     </div>
   </div>
 </div>

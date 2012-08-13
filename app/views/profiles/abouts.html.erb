@@ -82,28 +82,28 @@
 
           <table class="table table-striped">
             <tbody>
-              <% if @profile.email %>
+              <% if @profile.email.present? %>
                 <tr>
                   <td><i class="icon-envelope"></i></td>
                   <td>Email</td>
                   <td><%= @profile.email %></td>
                 </tr>
               <% end %>
-              <% if @profile.phone %>
+              <% if @profile.phone.present? %>
                 <tr>
                   <td><i class="icon-phone"></i></td>
                   <td>Telepon</td>
                   <td><%= @profile.phone %></td>
                 </tr>
               <% end %>
-              <% if @profile.address %>
+              <% if @profile.address.present? %>
                 <tr>
                   <td><i class="icon-map-marker"></i></td>
                   <td>Alamat</td>
                   <td><%= @profile.address %></td>
                 </tr>
               <% end %>
-              <% if @profile.city %>
+              <% if @profile.city.present? %>
                 <tr>
                   <td><i class="icon-home"></i></td>
                   <td>Kota Asal</td>
@@ -125,21 +125,21 @@
 
           <table class="table table-striped">
             <tbody>
-              <% if @profile.website %>
+              <% if @profile.website.present? %>
                 <tr>
                   <td><i class="icon-globe"></i></td>
                   <td>Website</td>
                   <td><%= @profile.website %></td>
                 </tr>
               <% end %>
-              <% if @profile.facebook %>
+              <% if @profile.facebook.present? %>
                 <tr>
                   <td><i class="icon-facebook"></i></td>
                   <td>Facebook</td>
                   <td><%= @profile.facebook %></td>
                 </tr>
               <% end %>
-              <% if @profile.twitter %>
+              <% if @profile.twitter.present? %>
                 <tr>
                   <td><i class="icon-twitter"></i></td>
                   <td>Twitter</td>

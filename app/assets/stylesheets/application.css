@@ -167,7 +167,7 @@
 
 .title-news a{
     color: #0088CC;
-    font-size: 18px;
+    font-size: 14px;
     text-decoration: none
 }
 
@@ -183,7 +183,7 @@
 }
 
 .news-info a{
-    color: #0088CC;
+/*    color: #0088CC;*/
     text-decoration: none;
 }
 
@@ -417,9 +417,9 @@
     margin-bottom: 20px;
 }
 
-.content-article-show p{
-    font-size: 14px;
-    line-height: 23px;
+.content-article-show{
+    font-size: 13px;
+    line-height: 18px;
     margin-top: 20px;
 }
 

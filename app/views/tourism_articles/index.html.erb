@@ -1,37 +1,31 @@
-<div class="container">
 
-  <%#*<div class="pull-right" style="margin-top: 4px">%>
-    <%#= form_tag search_tourism_articles_path, :method => 'get' do %>
-      <%#= text_field_tag :search, params[:search], :placeholder => "Cari judul berita...", :style => "margin-bottom: 0" %>
-      <%#= submit_tag "Search", :name => nil, :class => "btn btn-primary" %>
-    <%# end %>
-  <%#*</div>%>
+<%#*<div class="pull-right" style="margin-top: 4px">%>
+<%#= form_tag search_tourism_articles_path, :method => 'get' do %>
+<%#= text_field_tag :search, params[:search], :placeholder => "Cari judul berita...", :style => "margin-bottom: 0" %>
+<%#= submit_tag "Search", :name => nil, :class => "btn btn-primary" %>
+<%# end %>
+<%#*</div>%>
 
-  <div class="breadcrumb">
-    <div class="clearfix">
-      <div class="pull-left" style="color: #005580; font-size: 18px; margin-top: 4px;">
-        <i class="icon-globe"></i> Berita Wisata
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="span12">
-
-      <ul class="thumbnails">
-        <li class="span8">
-          <%= render "shared/tourism_article_1", :articles => @tourism_articles[0..0] || [] %>
-        </li>
-
-        <li class="span4">
-          <%= render "shared/tourism_article_2", :articles => @tourism_articles[1..1] || [] %>
-        </li>
-      </ul> <!-- Berita Utama -->
-
-      <ul class="thumbnails">
-        <%= render "shared/tourism_article_3", :articles => @tourism_articles.to_a.from(2) || [] %>
-      </ul>
-
-      <%= paginate @tourism_articles %>
+<div class="breadcrumb">
+  <div class="clearfix">
+    <div class="pull-left" style="color: #005580; font-size: 18px; margin-top: 4px;">
+      <i class="icon-globe"></i> Berita Wisata
     </div>
   </div>
 </div>
+
+<ul class="thumbnails">
+  <li class="span8">
+    <%= render "shared/tourism_article_1", :articles => @tourism_articles[0..0] || [] %>
+  </li>
+
+  <li class="span4">
+    <%= render "shared/tourism_article_2", :articles => @tourism_articles[1..1] || [] %>
+  </li>
+</ul> <!-- Berita Utama -->
+
+<ul class="thumbnails" style="margin-bottom: 0;">
+  <%= render "shared/tourism_article_3", :articles => @tourism_articles.to_a.from(2) || [] %>
+</ul>
+
+<%= paginate @tourism_articles %>

@@ -23,7 +23,7 @@ class Event < ActiveRecord::Base
     :tiny => "240x180#",
     :small => "100x100#",
     :thumb => "145x75#"
-  }
+  }, :default_url => '/assets/missing/:class/:style/missing.jpg'
 
   #Validation
   validates_format_of :title, :presence => true, :uniqueness => true,

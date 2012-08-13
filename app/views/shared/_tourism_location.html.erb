@@ -126,8 +126,12 @@
           <div class="caption">
             <div class="clearfix">
               <p><i class="icon-th-list"></i>
-                <%= tourism_location.category_loc_tourism.parent.name %>,
-                <%= tourism_location.category_loc_tourism.name %>
+                <% if tourism_location.category_loc_tourism.parent.present? %>
+                  <%= tourism_location.category_loc_tourism.parent.name %>,
+                <% end %>
+                <% if tourism_location.category_loc_tourism.name.present? %>
+                  <%= truncate(tourism_location.category_loc_tourism.name, :length => 15, :separator => ' ') %>
+                <% end %>
               </p>
               <p><i class="icon-map-marker"></i> <%= tourism_location.city %></p>
               <p><i class="icon-user"></i>

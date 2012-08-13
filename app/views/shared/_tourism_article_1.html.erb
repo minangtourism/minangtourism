@@ -8,7 +8,7 @@
       <%= link_to article.user.username, profile_path(article.user) %> |
       <%= l article.created_at, :format => :costum %>
     </div>
-    <%= image_tag(article.image.url(:large)) %>
+    <%= image_tag(article.image.url(:large))%>
     <div class="caption">
       <%#*<p class="one-content-article"><%= raw truncate(article.content, :length => 400, :separator => ' ') %>
       <p class="clearfix">

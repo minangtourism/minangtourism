@@ -50,7 +50,7 @@
 
           <% @folktales.each do |folktale| %>
             <div class="title-news">
-              <%= link_to truncate(folktale.title, :length => 80, :separator => ' '), folktale_path(folktale) %>
+              <%= link_to truncate(folktale.title.titleize, :length => 80, :separator => ' '), folktale_path(folktale) %>
             </div>
             <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
           <% end %>
@@ -70,7 +70,7 @@
 
           <% @tourism_articles.each do |tourism_article| %>
             <div class="title-news">
-              <%= link_to truncate(tourism_article.title, :length => 80, :separator => ' '), tourism_article_path(tourism_article) %>
+              <%= link_to truncate(tourism_article.title.titleize, :length => 80, :separator => ' '), tourism_article_path(tourism_article) %>
             </div>
             <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
           <% end %>
@@ -90,7 +90,7 @@
 
           <% @tourism_locations.each do |tourism_location| %>
             <div class="title-news">
-              <%= link_to truncate(tourism_location.name, :length => 80, :separator => ' '), tourism_location_path(tourism_location) %>
+              <%= link_to truncate(tourism_location.name.titleize, :length => 80, :separator => ' '), tourism_location_path(tourism_location) %>
             </div>
             <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
           <% end %>
@@ -110,7 +110,7 @@
 
           <% @events.each do |event| %>
             <div class="title-news">
-              <%= link_to truncate(event.title, :length => 80, :separator => ' '), event_path(event) %>
+              <%= link_to truncate(event.title.titleize, :length => 80, :separator => ' '), event_path(event) %>
             </div>
             <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
           <% end %>
@@ -130,7 +130,7 @@
 
           <% @tips_tricks.each do |tips_trick| %>
             <div class="title-news">
-              <%= link_to truncate(tips_trick.title, :length => 80, :separator => ' '), tips_trick_path(tips_trick) %>
+              <%= link_to truncate(tips_trick.title.titleize, :length => 80, :separator => ' '), tips_trick_path(tips_trick) %>
             </div>
             <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
           <% end %>
