@@ -101,6 +101,18 @@
               <% end %>
             </ul>
           </li>
+          <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Tempat Tinggal <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <% CategoryLocTourism.find_by_name('Penginapan').children.each do |category_loc_tourism| %>
+                <li class="<%= current_page?(tourism_locations_path(category_loc_tourism_id: category_loc_tourism.to_param)) ? "active" : nil%>">
+                  <%= link_to tourism_locations_path(category_loc_tourism_id: category_loc_tourism.to_param) do %>
+                    <%= category_loc_tourism.name %>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </li>
         </ul>
       </div>
     </div>
@@ -127,7 +139,7 @@
             <div class="clearfix">
               <p><i class="icon-th-list"></i>
                 <% if tourism_location.category_loc_tourism.parent.present? %>
-                  <%= tourism_location.category_loc_tourism.parent.name %>,
+                  <%= truncate(tourism_location.category_loc_tourism.parent.name, :length => 15, :separator => ' ') %>,
                 <% end %>
                 <% if tourism_location.category_loc_tourism.name.present? %>
                   <%= truncate(tourism_location.category_loc_tourism.name, :length => 15, :separator => ' ') %>

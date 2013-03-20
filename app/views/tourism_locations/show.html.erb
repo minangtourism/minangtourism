@@ -53,7 +53,7 @@
                 <td><%= @tourism_location.updater.try('username')  %></td>
               </tr>
             <% end %>
-            <% if @tourism_location.updated_at != @tourism_location.created_at %>
+            <% if @tourism_location.updated_at =! @tourism_location.created_at %>
               <tr>
                 <td><i class="icon-time"></i></td>
                 <td>Hari:</td>

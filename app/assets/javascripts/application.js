@@ -26,111 +26,108 @@
 
 //handle ckeditor
 $(document).ready(function(){
-    if (CKEDITOR.instances['tourism_article_content']) {
-        CKEDITOR.remove(CKEDITOR.instances['tourism_article_content']);
-    }
-    if ($('#tourism_article_content').length) CKEDITOR.replace('tourism_article_content', {
-        "language":"id",
-        "toolbar":"Full",
-        "class":["ckeditor","required"]
-    });
+  if (CKEDITOR.instances['tourism_article_content']) {
+    CKEDITOR.remove(CKEDITOR.instances['tourism_article_content']);
+  }
+  if ($('#tourism_article_content').length) CKEDITOR.replace('tourism_article_content', {
+    "language":"id",
+    "toolbar":"Full",
+    "class":["ckeditor","required"]
+  });
 });
 
 $(document).ready(function(){
-    if (CKEDITOR.instances['folktale_description']) {
-        CKEDITOR.remove(CKEDITOR.instances['folktale_description']);
-    }
-    if ($('#folktale_description').length) CKEDITOR.replace('folktale_description', {
-        "language":"id",
-        "toolbar":"Full",
-        "class":["ckeditor","required"]
-    });
+  if (CKEDITOR.instances['folktale_description']) {
+    CKEDITOR.remove(CKEDITOR.instances['folktale_description']);
+  }
+  if ($('#folktale_description').length) CKEDITOR.replace('folktale_description', {
+    "language":"id",
+    "toolbar":"Full",
+    "class":["ckeditor","required"]
+  });
 });
 
 $(document).ready(function(){
-    if (CKEDITOR.instances['event_description']) {
-        CKEDITOR.remove(CKEDITOR.instances['event_description']);
-    }
-    if ($('#event_description').length) CKEDITOR.replace('event_description', {
-        "language":"id",
-        "toolbar":"Full",
-        "class":["ckeditor","required"]
-    });
+  if (CKEDITOR.instances['event_description']) {
+    CKEDITOR.remove(CKEDITOR.instances['event_description']);
+  }
+  if ($('#event_description').length) CKEDITOR.replace('event_description', {
+    "language":"id",
+    "toolbar":"Full",
+    "class":["ckeditor","required"]
+  });
 });
 
 $(document).ready(function(){
-    if (CKEDITOR.instances['tourism_location_description']) {
-        CKEDITOR.remove(CKEDITOR.instances['tourism_location_description']);
-    }
-    if ($('#tourism_location_description').length) CKEDITOR.replace('tourism_location_description', {
-        "language":"id",
-        "toolbar":"Full",
-        "class":["ckeditor","optional"]
-    });
+  if (CKEDITOR.instances['tourism_location_description']) {
+    CKEDITOR.remove(CKEDITOR.instances['tourism_location_description']);
+  }
+  if ($('#tourism_location_description').length) CKEDITOR.replace('tourism_location_description', {
+    "language":"id",
+    "toolbar":"Full",
+    "class":["ckeditor","optional"]
+  });
 });
 
 $(document).ready(function(){
-    if (CKEDITOR.instances['tips_trick_description']) {
-        CKEDITOR.remove(CKEDITOR.instances['tips_trick_description']);
-    }
-    if ($('#tips_trick_description').length) CKEDITOR.replace('tips_trick_description', {
-        "language":"id",
-        "toolbar":"Full",
-        "class":["ckeditor","required"]
-        });
+  if (CKEDITOR.instances['tips_trick_description']) {
+    CKEDITOR.remove(CKEDITOR.instances['tips_trick_description']);
+  }
+  if ($('#tips_trick_description').length) CKEDITOR.replace('tips_trick_description', {
+    "language":"id",
+    "toolbar":"Full",
+    "class":["ckeditor","required"]
+  });
+});
+
+//form Komentar Berita Wisata / tourism_article_content.html.erb
+$(document).ready(function(){
+  if (CKEDITOR.instances['comment_comment']) {
+    CKEDITOR.remove(CKEDITOR.instances['comment_comment']);
+  }
+  if ($('#comment_comment').length) CKEDITOR.replace('comment_comment', {
+    "language":"id",
+    "toolbar":"Basic",
+    //    "uiColor" : '#9AB8F3',
+    //    "uiColor" : '#AADC6E',
+    "class":["ckeditor","required"]
+  });
 });
     
 //date
 $(document).on("focus", "[data-behaviour~='datepicker']", function(e){
-    $(this).datepicker({
-        //        "format": "dd-mm-yyyy",
-        "format": "yyyy-mm-dd",
-        "weekStart": 1,
-        "autoclose": true
-    });
+  $(this).datepicker({
+    //        "format": "dd-mm-yyyy",
+    "format": "yyyy-mm-dd",
+    "weekStart": 1,
+    "autoclose": true
+  });
 });
 
 //slide-show
 $('.carousel').carousel({
-    interval: 5000
+  interval: 5000
 })
 
 //tab
 $('#myTab a').click(function (e) {
-    e.preventDefault();
-    $(this).tab('show');
+  e.preventDefault();
+  $(this).tab('show');
 })
-
-//subnavbar
-//$(document).scroll(function(){
-//    // If has not activated (has no attribute "data-top"
-//    if (!$('.subnav').attr('data-top')) {
-//        // If already fixed, then do nothing
-//        if ($('.subnav').hasClass('subnav-fixed')) return;
-//        // Remember top position
-//        var offset = $('.subnav').offset()
-//        if(offset) $('.subnav').attr('data-top', offset.top);
-//    }
-//
-//    if ($('.subnav').attr('data-top') - $('.subnav').outerHeight() <= $(this).scrollTop())
-//        $('.subnav').addClass('subnav-fixed');
-//    else
-//        $('.subnav').removeClass('subnav-fixed');
-//});
 
 //combobox
 $(document).ready(function(){
-    $('.combobox').combobox();
+  $('.combobox').combobox();
 });
 
 $('.dropdown-menu form').on('click.dropdown.data-api', function(e){
-    e.stopPropagation();
+  e.stopPropagation();
 });
 
 $(document).on('shown', '.modal', function(){
-    $(':input:visible:enabled:not(:button):first', this).focus();
+  $(':input:visible:enabled:not(:button):first', this).focus();
 }).on('ajax:before', '#form-sign-in, #form-sign-up', function(){
-    $(':submit.btn-primary', this).attr('disabled', true);
+  $(':submit.btn-primary', this).attr('disabled', true);
 }).on('ajax:complete', '#form-sign-in, #form-sign-up', function(){
-    $(':submit.btn-primary', this).attr('disabled', false);
+  $(':submit.btn-primary', this).attr('disabled', false);
 });

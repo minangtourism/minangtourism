@@ -1,24 +1,22 @@
-<div class="container">
-  <div class="row">
-    <div class="span12">
-      <ul class="thumbnails">
-        <li class="span8">
-          <%= render "shared/tourism_article_content",
-            :comments => @comments
-        %>
-        </li>
-
-        <li class="span4">
-          <%= render "shared/folktale_sub_content",
-            :folktales => Folktale.published.recent.limit(5),
-            :tips_tricks => TipsTrick.published.recent.limit(5),
-            :article => TourismArticle.published.last,
-            :event => Event.published.last,
-            :review => Comment.published.reviews.last
-        %>
-        </li
-      </ul>
-
-    </div>
+<div class="row">
+<%#*<div class="span12">%>
+<%#*<ul class="thumbnails">%>
+  <div class="span8">
+    <%= render "shared/tourism_article_content",
+      :comments => @comments
+  %>
   </div>
+
+  <div class="span4">
+    <%= render "shared/tourism_article_sub_content",
+      :folktales => Folktale.published.recent.limit(5),
+      :tips_tricks => TipsTrick.published.recent.limit(5),
+      :article => TourismArticle.published.last,
+      :event => Event.published.last,
+      :review => Comment.published.reviews.last
+  %>
+  </div>
+<%#*</ul>%>
+
+<%#*</div>%>
 </div>
