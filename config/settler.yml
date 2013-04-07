@@ -21,7 +21,7 @@ settings: &settings
     validations:
       presence: true
   email:
-    alt: Phone
+    alt: Email
     value: 'minangtourism@gmail.com'
     editable: true
     deletable: false

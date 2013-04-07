@@ -60,14 +60,24 @@
       </li>
     </ul>
   </li>
-  <li class="<%= current_page?(helps_path) ? "active" : nil%>">
-    <%= link_to helps_path do %>
+
+  <li class="dropdown" id="menu3">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#menu3">
       <i class="icon-wrench"></i>Bantuan
-    <% end %>
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li class="<%= current_page?(helps_path) ? "active" : nil%>">
+        <%= link_to helps_path do %>
+          <i class="icon-question-sign"></i>FAQ
+        <% end %>
+      </li>
+      <li class="<%= current_page?(contacts_path) ? "active" : nil%>">
+        <%= link_to contacts_path do %>
+          <i class="icon-user"></i>Kontak
+        <% end %>
+      </li>
+    </ul>
   </li>
-  <li class="<%= current_page?(contacts_path) ? "active" : nil%>">
-    <%= link_to contacts_path do %>
-      <i class="icon-share-alt"></i>Kontak
-    <% end %>
-  </li>
+
 </ul>
