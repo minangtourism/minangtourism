@@ -166,44 +166,79 @@
 
   </div>
 
-  <div class="comments-tourism-article">
-    <legend>Tulis Ceritamu Disini!</legend>
-
-    <div class="row">
-      <div class="span8" style="margin-bottom: 30px;">
-        <%= form_for @comment, :url => create_comment_tourism_location_path(@tourism_location), :html => { :class => 'form-horizontal' } do |f| %>
-          <div class="span1" style="margin-left: 0">
-            <%= image_tag((current_user || User.new).image.url(:small), :class => 'thumbnail')%>
+  <div class="row">
+    <div class="span8">
+      <div class="comments-tourism-location">
+        <legend>
+          <div style="font-size: 24px;">
+            <i class="icon-comments-alt icon-large"></i> Mari Berkomentar!
           </div>
-          <%= f.text_area :comment, :"aria-required" => true, :role => "textbox", :rows => "5", :class => "span7 required", :style => "margin-left: 30px; margin-bottom: 20px;"%>
-          <div class="actions">
-            <%= f.button :submit, :class => 'btn btn-primary pull-right' %>
-          </div>
+        </legend>
+        <%= simple_form_for @comment, :url => create_comment_tourism_location_path(@tourism_location) do |f| %>
+          <%= f.input :comment, :as => :text, :label => false %>
+          <%= f.button :submit, 'Submit', :class => 'span 1 btn btn-primary' %>
         <% end %>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="span8">
-        <% @comments.each do |comment| %>
-          <div id="comment-<%= comment.id %>">
-            <%= image_tag(comment.user.image.url(:thumb), :class => 'thumbnail') %>
-            <div class="clearfix">
-              <h5 style="text-transform: uppercase; margin-bottom: 10px;">
-                <div class="pull-left">
-                  <%= link_to comment.user.username, profile_path(comment.user) %>
-                </div>
-                <div class="pull-right">
-                  <i class="icon-time"></i> <%= l comment.created_at, :format => :costum %>
-                </div>
-              </h5>
+      <% @comments.each do |comment| %>
+        <div id="comment-<%= comment.id %>">
+          <div class="comment_container">
+            <div class="img_round">
+              <%= image_tag(comment.user.image.url(:small)) %>
             </div>
-            <p style="margin-top: 9px; white-space: pre-wrap"><%= raw comment.comment %></p>
+            <div class="comment_content">
+              <p class="meta">
+                <%= l comment.created_at, :format => :costum %>
+              </p>
+              <p>
+                <%= link_to comment.user.username, profile_path(comment.user) %> bilang:
+                <%= raw comment.comment %>
+              </p>
+            </div>
           </div>
-          <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
-        <% end %>
-        <%= paginate @comments  %>
-      </div>
+        </div>
+      <% end %>
+      <%= paginate @comments %>
     </div>
   </div>
+
+  <%#*<div class="comments-tourism-location">%>
+    <%#*<legend>Tulis Ceritamu Disini!</legend>%>
+
+    <%#*<div class="row">%>
+      <%#*<div class="span8" style="margin-bottom: 30px;">%>
+        <%#= form_for @comment, :url => create_comment_tourism_location_path(@tourism_location), :html => { :class => 'form-horizontal' } do |f| %>
+          <%#*<div class="span1" style="margin-left: 0">%>
+            <%#= image_tag((current_user || User.new).image.url(:small), :class => 'thumbnail')%>
+          <%#*</div>%>
+          <%#= f.text_area :comment, :"aria-required" => true, :role => "textbox", :rows => "5", :class => "span7 required", :style => "margin-left: 30px; margin-bottom: 20px;"%>
+          <%#*<div class="actions">%>
+            <%#= f.button :submit, :class => 'btn btn-primary pull-left' %>
+          <%#*</div>%>
+        <%# end %>
+      <%#*</div>%>
+
+      <%#*<div class="span8">%>
+        <%# @comments.each do |comment| %>
+          <%#*<div id="comment-<%= comment.id %>
+            <%#= image_tag(comment.user.image.url(:thumb), :class => 'thumbnail') %>
+            <%#*<div class="clearfix">%>
+              <%#*<h5 style="text-transform: uppercase; margin-bottom: 10px;">%>
+                <%#*<div class="pull-left">%>
+                  <%#= link_to comment.user.username, profile_path(comment.user) %>
+                <%#*</div>%>
+                <%#*<div class="pull-right">%>
+                  <%#*<i class="icon-time"></i> <%= l comment.created_at, :format => :costum %>
+                <%#*</div>%>
+              <%#*</h5>%>
+            <%#*</div>%>
+            <%#*<p style="margin-top: 9px; white-space: pre-wrap"><%= raw comment.comment %>
+          <%#*</div>%>
+          <%#*<div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>%>
+        <%# end %>
+        <%#= paginate @comments %>
+      <%#*</div>%>
+    <%#*</div>%>
+  <%#*</div>%>
+
 </div>

@@ -1,60 +1,60 @@
 <%- model_class = @tips_trick.class -%>
 
-<div class="thumbnail" style="margin-bottom: 30px;">
-  <div class="caption">
-    <h2 class="title-show-tourism-article">
-      <%= @tips_trick.title %>
-    </h2>
+<div class="tips-trick-content">
 
-    <div class="author-content-article-show">
-      <p class="clearfix">
-        oleh <%= link_to @tips_trick.user.username, profile_path(@tips_trick.user) %>
-        <%= l @tips_trick.created_at, :format => :costum %>
-        <span class="pull-right" style="margin-left: 20px;">
-          <%= comments.count %> <i class="icon-comment"></i>
-        </span>
-        <span class="pull-right" >
-          <%= @tips_trick.impressionist_count(:filter => :session_hash) %>
-          <i class="icon-eye-open"></i>
-        </span>
-      </p>
-    </div>
+  <div class="info-tips-trick-content">
+    <h2><%= @tips_trick.title.titleize %></h2>
 
-    <%= image_tag(@tips_trick.image.url) %>
-    <div class="content-article-show">
-      <p><%= raw @tips_trick.description %></p>
+    oleh <%= link_to @tips_trick.user.username, profile_path(@tips_trick.user) %> |
+    <%= l @tips_trick.created_at, :format => :costum %>
+
+    <div class="pull-right" style="margin-left: 5px;">
+      <a href="#" rel="tooltip" data-original-title="komentar" class="btn btn-mini">
+        <i class="icon-comment"></i> <%= @tips_trick.comments.published.count %>
+      </a>
     </div>
+    <div class="pull-right">
+      <a href="#" rel="tooltip" data-original-title="melihat" class="btn btn-mini">
+        <i class="icon-eye-open"></i> <%= @tips_trick.impressionist_count(:filter => :session_hash) %>
+      </a>
+    </div>
+  </div>
+
+  <%= image_tag(@tips_trick.image.url) %>
+  <div class="content-article-show">
+    <%= raw @tips_trick.description %>
   </div>
 </div>
 
-<div class="comments-tourism-article">
-  <legend>Mari Berkomentar!</legend>
-
-  <%= form_for @comment, :url => create_comment_tips_trick_path(@tips_trick), :html => { :class => 'form-horizontal' } do |f| %>
-    <div class="span1" style="margin-left: 0">
-      <%= image_tag((current_user || User.new).image.url(:small), :class => 'thumbnail')%>
-    </div>
-    <%= f.text_area :comment, :"aria-required" => true, :role => "textbox", :rows => "5", :class => "span7 required", :style => "margin-left: 30px; margin-bottom: 20px;"%>
-    <div class="actions">
-      <%= f.button :submit, :class => 'btn btn-primary pull-right' %>
-    </div>
-  <% end %>
-
-  <div class="row">
-    <div class="span8">
-      <% comments.each do |comment| %>
-        <%= image_tag(comment.user.image.url(:thumb), :class => 'thumbnail') %>
-        <div>
-          <h5 style="text-transform: uppercase; margin-bottom: 10px;">
-            <%= link_to comment.user.username, profile_path(comment.user) %>
-            <%= l comment.created_at, :format => :costum %>
-          </h5>
-          <p class="clearfix" style="white-space: pre-wrap"><%= raw comment.comment %></p>
+<div class="row">
+  <div class="span8">
+    <div class="comments-tips-trick">
+      <legend>
+        <div style="font-size: 24px;">
+          <i class="icon-comments-alt icon-large"></i> Mari Berkomentar!
         </div>
-        <div class="dashed" style="margin-bottom: 15px; margin-top: 5px;"></div>
+      </legend>
+      <%= simple_form_for @comment, :url => create_comment_tips_trick_path(@tips_trick) do |f| %>
+        <%= f.input :comment, :as => :text, :label => false %>
+        <%= f.button :submit, 'Submit', :class => 'span 1 btn btn-primary' %>
       <% end %>
-      <%= paginate comments %>
     </div>
-  </div>
 
+    <% comments.each do |comment| %>
+      <div class="comment_container">
+        <div class="img_round">
+          <%= image_tag(comment.user.image.url(:small)) %>
+        </div>
+        <div class="comment_content">
+          <p class="meta">
+            <%= l comment.created_at, :format => :costum %>
+          </p>
+          <p>
+            <%= link_to comment.user.username, profile_path(comment.user) %> bilang:
+            <%= raw comment.comment %>
+          </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

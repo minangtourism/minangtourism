@@ -509,6 +509,362 @@
 
 /*end komentar toorism article*/
 
+/*show events / show event, event_content*/
+.event-content {
+  background: none repeat scroll 0 0 #FFFFFF;
+  border: 1px solid #DDDDDD;
+  border-radius: 4px 4px 4px 4px;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.event-content h2 {
+  font-size: 24px;
+  font-weight: lighter;
+  line-height: 30px;
+  margin-bottom: 10px;
+}
+
+.info-event-content{
+  font-size: 12px;
+  line-height: 1.24;
+  margin-bottom: 20px;
+}
+
+.title-show-event{
+  font-size: 32px;
+  line-height: 1.24;
+  margin-bottom: 20px;
+}
+
+.content-article-show{
+  font-size: 13px;
+  line-height: 18px;
+  margin-top: 20px;
+}
+
+.author-content-article-show{
+  font-family: adelle,georgia;
+  font-style: italic;
+  margin-bottom: 0;
+}
+
+/*komentar event*/
+.comments-event {
+  background: none repeat scroll 0 0 #FFFFFF;
+  border: 1px solid #DDDDDD;
+  border-radius: 4px 4px 4px 4px;
+  margin-bottom: 20px;
+  padding: 10px 20px 0 20px;
+}
+
+.img_round {
+  float: left;
+  height: 60px;
+  margin: 0 10px 10px 0;
+  overflow: hidden;
+  padding: 7px;
+  position: relative;
+  width: 60px;
+}
+.img_round:after, .img_round:before {
+  border: 1px solid #999999;
+  border-radius: 50% 50% 50% 50%;
+  bottom: 3px;
+  box-shadow: 0 1px 1px 1px #BBBBBB;
+  content: "";
+  left: 3px;
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  z-index: 2;
+}
+.img_round:after {
+  border: 5px solid #FFFFFF;
+  box-shadow: 0 0 0 30px #FFFFFF;
+  z-index: 1;
+}
+
+.comment_container {
+  background: none repeat scroll 0 0 #FFFFFF;
+  border: 1px solid #DDDDDD;
+  border-radius: 4px 4px 4px 4px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.comment_content {
+  margin-left: 90px;
+  margin-top: 10px;
+}
+
+.comment_content p {
+  font-size: 12px;
+}
+
+.comment_content .meta {
+  border-bottom: 1px solid #DDDDDD;
+}
+
+/*end komentar toorism article*/
+
+/*show folktales / show cerita rakyat, folktale_content*/
+.folktale-content {
+  background: none repeat scroll 0 0 #FFFFFF;
+  border: 1px solid #DDDDDD;
+  border-radius: 4px 4px 4px 4px;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.folktale-content h2 {
+  font-size: 24px;
+  font-weight: lighter;
+  line-height: 30px;
+  margin-bottom: 10px;
+}
+
+.info-folktale-content{
+  font-size: 12px;
+  line-height: 1.24;
+  margin-bottom: 20px;
+}
+
+.title-show-folktale{
+  font-size: 32px;
+  line-height: 1.24;
+  margin-bottom: 20px;
+}
+
+.content-article-show{
+  font-size: 13px;
+  line-height: 18px;
+  margin-top: 20px;
+}
+
+.author-content-article-show{
+  font-family: adelle,georgia;
+  font-style: italic;
+  margin-bottom: 0;
+}
+
+/*komentar folktale*/
+.comments-folktale {
+  background: none repeat scroll 0 0 #FFFFFF;
+  border: 1px solid #DDDDDD;
+  border-radius: 4px 4px 4px 4px;
+  margin-bottom: 20px;
+  padding: 10px 20px 0 20px;
+}
+
+.img_round {
+  float: left;
+  height: 60px;
+  margin: 0 10px 10px 0;
+  overflow: hidden;
+  padding: 7px;
+  position: relative;
+  width: 60px;
+}
+.img_round:after, .img_round:before {
+  border: 1px solid #999999;
+  border-radius: 50% 50% 50% 50%;
+  bottom: 3px;
+  box-shadow: 0 1px 1px 1px #BBBBBB;
+  content: "";
+  left: 3px;
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  z-index: 2;
+}
+.img_round:after {
+  border: 5px solid #FFFFFF;
+  box-shadow: 0 0 0 30px #FFFFFF;
+  z-index: 1;
+}
+
+.comment_container {
+  background: none repeat scroll 0 0 #FFFFFF;
+  border: 1px solid #DDDDDD;
+  border-radius: 4px 4px 4px 4px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.comment_content {
+  margin-left: 90px;
+  margin-top: 10px;
+}
+
+.comment_content p {
+  font-size: 12px;
+}
+
+.comment_content .meta {
+  border-bottom: 1px solid #DDDDDD;
+}
+
+/*end komentar folktale*/
+
+/*show tips-trick / show tips-trick, tips-trick_content*/
+.tips-trick-content {
+  background: none repeat scroll 0 0 #FFFFFF;
+  border: 1px solid #DDDDDD;
+  border-radius: 4px 4px 4px 4px;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.tips-trick-content h2 {
+  font-size: 24px;
+  font-weight: lighter;
+  line-height: 30px;
+  margin-bottom: 10px;
+}
+
+.info-tips-trick-content{
+  font-size: 12px;
+  line-height: 1.24;
+  margin-bottom: 20px;
+}
+
+.title-show-tips-trick{
+  font-size: 32px;
+  line-height: 1.24;
+  margin-bottom: 20px;
+}
+
+.content-article-show{
+  font-size: 13px;
+  line-height: 18px;
+  margin-top: 20px;
+}
+
+.author-content-article-show{
+  font-family: adelle,georgia;
+  font-style: italic;
+  margin-bottom: 0;
+}
+
+/*komentar tips dan trik wisata*/
+.comments-tips-trick {
+  background: none repeat scroll 0 0 #FFFFFF;
+  border: 1px solid #DDDDDD;
+  border-radius: 4px 4px 4px 4px;
+  margin-bottom: 20px;
+  padding: 10px 20px 0 20px;
+}
+
+.img_round {
+  float: left;
+  height: 60px;
+  margin: 0 10px 10px 0;
+  overflow: hidden;
+  padding: 7px;
+  position: relative;
+  width: 60px;
+}
+.img_round:after, .img_round:before {
+  border: 1px solid #999999;
+  border-radius: 50% 50% 50% 50%;
+  bottom: 3px;
+  box-shadow: 0 1px 1px 1px #BBBBBB;
+  content: "";
+  left: 3px;
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  z-index: 2;
+}
+.img_round:after {
+  border: 5px solid #FFFFFF;
+  box-shadow: 0 0 0 30px #FFFFFF;
+  z-index: 1;
+}
+
+.comment_container {
+  background: none repeat scroll 0 0 #FFFFFF;
+  border: 1px solid #DDDDDD;
+  border-radius: 4px 4px 4px 4px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.comment_content {
+  margin-left: 90px;
+  margin-top: 10px;
+}
+
+.comment_content p {
+  font-size: 12px;
+}
+
+.comment_content .meta {
+  border-bottom: 1px solid #DDDDDD;
+}
+
+/*end komentar tips_trick*/
+
+/*komentar folktale*/
+.comments-tourism-location {
+  background: none repeat scroll 0 0 #FFFFFF;
+  border: 1px solid #DDDDDD;
+  border-radius: 4px 4px 4px 4px;
+  margin-bottom: 20px;
+  padding: 10px 20px 0 20px;
+}
+
+.img_round {
+  float: left;
+  height: 60px;
+  margin: 0 10px 10px 0;
+  overflow: hidden;
+  padding: 7px;
+  position: relative;
+  width: 60px;
+}
+.img_round:after, .img_round:before {
+  border: 1px solid #999999;
+  border-radius: 50% 50% 50% 50%;
+  bottom: 3px;
+  box-shadow: 0 1px 1px 1px #BBBBBB;
+  content: "";
+  left: 3px;
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  z-index: 2;
+}
+.img_round:after {
+  border: 5px solid #FFFFFF;
+  box-shadow: 0 0 0 30px #FFFFFF;
+  z-index: 1;
+}
+
+.comment_container {
+  background: none repeat scroll 0 0 #FFFFFF;
+  border: 1px solid #DDDDDD;
+  border-radius: 4px 4px 4px 4px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.comment_content {
+  margin-left: 90px;
+  margin-top: 10px;
+}
+
+.comment_content p {
+  font-size: 12px;
+}
+
+.comment_content .meta {
+  border-bottom: 1px solid #DDDDDD;
+}
+
+/*end komentar tourism-location*/
+
 /*tempat wisata*/
 .title-location{
   /*    margin-left: 10px;*/
