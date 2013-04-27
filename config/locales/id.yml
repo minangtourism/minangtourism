@@ -30,6 +30,7 @@ id:
         inclusion: "tidak termasuk dalam daftar"
         exclusion: "sudah dicadangkan"
         invalid: "salah"
+        record_invalid: "salah"
         confirmation: "tidak sesuai konfirmasi"
         accepted: "harus disetujui"
         empty: "tidak boleh kosong"
