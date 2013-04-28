@@ -31,7 +31,8 @@ $(document).ready(function(){
   }
   if ($('#tourism_article_content').length) CKEDITOR.replace('tourism_article_content', {
     "language":"id",
-    "toolbar":"Full",
+//    "toolbar":"Full",
+    "toolbar":"Basic",
     "class":["ckeditor","required"]
   });
 });
@@ -42,7 +43,7 @@ $(document).ready(function(){
   }
   if ($('#folktale_description').length) CKEDITOR.replace('folktale_description', {
     "language":"id",
-    "toolbar":"Full",
+    "toolbar":"Basic",
     "class":["ckeditor","required"]
   });
 });
@@ -53,7 +54,7 @@ $(document).ready(function(){
   }
   if ($('#event_description').length) CKEDITOR.replace('event_description', {
     "language":"id",
-    "toolbar":"Full",
+    "toolbar":"Basic",
     "class":["ckeditor","required"]
   });
 });
@@ -64,7 +65,7 @@ $(document).ready(function(){
   }
   if ($('#tourism_location_description').length) CKEDITOR.replace('tourism_location_description', {
     "language":"id",
-    "toolbar":"Full",
+    "toolbar":"Basic",
     "class":["ckeditor","optional"]
   });
 });
@@ -75,7 +76,7 @@ $(document).ready(function(){
   }
   if ($('#tips_trick_description').length) CKEDITOR.replace('tips_trick_description', {
     "language":"id",
-    "toolbar":"Full",
+    "toolbar":"Basic",
     "class":["ckeditor","required"]
   });
 });
